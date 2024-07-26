@@ -19,6 +19,6 @@ from django.urls import path
 from user_profiles.views import my_profile
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
     path('user_profiles/', my_profile, name='user_profiles'),
+    path('admin/', admin.site.urls),
 ]
