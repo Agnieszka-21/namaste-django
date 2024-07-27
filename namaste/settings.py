@@ -50,8 +50,8 @@ INSTALLED_APPS = [
 
 # next 3 lines from CI - adjusted - was '/'
 SITE_ID = 1
-LOGIN_REDIRECT_URL = 'user_profiles/'
-LOGOUT_REDIRECT_URL = 'user_profiles/'
+LOGIN_REDIRECT_URL = 'profile/'
+LOGOUT_REDIRECT_URL = 'profile/'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -118,8 +118,23 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# from CI
-ACCOUNT_EMAIL_VERIFICATION = 'none'
+# From the AllAuth Quickstart documentation:
+# https://docs.allauth.org/en/latest/installation/quickstart.html
+AUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by email
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+# Custom AllAuth configuration - based on the AllAuth documentation:
+# https://docs.allauth.org/en/latest/account/configuration.html
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_VERIFICATION = 'required'
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 2
 
 
 # Internationalization

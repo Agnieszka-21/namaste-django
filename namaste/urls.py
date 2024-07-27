@@ -20,7 +20,7 @@ from django.urls import path, include
 from user_profiles.views import my_profile
 
 urlpatterns = [
-    path('user_profiles/', my_profile, name='user_profiles'),
+    path('profile/', my_profile, name='user_profiles'),
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
 ]
