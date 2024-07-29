@@ -4,8 +4,12 @@ from django.http import HttpResponse
 from .models import Client_User_Profile
 
 # Create your views here.
+def home(request):
+    # return HttpResponse('This is the homepage - http response')
+    return render(request, 'user_profiles/index.html')
+
 @login_required
 def profile(request):
-    profile = request.user.profile
-    return render(request, 'user_profiles/profile.html', {'profile': profile})
-    # return HttpResponse("Welcome to Namaste Yoga")
+    profile = request.user.get_profile()  # or just .profile ?
+    return render(request, 'profile.html', {'profile': profile})
+    #return HttpResponse("Welcome to Namaste Yoga")

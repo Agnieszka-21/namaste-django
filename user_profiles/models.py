@@ -12,6 +12,6 @@ class Client_User_Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     injuries = models.TextField(max_length=300, blank=True)
     date_of_birth = models.DateField(null=True, blank=True)
-    # profile_pic = CloudinaryField
+    # profile_pic = CloudinaryField()
     signed_waiver = models.BooleanField()
 
