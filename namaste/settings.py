@@ -31,7 +31,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['8000-agnieszka21-namastedjan-6kyn9auc2gl.ws.codeinstitute-ide.net', '.herokuapp.com']
 
-CSRF_TRUSTED_ORIGIN = [
+CSRF_TRUSTED_ORIGINS = [
     'https://8000-agnieszka21-namastedjan-6kyn9auc2gl.ws.codeinstitute-ide.net',
     'http://*.codeinstitute-ide.net',
     'https://*.codeinstitute-ide.net',
