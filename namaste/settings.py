@@ -18,7 +18,6 @@ if os.path.isfile('env.py'):
 
 # Cloudinary imports - tutorial here:
 # https://dev.to/spymonk/integrating-cloudinary-storage-with-django-4ipb
-
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
