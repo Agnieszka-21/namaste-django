@@ -139,11 +139,9 @@ AUTHENTICATION_BACKENDS = [
 # https://docs.allauth.org/en/latest/account/configuration.html
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
-ACCOUNT_EMAIL_VERIFICATION = 'required'
+# ACCOUNT_EMAIL_VERIFICATION = 'required'
 ACCOUNT_USERNAME_REQUIRED = False
-ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 2
-ACCOUNT_AUTHENTICATION_METHOD = 'none'
-
+# ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 2
 
 # Email configuration settings - based on this tutorial
 # https://reintech.io/blog/setting-up-email-in-django-tutorial
