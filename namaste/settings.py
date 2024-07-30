@@ -54,10 +54,10 @@ INSTALLED_APPS = [
     'user_profiles',
 ]
 
-# next 3 lines from CI - adjusted - was '/'
+# next 3 lines from CI
 SITE_ID = 1
-LOGIN_REDIRECT_URL = 'profile/'
-LOGOUT_REDIRECT_URL = 'profile/'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -142,6 +142,7 @@ ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_VERIFICATION = 'required'
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 2
+ACCOUNT_AUTHENTICATION_METHOD = 'none'
 
 
 # Email configuration settings - based on this tutorial
