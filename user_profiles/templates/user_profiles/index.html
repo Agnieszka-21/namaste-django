@@ -6,10 +6,21 @@
 {% load static %}
 
 <!-- index.html content starts here -->
-<div>
-    <div class="row no-gutters">
-        <img src="../static/images/seated.jpg" alt="Students in a yoga class" class="col-12">
+<!-- Hero: https://mdbootstrap.com/docs/standard/extended/hero/ or: https://www.youtube.com/watch?v=W87XNjvXiWw&t=180s -->
+ 
+<!-- Hero -->
+<div class="text-center bg-image hero-img">
+    <div class="p-5 color-overlay" style="background-color: rgba(0, 0, 0, 0.3);">
+        <div class="d-flex justify-content-center align-items-center h-100">
+            <div class="text-white">
+                <h1 class="mb-2 hero-text">Welcome</h1>
+                <h4 class="mb-4 hero-text">to the friendliest yoga studio in Dublin</h4>
+                <a data-mdb-ripple-init class="btn btn-outline-light btn-lg hero-btn-text" href="#!" role="button">See our class schedule</a>
+            </div>
+        </div>
     </div>
+</div>
+
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-9">
@@ -23,7 +34,7 @@
         </div>
 
     </div>
-</div>
+
 
 <!-- index.html content ends here -->
 {% endblock %}

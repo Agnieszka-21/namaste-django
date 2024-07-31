@@ -17,6 +17,7 @@ body {
     font-family: 'Nova Mono', monospace;
     font-size: 2rem;
     color: #fafafa;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
 }
 
 /*
@@ -52,6 +53,31 @@ iframe {
 .main-bg {
     background-color: #F9FAFC;
 }
+
+.hero-img {
+    background-image: url('../images/seated.jpg');
+    background-size: cover;
+    min-height: 80vh;
+    position: relative;
+    color: #fafafa;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+}
+
+.hero-text {
+    font-weight: 500;
+}
+
+.hero-btn-text {
+    font-weight: 800;
+}
+
+.color-overlay {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.3);
+    height: 100%;
+    width: 100%;
+}
+
 
 .card {
     border: none;
