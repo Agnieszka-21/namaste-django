@@ -34,18 +34,23 @@
 
 <body class="d-flex flex-column h-100 main-bg">
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg data-bs-theme='dark' bg-greyblack">
+    <!-- Navigation 
+     Helpful documentation: CI Walkthrough projects, https://www.w3schools.com/bootstrap4/bootstrap_navbar.asp -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-brown">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{% url 'home' %}">
-                <div class="brand">Namaste</div>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+            
+            <!-- Brand -->
+            <a class="navbar-brand brand" href="{% url 'home' %}">Namaste</a>
+
+            <!-- Toggler/collapsibe Button -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar"
                 aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarText">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+            <!-- Navbar links -->
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link {% if request.path == home_url %}active{% endif %}" aria-current="page"
                             href="{% url 'home' %}">Home</a>
@@ -91,19 +96,70 @@
 
     </main>
 
-    <!-- Footer -->
-    <footer class="footer mt-auto py-3 bg-greyblack">
+    <!-- Footer 
+    <footer class="footer mt-auto py-3 bg-darkbrown">
         <div class="container-fluid"></div>
             <div class="row">
                 <p class="col-md-4 m-0 text-center text-white">Made by Namaste Yoga</p>
                 <p class="col-md-4 m-0 text-center text-white">Follow us</p>
                 <p class="col-md-4 m-0 text-center text-white">
-                    <i class="fa-brands fa-facebook"></i>
-                    <i class="fa-brands fa-instagram"></i>
-                    <i class="fa-brands fa-youtube"></i>
+                    <i class="fa-brands fa-facebook"><a href="https://www.facebook.com" target="_blank" rel="noopener" aria-label="Visit our Facebook page (opens in a new tab)"></a></i>
+                    <a href="https://www.instagram.com" target="_blank" rel="noopener" aria-label="Visit our Instagram page (opens in a new tab)"></a><i class="fa-brands fa-instagram"></i>
+                    <a href="https://www.youtube.com" target="_blank" rel="noopener" aria-label="Visit our YouTube channel (opens in a new tab)"></a><i class="fa-brands fa-youtube"></i>
                 </p>
             </div>
         </div>
+    </footer>
+-->
+    <!-- Footer adapted from https://mdbootstrap.com/docs/standard/extended/social-media-icons-footer/ -->
+    <footer class="text-center text-white">
+        <!-- Grid container -->
+        <div class="container pt-4">
+          <!-- Section: Social media -->
+          <section class="mb-2">
+            <!-- Facebook -->
+            <a
+              data-mdb-ripple-init class="btn btn-link btn-floating btn-lg text-dark m-1"
+              href="https://www.facebook.com"
+              target="_blank"
+              rel="noopener"
+              aria-label="Visit our Facebook page (opens in a new tab)"
+              role="button"
+              data-mdb-ripple-color="dark"
+              ><i class="fa-brands fa-facebook-f"></i
+            ></a>
+      
+            <!-- Instagram -->
+            <a
+              data-mdb-ripple-init class="btn btn-link btn-floating btn-lg text-dark m-1"
+              href="https://www.instagram.com"
+              target="_blank"
+              rel="noopener"
+              aria-label="Visit our Instagram page (opens in a new tab)"
+              role="button"
+              data-mdb-ripple-color="dark"
+              ><i class="fa-brands fa-instagram"></i
+            ></a>
+      
+            <!-- YouTube -->
+            <a
+              data-mdb-ripple-init class="btn btn-link btn-floating btn-lg text-dark m-1"
+              href="https://www.youtube.com"
+              target="_blank"
+              rel="noopener"
+              aria-label="Visit our YouTube channel (opens in a new tab)"
+              role="button"
+              data-mdb-ripple-color="dark"
+              ><i class="fa-brands fa-youtube"></i
+            ></a>
+          </section>
+        </div>
+      
+        <!-- Copyright -->
+        <div class="text-center text-light p-3 bg-brown">
+          © 2024 Copyright: Namaste Yoga Studio
+        </div>
+
     </footer>
 
     <!-- Bootstrap -->

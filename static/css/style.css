@@ -9,6 +9,8 @@
 /* Copied from CI Walkthrough for now (only temporary) */
 body {
     background-color: #e4e0dd;
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
 }
 
 .brand {
@@ -30,12 +32,21 @@ footer p {
     font-weight: 400;
 }
 
-.thin {
-    font-weight: 300;
+.no-gutters {
+    margin-left: 0;
+    margin-right: 0;
 }
 
-.bg-greyblack {
+iframe {
+    width: 100%;
+}
+
+.bg-darkbrown {
     background-color: #201f14 !important;
+}
+
+.bg-brown {
+    background-color: #5d513d;
 }
 
 .main-bg {
