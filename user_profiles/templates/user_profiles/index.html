@@ -3,18 +3,25 @@
 {% extends "base.html" %}
 
 {% block content %}
+{% load static %}
 
 <!-- index.html content starts here -->
-<div class="container-fluid">
+<div>
     <div class="row">
-
-        <!-- Blog Entries Column -->
-        <div class="col-12 mt-3 left">
-            <div class="row">
-                <h2>This is our homepage - from the index.html template</h2>
-
+        <img src="../static/images/seated.jpg" alt="Students in a yoga class" class="col-12">
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-9">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d9537.471824400272!2d-6.192174326756135!3d53.30085620641535!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486708c4080244f3%3A0xbf8903d8f988d553!2sBlackrock%2C%20Dublin%2C%20A94%20Y5P6!5e0!3m2!1sen!2sie!4v1722427323813!5m2!1sen!2sie" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <div class="col-md-3 address">
+                <p>Frascati Centre</p>
+                <p>Frascati Rd, Blackrock</p>
+                <p>Dublin, A94 Y5P6</p>
             </div>
         </div>
+
     </div>
 </div>
 

@@ -5,6 +5,7 @@
 }
 */
 
+
 /* Copied from CI Walkthrough for now (only temporary) */
 body {
     background-color: #e4e0dd;
@@ -12,30 +13,29 @@ body {
 
 .brand {
     font-family: 'Nova Mono', monospace;
-    font-size: 5rem;
-    color: #a7aaa3;
+    font-size: 2rem;
+    color: #fafafa;
 }
 
+/*
 .brand-addition {
     font-family: 'Nova Mono', monospace;
     font-size: 2rem;
-    color: #a7aaa3;
+    color: #fafafa;
+}
+*/
+
+footer p {
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
 }
 
 .thin {
     font-weight: 300;
 }
 
-.light-bg {
-    background-color: #a7aaa3;
-}
-
-.dark-bg {
-    background-color: #445261;
-}
-
-.bg-grey {
-    background-color: #445261 !important;
+.bg-greyblack {
+    background-color: #201f14 !important;
 }
 
 .main-bg {
