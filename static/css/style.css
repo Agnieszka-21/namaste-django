@@ -5,7 +5,6 @@
 }
 */
 
-
 /* Copied from CI Walkthrough for now (only temporary) */
 body {
     background-color: #e4e0dd;
@@ -78,6 +77,20 @@ iframe {
     width: 100%;
 }
 
+/* remove padding R and L?
+.info-container {
+    font-size: 0
+}
+
+#address, #opening-hours {
+    font-size: 14px;
+}
+*/
+
+h4 { /* not working right now for some reason... FIX */
+    font-weight: 600;
+    padding: 10px 0;
+}
 
 .card {
     border: none;
