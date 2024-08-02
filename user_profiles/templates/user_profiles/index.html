@@ -1,5 +1,3 @@
-<!-- Adapted from the CI Walkthrough -->
-
 {% extends "base.html" %}
 
 {% block content %}
@@ -14,7 +12,7 @@
             <div class="text-white">
                 <h1 class="mb-2 hero-text">Welcome</h1>
                 <h4 class="mb-4 hero-text">to the friendliest yoga studio in Dublin</h4>
-                <a data-mdb-ripple-init class="btn btn-outline-light btn-lg hero-btn-text" href="#!" role="button">See our class schedule</a>
+                <a data-mdb-ripple-init class="btn btn-outline-light btn-lg hero-btn-text" href="{% url 'class_schedule' %}" role="button">See our class schedule</a>
             </div>
         </div>
     </div>

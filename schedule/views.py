@@ -5,5 +5,5 @@ from django.http import HttpResponse
 
 # Create your views here.
 def schedule(request):
-    # render (request, 'schedule/class_schedule.html')
-    return HttpResponse('This is the schedule page')
+    return render(request, 'schedule/schedule.html')
+    #return HttpResponse('This is the schedule page')
