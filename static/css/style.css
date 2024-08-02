@@ -65,7 +65,7 @@ iframe {
 }
 
 .error404-img {
-    background-image: url('../static/images/meditation.jpg');
+    background-image: url('../images/meditation.jpg');
     background-size: cover;
     min-height: 100vh;
     color: #fafafa;
