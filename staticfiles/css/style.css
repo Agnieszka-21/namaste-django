@@ -1,33 +1,110 @@
+/* .nova-mono-regular {
+  font-family: "Nova Mono", monospace;
+  font-weight: 400;
+  font-style: normal;
+}
+*/
+
 /* Copied from CI Walkthrough for now (only temporary) */
 body {
-    background-color: #F9FAFC;
+    background-color: #e4e0dd;
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
 }
 
 .brand {
-    font-family: Lato, sans-serif;
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: #4A4A4F;
+    font-family: 'Nova Mono', monospace;
+    font-size: 2rem;
+    color: #fafafa;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
 }
 
-.red-o {
-    color: #E84610;
+/*
+.brand-addition {
+    font-family: 'Nova Mono', monospace;
+    font-size: 2rem;
+    color: #fafafa;
+}
+*/
+
+footer p {
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
 }
 
-.thin {
-    font-weight: 300;
+.no-gutters {
+    margin-left: 0;
+    margin-right: 0;
 }
 
-.light-bg {
-    background-color: #fff;
+iframe {
+    width: 100%;
 }
 
-.dark-bg {
-    background-color: #445261;
+.bg-darkbrown {
+    background-color: #201f14 !important;
+}
+
+.bg-brown {
+    background-color: #5d513d;
 }
 
 .main-bg {
     background-color: #F9FAFC;
+}
+
+.hero-img {
+    background-image: url('../images/seated.jpg');
+    background-size: cover;
+    min-height: 80vh;
+    color: #fafafa;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.error404-img {
+    background-image: url('../images/meditation.jpg');
+    background-size: cover;
+    min-height: 100vh;
+    color: #fafafa;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-text {
+    font-weight: 500;
+}
+
+.hero-btn-text {
+    font-weight: 800;
+}
+
+.color-overlay {
+    background-color: rgba(0, 0, 0, 0.6);
+    margin: 20px;
+}
+
+p {
+    margin-bottom: 0.2rem;
+}
+
+/* remove padding R and L?
+.info-container {
+    font-size: 0
+}
+
+#address, #opening-hours {
+    font-size: 14px;
+}
+*/
+
+h4 { /* not working right now for some reason... FIX */
+    font-weight: 600;
+    padding: 10px 0;
 }
 
 .card {

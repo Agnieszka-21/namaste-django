@@ -1,10 +1,13 @@
 <!-- Temporarily copied from the CI Walkthrough project -->
 
 {% url 'home' as home_url %}
+{% url 'error404' as error404_url %}
 <!-- {% url 'schedule' as schedule_url %} -->
 {% url 'account_login' as login_url %}
 {% url 'account_signup' as signup_url %}
 {% url 'account_logout' as logout_url %}
+
+{% load static %}
 
 <!DOCTYPE html>
 <html class="h-100" lang="en">
@@ -34,7 +37,7 @@
         integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 
     <!-- Custom styles -->
-     <link rel="stylesheet" href="../static/css/style.css">
+     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
 </head>
 

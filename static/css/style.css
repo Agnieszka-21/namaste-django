@@ -57,9 +57,22 @@ iframe {
     background-image: url('../images/seated.jpg');
     background-size: cover;
     min-height: 80vh;
-    position: relative;
     color: #fafafa;
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.error404-img {
+    background-image: url('../static/images/meditation.jpg');
+    background-size: cover;
+    min-height: 100vh;
+    color: #fafafa;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .hero-text {
@@ -71,10 +84,12 @@ iframe {
 }
 
 .color-overlay {
-    position: absolute;
-    background-color: rgba(0, 0, 0, 0.3);
-    height: 100%;
-    width: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    margin: 20px;
+}
+
+p {
+    margin-bottom: 0.2rem;
 }
 
 /* remove padding R and L?
