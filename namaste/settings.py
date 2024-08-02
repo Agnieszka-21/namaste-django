@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'user_profiles',
+    'schedule',
 ]
 
 # next 3 lines from CI
