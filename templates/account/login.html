@@ -4,17 +4,17 @@
 {% load i18n %}
 {% load account socialaccount %}
 
-{% block head_title %}{% trans "Sign In" %}{% endblock %}
+{% block head_title %}{% trans "Sign in" %}{% endblock %}
 
 {% block content %}
 
 <div class="container">
     <div class="row">
         <div class="col-md-8 mt-3 offset-md-2">
-            <h3>{% trans "Log in" %}</h3>
+            <h4>{% trans "Log in" %}</h4>
 
-            <p>{% blocktrans %}Welcome back to Namaste Yoga Studio. To book a class or manage your current bookings, please log in. If
-                you
+            <p>{% blocktrans %}Welcome back to Namaste Yoga Studio. To book a class or manage your current bookings,
+                please log in. If you
                 have not created an account yet, then <a class="link" href="{{ signup_url }}">sign up</a>
                 first.{% endblocktrans %}</p>
         </div>
@@ -27,7 +27,7 @@
                 {% if redirect_field_value %}
                 <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
                 {% endif %}
-                <button class="btn btn-dark" type="submit">{% trans "Log in" %}</button>
+                <button class="btn btn-dark mt-3" type="submit">{% trans "Log in" %}</button>
             </form>
         </div>
     </div>
