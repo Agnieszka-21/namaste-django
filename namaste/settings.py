@@ -67,7 +67,7 @@ INSTALLED_APPS = [
 ]
 
 # next 3 lines from CI
-SITE_ID = 1
+SITE_ID = 2 # check if it's working!
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 

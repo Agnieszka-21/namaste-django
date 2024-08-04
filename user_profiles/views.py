@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.template import loader
 from django.http import HttpResponse
 from .models import Client_User_Profile
 
@@ -13,6 +14,12 @@ def error404(request):
 
 @login_required
 def profile(request):
+    template = loader.get_template('user_profiles/profile.html')
+    context = {
+        'name': request.user.get_full_name(),
+        'email': request.user.email,
+    }
     #profile = request.user.get_profile()  # or just .profile ?
-    #return render(request, 'profile.html', {'profile': profile})
-    return HttpResponse("Welcome to Namaste Yoga user account")
+    #return render(request, 'user_profiles/profile.html', {'profile': profile})
+    #return HttpResponse("Welcome to Namaste Yoga user account")
+    return HttpResponse(template.render(context, request))

@@ -11,13 +11,20 @@ import uuid
 class Client_User_Profile(models.Model):
     id = models.UUIDField(primary_key=True, unique=True, default=uuid.uuid4, editable=False)  # https://www.geeksforgeeks.org/uuidfield-django-models/
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='client_profile')
-    first_name = models.CharField(max_length=20, blank=True)
-    last_name = models.CharField(max_length=20, blank=True)
+    #first_name = models.CharField(max_length=20, blank=True) - will be passed from the User model on the profile page
+    #last_name = models.CharField(max_length=20, blank=True) - will be passed in from the User model on the profile page
     date_of_birth = models.DateField(null=True, blank=True)
     injuries = models.TextField(max_length=300, blank=True)
     profile_pic = CloudinaryField('image', default='placeholder')
     signed_waiver = models.BooleanField()
 
     def __str__(self):
-        return str(self.first_name)
+        return str(self.user)
+
+    #def first_name(self, obj):
+        #return obj.user.first_name
+
+    #def __str__(self):
+        #return str(self.first_name)
+        # or return self.first_name?
 
