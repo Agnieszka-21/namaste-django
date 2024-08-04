@@ -13,6 +13,6 @@ def error404(request):
 
 @login_required
 def profile(request):
-    profile = request.user.get_profile()  # or just .profile ?
-    return render(request, 'profile.html', {'profile': profile})
-    #return HttpResponse("Welcome to Namaste Yoga")
+    #profile = request.user.get_profile()  # or just .profile ?
+    #return render(request, 'profile.html', {'profile': profile})
+    return HttpResponse("Welcome to Namaste Yoga user account")
