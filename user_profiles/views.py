@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.template import loader
 from django.http import HttpResponse
@@ -21,11 +21,11 @@ def profile(request):
         'email': request.user.email,
     }
     user_account_form = UserAccountForm()
+    #return HttpResponse(template.render(context, request))
+    return render(request, 'user_profiles/profile.html', context)
 
     #profile = request.user.get_profile()  # or just .profile ?
-    #return render(request, 'user_profiles/profile.html', {'profile': profile})
     #return HttpResponse("Welcome to Namaste Yoga user account")
-    return HttpResponse(template.render(context, request))
     # return render(request, 
     # 'user_profiles/profile.html', {
     #     'context': context,

@@ -27,9 +27,10 @@
                                                         placeholder="enter your date of birth" value=""></div>
                                         <div class="col-md-12"><label class="labels" for="injuries">Recent or chronic injuries</label>
                                                         <textarea name="injuries" id="injuries" class="form-control" placeholder="Leave empty if not applicable"></textarea></div>
-                                        <div class="col-md-12"><label class="py-3 pe-3">Signed waiver</label><input
-                                                        type="checkbox" class="py-3"
-                                                        required></div>
+                                        <div class="form-check form-switch form-switch-reverse mt-3" id="switch-toggle">
+                                                <label class="form-check-label" for="mySwitch">Sign <a href="#">waiver</a></label>
+                                                <input class="form-check-input" type="checkbox" id="sign-waiver" name="waiver" value="signed-waiver">
+                                        </div>
                                 </div>
                                 
                                 <div class="mt-5 text-center">
@@ -39,9 +40,13 @@
                 </div>
                 <div class="col-md-4">
                         <div class="p-3 py-5">
-                                <div class="d-flex justify-content-between align-items-center experience"><span class="bookings-heading">My
-                                                bookings</span><span class="border px-3 p-1 add-experience bookings-heading"><i
-                                                class="fa fa-plus"></i>&nbsp;Book a class</span></div><br>
+                                <div class="d-flex justify-content-between align-items-center">
+                                        <span class="bookings-heading">My bookings</span>
+                                        <span class="border px-3 p-1 book-class bookings-heading">
+                                                <i class="fa fa-plus"></i>&nbsp;Book a class
+                                        </span>
+                                </div>
+                                <br>
                                 <div id="list_bookings" class="col-md-12">
                                 </div>
                         </div>
