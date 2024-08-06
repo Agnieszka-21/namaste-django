@@ -11,7 +11,7 @@
 
 <p class="mx-3">{% blocktranslate %}To safeguard the security of your account, please enter your password:{% endblocktranslate %}</p>
 
-<form class="reauthenticate" method="POST" action="{% url 'account_reauthenticate' %}" class="mx-3">
+<form class="reauthenticate mx-3" method="POST" action="{% url 'account_reauthenticate' %}">
   {% csrf_token %}
   {{ form | crispy }}
   {% if redirect_field_value %}

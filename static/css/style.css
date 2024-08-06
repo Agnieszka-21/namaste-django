@@ -165,6 +165,9 @@ body {
     background-color: #5d513d;
 }
 
+.underline {
+    text-decoration: underline;
+}
 
 /* Media queries */
 @media only screen and (min-width: 768px) {
