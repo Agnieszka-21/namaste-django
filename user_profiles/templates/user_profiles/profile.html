@@ -5,55 +5,56 @@
 
 <!-- User profile template: https://bbbootstrap.com/snippets/bootstrap-5-myprofile-90806631# -->
 <div class="container rounded bg-white mt-5 mb-5">
-        <div class="row">
-                <div class="col-md-3 border-right">
-                        <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img
-                                        class="rounded-circle mt-5" width="150px"
-                                        src="../static/images/default_profile_pic.jpg">
-                                        <!-- src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"> -->
-                                        <span class="font-weight-bold">{{ name }}</span>
-                                        <span class="text-black-50">{{ email }}</span><span>
-                                </span></div>
-                </div>
-                <div class="col-md-5 border-right">
-                        <div class="p-3 py-5">
-                                <div class="d-flex justify-content-between align-items-center mb-3">
-                                        <h4 class="text-right">My account</h4>
-                                </div>
-                                
-                                <div class="row mt-3">
-                                        <div class="col-md-12"><label class="labels">Date of birth</label><input
-                                                        type="date" class="form-control"
-                                                        placeholder="enter your date of birth" value=""></div>
-                                        <div class="col-md-12"><label class="labels" for="injuries">Recent or chronic injuries</label>
-                                                        <textarea name="injuries" id="injuries" class="form-control" placeholder="Leave empty if not applicable"></textarea></div>
-                                        <div class="form-check form-switch form-switch-reverse mt-3" id="switch-toggle">
-                                                <label class="form-check-label" for="mySwitch">Sign <a href="#">waiver</a></label>
-                                                <input class="form-check-input" type="checkbox" id="sign-waiver" name="waiver" value="signed-waiver">
-                                        </div>
-                                </div>
-                                
-                                <div class="mt-5 text-center">
-                                        <button class="btn btn-dark" type="button">Save Profile</button>
-                                </div>
-                        </div>
-                </div>
-                <div class="col-md-4">
-                        <div class="p-3 py-5">
-                                <div class="d-flex justify-content-between align-items-center">
-                                        <span class="bookings-heading">My bookings</span>
-                                        <span class="border px-3 p-1 book-class bookings-heading">
-                                                <i class="fa fa-plus"></i>&nbsp;Book a class
-                                        </span>
-                                </div>
-                                <br>
-                                <div id="list_bookings" class="col-md-12">
-                                </div>
-                        </div>
-                </div>
-
+    <div class="row">
+        <div class="col-md-3 border-right">
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                <img class="rounded-circle mt-5" width="150px" src="../static/images/default_profile_pic.jpg">
+                <span class="font-weight-bold">{{ name }}</span>
+                <span class="text-black-50">{{ email }}</span>
+            </div>
         </div>
-</div>
+        <div class="col-md-5 border-right">
+            <div class="p-3 py-5">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="text-right">My account</h4>
+                    </div>
 
+                    <div class="row mt-3">
+                        <div class="col-md-12">
+                            <label for="birth-date">Date of birth</label>
+                            <input type="date" id="birth-date" name="date_of_birth" class="form-control" placeholder="enter your date of birth" value="">
+                        </div>
+                        <div class="col-md-12">
+                            <label for="injuries">Recent or chronic injuries</label>
+                            <textarea name="injuries" id="injuries" class="form-control"
+                                placeholder="Leave empty if not applicable"></textarea>
+                        </div>
+                        <div class="form-check form-switch form-switch-reverse mt-3" id="switch-toggle">
+                            <label for="sign-waiver" class="form-check-label">Sign <a href="#">waiver</a></label>
+                            <input class="form-check-input" type="checkbox" id="sign-waiver" name="waiver"
+                                value="signed">
+                        </div>
+                    </div>
 
-{% endblock %}
+                    <div class="mt-5 text-center">
+                        <button class="btn btn-dark" type="button">Save Profile</button>
+                    </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center">
+                    <span class="bookings-heading">My bookings</span>
+                    <span class="border px-3 p-1 book-class bookings-heading">
+                        <i class="fa fa-plus"></i>&nbsp;Book a class
+                    </span>
+                </div>
+                <br>
+                <div id="list_bookings" class="col-md-12">
+                    <!-- Client's booked classes are listed here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% endblock %}
