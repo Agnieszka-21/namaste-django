@@ -49,27 +49,20 @@ def profile(request, id):
     return render(request, 'user_profiles/profile.html', context)
 
 
-    # placeholder_text = "no information"
-    # context = {
-    #     'name': request.user.get_full_name(),
-    #     'email': request.user.email,
-    #     'profile_form': profile_form,
-    #     'placeholder_text': placeholder_text,
-    # }
-    #return render(request, 'user_profiles/profile.html', context)
-
-
 # Built based on this: https://docs.djangoproject.com/en/5.0/topics/forms/
 @login_required
 def editProfile(request, id):
     queryset = Profile.objects.all()
-    current_user = get_object_or_404(queryset, user=id)
+    current_user = get_object_or_404(queryset, user=request.user)
     if request.method == 'POST':
-        profile_form = ClientProfileForm(data=request.POST)
+        profile_form = ClientProfileForm(request.POST, request.FILES, instance=current_user)
         if profile_form.is_valid():
-            profile = profile_form.save(commit=False)
-            profile.save()
-            #return HttpResponseRedirect("/thanks/")
+            try:
+                profile_form.save()
+                messages.success(request, 'Your profile has been updated')
+                return redirect(profile, request.user.id)
+            except:
+                messages.error(request, 'ERROR: Oops, something went wrong...')
     else:
-        profile_form = ClientProfileForm()
+        profile_form = ClientProfileForm(instance=current_user)
     return render(request, 'user_profiles/profile_form.html', {'profile_form': profile_form})

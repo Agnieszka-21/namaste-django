@@ -24,8 +24,14 @@ class ClientProfileForm(forms.ModelForm):
             'date_of_birth',
             'injuries',
             'signed_waiver',
-            'profile_pic',
+            'profile_pic'
         ]
+        labels = {
+            'date_of_birth': 'Date of birth',
+            'injuries': 'Recent or chronic injuries',
+            'signed_waiver': 'Signed waiver',
+            'profile_pic': 'Image'
+        }
 
         def __init__(self, *args, **kwargs):
             super(ClientProfileForm, self).__init__(*args, **kwargs)
