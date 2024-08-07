@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.template import loader
 from django.http import HttpResponse
-from .models import Client_User_Profile
+from .models import Profile
 from .forms import ClientProfileForm
 
 # Create your views here.

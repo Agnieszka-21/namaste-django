@@ -1,6 +1,6 @@
 from allauth.account.forms import SignupForm
 from django import forms
-from .models import Client_User_Profile
+from .models import Profile
 
 
 # https://www.naukri.com/code360/library/extending-and-customizing-django-allauth
@@ -19,7 +19,7 @@ class CustomSignupForm(SignupForm):
 
 class ClientProfileForm(forms.ModelForm):
     class Meta:
-        model = Client_User_Profile
+        model = Profile
         fields = [
             'date_of_birth',
             'injuries',
