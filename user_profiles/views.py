@@ -19,9 +19,15 @@ def error404(request):
 
 @login_required
 def profile(request):
+    #queryset = Profile.objects.all()
+    #current_user = get_object_or_404(queryset, user=user)
+    profile_form = ClientProfileForm()
+    placeholder_text = "no information"
     context = {
         'name': request.user.get_full_name(),
         'email': request.user.email,
+        'profile_form': profile_form,
+        'placeholder_text': placeholder_text,
     }
     return render(request, 'user_profiles/profile.html', context)
 
@@ -30,9 +36,11 @@ def profile(request):
 @login_required
 def editProfile(request):
     if request.method == 'POST':
-        form = ClientProfileForm(request.POST)
-        if form.is_valid():
-            return HttpResponseRedirect("/thanks/")
+        profile_form = ClientProfileForm(data=request.POST)
+        if profile_form.is_valid():
+            profile = profile_form.save(commit=False)
+            profile.save()
+            #return HttpResponseRedirect("/thanks/")
     else:
-        form = ClientProfileForm()
-    return render(request, 'user_profiles/profile_form.html', {'form': form})
+        profile_form = ClientProfileForm()
+    return render(request, 'user_profiles/profile_form.html', {'profile_form': profile_form})
