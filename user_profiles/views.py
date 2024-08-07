@@ -39,10 +39,12 @@ class ProfileList(generic.ListView):
 def profile(request, id):
     queryset = Profile.objects.all()
     current_user = get_object_or_404(queryset, user=id)
+    default_text = "No information"
     context = {
         'name': request.user.get_full_name(),
         'email': request.user.email,
         'current_user': current_user,
+        'default_text': default_text,
     }
     return render(request, 'user_profiles/profile.html', context)
 
