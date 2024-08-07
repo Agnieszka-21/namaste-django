@@ -3,13 +3,15 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.template import loader
 from django.http import HttpResponse
-from .models import Profile
+from .models import  Profile
 from .forms import ClientProfileForm
+
 
 # Create your views here.
 def home(request):
     # return HttpResponse('This is the homepage - http response')
     return render(request, 'user_profiles/index.html')
+
 
 def error404(request):
     return render(request, 'user_profiles/404.html')

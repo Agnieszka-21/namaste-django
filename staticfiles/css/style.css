@@ -99,9 +99,6 @@ iframe {
     margin: 20px;
 }
 
-p {
-    margin-bottom: 0.2rem;
-}
 
 /* remove padding R and L?
 .info-container {
@@ -153,7 +150,7 @@ body {
     border: solid 1px #000;
 }
 
-.bookings-heading {
+.profile-heading {
     font-weight: 600;
 }
 
