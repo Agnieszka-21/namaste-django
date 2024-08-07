@@ -1,8 +1,10 @@
-from django.shortcuts import render, redirect, get_object_or_404, reverse
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.template import loader
+from django.views import generic
 from django.http import HttpResponse
+from django.urls import reverse
 from .models import  Profile
 from .forms import ClientProfileForm
 
@@ -25,7 +27,6 @@ class ProfileList(generic.ListView):
     ``queryset``
         All  instances of :model:`user_profile.Post`
 
-
     **Template:**
 
     :template:`base.html`
@@ -35,12 +36,21 @@ class ProfileList(generic.ListView):
 
 
 @login_required
-def profile(request):
-    date_of_birth = get_object_or_404(Profile, )
+def profile(request, id):
+    queryset = Profile.objects.all()
+    current_user = get_object_or_404(queryset, user=id)
+    date_of_birth = current_user.date_of_birth.all()
+    injuries = current_user.injuries.all()
+    signed_waiver = current_user.signed_waiver.all()
+    profile_pic = current_user.profile_pic.all()
     context = {
         'name': request.user.get_full_name(),
         'email': request.user.email,
-        'date_of_birth': date_of_birth,
+        'current_user': current_user,
+        'injuries': injuries,
+        'signed_waiver': signed_waiver,
+        'profile_pic': profile_pic,
+
     }
     return render(request, 'user_profiles/profile.html', context)
 
