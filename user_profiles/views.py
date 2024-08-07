@@ -39,18 +39,10 @@ class ProfileList(generic.ListView):
 def profile(request, id):
     queryset = Profile.objects.all()
     current_user = get_object_or_404(queryset, user=id)
-    date_of_birth = current_user.date_of_birth.all()
-    injuries = current_user.injuries.all()
-    signed_waiver = current_user.signed_waiver.all()
-    profile_pic = current_user.profile_pic.all()
     context = {
         'name': request.user.get_full_name(),
         'email': request.user.email,
         'current_user': current_user,
-        'injuries': injuries,
-        'signed_waiver': signed_waiver,
-        'profile_pic': profile_pic,
-
     }
     return render(request, 'user_profiles/profile.html', context)
 
@@ -67,7 +59,9 @@ def profile(request, id):
 
 # Built based on this: https://docs.djangoproject.com/en/5.0/topics/forms/
 @login_required
-def editProfile(request):
+def editProfile(request, id):
+    queryset = Profile.objects.all()
+    current_user = get_object_or_404(queryset, user=id)
     if request.method == 'POST':
         profile_form = ClientProfileForm(data=request.POST)
         if profile_form.is_valid():

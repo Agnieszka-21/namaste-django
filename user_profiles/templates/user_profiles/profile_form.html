@@ -15,7 +15,7 @@
                 {% csrf_token %}
             </form>
             <div class="mt-5 text-center">
-                <a data-mdb-ripple-init class="btn btn-dark" href="{% url 'profile' %}" role="button">Save Profile</a>
+                <a data-mdb-ripple-init class="btn btn-dark" href="{% url 'profile' user.id %}" role="button">Save Profile</a>
             </div>
         </div>
         

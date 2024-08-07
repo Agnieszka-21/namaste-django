@@ -70,13 +70,13 @@
                     </li>
 
                     {% for profile in profile_list %}
-                    <a class="d-none" href="{% url 'profile' profile.id %}"></a>
+                    <a class="d-none" href="{% url 'profile' user.id %}"></a>
                     {% endfor %}
 
                     {% if user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link {% if request.path == profile_url %}active{% endif %}" aria-current="page"
-                            href="{% url 'profile' profile.id %}">My account</a>
+                            href="{% url 'profile' user.id %}">My account</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {% if request.path == logout_url %}active{% endif %}" aria-current="page"
