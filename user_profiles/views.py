@@ -59,7 +59,7 @@ def editProfile(request, id):
     if request.method == 'POST':
         # Print statement for debugging the function
         print("Received a POST request")
-        profile_form = ClientProfileForm(request.POST, request.FILES)
+        profile_form = ClientProfileForm(request.POST, request.FILES, instance=current_user)
         if profile_form.is_valid():
             try:
                 profile = profile_form.save(commit=False)
