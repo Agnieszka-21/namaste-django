@@ -10,14 +10,23 @@
     <div class="row">
 
         <div class="col-lg-6">
-            <form method="post">
-                {{ profile_form | crispy }}
+            <form id="profile-form" method="POST" action="{% url 'edit_profile' user.id %}">
                 {% csrf_token %}
+                {{ profile_form | crispy }}
+                <div class="my-5 text-center">
+                    <button class="btn btn-dark mx-2" type="submit">Save the form</button>
+                    <!--
+                    <input type="submit" value="Save changes" class="btn btn-dark mx-2">
+                    <input type="button" value="Discard changes" class="btn btn-light mx-2">
+                    -->
+                    <!-- 
+                    <a data-mdb-ripple-init class="btn btn-dark mx-2" href="{% url 'edit_profile' user.id %}" role="button" onclick="submitProfileForm()">Save changes</a>
+
+                    <a data-mdb-ripple-init class="btn btn-light mx-2" href="{% url 'profile' user.id %}" role="button">Discard changes</a>
+                    -->
+                </div>
             </form>
-            <div class="my-5 text-center">
-                <a data-mdb-ripple-init class="btn btn-dark mx-2" href="{% url 'profile' user.id %}" role="button">Save changes</a>
-                <a data-mdb-ripple-init class="btn btn-light mx-2" href="{% url 'profile' user.id %}" role="button">Discard changes</a>
-            </div>
+
         </div>
         
         <div class="col-lg-6">

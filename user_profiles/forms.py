@@ -33,8 +33,11 @@ class ClientProfileForm(forms.ModelForm):
             'profile_pic': 'Image'
         }
 
-        def __init__(self, *args, **kwargs):
-            super(ClientProfileForm, self).__init__(*args, **kwargs)
 
-            for name, field in self.fields.items():
-                field.widget.attrs.update({'class': 'input'})
+
+
+        # def __init__(self, *args, **kwargs):
+        #     super(ClientProfileForm, self).__init__(*args, **kwargs)
+
+        #     for name, field in self.fields.items():
+        #         field.widget.attrs.update({'class': 'input'})
