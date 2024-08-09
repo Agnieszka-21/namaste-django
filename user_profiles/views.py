@@ -53,7 +53,7 @@ def profile(request, id):
 @login_required
 def editProfile(request, id):
     queryset = Profile.objects.all()
-    current_user = get_object_or_404(queryset, user=request.user)
+    current_user = get_object_or_404(queryset, user=id)
     # Print statement for debugging the function
     print(current_user)
     if request.method == 'POST':
@@ -66,7 +66,7 @@ def editProfile(request, id):
                 profile.user = request.user
                 profile.save()
                 messages.success(request, 'Your profile has been updated')
-                return redirect(profile, request.user.id)
+                return redirect('profile', request.user.id)
             except:
                 messages.error(request, 'ERROR: Oops, something went wrong...')
     else:

@@ -17,7 +17,7 @@ class Profile(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='profile')
     date_of_birth = models.DateField(null=True, blank=True)
     injuries = models.TextField(max_length=300, blank=True)
-    profile_pic = CloudinaryField('image', default=placeholder_image)
+    profile_pic = CloudinaryField('image', default=placeholder_image, blank=True)
     signed_waiver = models.BooleanField()
 
     def __str__(self):

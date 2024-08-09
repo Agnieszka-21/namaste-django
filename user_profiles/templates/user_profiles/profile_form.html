@@ -14,16 +14,8 @@
                 {% csrf_token %}
                 {{ profile_form | crispy }}
                 <div class="my-5 text-center">
-                    <button class="btn btn-dark mx-2" type="submit">Save the form</button>
-                    <!--
-                    <input type="submit" value="Save changes" class="btn btn-dark mx-2">
-                    <input type="button" value="Discard changes" class="btn btn-light mx-2">
-                    -->
-                    <!-- 
-                    <a data-mdb-ripple-init class="btn btn-dark mx-2" href="{% url 'edit_profile' user.id %}" role="button" onclick="submitProfileForm()">Save changes</a>
-
-                    <a data-mdb-ripple-init class="btn btn-light mx-2" href="{% url 'profile' user.id %}" role="button">Discard changes</a>
-                    -->
+                    <button class="btn btn-dark mx-2" type="submit">Save profile</button>
+                    <button class="btn btn-light mx-2" type="reset">Discard changes</button>
                 </div>
             </form>
 
