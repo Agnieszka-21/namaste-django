@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.auth.models import User
+from cloudinary.models import CloudinaryField
 
 # Create your models here.
 class YogaStyle(models.Model):
@@ -109,4 +111,47 @@ class StyleDescription(models.Model):
     def __str__(self):
         return str(self.group_class_description)
 
+
+default_class_img = '../static/images/down_dog.jpg'
+
+
+class GroupClass(models.Model):
+
+    DAYS = (
+        ('Mon', 'Monday'),
+        ('Tue', 'Tuesday'),
+        ('Wed', 'Wednesday'),
+        ('Thu', 'Thursday'),
+        ('Fri', 'Friday'),
+        ('Sat', 'Saturday'),
+        ('Sun', 'Sunday')
+    )
+
+    TIMES = (
+        ('7.30', '7.30 am'),
+        ('9.00', '9 am'),
+        ('10.00', '10 am'),
+        ('11.00', '11 am'),
+        ('13.05', '1.05 pm'),
+        ('18.00', '6 pm'),
+        ('18.30', '6.30 pm'),
+        ('19.15', '7.15 pm'),
+        ('19.30', '7.30 pm')
+    )
+
+    DURATION = (
+        (45, '45 minutes'),
+        (60, '60 minutes')
+    )
+
+    title = models.OneToOneField(YogaStyle, on_delete=models.CASCADE, related_name='group_class_title')
+    description = models.OneToOneField(StyleDescription, on_delete=models.CASCADE, related_name='class_description')
+    weekday = models.CharField(max_length=10, choices=DAYS, null=True, blank=True)
+    start_time = models.CharField(max_length=10, choices=TIMES, null=True, blank=True)
+    duration = models.IntegerField(choices=DURATION, default=60)
+    image = CloudinaryField('image', default=default_class_img)
+    participants = models.ForeignKey(User, on_delete=models.CASCADE, related_name='group_class_clients')
+
+    def __str__(self):
+        return str(self.title)
 
