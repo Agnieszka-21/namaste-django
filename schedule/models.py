@@ -53,7 +53,7 @@ class StyleDescription(models.Model):
     "It is particularly suitable to those seeking to improve their strength, "
     "flexibility, health and general well-being. "
     "\n**Not suitable for prenatal students**"
-    BEGINNERS_D = "The beginners yoga class is a great way to start your "
+    BEGINNERS_D = "The beginners' yoga class is a great way to start your "
     "yoga journey. Students will learn yogic breathing, yoga "
     "postures, and relaxation techniques. It is the perfect class to "
     "build a strong foundation for yourself. The beginners yoga class "
@@ -75,8 +75,8 @@ class StyleDescription(models.Model):
     "of practice. A Level 2 class gives you the option for a more challenging poses "
     "with space for deep relaxation, flexibility work and strength work."
     "\n**Not suitable for complete beginners or prenatal students**"
-    FLOW_MIXED_LEVEL_D = "This class is designed to take you deeper into your practice "
-    "by introducing asanas which will challenge you equally on "
+    FLOW_MIXED_LEVEL_D = "The mixed-level class is designed to take you deeper into "
+    "your practice by introducing asanas which will challenge you equally on "
     "strength and flexibility. Each class combines a dynamic "
     "Vinyasa practice with meditation, hands-on alignment and "
     "deep relaxation. "
@@ -143,18 +143,25 @@ class GroupClass(models.Model):
         ('19.30', '7.30 pm')
     )
 
-    DURATION = (
+    DURATION_OPTIONS = (
         (45, '45 minutes'),
         (60, '60 minutes')
+    )
+
+    LOCATION_OPTIONS = (
+        (1, 'Studio 1'),
+        (2, 'Studio 2')
     )
 
     title = models.ForeignKey(YogaStyle, on_delete=models.CASCADE, related_name='title', null=True, blank=True)
     description = models.ForeignKey(StyleDescription, on_delete=models.CASCADE, null=True, blank=True)
     weekday = models.CharField(max_length=10, choices=DAYS, null=True, blank=True)
     start_time = models.CharField(max_length=10, choices=TIMES, null=True, blank=True)
-    duration = models.IntegerField(choices=DURATION, default=60)
+    duration = models.IntegerField(choices=DURATION_OPTIONS, default=60)
+    location = models.IntegerField(choices=LOCATION_OPTIONS, default=1)
     image = CloudinaryField('image', default=default_class_img)
-    participants = models.ManyToManyField(User)
+    participants = models.ManyToManyField(User, blank=True)
+    teacher = models.CharField(max_length=100, null=True, blank=True)
 
     def __str__(self):
         return str(self.title)
