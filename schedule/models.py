@@ -95,7 +95,7 @@ class StyleDescription(models.Model):
     "strength and flexibility. It also helps pregnant women to develop proper "
     "breathing and relaxation techniques for easier and more comfortable labor. "
     "\nThis class is for prenatal women after 12 weeks/1st trimester without contra-indications"
-    DESCTIPTION_CHOICES = [
+    DESCRIPTION_CHOICES = [
         (RESTORATIVE_D, "Restorative description"),
         (YIN_D, "Yin description"),
         (GENTLE_D, "Gentle description"),
@@ -106,7 +106,8 @@ class StyleDescription(models.Model):
         (EXPRESS_LUNCHTIME_D, "Express description"),
         (PRENATAL_D, "Prenatal description")
     ]
-    group_class_description = models.TextField(choices=DESCTIPTION_CHOICES, default=FLOW_MIXED_LEVEL_D)
+    group_class_description = models.TextField(choices=DESCRIPTION_CHOICES, default=FLOW_MIXED_LEVEL_D)
+    style = models.OneToOneField(YogaStyle, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
         return str(self.group_class_description)
@@ -116,6 +117,9 @@ default_class_img = '../static/images/down_dog.jpg'
 
 
 class GroupClass(models.Model):
+
+    class Meta:
+        verbose_name_plural = 'GroupClasses'
 
     DAYS = (
         ('Mon', 'Monday'),
@@ -144,13 +148,13 @@ class GroupClass(models.Model):
         (60, '60 minutes')
     )
 
-    title = models.OneToOneField(YogaStyle, on_delete=models.CASCADE, related_name='group_class_title')
-    description = models.OneToOneField(StyleDescription, on_delete=models.CASCADE, related_name='class_description')
+    title = models.ForeignKey(YogaStyle, on_delete=models.CASCADE, related_name='title', null=True, blank=True)
+    description = models.ForeignKey(StyleDescription, on_delete=models.CASCADE, null=True, blank=True)
     weekday = models.CharField(max_length=10, choices=DAYS, null=True, blank=True)
     start_time = models.CharField(max_length=10, choices=TIMES, null=True, blank=True)
     duration = models.IntegerField(choices=DURATION, default=60)
     image = CloudinaryField('image', default=default_class_img)
-    participants = models.ForeignKey(User, on_delete=models.CASCADE, related_name='group_class_clients')
+    participants = models.ManyToManyField(User)
 
     def __str__(self):
         return str(self.title)
