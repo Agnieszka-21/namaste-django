@@ -4,27 +4,27 @@ from cloudinary.models import CloudinaryField
 
 # Create your models here.
 class YogaStyle(models.Model):
-    RESTORATIVE = "REST"
-    YIN = "YIN"
-    GENTLE = "GENTLE"
-    BEGINNERS = "BEGINNERS"
-    FLOW1 = "FLOW1"
-    FLOW2 = "FLOW2"
-    FLOW_MIXED_LEVEL = "MIXED"
-    EXPRESS_LUNCHTIME = "EXPRESS"
-    PRENATAL = "PRENATAL"
+    RESTORATIVE = "Restorative Yoga"
+    YIN = "Yin Yoga"
+    GENTLE = "Gentle Yoga"
+    BEGINNERS = "Beginners' Yoga"
+    FLOW1 = "Yoga Flow Level 1"
+    FLOW2 = "Yoga Flow Level 2"
+    FLOW_MIXED_LEVEL = "Yoga Flow Mixed Level"
+    EXPRESS_LUNCHTIME = "Express Lunchtime Yoga"
+    PRENATAL = "Prenatal Yoga"
     STYLE_CHOICES = [
-        (RESTORATIVE, "Restorative Yoga"),
-        (YIN, "Yin Yoga"),
-        (GENTLE, "Gentle Yoga"),
-        (BEGINNERS, "Beginners' Yoga"),
-        (FLOW1, "Yoga Flow Level 1"),
-        (FLOW2, "Yoga Flow Level 2"),
-        (FLOW_MIXED_LEVEL, "Yoga Flow Mixed Level"),
-        (EXPRESS_LUNCHTIME, "Express Lunchtime Yoga"),
-        (PRENATAL, "Prenatal Yoga")
+        (RESTORATIVE, "REST"),
+        (YIN, "YIN"),
+        (GENTLE, "GENTLE"),
+        (BEGINNERS, "BEGINNERS"),
+        (FLOW1, "FLOW1"),
+        (FLOW2, "FLOW2"),
+        (FLOW_MIXED_LEVEL, "MIXED"),
+        (EXPRESS_LUNCHTIME, "EXPRESS"),
+        (PRENATAL, "PRENATAL")
     ]
-    group_class_style = models.CharField(max_length=10, choices=STYLE_CHOICES, default=FLOW_MIXED_LEVEL)
+    group_class_style = models.CharField(max_length=30, choices=STYLE_CHOICES, null=True, blank=True)
 
     def __str__(self):
         return str(self.group_class_style)
@@ -94,7 +94,7 @@ class StyleDescription(models.Model):
     "\nPrenatal yoga focuses on poses for pregnant women, in order to increase "
     "strength and flexibility. It also helps pregnant women to develop proper "
     "breathing and relaxation techniques for easier and more comfortable labor. "
-    "\nThis class is for prenatal women after 12 weeks/1st trimester without contra-indications"
+    "\n**This class is for prenatal women after 12 weeks/1st trimester without contra-indications**" 
     DESCRIPTION_CHOICES = [
         (RESTORATIVE_D, "Restorative description"),
         (YIN_D, "Yin description"),
@@ -106,7 +106,7 @@ class StyleDescription(models.Model):
         (EXPRESS_LUNCHTIME_D, "Express description"),
         (PRENATAL_D, "Prenatal description")
     ]
-    group_class_description = models.TextField(choices=DESCRIPTION_CHOICES, default=FLOW_MIXED_LEVEL_D)
+    group_class_description = models.TextField(choices=DESCRIPTION_CHOICES, null=True, blank=True)
     style = models.OneToOneField(YogaStyle, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
@@ -132,33 +132,33 @@ class GroupClass(models.Model):
     )
 
     TIMES = (
-        ('7.30', '7.30 am'),
-        ('9.00', '9 am'),
-        ('10.00', '10 am'),
-        ('11.00', '11 am'),
-        ('13.05', '1.05 pm'),
-        ('18.00', '6 pm'),
-        ('18.30', '6.30 pm'),
-        ('19.15', '7.15 pm'),
-        ('19.30', '7.30 pm')
+        ('7.30 am', '7.30'),
+        ('9 am', '9.00'),
+        ('10 am', '10.00'),
+        ('11 am', '11.00'),
+        ('1.05 pm', '13.05'),
+        ('6 pm', '18.00'),
+        ('6.30 pm', '18.30'),
+        ('7.15 pm', '19.15'),
+        ('7.30 pm', '19.30')
     )
 
     DURATION_OPTIONS = (
-        (45, '45 minutes'),
-        (60, '60 minutes')
+        ('45 minutes', '45 minutes'),
+        ('60 minutes', '60 minutes')
     )
 
     LOCATION_OPTIONS = (
-        (1, 'Studio 1'),
-        (2, 'Studio 2')
+        ('Studio 1', 'Studio 1'),
+        ('Studio 2', 'Studio 2')
     )
 
     title = models.ForeignKey(YogaStyle, on_delete=models.CASCADE, related_name='title', null=True, blank=True)
     description = models.ForeignKey(StyleDescription, on_delete=models.CASCADE, null=True, blank=True)
     weekday = models.CharField(max_length=10, choices=DAYS, null=True, blank=True)
     start_time = models.CharField(max_length=10, choices=TIMES, null=True, blank=True)
-    duration = models.IntegerField(choices=DURATION_OPTIONS, default=60)
-    location = models.IntegerField(choices=LOCATION_OPTIONS, default=1)
+    duration = models.CharField(choices=DURATION_OPTIONS, default='60 minutes')
+    location = models.CharField(choices=LOCATION_OPTIONS, default='Studio 1')
     image = CloudinaryField('image', default=default_class_img)
     participants = models.ManyToManyField(User, blank=True)
     teacher = models.CharField(max_length=100, null=True, blank=True)
