@@ -13,27 +13,18 @@
                 <div class="card-body">
                     <div class="image-container">
                         <div class="image-flash">
-                            <p class="author">Teacher: </p>
+                            <p class="author">Teacher: {{ group_class.teacher }}</p>
                         </div>
                     </div>
-                    <a href="#" class="post-link">
+                    <a href="{% url 'schedule_detail' %}" class="post-link">
                         <h2 class="card-title">{{ group_class.title }}</h2>
                     </a>
-
                     <hr>
-                    <p class="card-text text-muted h6">{{ group_class.description }}
-                    </p>
-                    <hr>
-                    <p>{{ group_class.weekday }} | {{ group_class.start_time}} | {{ group_class.duration }}</p>
+                    <p class="card-text text-muted h6">{{ group_class.weekday }} | {{ group_class.start_time}} | {{ group_class.duration }}</p>
                 </div>
             </div>
         </div>
-        {% if forloop.counter|divisibleby:3 %}
-    </div>
-    <div class="row">
-        {% endif %}
         {% endfor %}
-
     </div>
 </div>
 
