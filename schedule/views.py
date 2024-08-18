@@ -4,8 +4,7 @@ from django.http import HttpResponse
 from django.template import loader
 from django.urls import reverse
 from django.views import generic
-from .models import GroupClass
-# from .models import Client_User_Profile
+from .models import GroupClass, Booking
 
 # Create your views here.
 def schedule(request):
@@ -16,3 +15,9 @@ def schedule(request):
 class GroupClassList(generic.ListView):
     queryset = GroupClass.objects.all()
     template_name = 'schedule/schedule_list.html'
+
+
+def schedule_detail(request):
+    queryset = GroupClass.objects.all()
+    chosen_class = get_object_or_404(queryset)
+    return render(request, 'schedule/schedule_detail.html')
