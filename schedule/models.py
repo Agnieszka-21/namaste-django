@@ -183,7 +183,7 @@ class GroupClass(models.Model):
     teacher = models.CharField(max_length=100, null=True, blank=True)
 
     def __str__(self):
-        return str(self.title)
+        return f"{self.id} {self.title} | {self.weekday} {self.start_time}"
 
 
 class Booking(models.Model):

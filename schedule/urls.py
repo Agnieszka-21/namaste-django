@@ -1,7 +1,7 @@
 from django.urls import path
-from .views import schedule, GroupClassList, schedule_detail
+from . import views
 
 urlpatterns = [
-    path('', GroupClassList.as_view(), name='class_schedule'),
-    path('detail/', schedule_detail, name='schedule_detail')
+    path('', views.GroupClassList.as_view(), name='class_schedule'),
+    path('detail/<str:id>/', views.schedule_detail, name='schedule_detail')
 ]

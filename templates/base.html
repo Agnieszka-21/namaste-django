@@ -70,8 +70,13 @@
                             href="{% url 'class_schedule' %}">Schedule</a>
                     </li>
 
+                    <!-- Invisible. For-loop to create url patterns for each specific user -->
                     {% for profile in profile_list %}
                     <a class="d-none" href="{% url 'profile' user.id %}"></a>
+                    {% endfor %}
+                    <!-- Invisible. For-loop to create url patterns for each specific yoga class -->
+                    {% for groupclass in groupclass_list %}
+                    <a class="d-none" href="{% url 'schedule_detail' groupclass.id %}"></a>
                     {% endfor %}
 
                     {% if user.is_authenticated %}
