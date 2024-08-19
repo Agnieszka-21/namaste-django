@@ -5,27 +5,38 @@
 {% block content %}
 
 <!-- Class title + background image -->
-<div class="masthead">
-    <div class="container">
-        <div class="row g-0">
-            <div>
-                <!-- Title (yoga style) of the class -->
-                <h4>{{ group_class.title }}</h4>
-                <!-- Teacher's name -->
-                <p>Instructor: {{ group_class.teacher }}</p>
+<div class="container">
+    <div class="row g-0">
+        <div>
+            <div class="mb-5">
+                {% if "placeholder" in chosen_class.image.url %}
+                <img src="{% static 'images/down_dog.jpg' %}" class="mt-5" alt="placeholder">
+                {% else %}
+                <img src="{{ chosen_class.image.url }}" class="mt-5" alt="Image of a yoga class">
+                {% endif %}
             </div>
+            <!-- Title (yoga style) of the class -->
+            <h4>{{ chosen_class.title }}</h4>
         </div>
     </div>
 </div>
-
 <div class="container">
     <div class="row">
-        <div class="col mb-4 mt-3 left top">
+        <div class="col mt-3 left top">
             <div>
-                <!-- The post content goes inside the card-text. -->
-                <!-- Use the | safe filter inside the template tags -->
-                <p class="card-text">
-                    Class description: {{ group_class.description }}
+            <!-- Teacher's name -->
+                <p><span class="fw-bold">Instructor: </span>
+                    {{ chosen_class.teacher }}
+                </p>
+                <p class="card-text"><span class="fw-bold">Class description: </span>
+                    {{ chosen_class.description }}
+                </p>
+                <hr>
+                <p class="fw-bold">
+                    {{ chosen_class.weekday }} | {{ chosen_class.start_time }} | {{ chosen_class.duration }}
+                </p>
+                <p>
+                    {{ chosen_class.location }}
                 </p>
             </div>
         </div>
@@ -35,13 +46,13 @@
     <div class="col-md-4 mb-4 mt-3">
         <div>
             {% if user.is_authenticated %}
-            <form id="bookingForm" method="post">
-                {{ booking_form | crispy }}
-                {% csrf_token %}
-                <button id="book-class-btn" type="submit" class="btn btn-dark btn-lg">Book now</button>
-            </form>
+            <div class="mt-5 text-center">
+                <a data-mdb-ripple-init class="btn btn-dark" href="{% url 'book_class' chosen_class.id %}" role="button">Book now</a>
+            </div>
             {% else %}
-            <p class="bold">Log in to book the class</p>
+            <p class="fw-bold">
+                <a class="link" href="{{ login_url }}">Log in</a> to book the class
+            </p>
             {% endif %}
         </div>
     </div>

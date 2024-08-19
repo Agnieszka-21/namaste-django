@@ -21,4 +21,12 @@ class GroupClassList(generic.ListView):
 def schedule_detail(request, id):
     queryset = GroupClass.objects.all()
     chosen_class = get_object_or_404(queryset, id=id)
-    return render(request, 'schedule/schedule_detail.html')
+    default_text = "No information"
+    context = {
+        'chosen_class': chosen_class,
+        'default_text': default_text,
+    }
+    return render(request, 'schedule/schedule_detail.html', context)
+
+def book_class(request, id):
+    pass

@@ -4,23 +4,18 @@
 
 {{ block.super }}
 
-<div class="col-12 mt-3 left">
-    <h4>Space for the list of group classes</h4>
+<div class="container-fluid col-12 mt-3 left">
     <div class="row">
-        {% for group_class in groupclass_list %}
-        <div class="col-md-4">
+        {% for groupclass in groupclass_list %}
+        <div class="col-md-6 col-lg-4">
             <div class="card mb-4">
                 <div class="card-body">
-                    <div class="image-container">
-                        <div class="image-flash">
-                            <p class="author">Teacher: {{ group_class.teacher }}</p>
-                        </div>
-                    </div>
-                    <a href="{% url 'schedule_detail' group_class.id %}" class="post-link">
-                        <h2 class="card-title">{{ group_class.title }}</h2>
+                    <a href="{% url 'schedule_detail' groupclass.id %}" class="post-link">
+                        <h2 class="card-title">{{ groupclass.title }}</h2>
                     </a>
                     <hr>
-                    <p class="card-text text-muted h6">{{ group_class.weekday }} | {{ group_class.start_time}} | {{ group_class.duration }}</p>
+                    <p class="text-muted">Teacher: {{ groupclass.teacher }}</p>
+                    <p class="card-text h6">{{ groupclass.weekday }} | {{ groupclass.start_time}} | {{ groupclass.duration }}</p>
                 </div>
             </div>
         </div>
