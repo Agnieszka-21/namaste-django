@@ -5,6 +5,7 @@ from django.template import loader
 from django.urls import reverse
 from django.views import generic
 from .models import GroupClass, Booking
+from .forms import BookingForm
 
 
 # Create your views here.
@@ -28,5 +29,30 @@ def schedule_detail(request, id):
     }
     return render(request, 'schedule/schedule_detail.html', context)
 
+
+@login_required
 def book_class(request, id):
-    pass
+    queryset = GroupClass.objects.all()
+    chosen_class = get_object_or_404(queryset, id=id)
+    # Print statement for debugging the function
+    print(chosen_class)
+    if request.method == 'POST':
+        # Print statement for debugging the function
+        print("Received a POST request")
+        booking_form = BookingForm(request.POST, instance=chosen_class)
+        if booking_form.is_valid():
+            try:
+                booking = booking_form.save(commit=False)
+                booking.user = request.user
+                booking.save()
+                messages.success(request, 'Your profile has been updated')
+                return redirect('profile', request.user.id)
+            except:
+                messages.error(request, 'ERROR: Oops, something went wrong...')
+    else:
+        # Print statement for debugging the function
+        print("This is coming from the ELSE in book_class view")
+        booking_form = BookingForm(instance=chosen_class)
+    # Print statement for debugging the function
+    print("About to render template book_class.html")
+    return render(request, 'schedule/book_class.html', {'booking_form': booking_form})

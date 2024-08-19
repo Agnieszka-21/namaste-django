@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<!-- User profile template: https://bbbootstrap.com/snippets/bootstrap-5-myprofile-90806631# -->
+<div class="container rounded bg-white mt-5 mb-5">
+
+    {% if user.is_authenticated %}
+    <div class="row">
+
+        <div class="col-lg-6">
+            <form id="booking-form" method="POST" action="{% url 'book_class' user.id %}">
+                {% csrf_token %}
+                {{ booking_form | crispy }}
+                <div class="my-5 text-center">
+                    <button class="btn btn-dark mx-2" type="submit">Confirm booking</button>
+                    <button class="btn btn-light mx-2" type="reset">Discard</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    {% else %}
+    <div>
+        <p>If you would like to book the class, please <a class="link" href="{{ login_url }}"></a>log in.</a></p>
+    </div>
+    {% endif %}
+</div>
+
+{% endblock %}
