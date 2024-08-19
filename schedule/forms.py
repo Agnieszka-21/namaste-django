@@ -6,13 +6,9 @@ class BookingForm(forms.ModelForm):
         model = Booking
         fields = [
             'chosen_class',
-            'class_date',
-            'client',
         ]
         labels = {
             'chosen_class': 'Class title',
-            'class date': 'Class date',
-            'client': 'Full name',
         }
 
         def __init__(self, *args, **kwargs):

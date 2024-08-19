@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.template import loader
@@ -39,14 +40,15 @@ def book_class(request, id):
     if request.method == 'POST':
         # Print statement for debugging the function
         print("Received a POST request")
-        booking_form = BookingForm(request.POST, instance=chosen_class)
+        booking_form = BookingForm(request.POST, request.FILES, instance=chosen_class)
         if booking_form.is_valid():
             try:
                 booking = booking_form.save(commit=False)
-                booking.user = request.user
+                booking.chosen_class = request.chosen_class # ??? not sure about this
+                booking.client = request.user
                 booking.save()
-                messages.success(request, 'Your profile has been updated')
-                return redirect('profile', request.user.id)
+                messages.success(request, 'Your booking was successful!')
+                return redirect('schedule', request.chosen_class.id)
             except:
                 messages.error(request, 'ERROR: Oops, something went wrong...')
     else:
