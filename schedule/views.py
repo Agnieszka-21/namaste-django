@@ -6,7 +6,8 @@ from django.template import loader
 from django.urls import reverse
 from django.views import generic
 from .models import GroupClass, Booking
-from .forms import BookingForm
+from .forms import UserForm, BookingForm
+from django.contrib.auth.models import User
 
 
 # Create your views here.
@@ -40,12 +41,23 @@ def book_class(request, id):
     if request.method == 'POST':
         # Print statement for debugging the function
         print("Received a POST request")
+        user_form = UserForm(request.POST, request.FILES, instance=request.user)
         booking_form = BookingForm(request.POST, request.FILES, instance=chosen_class)
+        if user_form.is_valid():
+            try:
+                user = user_form.save(commit=False)
+                user.client = request.user # ??? not sure about this
+                #booking.client = request.user
+                user.save()
+                messages.success(request, 'Your booking was successful!')
+                return redirect('schedule', request.chosen_class.id)
+            except:
+                messages.error(request, 'ERROR: Oops, something went wrong...')
         if booking_form.is_valid():
             try:
                 booking = booking_form.save(commit=False)
                 booking.chosen_class = request.chosen_class # ??? not sure about this
-                booking.client = request.user
+                #booking.client = request.user
                 booking.save()
                 messages.success(request, 'Your booking was successful!')
                 return redirect('schedule', request.chosen_class.id)
@@ -54,7 +66,11 @@ def book_class(request, id):
     else:
         # Print statement for debugging the function
         print("This is coming from the ELSE in book_class view")
+        user_form = UserForm(instance=request.user)
         booking_form = BookingForm(instance=chosen_class)
     # Print statement for debugging the function
     print("About to render template book_class.html")
-    return render(request, 'schedule/book_class.html', {'booking_form': booking_form})
+    return render(request, 'schedule/book_class.html', {'user_form': user_form, 'booking_form': booking_form})
+
+
+# Optional Tutorial: https://github.com/mchesler613/django_adventures/blob/main/multi-modelforms_in_template.md

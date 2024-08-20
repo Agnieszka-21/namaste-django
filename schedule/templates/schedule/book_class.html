@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
+{% load static %}
 
 {% block content %}
 
@@ -11,6 +12,9 @@
 
         <div class="col-lg-6">
             <form id="booking-form" method="POST" action="{% url 'book_class' user.id %}">
+                {% csrf_token %}
+                {{ user_form | crispy }}
+                
                 {% csrf_token %}
                 {{ booking_form | crispy }}
                 <div class="my-5 text-center">
