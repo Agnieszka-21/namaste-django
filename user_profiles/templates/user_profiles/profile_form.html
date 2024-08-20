@@ -15,7 +15,7 @@
                 {{ profile_form | crispy }}
                 <div class="my-5 text-center">
                     <button class="btn btn-dark mx-2" type="submit">Save profile</button>
-                    <button class="btn btn-light mx-2" type="reset">Discard changes</button>
+                    <a href="{% url 'profile' user.id %}" class="btn btn-light mx-2">Discard changes</a>
                 </div>
             </form>
 
