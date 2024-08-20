@@ -65,6 +65,7 @@ def editProfile(request, id):
                 profile = profile_form.save(commit=False)
                 profile.user = request.user
                 profile.save()
+                print('Inside the TRY block')
                 messages.success(request, 'Your profile has been updated')
                 return redirect('profile', request.user.id)
             except:

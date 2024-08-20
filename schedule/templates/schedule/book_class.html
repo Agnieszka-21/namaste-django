@@ -11,10 +11,11 @@
     <div class="row">
 
         <div class="col-lg-6">
-            <form id="booking-form" method="POST" action="{% url 'book_class' user.id %}">
+            <h4>{{ chosen_class.title }}</h4>
+            <form id="booking-form" method="POST" action="{% url 'book_class' chosen_class.id %}">
                 {% csrf_token %}
                 {{ user_form | crispy }}
-                
+
                 {% csrf_token %}
                 {{ booking_form | crispy }}
                 <div class="my-5 text-center">

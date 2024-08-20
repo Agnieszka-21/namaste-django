@@ -32,10 +32,12 @@ def schedule_detail(request, id):
     return render(request, 'schedule/schedule_detail.html', context)
 
 
+
 @login_required
 def book_class(request, id):
     queryset = GroupClass.objects.all()
     chosen_class = get_object_or_404(queryset, id=id)
+
     # Print statement for debugging the function
     print(chosen_class)
     if request.method == 'POST':
@@ -50,7 +52,7 @@ def book_class(request, id):
                 #booking.client = request.user
                 user.save()
                 messages.success(request, 'Your booking was successful!')
-                return redirect('schedule', request.chosen_class.id)
+                #return redirect('schedule', request.user.id)
             except:
                 messages.error(request, 'ERROR: Oops, something went wrong...')
         if booking_form.is_valid():
@@ -60,17 +62,19 @@ def book_class(request, id):
                 #booking.client = request.user
                 booking.save()
                 messages.success(request, 'Your booking was successful!')
-                return redirect('schedule', request.chosen_class.id)
+                
             except:
                 messages.error(request, 'ERROR: Oops, something went wrong...')
+            return redirect('/schedule/')
     else:
         # Print statement for debugging the function
         print("This is coming from the ELSE in book_class view")
         user_form = UserForm(instance=request.user)
         booking_form = BookingForm(instance=chosen_class)
+        
     # Print statement for debugging the function
     print("About to render template book_class.html")
-    return render(request, 'schedule/book_class.html', {'user_form': user_form, 'booking_form': booking_form})
+    return render(request, 'schedule/book_class.html', {'chosen_class': chosen_class, 'user_form': user_form, 'booking_form': booking_form})
 
 
 # Optional Tutorial: https://github.com/mchesler613/django_adventures/blob/main/multi-modelforms_in_template.md

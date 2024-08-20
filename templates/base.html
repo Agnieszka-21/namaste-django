@@ -78,7 +78,9 @@
                     <!-- Invisible. For-loop to create url patterns for each specific yoga class -->
                     {% for groupclass in groupclass_list %}
                     <a class="d-none" href="{% url 'schedule_detail' groupclass.id %}"></a>
+                    <a class="d-none" href="{% url 'book_class' groupclass.id %}"></a>
                     {% endfor %}
+
 
                     {% if user.is_authenticated %}
                     <li class="nav-item">

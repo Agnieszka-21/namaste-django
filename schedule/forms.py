@@ -12,6 +12,9 @@ class UserForm(forms.ModelForm):
             'email',
         ]
 
+        def __init__(self, *args, **kwargs):
+            super(UserForm, self).__init__(*args, **kwargs)
+
 
 class BookingForm(forms.ModelForm):
     class Meta:
@@ -23,5 +26,5 @@ class BookingForm(forms.ModelForm):
             'chosen_class': 'Class title',
         }
 
-        # def __init__(self, *args, **kwargs):
-        #     super(BookingForm, self).__init__(*args, **kwargs)
+        def __init__(self, *args, **kwargs):
+            super(BookingForm, self).__init__(*args, **kwargs)
