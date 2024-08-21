@@ -15,12 +15,16 @@
             <form id="booking-form" method="POST" action="{% url 'book_class' chosen_class.id %}">
                 {% csrf_token %}
                 {{ user_form | crispy }}
-
+                <!-- 
+                <div class="my-5 text-center">
+                    <button class="btn btn-dark mx-2" type="submit">Save details</button>
+                </div>
+                -->
+                
                 {% csrf_token %}
                 {{ booking_form | crispy }}
                 <div class="my-5 text-center">
                     <button class="btn btn-dark mx-2" type="submit">Confirm booking</button>
-                    <button class="btn btn-light mx-2" type="reset">Discard</button>
                 </div>
             </form>
         </div>

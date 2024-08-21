@@ -44,28 +44,30 @@ def book_class(request, id):
         # Print statement for debugging the function
         print("Received a POST request")
         user_form = UserForm(request.POST, request.FILES, instance=request.user)
-        booking_form = BookingForm(request.POST, request.FILES, instance=chosen_class)
+        booking_form = BookingForm(request.POST, request.FILES, instance=chosen_class)      
+        
         if user_form.is_valid():
             try:
                 user = user_form.save(commit=False)
                 user.client = request.user # ??? not sure about this
-                #booking.client = request.user
                 user.save()
-                messages.success(request, 'Your booking was successful!')
+                messages.success(request, 'Your details have been saved') # remove this message?
+                successful = True
                 #return redirect('schedule', request.user.id)
             except:
-                messages.error(request, 'ERROR: Oops, something went wrong...')
-        if booking_form.is_valid():
+                messages.error(request, 'ERROR: Oops, something went wrong with your details...')
+        if (user_form.is_valid() and successful == True) and booking_form.is_valid():
             try:
                 booking = booking_form.save(commit=False)
-                booking.chosen_class = request.chosen_class # ??? not sure about this
-                #booking.client = request.user
+                booking.chosen_class = chosen_class # ??? not sure about this
+                booking.client = request.user
                 booking.save()
-                messages.success(request, 'Your booking was successful!')
-                
+                print(f'Chosen class: {booking.chosen_class}')
+                print(f'Client is {booking.client}')
+                messages.success(request, f'Your booking for **{booking.chosen_class}** was successful. See you in the studio!')
+                return redirect('/schedule/')
             except:
-                messages.error(request, 'ERROR: Oops, something went wrong...')
-            return redirect('/schedule/')
+                messages.error(request, 'ERROR: Oops, something went wrong with your booking...')
     else:
         # Print statement for debugging the function
         print("This is coming from the ELSE in book_class view")

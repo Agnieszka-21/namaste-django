@@ -181,7 +181,7 @@ body {
 /* Django messages - from https://www.brntn.me/blog/how-i-use-djangos-messages-framework/ */
 .messages {
     list-style: none;
-    margin: 1em 0 2em;
+    margin: 0;
     padding: 0;
 }
 
