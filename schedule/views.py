@@ -43,8 +43,8 @@ def book_class(request, id):
     if request.method == 'POST':
         # Print statement for debugging the function
         print("Received a POST request")
-        user_form = UserForm(request.POST, request.FILES, instance=request.user)
-        booking_form = BookingForm(request.POST, request.FILES, instance=chosen_class)      
+        user_form = UserForm(data=request.POST, instance=request.user)
+        booking_form = BookingForm(data=request.POST, instance=chosen_class)      
         
         if user_form.is_valid():
             try:
