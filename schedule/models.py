@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.validators import MaxValueValidator
 from cloudinary.models import CloudinaryField
 import uuid
 
@@ -137,9 +138,6 @@ default_class_img = '../static/images/down_dog.jpg'
 
 class GroupClass(models.Model):
 
-    class Meta:
-        verbose_name_plural = 'GroupClasses'
-
     DAYS = (
         ('Mon', 'Monday'),
         ('Tue', 'Tuesday'),
@@ -181,6 +179,11 @@ class GroupClass(models.Model):
     image = CloudinaryField('image', default=default_class_img)
     participants = models.ManyToManyField(User, blank=True)
     teacher = models.CharField(max_length=100, null=True, blank=True)
+    capacity = models.IntegerField(validators=[MaxValueValidator(16)], null=True, blank=True)
+
+    class Meta:
+        verbose_name_plural = 'GroupClasses'
+        ordering = ['weekday', 'start_time']
 
     def __str__(self):
         return f"{self.title} | {self.weekday} {self.start_time}"
@@ -190,7 +193,12 @@ class Booking(models.Model):
     id = models.UUIDField(primary_key=True, unique=True, default=uuid.uuid4, editable=False)
     chosen_class = models.ForeignKey(GroupClass, on_delete=models.CASCADE, null=True, blank=True)
     client = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    class_date = models.DateField(null=True, blank=True)
+    booking_time = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+
+    class Meta:
+        ordering = ['-booking_time']
 
     def __str__(self):
-        return f"Booking {self.id} for {self.client} | {self.chosen_class}"
+        return f"Booking {self.id} for {self.client} | {self.chosen_class} | {self.booking_time}"
 
