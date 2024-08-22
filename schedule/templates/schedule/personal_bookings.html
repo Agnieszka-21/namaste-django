@@ -17,11 +17,12 @@
         </div>
         <br>               
     </div>
-    <div>
-        <h4>h4 here: {{ default_text }} {{ current_user.email }} {{ booked_classes }}</h4>
-        <ul>Trying something - personal+bookings.html {{ name }}
+    <div class="p-3 py-5">
+        <p>{{ name }}</p>
+        <p>{{ email }}</p>
+        <ul>
         {% for class in booked_classes %}
-            <li>Booked class number... testing</li>
+            <li>{{ class.id }} | {{ class.chosen_class_id }} | {{ class.class_date }}</li>
         {% endfor %}
         </ul>
     </div>

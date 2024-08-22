@@ -86,19 +86,10 @@ def book_class(request, id):
 
 
 
-
-class MyBookingsList(generic.ListView):
-    model = Booking
-    template_name = 'schedule/bookings_list.html'
-
-
 @login_required
 def personal_bookings(request, id):
-    qs = User.objects.all()
-    current_user = get_object_or_404(qs, user=id)
-    # print
-    print(current_user)
-    booked_classes = Booking.objects.filter(client=request.user.id)
+    model = Booking
+    booked_classes = Booking.objects.filter(client=request.user.id).values()
     print(booked_classes)
     default_text = "No information"
     context = {
@@ -106,6 +97,5 @@ def personal_bookings(request, id):
         'email': request.user.email,
         'default_text': default_text,
         'booked_classes': booked_classes,
-        'current_user': current_user,
     }
     return render(request, 'schedule/personal_bookings.html', context)
