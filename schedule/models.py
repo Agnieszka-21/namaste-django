@@ -188,8 +188,8 @@ class GroupClass(models.Model):
 
 class Booking(models.Model):
     id = models.UUIDField(primary_key=True, unique=True, default=uuid.uuid4, editable=False)
-    chosen_class = models.OneToOneField(GroupClass, on_delete=models.CASCADE, null=True, blank=True)
-    client = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
+    chosen_class = models.ForeignKey(GroupClass, on_delete=models.CASCADE, null=True, blank=True)
+    client = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
         return f"Booking {self.id} for {self.client} | {self.chosen_class}"
