@@ -43,15 +43,16 @@ def book_class(request, id):
     if request.method == 'POST':
         # Print statement for debugging the function
         print("Received a POST request")
+        # successful = False
         user_form = UserForm(data=request.POST, instance=request.user)
-        booking_form = BookingForm(data=request.POST, instance=chosen_class)      
+        booking_form = BookingForm(data=request.POST)      
         
         if user_form.is_valid():
             try:
                 user = user_form.save(commit=False)
-                user.client = request.user # ??? not sure about this
+                #user.username = request.user  ??? not sure about this
                 user.save()
-                messages.success(request, 'Your details have been saved') # remove this message?
+                messages.success(request, 'Your details have been saved') # remove this message? Doesn't seem necessary
                 successful = True
                 #return redirect('schedule', request.user.id)
             except:
@@ -59,7 +60,7 @@ def book_class(request, id):
         if (user_form.is_valid() and successful == True) and booking_form.is_valid():
             try:
                 booking = booking_form.save(commit=False)
-                booking.chosen_class = chosen_class # ??? not sure about this
+                booking.chosen_class = chosen_class
                 booking.client = request.user
                 booking.save()
                 print(f'Chosen class: {booking.chosen_class}')
@@ -68,6 +69,8 @@ def book_class(request, id):
                 return redirect('/schedule/')
             except:
                 messages.error(request, 'ERROR: Oops, something went wrong with your booking...')
+        else:
+            print('The user form has not been saved successfully')
     else:
         # Print statement for debugging the function
         print("This is coming from the ELSE in book_class view")
