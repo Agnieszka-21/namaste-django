@@ -29,6 +29,32 @@
             </form>
         </div>
     </div>
+
+    <!-- The Waiver Modal -->
+    <div id="modal-waiver" class="modal" tabindex="0">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span id="close-waiver" tabindex="0">
+                <img src="{% static 'images/close-circle-svgrepo.svg' %}" alt="Click here to close">
+            </span>
+            <div>
+                <h4>Liability Waiver</h4>
+                <p>In checking the box below I acknowledge the existence of certain inherent risks 
+                    in Yoga training, and hearby agree to assume all said risks.</p>
+                <p>I explicitly relieve and hold Namaste Yoga Studio, its owners, its management, 
+                    its instructors, its tenants, its therapist, and other students harmless 
+                    from any liability resulting from personal injury to me and/or loss of 
+                    my personal property, whether caused by negligence or otherwise.</p>
+                <p>By ticking the box I represent that I am physically sound and that I have medical 
+                    approval, if specific medical problems require such approval, to proceed with this 
+                    type of training, and I agree to promptly notify Namaste Yoga Studio in writing 
+                    of any medical condition, element, or symptoms that may develop or manifest itself 
+                    after this date, and may affect my fitness to engage in such training.</p>
+                <p>I am familiar with the contents of this release and I have read and understood it.</p>
+            </div>
+        </div>
+
     {% else %}
     <div>
         <p>If you would like to book the class, please <a class="link" href="{{ login_url }}"></a>log in.</a></p>

@@ -22,7 +22,7 @@
         <p>{{ email }}</p>
         <ul>
         {% for class in booked_classes %}
-            <li>{{ class.id }} | {{ class.chosen_class_id }} | {{ class.class_date }}</li>
+            <li>{{ class.id }} | {{ class.chosen_class.title }} | {{ class.class_date }}</li>
         {% endfor %}
         </ul>
     </div>

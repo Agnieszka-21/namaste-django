@@ -23,13 +23,13 @@ class ClientProfileForm(forms.ModelForm):
         fields = [
             'date_of_birth',
             'injuries',
-            'signed_waiver',
+            #'signed_waiver',
             'profile_pic'
         ]
         labels = {
             'date_of_birth': 'Date of birth',
             'injuries': 'Recent or chronic injuries',
-            'signed_waiver': 'Signed waiver',
+            #'signed_waiver': 'Signed waiver',
             'profile_pic': 'Image'
         }
 
