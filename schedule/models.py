@@ -195,6 +195,7 @@ class Booking(models.Model):
     client = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     class_date = models.DateField(null=True, blank=True)
     booking_time = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    waiver_signed = models.BooleanField(null=True, blank=True)
 
     class Meta:
         ordering = ['-booking_time']

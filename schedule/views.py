@@ -89,7 +89,7 @@ def book_class(request, id):
 @login_required
 def personal_bookings(request, id):
     model = Booking
-    booked_classes = Booking.objects.filter(client=request.user.id).values()
+    booked_classes = Booking.objects.filter(client=request.user.id)
     print(booked_classes)
     default_text = "No information"
     context = {

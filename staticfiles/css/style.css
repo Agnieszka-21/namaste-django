@@ -178,6 +178,13 @@ body {
     height: 100px;
 }
 
+/* Waiver */
+#waiver {
+    text-decoration: underline;
+    color: blue;
+}
+
+
 /* Django messages - from https://www.brntn.me/blog/how-i-use-djangos-messages-framework/ */
 .messages {
     list-style: none;
