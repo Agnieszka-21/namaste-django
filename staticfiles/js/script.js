@@ -34,14 +34,6 @@ function closeModalWaiver() {
     modalWaiver.classList.add('hide');
 }
 
-// Close the modal when the user activates the okay button (click or Enter/space key)
-modalAsmrBtn.addEventListener('click', closeModalWaiver);
-modalAsmrBtn.addEventListener('keydown', function (e) {
-    if (e.key === 'Enter' || e.key === ' ') {
-        closeModalWaiver();
-    }
-});
-
 // Close the modal when the user clicks anywhere outside of it
 window.addEventListener('click', function (e) {
     if (e.target === modalWaiver) {

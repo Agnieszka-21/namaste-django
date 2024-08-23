@@ -23,6 +23,7 @@
                 
                 {% csrf_token %}
                 {{ booking_form | crispy }}
+                <p id="waiver">Read the waiver here</p>
                 <div class="my-5 text-center">
                     <button class="btn btn-dark mx-2" type="submit">Confirm booking</button>
                 </div>
@@ -31,7 +32,7 @@
     </div>
 
     <!-- The Waiver Modal -->
-    <div id="modal-waiver" class="modal" tabindex="0">
+    <div id="modal-waiver" class="modal hide" tabindex="0">
 
         <!-- Modal content -->
         <div class="modal-content">

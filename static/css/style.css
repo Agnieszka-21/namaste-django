@@ -185,9 +185,20 @@ body {
 }
 
 /* Copied from my PP2 for now */
+
+/* Hiding class */
+.hide {
+    display: none !important;
+}
+
+/* Show element(s) */
+.show {
+    display: block;
+}
+
 .modal {
     /* Hidden by default */
-    display: none;
+    /*display: none; */
     position: fixed;
     z-index: 2;
     left: 0;
