@@ -37,8 +37,9 @@ class ProfileList(generic.ListView):
 
 @login_required
 def profile(request, id):
-    queryset = Profile.objects.all()
-    current_user = get_object_or_404(queryset, user=id)
+    #queryset = Profile.objects.all()
+    #current_user = get_object_or_404(queryset, user=id)
+    current_user = Profile.objects.get(user=request.user.id)
     default_text = "No information"
     context = {
         'name': request.user.get_full_name(),
@@ -52,8 +53,9 @@ def profile(request, id):
 # Built based on this: https://docs.djangoproject.com/en/5.0/topics/forms/
 @login_required
 def editProfile(request, id):
-    queryset = Profile.objects.all()
-    current_user = get_object_or_404(queryset, user=id)
+    #queryset = Profile.objects.all()
+    #current_user = get_object_or_404(queryset, user=id)
+    current_user = Profile.objects.get(user=request.user.id)
     # Print statement for debugging the function
     print(current_user)
     if request.method == 'POST':
