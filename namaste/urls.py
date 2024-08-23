@@ -17,10 +17,13 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
+from user_profiles import views
 
 urlpatterns = [
     path('', include('user_profiles.urls'), name='profile-urls'),
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
     path('schedule/', include('schedule.urls'), name='schedule-urls'),
+    path('404/', views.error404, name='error404'),
+    path('500/', views.error500, name='error500'),
 ]

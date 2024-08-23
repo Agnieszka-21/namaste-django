@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- Background image + text -->
+<div class="text-center bg-image error404-img">
+    <div class="p-5 color-overlay">
+        <div class="d-flex justify-content-center align-items-center h-100">
+            <div class="text-white">
+                <h1 class="mb-3 hero-text">Oops, unexpected error...</h1>
+                <h4 class="mb-2 hero-text">Don't worry, it's not your fault.</h4>
+                <h4 class="mb-3 hero-text">Simply click the button below to get back to the homepage</h4>
+                <a data-mdb-ripple-init class="btn btn-outline-light btn-lg hero-btn-text" href="{% url 'home' %}" role="button">Home</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- 404.html content ends here -->
+{% endblock %}

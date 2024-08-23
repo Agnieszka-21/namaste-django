@@ -16,7 +16,11 @@ def home(request):
 
 
 def error404(request):
-    return render(request, 'user_profiles/404.html')
+    return render(request, '404.html')
+
+
+def error500(request):
+    return render(request, '500.html')
 
 
 class ProfileList(generic.ListView):
