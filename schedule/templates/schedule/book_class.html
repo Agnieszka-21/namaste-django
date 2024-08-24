@@ -8,22 +8,31 @@
 <div class="container rounded bg-white mt-5 mb-5">
 
     {% if user.is_authenticated %}
-    <div class="row">
+    <div class="">
 
-        <div class="col-lg-6">
+        <div class="">
             <h4>{{ chosen_class.title }}</h4>
-            <form id="booking-form" method="POST" action="{% url 'book_class' chosen_class.id %}">
-                {% csrf_token %}
-                {{ user_form | crispy }}
+            <p class="fw-bold mb-5">{{ chosen_class.weekday }} | {{ chosen_class.start_time }} | {{ chosen_class.duration }}</p>
+            
+            <form id="booking-form" class="row" method="POST" action="{% url 'book_class' chosen_class.id %}">
+                <div class="col-lg-5">
+                    {% csrf_token %}
+                    {{ user_form | crispy }}
+                </div>
                 <!-- 
                 <div class="my-5 text-center">
                     <button class="btn btn-dark mx-2" type="submit">Save details</button>
                 </div>
                 -->
-                
-                {% csrf_token %}
-                {{ booking_form | crispy }}
-                <p id="waiver">Read the waiver here</p>
+                <div class="col-lg-1"></div>
+                <div class="col-lg-5">
+                    {% csrf_token %}
+                    {{ booking_form | crispy }}
+                    <p id="waiver">Read the waiver here</p>
+                </div>
+                <p>* Required field</p>
+                <div class="col-lg-1"></div>
+
                 <div class="my-5 text-center">
                     <button class="btn btn-dark mx-2" type="submit">Confirm booking</button>
                 </div>
@@ -41,8 +50,8 @@
             </span>
             <div>
                 <h4>Liability Waiver</h4>
-                <p>In checking the box below I acknowledge the existence of certain inherent risks 
-                    in Yoga training, and hearby agree to assume all said risks.</p>
+                <p>In checking the box above I acknowledge the existence of certain inherent risks 
+                    in yoga training, and hearby agree to assume all said risks.</p>
                 <p>I explicitly relieve and hold Namaste Yoga Studio, its owners, its management, 
                     its instructors, its tenants, its therapist, and other students harmless 
                     from any liability resulting from personal injury to me and/or loss of 
