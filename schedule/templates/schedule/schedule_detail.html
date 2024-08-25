@@ -26,7 +26,8 @@
             <div>
             <!-- Teacher's name -->
                 <p><span class="fw-bold">Instructor: </span>
-                    {{ chosen_class.teacher }}
+                    {{ chosen_class.teacher }} 
+                    <span id="teacher-bio">| Show bio</span>
                 </p>
                 <p class="card-text"><span class="fw-bold">Class description: </span>
                     {{ chosen_class.description }}
@@ -56,6 +57,21 @@
             {% endif %}
         </div>
     </div>
+
+    <!-- The teacher bio modal -->
+    <div id="modal-bio" class="modal hide" tabindex="0">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span id="close-bio" tabindex="0">
+                <img src="{% static 'images/close-circle-svgrepo.svg' %}" alt="Click here to close">
+            </span>
+            <div>
+                <p>{{ chosen_class.teacher_bio }}</p>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 {% endblock %}

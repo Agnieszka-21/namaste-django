@@ -179,7 +179,7 @@ body {
 }
 
 /* Waiver */
-#waiver {
+#waiver, #teacher-bio {
     text-decoration: underline;
     color: blue;
 }
@@ -224,8 +224,13 @@ body {
     color: #1e0311;
 }
 
+.modal-content img {
+    filter: invert(7%) sepia(73%) saturate(5853%) hue-rotate(304deg) brightness(48%) contrast(126%);
+    height: 2.5rem;
+}
+
 /* The Close button for the waiver modal */
-#close-waiver  {
+#close-waiver, #close-bio  {
     color: #aaa;
     float: right;
     font-size: 28px;
@@ -234,7 +239,10 @@ body {
 
 #close-waiver:hover,
 #close-waievr:focus,
-#close-waiver:focus-visible {
+#close-waiver:focus-visible,
+#close-bio:hover,
+#close-bio:focus,
+#close-bio:focus-visible  {
     color: black;
     text-decoration: none;
     cursor: pointer;
