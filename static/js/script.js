@@ -4,18 +4,18 @@ console.log("Checking JavaScript");
  * Control the waiver modal - loosely based on the article from w3schools: https://www.w3schools.com/howto/howto_css_modals.asp
  */
 const modalWaiver = document.getElementById('modal-waiver');
-const thisWaiver = document.getElementById('waiver');
+const waiverTrigger = document.getElementById('waiver');
 const spanCloseModalWaiver = document.getElementById('close-waiver');
 
 // Control the teacher bio modal
 const modalBio = document.getElementById('modal-bio');
-const teacherBio = document.getElementById('teacher-bio');
+const bioTrigger = document.getElementById('teacher-bio');
 const spanCloseModalBio = document.getElementById('close-bio');
 
 
 // Open the waiver modal when the user activates the question-mark button (click or Enter/space key)
-thisWaiver.addEventListener('click', displayModalWaiver);
-thisWaiver.addEventListener('keydown', function (e) {
+waiverTrigger.addEventListener('click', displayModalWaiver);
+waiverTrigger.addEventListener('keydown', function (e) {
     if (e.key === 'Enter' || e.key === ' ') {
         displayModalWaiver();
     }
@@ -28,8 +28,8 @@ function displayModalWaiver() {
 }
 
 // Open the bio modal when the user activates the question-mark button (click or Enter/space key)
-teacherBio.addEventListener('click', displayModalBio);
-teacherBio.addEventListener('keydown', function (e) {
+bioTrigger.addEventListener('click', displayModalBio);
+bioTrigger.addEventListener('keydown', function (e) {
     if (e.key === 'Enter' || e.key === ' ') {
         displayModalBio();
     }

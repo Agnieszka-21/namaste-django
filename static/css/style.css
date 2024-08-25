@@ -229,12 +229,11 @@ body {
     height: 2.5rem;
 }
 
-/* The Close button for the waiver modal */
+/* The Close button for the modals */
 #close-waiver, #close-bio  {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    margin-top: 2.5em;
 }
 
 #close-waiver:hover,
