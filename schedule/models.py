@@ -170,6 +170,37 @@ class GroupClass(models.Model):
         ('Studio 2', 'Studio 2')
     )
 
+    TEACHER_OPTIONS = (
+        ('Mary Dawson', 'Mary Dawson'),
+        ('Joanne West', 'Joanne West')
+    )
+
+    BIO_MARY = (
+        "Mary is +500-hour qualified yoga teacher. She teaches yoga with an "
+        "emphasis on safety and alignment. This offers students a supportive "
+        "environment to explore their personal yoga practice. Mary began practising "
+        "yoga in 2012. Her interest derived from the desire to balance out a busy lifestyle. "
+        "Finding a new level of stillness, she is now on a mission to share the benefits "
+        "of yoga with everyone! She will continue her mission by going to training and events "
+        "to improve her teaching skills."
+    )
+
+    BIO_JOANNE = (
+        "Joanne's approach to teaching yoga is very much like her approach to life - full of "
+        "curiosity, gentleness, and playfulness. 2014 was the beginning of her journey into a "
+        "deeper understanding of herself, and this brought her to Goa, India where she completed "
+        "her 200hr Yoga teacher training in 2017, and returning again in 2018 to Rishikesh to "
+        "complete 100 hours of Yin, breathwork and Meditation training. Joanne's teaching style "
+        "is non-judgemental and focused on helping to foster the student's unique "
+        "relationship with yoga and their own bodies. She uses the fluidity of vinyasa to help "
+        "awaken and inspire this connection to ourselves and to the world around us."
+    )
+
+    BIO_OPTIONS = [
+        (BIO_MARY, 'Mary\'s bio'),
+        (BIO_JOANNE, 'Joanne\'s bio')
+    ]
+
     title = models.ForeignKey(YogaStyle, on_delete=models.CASCADE, related_name='title', null=True, blank=True)
     description = models.ForeignKey(StyleDescription, on_delete=models.CASCADE, null=True, blank=True)
     weekday = models.CharField(max_length=10, choices=DAYS, null=True, blank=True)
@@ -178,7 +209,8 @@ class GroupClass(models.Model):
     location = models.CharField(choices=LOCATION_OPTIONS, default='Studio 1')
     image = CloudinaryField('image', default=default_class_img)
     participants = models.ManyToManyField(User, blank=True)
-    teacher = models.CharField(max_length=100, null=True, blank=True)
+    teacher = models.CharField(choices=TEACHER_OPTIONS, max_length=100, null=True, blank=True)
+    teacher_bio = models.CharField(choices=BIO_OPTIONS, max_length=3000, null=True, blank=True)
     capacity = models.IntegerField(validators=[MaxValueValidator(16)], null=True, blank=True)
 
     class Meta:
