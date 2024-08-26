@@ -24,7 +24,7 @@ waiverTrigger.addEventListener('keydown', function (e) {
 
 // Close the waiver modal when the user activates the x span (click or Enter/space key)
 function closeModalWaiver() {
-    modalBio.classList.remove('show');
+    modalWaiver.classList.remove('show');
     modalWaiver.classList.add('hide');
 }
 
