@@ -178,13 +178,22 @@ body {
     height: 100px;
 }
 
-/* Waiver */
-#waiver, #teacher-bio {
+/* Triggers for opening modals */
+#waiver, 
+#bio-modal-trigger {
     text-decoration: underline;
     color: blue;
 }
 
-/* Copied from my PP2 for now */
+#waiver:hover,
+#waievr:focus,
+#waiver:focus-visible,
+#bio-modal-trigger:hover,
+#bio-modal-trigger:focus,
+#bio-modal-trigger:focus-visible {
+    text-decoration: none;
+    cursor: pointer;
+}
 
 /* Hiding class */
 .hide {
@@ -241,11 +250,9 @@ body {
 #close-waiver:focus-visible,
 #close-bio:hover,
 #close-bio:focus,
-#close-bio:focus-visible  {
-    color: black;
+#close-bio:focus-visible {
     text-decoration: none;
     cursor: pointer;
-    outline: -webkit-focus-ring-color auto 1px;
 }
 
 /* Django messages - from https://www.brntn.me/blog/how-i-use-djangos-messages-framework/ */

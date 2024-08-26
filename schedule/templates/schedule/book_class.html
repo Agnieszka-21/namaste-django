@@ -2,6 +2,7 @@
 {% load crispy_forms_tags %}
 {% load static %}
 
+
 {% block content %}
 
 <!-- User profile template: https://bbbootstrap.com/snippets/bootstrap-5-myprofile-90806631# -->
@@ -72,5 +73,8 @@
     </div>
     {% endif %}
 </div>
+
+<!-- JavaScript -->
+<script src="{% static 'js/waiver.js' %}"></script>
 
 {% endblock %}

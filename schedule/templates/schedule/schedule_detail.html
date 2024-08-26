@@ -1,6 +1,7 @@
 {% extends "base.html" %}
-{% load static %}
 {% load crispy_forms_tags %}
+{% load static %}
+
 
 {% block content %}
 
@@ -24,8 +25,9 @@
     <div class="row">
         <div class="col mt-3 left top">
             <div>
+
                 <p><span class="fw-bold">Instructor: </span>
-                    {{ chosen_class.teacher }} | <span id="teacher-bio">Show bio</span>
+                    {{ chosen_class.teacher }} | <span id="bio-modal-trigger">Show bio</span>
                 </p>
                 <p class="card-text"><span class="fw-bold">Class description: </span>
                     {{ chosen_class.description }}
@@ -71,5 +73,8 @@
     </div>
 
 </div>
+
+<!-- JavaScript -->
+<script src="{% static 'js/bio.js' %}"></script>
 
 {% endblock %}
