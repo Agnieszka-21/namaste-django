@@ -17,14 +17,33 @@
         </div>
         <br>               
     </div>
-    <div class="p-3 py-5">
-        <p>{{ name }}</p>
-        <p>{{ email }}</p>
-        <ul>
+
+    <div class="container-fluid col-12 mt-3 left">
+        <!-- <div class="row"> -->
         {% for class in booked_classes %}
-            <li>{{ class.id }} | {{ class.chosen_class.title }} | {{ class.class_date }}</li>
+            <!-- <div class="col-md-6"> -->
+        <div class="card mb-4">
+            <div class="card-body row">
+                <h4 class="col-md-9 card-title">{{ class.chosen_class.title }}</h4>
+                <hr>
+                <div class="row">
+                    <div class="col-md-8">
+                        <p class="card-text h6 mb-2">{{ class.chosen_class.weekday }} | {{ class.class_date }} | {{ class.chosen_class.start_time }}</p>
+                    </div>
+
+                    <div class="col-md-4 mt-3 mt-md-0 d-flex flex-column">
+                        <a data-mdb-ripple-init class="btn btn-dark mx-2 mb-2" href="{% url 'edit_profile' user.id %}" role="button">Edit booking</a>
+                        <a data-mdb-ripple-init class="btn btn-light border mx-2 mb-2" href="{% url 'edit_profile' user.id %}" role="button">Cancel booking</a>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+            <!-- </div> -->
         {% endfor %}
-        </ul>
+        <!-- </div> -->
     </div>
+
 </div>
 {% endblock %}
