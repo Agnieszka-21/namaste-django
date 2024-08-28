@@ -212,6 +212,7 @@ class GroupClass(models.Model):
     teacher = models.CharField(choices=TEACHER_OPTIONS, max_length=100, null=True, blank=True)
     teacher_bio = models.CharField(choices=BIO_OPTIONS, max_length=3000, null=True, blank=True)
     capacity = models.IntegerField(validators=[MaxValueValidator(16)], null=True, blank=True)
+    first_class = models.DateTimeField(null=True, blank=True)
 
     class Meta:
         verbose_name_plural = 'GroupClasses'
@@ -228,6 +229,7 @@ class Booking(models.Model):
     class_date = models.DateField(null=True, blank=True)
     booking_time = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     waiver_signed = models.BooleanField(null=True, blank=True)
+    booking_cancelled = models.BooleanField(default=False)
 
     class Meta:
         ordering = ['-booking_time']
