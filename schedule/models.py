@@ -216,7 +216,7 @@ class GroupClass(models.Model):
 
     class Meta:
         verbose_name_plural = 'GroupClasses'
-        ordering = ['weekday', 'start_time']
+        ordering = ['first_class__week_day', 'start_time']
 
     def __str__(self):
         return f"{self.title} | {self.weekday} {self.start_time}"
