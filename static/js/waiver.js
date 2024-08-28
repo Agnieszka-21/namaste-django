@@ -13,6 +13,7 @@ function displayModalWaiver() {
     modalWaiver.classList.remove('hide');
     modalWaiver.classList.add('show');
     modalWaiver.focus();
+    trapFocus();
 }
 
 waiverTrigger.addEventListener('click', displayModalWaiver);
@@ -41,3 +42,29 @@ window.addEventListener('click', function (e) {
         modalWaiver.classList.add('hide');
     }
 });
+
+// Trap focus in the bio modal - adapted from the following article: 
+// https://hidde.blog/using-javascript-to-trap-focus-in-an-element/
+
+function trapFocus() {
+    const focusableElWaiver = modalWaiver.querySelector('#close-waiver');
+    const KEYCODE_TAB = 9;
+
+    modalWaiver.addEventListener('keydown', function (e) {
+        let isTabPressed = (e.key === 'Tab' || e.keyCode === KEYCODE_TAB);
+
+        if (!isTabPressed) {
+            return;
+        }
+
+        if (e.shiftKey) /* shift + tab */ {
+            if (document.activeElement === modalWaiver) {
+                e.preventDefault();
+            }
+        } else /* tab */ {
+            if (document.activeElement === focusableElWaiver) {
+                e.preventDefault();
+            }
+        }
+    });
+}

@@ -27,7 +27,7 @@
             <div>
 
                 <p><span class="fw-bold">Instructor: </span>
-                    {{ chosen_class.teacher }} | <span id="bio-modal-trigger" tabindex="0">Show bio</span>
+                    {{ chosen_class.teacher }} | <span id="bio-modal-trigger" tabindex="0" aria-label="Show the teacher's bio">Show bio</span>
                 </p>
                 <p class="card-text"><span class="fw-bold">Class description: </span>
                     {{ chosen_class.description }}
@@ -67,7 +67,7 @@
                 <p>{{ chosen_class.teacher_bio }}</p>
             </div>
             <span id="close-bio" tabindex="0">
-                <img src="{% static 'images/close-circle-svgrepo.svg' %}" alt="Click here to close">
+                <img src="{% static 'images/close-circle-svgrepo.svg' %}" alt="Click here to close the bio">
             </span>
         </div>
     </div>

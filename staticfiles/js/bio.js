@@ -10,9 +10,7 @@ function displayModalBio() {
     modalBio.classList.remove('hide');
     modalBio.classList.add('show');
     modalBio.focus();
-    console.log('Right after modalBio.focus function');
     trapFocus();
-    console.log('Right after trapFocus function');
 }
 
 bioTrigger.addEventListener('click', displayModalBio);
@@ -49,7 +47,6 @@ window.addEventListener('click', function (e) {
 function trapFocus() {
     const focusableElBio = modalBio.querySelector('#close-bio');
     const KEYCODE_TAB = 9;
-    console.log(focusableElBio)
 
     modalBio.addEventListener('keydown', function (e) {
         let isTabPressed = (e.key === 'Tab' || e.keyCode === KEYCODE_TAB);
