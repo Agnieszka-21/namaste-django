@@ -8,13 +8,11 @@ const spanCloseModalBio = document.getElementById('close-bio');
 // Open the bio modal when the user activates the question-mark button (click or Enter/space key)
 function displayModalBio() {
     modalBio.classList.remove('hide');
-    console.log('Class hide removed');
     modalBio.classList.add('show');
-    console.log('Class show added');
     modalBio.focus();
     console.log('Right after modalBio.focus function');
     trapFocus();
-    console.log('Right after trapFpcus function');
+    console.log('Right after trapFocus function');
 }
 
 bioTrigger.addEventListener('click', displayModalBio);
@@ -45,12 +43,13 @@ window.addEventListener('click', function (e) {
 });
 
 
-//https://uxdesign.cc/how-to-trap-focus-inside-modal-to-make-it-ada-compliant-6a50f9a70700
-//https://vaskort.com/a-trap-focus-function-you-need-for-your-modals/const trapFocus = ((element, prevFocusableElement = document.activeElement) => {
+// Trap focus in the bio modal - adapted from the following article: 
+// https://hidde.blog/using-javascript-to-trap-focus-in-an-element/
 
 function trapFocus() {
-    const focusableElBio = modalBio.querySelector('#close-asmr');
+    const focusableElBio = modalBio.querySelector('#close-bio');
     const KEYCODE_TAB = 9;
+    console.log(focusableElBio)
 
     modalBio.addEventListener('keydown', function (e) {
         let isTabPressed = (e.key === 'Tab' || e.keyCode === KEYCODE_TAB);
@@ -61,12 +60,10 @@ function trapFocus() {
 
         if (e.shiftKey) /* shift + tab */ {
             if (document.activeElement === modalBio) {
-                focusableElBio.focus();
                 e.preventDefault();
             }
         } else /* tab */ {
             if (document.activeElement === focusableElBio) {
-                modalBio.focus();
                 e.preventDefault();
             }
         }
