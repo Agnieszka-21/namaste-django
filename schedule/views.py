@@ -9,7 +9,7 @@ from .models import GroupClass, Booking
 from .forms import UserForm, BookingForm
 from django.contrib.auth.models import User
 # eventtools import
-from datetime import datetime
+import datetime
 from .models import RepeatedEvent, EventOccurrence
 
 
@@ -107,12 +107,31 @@ def create_dates(request, id):
     event = RepeatedEvent.objects.create(title=GroupClass.objects.get(id=12))
     weekly = EventOccurrence.objects.create(
         event=event,
-        start=datetime(2024, 9, 2, 18, 30),
-        end=datetime(2024, 9, 2, 19, 30),
+        start=datetime.datetime(2024, 9, 2, 18, 30),
+        end=datetime.datetime(2024, 9, 2, 19, 30),
         repeat='RRULE:FREQ=WEEKLY')
+    
+    current_date = datetime.date.today()
+    add_week = datetime.timedelta(days=7)
+    one_week_later = current_date + add_week
+    two_weeks_later = current_date + add_week + add_week
+
+    next_class = event.next_occurrence(from_date=current_date)
+    second_next_class = event.next_occurrence(from_date=one_week_later)
+    third_next_class = event.next_occurrence(from_date= two_weeks_later)
+    
+    sept = event.all_occurrences(from_date=datetime.date(2024, 9, 1), to_date=datetime.date(2024, 9,30))
+
     context = {
         'event': event,
         'weekly': weekly,
+        'current_date': current_date,
+        'sept': sept,
+        'one_week_later': one_week_later,
+        'two_weeks_later': two_weeks_later,
+        'next_class': next_class,
+        'second_next_class': second_next_class,
+        'third_next_class': third_next_class,
     }
     return render(request, 'schedule/snippets/test.html', context)
 
