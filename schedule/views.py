@@ -8,6 +8,9 @@ from django.views import generic
 from .models import GroupClass, Booking
 from .forms import UserForm, BookingForm
 from django.contrib.auth.models import User
+# eventtools import
+from datetime import datetime
+from .models import RepeatedEvent, EventOccurrence
 
 
 # Create your views here.
@@ -85,7 +88,6 @@ def book_class(request, id):
 # Optional Tutorial: https://github.com/mchesler613/django_adventures/blob/main/multi-modelforms_in_template.md
 
 
-
 @login_required
 def personal_bookings(request, id):
     model = Booking
@@ -99,3 +101,18 @@ def personal_bookings(request, id):
         'booked_classes': booked_classes,
     }
     return render(request, 'schedule/personal_bookings.html', context)
+
+
+def create_dates(request, id):
+    event = RepeatedEvent.objects.create(title=GroupClass.objects.get(id=12))
+    weekly = EventOccurrence.objects.create(
+        event=event,
+        start=datetime(2024, 9, 2, 18, 30),
+        end=datetime(2024, 9, 2, 19, 30),
+        repeat='RRULE:FREQ=WEEKLY')
+    context = {
+        'event': event,
+        'weekly': weekly,
+    }
+    return render(request, 'schedule/test.html', context)
+

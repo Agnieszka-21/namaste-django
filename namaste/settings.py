@@ -175,6 +175,13 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 
+# Eventtools library
+EVENTTOOLS_REPEAT_CHOICES = (
+    ("RRULE:FREQ=DAILY", 'Daily'),
+    ("RRULE:FREQ=WEEKLY", 'Weekly'),
+    ("RRULE:FREQ=MONTHLY", 'Monthly'),
+    ("RRULE:FREQ=YEARLY", 'Yearly'),
+)
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
