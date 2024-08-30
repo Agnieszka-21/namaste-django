@@ -114,5 +114,5 @@ def create_dates(request, id):
         'event': event,
         'weekly': weekly,
     }
-    return render(request, 'schedule/test.html', context)
+    return render(request, 'schedule/snippets/test.html', context)
 

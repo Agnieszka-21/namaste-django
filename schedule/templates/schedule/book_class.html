@@ -30,6 +30,8 @@
                     {% csrf_token %}
                     {{ booking_form | crispy }}
                     <p id="waiver" tabindex="0" aria-label="Show the waiver">Read the waiver here</p>
+
+                    {% include 'schedule/snippets/test.html' %}
                 </div>
                 <p>* Required field</p>
                 <div class="col-lg-1"></div>
