@@ -3,6 +3,9 @@ from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator
 from cloudinary.models import CloudinaryField
 import uuid
+# eventtool
+from eventtools.models import BaseEvent, BaseOccurrence
+
 
 # Create your models here.
 class YogaStyle(models.Model):
@@ -220,6 +223,14 @@ class GroupClass(models.Model):
 
     def __str__(self):
         return f"{self.title} | {self.weekday} {self.start_time}"
+
+
+class RepeatedEvent(BaseEvent):
+    title = models.ForeignKey(GroupClass, on_delete=models.CASCADE)
+
+
+class EventOccurrence(BaseOccurrence):
+    event = models.ForeignKey(RepeatedEvent, on_delete=models.CASCADE)
 
 
 class Booking(models.Model):
