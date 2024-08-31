@@ -103,7 +103,7 @@ def personal_bookings(request, id):
     return render(request, 'schedule/personal_bookings.html', context)
 
 
-def create_dates(request, id):
+def create_dates(request, *args, **kwargs):
     event = RepeatedEvent.objects.create(title=GroupClass.objects.get(id=12))
     weekly = EventOccurrence.objects.create(
         event=event,
@@ -133,5 +133,6 @@ def create_dates(request, id):
         'second_next_class': second_next_class,
         'third_next_class': third_next_class,
     }
+    kwargs['context'] = context
     return render(request, 'schedule/snippets/test.html', context)
 

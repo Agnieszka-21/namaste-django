@@ -65,6 +65,7 @@ INSTALLED_APPS = [
     'crispy_bootstrap5',
     'user_profiles',
     'schedule',
+    'django_render_partial',
 ]
 
 # next 3 lines from CI

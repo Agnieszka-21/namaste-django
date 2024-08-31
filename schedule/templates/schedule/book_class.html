@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
 {% load static %}
+{% load render_partial %}
 
 
 {% block content %}
@@ -27,11 +28,11 @@
                 -->
                 <div class="col-lg-1"></div>
                 <div class="col-lg-5">
+                    {% render_partial 'schedule.views.create_dates' %}
+
                     {% csrf_token %}
                     {{ booking_form | crispy }}
                     <p id="waiver" tabindex="0" aria-label="Show the waiver">Read the waiver here</p>
-
-                    {% include 'schedule/snippets/test.html' %}
                 </div>
                 <p>* Required field</p>
                 <div class="col-lg-1"></div>
