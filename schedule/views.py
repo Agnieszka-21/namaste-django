@@ -104,14 +104,15 @@ def personal_bookings(request, id):
 
 
 def create_dates(request, *args, **kwargs):
-    event = RepeatedEvent.objects.create(title=GroupClass.objects.get(id=12))
+    chosen_class = GroupClass.objects.get(id=12)
+    event = RepeatedEvent.objects.create(title=chosen_class)
     weekly = EventOccurrence.objects.create(
         event=event,
         start=datetime.datetime(2024, 9, 2, 18, 30),
         end=datetime.datetime(2024, 9, 2, 19, 30),
         repeat='RRULE:FREQ=WEEKLY')
     
-    current_date = datetime.date.today()
+    current_date = datetime.datetime.now()
     add_week = datetime.timedelta(days=7)
     one_week_later = current_date + add_week
     two_weeks_later = current_date + add_week + add_week
@@ -119,10 +120,15 @@ def create_dates(request, *args, **kwargs):
     next_class = event.next_occurrence(from_date=current_date)
     second_next_class = event.next_occurrence(from_date=one_week_later)
     third_next_class = event.next_occurrence(from_date= two_weeks_later)
+
+    next_class_str = next_class[0]
+    second_next_class_str = second_next_class[0]
+    third_next_class_str = third_next_class[0]
     
     sept = event.all_occurrences(from_date=datetime.date(2024, 9, 1), to_date=datetime.date(2024, 9,30))
 
     context = {
+        'chosen_class': chosen_class,
         'event': event,
         'weekly': weekly,
         'current_date': current_date,
@@ -132,7 +138,9 @@ def create_dates(request, *args, **kwargs):
         'next_class': next_class,
         'second_next_class': second_next_class,
         'third_next_class': third_next_class,
+        'next_class_str': next_class_str,
+        'second_next_class_str': second_next_class_str,
+        'third_next_class_str': third_next_class_str,
     }
-    kwargs['context'] = context
     return render(request, 'schedule/snippets/test.html', context)
 

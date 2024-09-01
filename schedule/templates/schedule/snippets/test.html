@@ -8,9 +8,21 @@
 <p>Two weeks later: {{ two_weeks_later }}</p> -->
 
 <div>
-    <p>Next class: {{ next_class }}</p>
-    <p>Second next class: {{ second_next_class }}</p>
-    <p>Third next class: {{ third_next_class }}</p>
+    <p>Chosen class: {{ chosen_class }}</p>
+
+    <p>Next class print: {{ next_class_str }}</p>
+    <p>Second next class print: {{ second_next_class_str }}</p>
+    <p>Third next class print: {{ third_next_class_str }}</p>
+
+    <div>
+        <label for="available-dates">Choose a date:</label>
+        <select name="available-dates" id="available-dates">
+            <option value="next">{{ next_class_str }}</option>
+            <option value="second-next">{{ second_next_class_str }}</option>
+            <option value="third-next">{{ third_next_class_str }}</option>
+        </select>
+    </div>
+
 </div>
 
 
