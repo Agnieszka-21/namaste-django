@@ -164,8 +164,8 @@ class GroupClass(models.Model):
     )
 
     DURATION_OPTIONS = (
-        ('45 minutes', '45 minutes'),
-        ('60 minutes', '60 minutes')
+        (45, 45),
+        (60, 60)
     )
 
     LOCATION_OPTIONS = (
@@ -208,7 +208,7 @@ class GroupClass(models.Model):
     description = models.ForeignKey(StyleDescription, on_delete=models.CASCADE, null=True, blank=True)
     weekday = models.CharField(max_length=10, choices=DAYS, null=True, blank=True)
     start_time = models.CharField(max_length=10, choices=TIMES, null=True, blank=True)
-    duration = models.CharField(choices=DURATION_OPTIONS, default='60 minutes')
+    duration_mins = models.IntegerField(choices=DURATION_OPTIONS, default=60)
     location = models.CharField(choices=LOCATION_OPTIONS, default='Studio 1')
     image = CloudinaryField('image', default=default_class_img)
     participants = models.ManyToManyField(User, blank=True)
