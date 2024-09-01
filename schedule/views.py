@@ -104,43 +104,37 @@ def personal_bookings(request, id):
 
 
 def create_dates(request, *args, **kwargs):
-    chosen_class = GroupClass.objects.get(id=12)
+    chosen_class = GroupClass.objects.get(id=kwargs['id'])
+    kwargs['chosen_class'] = chosen_class
+
     event = RepeatedEvent.objects.create(title=chosen_class)
+
+    first_class = chosen_class.first_class
+    kwargs['first_class'] = first_class
+
     weekly = EventOccurrence.objects.create(
         event=event,
-        start=datetime.datetime(2024, 9, 2, 18, 30),
-        end=datetime.datetime(2024, 9, 2, 19, 30),
+        start=first_class,
+        end=first_class + (datetime.timedelta(minutes=chosen_class.duration_mins)),
         repeat='RRULE:FREQ=WEEKLY')
-    
+    kwargs['weekly'] = weekly
+
     current_date = datetime.datetime.now()
     add_week = datetime.timedelta(days=7)
     one_week_later = current_date + add_week
     two_weeks_later = current_date + add_week + add_week
 
     next_class = event.next_occurrence(from_date=current_date)
+    kwargs['next_class'] = next_class
     second_next_class = event.next_occurrence(from_date=one_week_later)
     third_next_class = event.next_occurrence(from_date= two_weeks_later)
 
     next_class_str = next_class[0]
     second_next_class_str = second_next_class[0]
     third_next_class_str = third_next_class[0]
-    
-    sept = event.all_occurrences(from_date=datetime.date(2024, 9, 1), to_date=datetime.date(2024, 9,30))
+    kwargs['next_class_str'] = next_class_str
+    kwargs['second_next_class_str'] = second_next_class_str
+    kwargs['third_next_class_str'] = third_next_class_str
 
-    context = {
-        'chosen_class': chosen_class,
-        'event': event,
-        'weekly': weekly,
-        'current_date': current_date,
-        'sept': sept,
-        'one_week_later': one_week_later,
-        'two_weeks_later': two_weeks_later,
-        'next_class': next_class,
-        'second_next_class': second_next_class,
-        'third_next_class': third_next_class,
-        'next_class_str': next_class_str,
-        'second_next_class_str': second_next_class_str,
-        'third_next_class_str': third_next_class_str,
-    }
-    return render(request, 'schedule/snippets/test.html', context)
+    return render(request, 'schedule/snippets/test.html', kwargs)
 
