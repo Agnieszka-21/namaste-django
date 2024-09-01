@@ -14,7 +14,7 @@
 
         <div class="">
             <h4>{{ chosen_class.title }}</h4>
-            <p class="fw-bold mb-5">{{ chosen_class.weekday }} | {{ chosen_class.start_time }} | {{ chosen_class.duration }}</p>
+            <p class="fw-bold mb-5">{{ chosen_class.weekday }} | {{ chosen_class.start_time }} | {{ chosen_class.duration_mins }} minutes</p>
             
             <form id="booking-form" class="row" method="POST" action="{% url 'book_class' chosen_class.id %}">
                 <div class="col-lg-5">
@@ -28,7 +28,7 @@
                 -->
                 <div class="col-lg-1"></div>
                 <div class="col-lg-5">
-                    {% render_partial 'schedule.views.create_dates' %}
+                    {% render_partial 'schedule.views.create_dates' id=chosen_class.id %}
 
                     {% csrf_token %}
                     {{ booking_form | crispy }}
