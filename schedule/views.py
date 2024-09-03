@@ -35,12 +35,11 @@ def schedule_detail(request, id):
     return render(request, 'schedule/schedule_detail.html', context)
 
 
-
 @login_required
 def book_class(request, id):
     queryset = GroupClass.objects.all()
     chosen_class = get_object_or_404(queryset, id=id)
-
+    
     # Print statement for debugging the function
     print(chosen_class)
     if request.method == 'POST':
@@ -61,10 +60,12 @@ def book_class(request, id):
             except:
                 messages.error(request, 'ERROR: Oops, something went wrong with your details...')
         if (user_form.is_valid() and successful == True) and booking_form.is_valid():
+
             try:
                 booking = booking_form.save(commit=False)
                 booking.chosen_class = chosen_class
                 booking.client = request.user
+                #booking.class_datetime = 
                 booking.save()
                 print(f'Chosen class: {booking.chosen_class}')
                 print(f'Client is {booking.client}')
@@ -79,6 +80,7 @@ def book_class(request, id):
         print("This is coming from the ELSE in book_class view")
         user_form = UserForm(instance=request.user)
         booking_form = BookingForm(instance=chosen_class)
+
         
     # Print statement for debugging the function
     print("About to render template book_class.html")
@@ -103,6 +105,7 @@ def personal_bookings(request, id):
     return render(request, 'schedule/personal_bookings.html', context)
 
 
+# Function view based on django-render-partial documentation: https://pypi.org/project/django-render-partial/
 def create_dates(request, *args, **kwargs):
     chosen_class = GroupClass.objects.get(id=kwargs['id'])
     kwargs['chosen_class'] = chosen_class
@@ -135,6 +138,13 @@ def create_dates(request, *args, **kwargs):
     kwargs['next_class_str'] = next_class_str
     kwargs['second_next_class_str'] = second_next_class_str
     kwargs['third_next_class_str'] = third_next_class_str
+
+    CHOICES_WHEN = (
+        (next_class_str, next_class_str),
+        (second_next_class_str, second_next_class_str),
+        (third_next_class_str, third_next_class_str),
+    )
+    kwargs['CHOICES_WHEN'] = CHOICES_WHEN
 
     return render(request, 'schedule/snippets/test.html', kwargs)
 

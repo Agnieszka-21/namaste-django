@@ -1,3 +1,5 @@
+{% load static %}
+
 <p>This is a test template</p>
 
 <!-- <p>Event title: {{ event }}</p>
@@ -12,17 +14,16 @@
 
 <div>
 
-    <div>
-        <label for="available-dates">Choose a date:</label>
-        <select name="available-dates" id="available-dates">
-            <option value="next">{{ next_class_str }}</option>
-            <option value="second-next">{{ second_next_class_str }}</option>
-            <option value="third-next">{{ third_next_class_str }}</option>
-        </select>
-    </div>
+    <!-- <form> -->
+    <label for="available-dates">When:</label>
+    <select name="available-dates" id="available-dates">
+        <!-- <option value="empty"> -------- </option>             -->
+        <option value="{{ next_class_str }}" selected>{{ next_class_str }}</option>
+        <option value="{{ second_next_class_str }}">{{ second_next_class_str }}</option>
+        <option value="{{ third_next_class_str }}">{{ third_next_class_str }}</option>
+    </select>
+        <!-- <input type="submit" value="Confirm"> -->
+    <!-- </form> -->
 
 </div>
-
-
-
 

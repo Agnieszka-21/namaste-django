@@ -68,3 +68,23 @@ function trapFocus() {
         }
     });
 }
+
+
+// Following code losely based on this article: 
+// https://www.geeksforgeeks.org/how-to-get-selected-value-in-dropdown-list-using-javascript/ 
+const bookingBtn = document.querySelector('#booking-submit');
+bookingBtn.addEventListener('click', getOption);
+bookingBtn.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' || e.key === ' ') {
+        getOption();
+    }
+});
+
+function getOption() {
+    const selectElement = document.querySelector('#available-dates');
+    let chosenOption = selectElement.value;
+    console.log(chosenOption);
+}
+
+// Further steps to convert that into python: 
+// https://www.makeuseof.com/run-javascript-in-python/#:~:text=The%20first%20step%20is%20the,console%20windows%20of%20the%20browser.
