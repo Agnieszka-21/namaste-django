@@ -237,7 +237,7 @@ class Booking(models.Model):
     id = models.UUIDField(primary_key=True, unique=True, default=uuid.uuid4, editable=False)
     chosen_class = models.ForeignKey(GroupClass, on_delete=models.CASCADE, null=True, blank=True)
     client = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
-    class_date = models.DateField(null=True, blank=True)
+    class_datetime = models.ForeignKey(EventOccurrence, on_delete=models.CASCADE, null=True, blank=True)
     booking_time = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     waiver_signed = models.BooleanField(null=True, blank=True)
     booking_cancelled = models.BooleanField(default=False)
