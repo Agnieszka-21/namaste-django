@@ -84,6 +84,7 @@ function getOption() {
     const selectElement = document.querySelector('#available-dates');
     let chosenOption = selectElement.value;
     console.log(chosenOption);
+    return chosenOption;
 }
 
 // Further steps to convert that into python: 

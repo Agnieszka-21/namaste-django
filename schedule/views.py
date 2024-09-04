@@ -108,19 +108,14 @@ def personal_bookings(request, id):
 # Function view based on django-render-partial documentation: https://pypi.org/project/django-render-partial/
 def create_dates(request, *args, **kwargs):
     chosen_class = GroupClass.objects.get(id=kwargs['id'])
-    kwargs['chosen_class'] = chosen_class
-
     event = RepeatedEvent.objects.create(title=chosen_class)
-
     first_class = chosen_class.first_class
-    kwargs['first_class'] = first_class
 
     weekly = EventOccurrence.objects.create(
         event=event,
         start=first_class,
         end=first_class + (datetime.timedelta(minutes=chosen_class.duration_mins)),
         repeat='RRULE:FREQ=WEEKLY')
-    kwargs['weekly'] = weekly
 
     current_date = datetime.datetime.now()
     add_week = datetime.timedelta(days=7)
@@ -128,7 +123,6 @@ def create_dates(request, *args, **kwargs):
     two_weeks_later = current_date + add_week + add_week
 
     next_class = event.next_occurrence(from_date=current_date)
-    kwargs['next_class'] = next_class
     second_next_class = event.next_occurrence(from_date=one_week_later)
     third_next_class = event.next_occurrence(from_date= two_weeks_later)
 
@@ -139,12 +133,12 @@ def create_dates(request, *args, **kwargs):
     kwargs['second_next_class_str'] = second_next_class_str
     kwargs['third_next_class_str'] = third_next_class_str
 
-    CHOICES_WHEN = (
-        (next_class_str, next_class_str),
-        (second_next_class_str, second_next_class_str),
-        (third_next_class_str, third_next_class_str),
-    )
-    kwargs['CHOICES_WHEN'] = CHOICES_WHEN
+    next_class_occur = next_class[2]
+    second_next_class_occur = second_next_class[2]
+    third_next_class_occur = third_next_class[2]
+    kwargs['next_class_occur'] = next_class_occur
+    kwargs['second_next_class_occur'] = second_next_class_occur
+    kwargs['third_next_class_occur'] = third_next_class_occur
 
     return render(request, 'schedule/snippets/test.html', kwargs)
 
