@@ -65,12 +65,11 @@ def book_class(request, id):
                 booking = booking_form.save(commit=False)
                 booking.chosen_class = chosen_class
                 booking.client = request.user
-                # HOW TO GET CHOSENOPTION FROM JS?????
                 booking.class_datetime = request.POST['available-dates']
                 booking.save()
                 print(f'Chosen class: {booking.chosen_class}')
                 print(f'Client is {booking.client}')
-                print(request.GET('available-dates'))
+                print(request.POST['available-dates'])
                 messages.success(request, f'Your booking for **{booking.chosen_class} on {booking.class_datetime}** was successful. See you in the studio!')
                 return redirect('/schedule/')
             except Exception as e:
@@ -78,7 +77,6 @@ def book_class(request, id):
                 print('REQUEST: ', request.POST)
                 print('REQUEST: ', request.POST['available-dates'])
                 messages.error(request, 'ERROR: Oops, something went wrong with your booking...')
-                #print(request.GET(chosenOption))
         else:
             print('The user form has not been saved successfully')
     else:
@@ -145,6 +143,10 @@ def create_dates(request, *args, **kwargs):
     kwargs['next_class_occur'] = next_class_occur
     kwargs['second_next_class_occur'] = second_next_class_occur
     kwargs['third_next_class_occur'] = third_next_class_occur
+
+    #datetime_str = 'Sept. 9, 2024, 7:30 p.m.'
+    #datetime_object = datetime.datetime.strptime(datetime_str, '%b. %d, %Y, %I:%M %p')
+    #kwargs['datetime_object'] = datetime_object
 
     return render(request, 'schedule/snippets/test.html', kwargs)
 
