@@ -14,16 +14,17 @@
 
 <div>
 
-    <!-- <form> -->
     <label for="available-dates">When:</label>
     <select name="available-dates" id="available-dates">
-        <!-- <option value="empty"> -------- </option>             -->
-        <option value="{{ next_class_occur }}" selected>{{ next_class_str }}</option>
+        <option value="empty" selected> -------- </option>            
+        <option value="{{ next_class_occur }}">{{ next_class_str }}</option>
         <option value="{{ second_next_class_occur }}">{{ second_next_class_str }}</option>
         <option value="{{ third_next_class_occur }}">{{ third_next_class_str }}</option>
     </select>
+
+    <p>{{ next_class_occur }}</p>
+    <p>{{ next_class }}</p>
         <!-- <input type="submit" value="Confirm"> -->
-    <!-- </form> -->
 
 </div>
 

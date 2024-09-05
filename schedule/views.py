@@ -65,14 +65,20 @@ def book_class(request, id):
                 booking = booking_form.save(commit=False)
                 booking.chosen_class = chosen_class
                 booking.client = request.user
-                #booking.class_datetime = 
+                # HOW TO GET CHOSENOPTION FROM JS?????
+                booking.class_datetime = request.POST['available-dates']
                 booking.save()
                 print(f'Chosen class: {booking.chosen_class}')
                 print(f'Client is {booking.client}')
-                messages.success(request, f'Your booking for **{booking.chosen_class}** was successful. See you in the studio!')
+                print(request.GET('available-dates'))
+                messages.success(request, f'Your booking for **{booking.chosen_class} on {booking.class_datetime}** was successful. See you in the studio!')
                 return redirect('/schedule/')
-            except:
+            except Exception as e:
+                print('ERROR: ', e)
+                print('REQUEST: ', request.POST)
+                print('REQUEST: ', request.POST['available-dates'])
                 messages.error(request, 'ERROR: Oops, something went wrong with your booking...')
+                #print(request.GET(chosenOption))
         else:
             print('The user form has not been saved successfully')
     else:
@@ -81,7 +87,6 @@ def book_class(request, id):
         user_form = UserForm(instance=request.user)
         booking_form = BookingForm(instance=chosen_class)
 
-        
     # Print statement for debugging the function
     print("About to render template book_class.html")
     return render(request, 'schedule/book_class.html', {'chosen_class': chosen_class, 'user_form': user_form, 'booking_form': booking_form})
@@ -123,6 +128,7 @@ def create_dates(request, *args, **kwargs):
     two_weeks_later = current_date + add_week + add_week
 
     next_class = event.next_occurrence(from_date=current_date)
+    kwargs['next_class'] = next_class
     second_next_class = event.next_occurrence(from_date=one_week_later)
     third_next_class = event.next_occurrence(from_date= two_weeks_later)
 
