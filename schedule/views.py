@@ -11,6 +11,7 @@ from django.utils.timezone import make_aware
 from django.views import generic
 from .forms import UserForm, BookingForm
 from .models import GroupClass, Booking, RepeatedEvent, EventOccurrence
+from pytz import timezone
 
 
 def schedule(request):
@@ -86,14 +87,32 @@ def book_class(request, id):
 def personal_bookings(request, id):
     model = Booking
     booked_classes = Booking.objects.filter(client=request.user.id)
-    print(booked_classes)
+    future_classes = []
+    # past_classes = []
+    current_datetime = datetime.datetime.now()
+    current_datetime = current_datetime.astimezone(timezone('Europe/Dublin'))
+
+    for booked_class in booked_classes:
+        if booked_class.class_datetime > current_datetime:
+            future_classes.append(booked_class)
+            print(future_classes)
+            #sorted(future_classes, key=lambda booking:booking.class_datetime, reverse=True)  ??? FIX
+        # else:
+        #     past_classes.append(booked_class)
+
     default_text = "No information"
     context = {
         'name': request.user.get_full_name(),
         'email': request.user.email,
         'default_text': default_text,
         'booked_classes': booked_classes,
+        'future_classes': future_classes,
+        # 'past_classes': past_classes,
+        #'booked_and_upcoming': booked_and_upcoming,
+        #'upcoming': upcoming,
+        #'past': past,
     }
+
     return render(request, 'schedule/personal_bookings.html', context)
 
 
@@ -116,7 +135,7 @@ def create_dates(request, *args, **kwargs):
 
     next_class = event.next_occurrence(from_date=current_datetime)
     second_next_class = event.next_occurrence(from_date=one_week_later)
-    third_next_class = event.next_occurrence(from_date= two_weeks_later)
+    third_next_class = event.next_occurrence(from_date=two_weeks_later)
 
     next_class_str = next_class[0]
     second_next_class_str = second_next_class[0]

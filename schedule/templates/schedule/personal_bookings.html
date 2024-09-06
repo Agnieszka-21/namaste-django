@@ -6,7 +6,7 @@
 
 <!-- User profile template: https://bbbootstrap.com/snippets/bootstrap-5-myprofile-90806631# -->
 <div class="container rounded bg-white mt-5 mb-5">
-    <div class="p-3 py-5">
+    <!-- <div class="p-3 py-5">
         <div class="d-flex justify-content-between align-items-center">
             <span class="profile-heading">My bookings</span>
             <span class="border px-1 ph4 -1 book-class profile-heading">
@@ -16,11 +16,11 @@
             </span>
         </div>
         <br>               
-    </div>
+    </div> -->
 
     <div class="container-fluid col-12 mt-3 left">
         <!-- <div class="row"> -->
-        {% for class in booked_classes %}
+        {% for class in future_classes %}
             <!-- <div class="col-md-6"> -->
         <div class="card mb-4">
             <div class="card-body row">
@@ -28,7 +28,7 @@
                 <hr>
                 <div class="row">
                     <div class="col-md-8">
-                        <p class="card-text h6 mb-2">{{ class.chosen_class.weekday }} | {{ class.class_date }} | {{ class.chosen_class.start_time }}</p>
+                        <p class="card-text h6 mb-2">{{ class.chosen_class.weekday }} | {{ class.class_datetime }}</p>
                     </div>
 
                     <div class="col-md-4 mt-3 mt-md-0 d-flex flex-column">
