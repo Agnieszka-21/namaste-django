@@ -1,13 +1,12 @@
-from django.db import models
+from cloudinary.models import CloudinaryField
 from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator
-from cloudinary.models import CloudinaryField
-import uuid
-# eventtool
+from django.db import models
+from django.utils import timezone
 from eventtools.models import BaseEvent, BaseOccurrence
+import uuid
 
 
-# Create your models here.
 class YogaStyle(models.Model):
     RESTORATIVE = "Restorative Yoga"
     YIN = "Yin Yoga"
@@ -238,7 +237,7 @@ class Booking(models.Model):
     chosen_class = models.ForeignKey(GroupClass, on_delete=models.CASCADE, null=True, blank=True)
     client = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     class_datetime = models.DateTimeField(null=True, blank=True)
-    booking_time = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    booking_time = models.DateTimeField(default=timezone.now)
     waiver_signed = models.BooleanField(null=True, blank=True)
     booking_cancelled = models.BooleanField(default=False)
 
@@ -246,5 +245,5 @@ class Booking(models.Model):
         ordering = ['-booking_time']
 
     def __str__(self):
-        return f"Booking {self.id} for {self.client} | {self.chosen_class} | {self.booking_time}"
+        return f"{self.booking_time} | Booking {self.id} | Client: {self.client} | {self.chosen_class.title} | On {self.class_datetime}"
 

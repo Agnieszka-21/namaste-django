@@ -1,23 +1,20 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib import messages
-from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
-from django.template import loader
-from django.urls import reverse
-from django.views import generic
-from .models import GroupClass, Booking
-from .forms import UserForm, BookingForm
-from django.contrib.auth.models import User
-# eventtools import
 import datetime
 from dateutil import parser
-from .models import RepeatedEvent, EventOccurrence
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from django.http import HttpResponse
+from django.shortcuts import render, redirect, get_object_or_404
+from django.template import loader
+from django.urls import reverse
+from django.utils.timezone import make_aware
+from django.views import generic
+from .forms import UserForm, BookingForm
+from .models import GroupClass, Booking, RepeatedEvent, EventOccurrence
 
 
-# Create your views here.
 def schedule(request):
     return render(request, 'schedule/schedule.html')
-    #return HttpResponse('This is the schedule page')
 
 
 class GroupClassList(generic.ListView):
@@ -63,7 +60,7 @@ def book_class(request, id):
                 booking.client = request.user
                 # Following line of code (string converted into datetime) based on this article:
                 # https://www.geeksforgeeks.org/python-convert-string-to-datetime-and-vice-versa/
-                booking.class_datetime = parser.parse(request.POST['available-dates'])
+                booking.class_datetime = make_aware(parser.parse(request.POST['available-dates']))
                 booking.save()
                 chosen_date = request.POST['available-dates']
                 messages.success(request, f'Your booking for **{booking.chosen_class.title} on {chosen_date}** was successful. See you in the studio!')
@@ -83,7 +80,6 @@ def book_class(request, id):
     # Print statement for debugging the function
     print("About to render template book_class.html")
     return render(request, 'schedule/book_class.html', {'chosen_class': chosen_class, 'user_form': user_form, 'booking_form': booking_form})
-
 
 
 @login_required
@@ -113,6 +109,7 @@ def create_dates(request, *args, **kwargs):
         repeat='RRULE:FREQ=WEEKLY')
 
     current_datetime = datetime.datetime.now()
+    print('CURENT DATETIME: ', current_datetime)
     add_week = datetime.timedelta(days=7)
     one_week_later = current_datetime + add_week
     two_weeks_later = current_datetime + add_week + add_week
