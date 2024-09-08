@@ -68,7 +68,7 @@ def book_class(request, id):
                 return redirect('/schedule/')
             except Exception as e:
                 print('ERROR: ', e)
-                print('REQUEST: ', request.POST)
+                # print('REQUEST: ', request.POST)
                 messages.error(request, 'ERROR: Oops, something went wrong with your booking...')
         else:
             print('The user form has not been saved successfully')
@@ -87,18 +87,45 @@ def book_class(request, id):
 def personal_bookings(request, id):
     model = Booking
     booked_classes = Booking.objects.filter(client=request.user.id)
-    future_classes = []
-    # past_classes = []
+    # Get current date and time for the specified time zone
     current_datetime = datetime.datetime.now()
     current_datetime = current_datetime.astimezone(timezone('Europe/Dublin'))
-
+    # Create a list for future classes booked, and a list of past classes booked
+    future_classes = []
+    past_classes = []
     for booked_class in booked_classes:
         if booked_class.class_datetime > current_datetime:
             future_classes.append(booked_class)
-            print(future_classes)
-            #sorted(future_classes, key=lambda booking:booking.class_datetime, reverse=True)  ??? FIX
-        # else:
-        #     past_classes.append(booked_class)
+        else:
+            past_classes.append(booked_class)
+    
+    # Based on this article:
+    # https://towardsdatascience.com/simple-sorting-of-a-list-of-objects-by-a-specific-property-using-python-dac907150394
+    # Sort the class_datetime attribute for each of these 2 lists
+    sorted_future_class_datetimes = []
+    for future_class in future_classes:
+        sorted_future_class_datetimes.append(future_class.class_datetime)
+    sorted_future_class_datetimes.sort(reverse=True)
+
+    sorted_past_class_datetimes = []
+    for past_class in past_classes:
+        sorted_past_class_datetimes.append(future_class.class_datetime)
+    sorted_past_class_datetimes.sort(reverse=True)
+    # Sort the list of future classes by class_datetime, in descending order
+    sorted_future_classes = []
+    for sorted_datetime in sorted_future_class_datetimes:
+        for future_class in future_classes:
+            if future_class.class_datetime == sorted_datetime:
+                sorted_future_classes.append(future_class)
+                break
+    # Sort the list of past classes by class_datetime, in descending order
+    sorted_past_classes = []
+    for sorted_datetime in sorted_past_class_datetimes:
+        for past_class in past_classes:
+            if past_class.class_datetime == sorted_datetime:
+                sorted_past_classes.append(past_class)
+                break
+
 
     default_text = "No information"
     context = {
@@ -106,11 +133,8 @@ def personal_bookings(request, id):
         'email': request.user.email,
         'default_text': default_text,
         'booked_classes': booked_classes,
-        'future_classes': future_classes,
-        # 'past_classes': past_classes,
-        #'booked_and_upcoming': booked_and_upcoming,
-        #'upcoming': upcoming,
-        #'past': past,
+        'sorted_future_classes': sorted_future_classes,
+        'sorted_past_classes': sorted_past_classes,
     }
 
     return render(request, 'schedule/personal_bookings.html', context)

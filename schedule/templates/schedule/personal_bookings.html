@@ -5,44 +5,54 @@
 {% block content %}
 
 <!-- User profile template: https://bbbootstrap.com/snippets/bootstrap-5-myprofile-90806631# -->
-<div class="container rounded bg-white mt-5 mb-5">
-    <!-- <div class="p-3 py-5">
-        <div class="d-flex justify-content-between align-items-center">
-            <span class="profile-heading">My bookings</span>
-            <span class="border px-1 ph4 -1 book-class profile-heading">
-                <a class="btn" href="{% url 'class_schedule' %}">
-                    <i class="fa fa-plus"></i>&nbsp;Book a class
-                </a>
-            </span>
-        </div>
-        <br>               
-    </div> -->
+<div class="container rounded bg-white my-5 py-3">
 
-    <div class="container-fluid col-12 mt-3 left">
-        <!-- <div class="row"> -->
-        {% for class in future_classes %}
-            <!-- <div class="col-md-6"> -->
+    <div class="container-fluid col-12 mt-3">
+        <h2 class="pb-4">Your Future Classes</h2>
+        {% for future_class in sorted_future_classes %}
         <div class="card mb-4">
             <div class="card-body row">
-                <h4 class="col-md-9 card-title">{{ class.chosen_class.title }}</h4>
+                <h4 class="col-md-9 card-title">{{ future_class.chosen_class.title }}</h4>
                 <hr>
                 <div class="row">
                     <div class="col-md-8">
-                        <p class="card-text h6 mb-2">{{ class.chosen_class.weekday }} | {{ class.class_datetime }}</p>
+                        <p class="card-text h6 mb-2">{{ future_class.chosen_class.weekday }} | {{ future_class.class_datetime }}</p>
                     </div>
-
                     <div class="col-md-4 mt-3 mt-md-0 d-flex flex-column">
                         <a data-mdb-ripple-init class="btn btn-dark mx-2 mb-2" href="{% url 'edit_profile' user.id %}" role="button">Edit booking</a>
                         <a data-mdb-ripple-init class="btn btn-light border mx-2 mb-2" href="{% url 'edit_profile' user.id %}" role="button">Cancel booking</a>
                     </div>
-
                 </div>
-
             </div>
         </div>
-            <!-- </div> -->
         {% endfor %}
-        <!-- </div> -->
+    </div>
+
+    <div class="container-fluid col-12 mt-3">
+        <h2 class="pb-4">Your Past Classes</h2>
+        {% for past_class in sorted_past_classes %}
+        <div class="card mb-4">
+            <div class="card-body row">
+                <h4 class="col-md-9 card-title">{{ past_class.chosen_class.title }}</h4>
+                <hr>
+                <div class="row">
+                    <div class="col-md-8">
+                        <p class="card-text h6 mb-2">{{ past_class.chosen_class.weekday }} | {{ past_class.class_datetime }}</p>
+                    </div>
+                    {% if past_class.booking_cancelled %}
+                    <div>
+                        <p>You cancelled this booking</p>
+                    </div>
+                    {% endif %}
+                    <!-- <div class="col-md-4 mt-3 mt-md-0 d-flex flex-column">
+                        <a data-mdb-ripple-init class="btn btn-dark mx-2 mb-2" href="{% url 'edit_profile' user.id %}" role="button">Edit booking</a>
+                        <a data-mdb-ripple-init class="btn btn-light border mx-2 mb-2" href="{% url 'edit_profile' user.id %}" role="button">Cancel booking</a>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
     </div>
 
 </div>
