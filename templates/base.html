@@ -10,6 +10,7 @@
 {% url 'account_signup' as signup_url %}
 {% url 'account_logout' as logout_url %}
 {% url 'create_dates' as create_dates_url %}
+{% url 'cancel_booking' as cancellation_url %}
 
 {% load static %}
 {% load cloudinary %}
@@ -44,12 +45,12 @@
     <!-- Custom styles -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
-    <!-- Htmx link -->
+    <!-- Htmx link 
     <script src="{% static 'js/htmx.min.js' %}" defer></script>
 
-    <!-- django-htmx debug code -->
+     django-htmx debug code 
     {% load django_htmx %}
-    {% django_htmx_script %}
+    {% django_htmx_script %} -->
 
 </head>
 
@@ -85,12 +86,16 @@
                     {% for profile in profile_list %}
                     <a class="d-none" href="{% url 'profile' user.id %}"></a>
                     <a class="d-none" href="{% url 'my_bookings' user.id %}"></a>
+                    <!-- <a class="d-none" href="{% url 'cancel_booking' user.id %}"></a> -->
                     {% endfor %}
                     <!-- Invisible. For-loop to create url patterns for each specific yoga class -->
                     {% for groupclass in groupclass_list %}
                     <a class="d-none" href="{% url 'schedule_detail' groupclass.id %}"></a>
                     <a class="d-none" href="{% url 'book_class' groupclass.id %}"></a>
                     <a class="d-none" href="{% url 'create_dates' groupclass.id %}"></a>
+                    {% endfor %}
+                    {% for booking in booking_list %}
+                    <a class="d-none" href="{% url 'cancel_booking' user.id booking.pk %}"></a>
                     {% endfor %}
 
 

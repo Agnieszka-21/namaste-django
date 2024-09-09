@@ -3,6 +3,7 @@ from dateutil import parser
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.core.paginator import Paginator
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.template import loader
@@ -14,6 +15,7 @@ from .models import GroupClass, Booking, RepeatedEvent, EventOccurrence
 from pytz import timezone
 
 
+
 def schedule(request):
     return render(request, 'schedule/schedule.html')
 
@@ -21,6 +23,11 @@ def schedule(request):
 class GroupClassList(generic.ListView):
     queryset = GroupClass.objects.all()
     template_name = 'schedule/schedule_list.html'
+
+
+class BookingList(generic.ListView):
+    queryset = Booking.objects.all()
+    template_name = 'schedule/personal_bookings.html'
 
 
 def schedule_detail(request, id):
@@ -107,10 +114,10 @@ def personal_bookings(request, id):
         sorted_future_class_datetimes.append(future_class.class_datetime)
     sorted_future_class_datetimes.sort(reverse=True)
 
-    sorted_past_class_datetimes = []
-    for past_class in past_classes:
-        sorted_past_class_datetimes.append(future_class.class_datetime)
-    sorted_past_class_datetimes.sort(reverse=True)
+    # sorted_past_class_datetimes = []
+    # for past_class in past_classes:
+    #     sorted_past_class_datetimes.append(future_class.class_datetime)
+    # sorted_past_class_datetimes.sort(reverse=True)
     # Sort the list of future classes by class_datetime, in descending order
     sorted_future_classes = []
     for sorted_datetime in sorted_future_class_datetimes:
@@ -119,14 +126,27 @@ def personal_bookings(request, id):
                 sorted_future_classes.append(future_class)
                 break
     # Sort the list of past classes by class_datetime, in descending order
-    sorted_past_classes = []
-    for sorted_datetime in sorted_past_class_datetimes:
-        for past_class in past_classes:
-            if past_class.class_datetime == sorted_datetime:
-                sorted_past_classes.append(past_class)
-                break
+    # sorted_past_classes = []
+    # for sorted_datetime in sorted_past_class_datetimes:
+    #     for past_class in past_classes:
+    #         if past_class.class_datetime == sorted_datetime:
+    #             sorted_past_classes.append(past_class)
+    #             break
 
-
+    # Pagination article: 
+    # https://realpython.com/django-pagination/#using-the-django-paginator-in-views
+    # p = Paginator(sorted_future_classes, 2)
+    # print(p.count)
+    # print(p.num_pages)
+    # page1 = p.page(1)
+    # page2 = p.page(2)
+    # page3 = p.page(3)
+    # print(page1)
+    # page = p.page(request.GET.get('page'))
+    #chosen_booking = 
+    for sfc in sorted_future_classes:
+        print(sfc.pk)
+    print()
     default_text = "No information"
     context = {
         'name': request.user.get_full_name(),
@@ -134,7 +154,10 @@ def personal_bookings(request, id):
         'default_text': default_text,
         'booked_classes': booked_classes,
         'sorted_future_classes': sorted_future_classes,
-        'sorted_past_classes': sorted_past_classes,
+        # 'sorted_past_classes': sorted_past_classes,
+        # 'page_obj': page1,
+        # 'page_obj': page2,
+        # 'page_obj': page3,
     }
 
     return render(request, 'schedule/personal_bookings.html', context)
@@ -169,4 +192,15 @@ def create_dates(request, *args, **kwargs):
     kwargs['third_next_class_str'] = third_next_class_str
 
     return render(request, 'schedule/snippets/dates.html', kwargs)
+
+
+@login_required
+def cancel_booking(request, id, pk):
+    chosen_booking = Booking.objects.get(id=pk)
+    print(chosen_booking)
+    context = {
+        'chosen_booking': chosen_booking,
+    }
+    return render(request, 'schedule/cancel_booking.html', context)
+
 

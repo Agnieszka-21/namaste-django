@@ -20,7 +20,7 @@
                     </div>
                     <div class="col-md-4 mt-3 mt-md-0 d-flex flex-column">
                         <a data-mdb-ripple-init class="btn btn-dark mx-2 mb-2" href="{% url 'edit_profile' user.id %}" role="button">Edit booking</a>
-                        <a data-mdb-ripple-init class="btn btn-light border mx-2 mb-2" href="{% url 'edit_profile' user.id %}" role="button">Cancel booking</a>
+                        <a data-mdb-ripple-init class="btn btn-light border mx-2 mb-2" href="{% url 'cancel_booking' user.id future_class.pk %}" role="button">Cancel booking</a>
                     </div>
                 </div>
             </div>
@@ -28,7 +28,7 @@
         {% endfor %}
     </div>
 
-    <div class="container-fluid col-12 mt-3">
+    <!-- <div class="container-fluid col-12 mt-3">
         <h2 class="pb-4">Your Past Classes</h2>
         {% for past_class in sorted_past_classes %}
         <div class="card mb-4">
@@ -44,16 +44,28 @@
                         <p>You cancelled this booking</p>
                     </div>
                     {% endif %}
-                    <!-- <div class="col-md-4 mt-3 mt-md-0 d-flex flex-column">
+                    <div class="col-md-4 mt-3 mt-md-0 d-flex flex-column">
                         <a data-mdb-ripple-init class="btn btn-dark mx-2 mb-2" href="{% url 'edit_profile' user.id %}" role="button">Edit booking</a>
                         <a data-mdb-ripple-init class="btn btn-light border mx-2 mb-2" href="{% url 'edit_profile' user.id %}" role="button">Cancel booking</a>
-                    </div> -->
+                    </div>
                 </div>
             </div>
         </div>
         {% endfor %}
+    </div> -->
 
-    </div>
+    <ul class="pagination justify-content-center">
+        {% if page_obj.has_previous %}
+        <li>
+            <a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo;PREV</a>
+        </li>
+        {% endif %}
+        {% if page_obj.has_next %}
+        <li>
+            <a href="?page={{ page_obj.next_page_number }}" class="page-link">NEXT &raquo</a>
+        </li>
+        {% endif %}
+    </ul>
 
 </div>
 {% endblock %}
