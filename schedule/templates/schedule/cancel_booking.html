@@ -6,21 +6,17 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 mt-3 offset-md-2">
-            <h4>Cancel booking {{ chosen_booking }}</h4>
-
+            <h4>{{ chosen_booking.chosen_class.title }} | {{ chosen_booking.class_datetime }}</h4>
             <p>Are you sure you want to cancel your booking?</p>
         </div>
     </div>
     <div class="row">
         <div class="col-md-8 mt-3 offset-md-2">
 
-            <form method="post" action="">
+            <form method="post" action="" name="cancellation_form">
                 {% csrf_token %}
-                {% if redirect_field_value %}
-                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-                {% endif %}
-                <button class="btn btn-dark mt-3" type="submit">Yes, cancel my booking</button>
-                <a href="{% url 'my_bookings' user.id %}" class="btn btn-light mx-2">No, I changed my mind</a>
+                <button class="btn btn-dark mt-3 me-5" type="submit">Yes, cancel my booking</button>
+                <a href="{% url 'my_bookings' user.id %}" class="btn btn-light mt-3">No, I changed my mind</a>
             </form>
         </div>
     </div>

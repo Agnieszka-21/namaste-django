@@ -38,3 +38,11 @@ class BookingForm(forms.ModelForm):
         self.fields['waiver_signed'].widget = forms.widgets.CheckboxInput(
             attrs={'type': 'checkbox'})
 
+
+class CancellationForm(forms.ModelForm):
+    class Meta:
+        model = Booking
+        fields = [
+            'booking_cancelled',
+        ]
+

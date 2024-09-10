@@ -10,7 +10,7 @@ from django.template import loader
 from django.urls import reverse
 from django.utils.timezone import make_aware
 from django.views import generic
-from .forms import UserForm, BookingForm
+from .forms import UserForm, BookingForm, CancellationForm
 from .models import GroupClass, Booking, RepeatedEvent, EventOccurrence
 from pytz import timezone
 
@@ -69,16 +69,27 @@ def book_class(request, id):
                 # Following line of code (string converted into datetime) based on this article:
                 # https://www.geeksforgeeks.org/python-convert-string-to-datetime-and-vice-versa/
                 booking.class_datetime = make_aware(parser.parse(request.POST['available-dates']))
-                booking.save()
-                chosen_date = request.POST['available-dates']
-                messages.success(request, f'Your booking for **{booking.chosen_class.title} on {chosen_date}** was successful. See you in the studio!')
-                return redirect('/schedule/')
+                clients_active_bookings_qs = Booking.objects.filter(client=booking.client).filter(booking_cancelled=False).filter(class_datetime=booking.class_datetime)
+                print('CLIENTS ACTIVE BOOKINGS FOR THAT DATETIME: ', clients_active_bookings_qs)
+                try:
+                    duplicate = clients_active_bookings_qs.objects.get(chosen_class=booking.chosen_class)
+                    print('DUPLICATE: ', duplicate)     
+                    messages.info(request, f'You have already booked this class. See you in the studio!')
+                    return redirect('/schedule/')           
+                except:
+                    booking.save()
+                    chosen_date = request.POST['available-dates']
+                    messages.success(request, f'Your booking for **{booking.chosen_class.title} on {chosen_date}** was successful. See you in the studio!')
+                    return redirect('/schedule/')
+                # if clients_active_bookings_qs.contains(duplicate):
+                # else:                  
+
             except Exception as e:
                 print('ERROR: ', e)
                 # print('REQUEST: ', request.POST)
                 messages.error(request, 'ERROR: Oops, something went wrong with your booking...')
         else:
-            print('The user form has not been saved successfully')
+            print('The form is not valid')
     else:
         # Print statement for debugging the function
         print("This is coming from the ELSE in book_class view")
@@ -101,7 +112,7 @@ def personal_bookings(request, id):
     future_classes = []
     past_classes = []
     for booked_class in booked_classes:
-        if booked_class.class_datetime > current_datetime:
+        if (booked_class.class_datetime > current_datetime) and (booked_class.booking_cancelled == False):
             future_classes.append(booked_class)
         else:
             past_classes.append(booked_class)
@@ -144,9 +155,8 @@ def personal_bookings(request, id):
     # print(page1)
     # page = p.page(request.GET.get('page'))
     #chosen_booking = 
-    for sfc in sorted_future_classes:
-        print(sfc.pk)
-    print()
+    # for sfc in sorted_future_classes:
+    #     print(sfc.pk)
     default_text = "No information"
     context = {
         'name': request.user.get_full_name(),
@@ -197,10 +207,28 @@ def create_dates(request, *args, **kwargs):
 @login_required
 def cancel_booking(request, id, pk):
     chosen_booking = Booking.objects.get(id=pk)
-    print(chosen_booking)
-    context = {
-        'chosen_booking': chosen_booking,
-    }
-    return render(request, 'schedule/cancel_booking.html', context)
+    print('CHOSEN BOOKING: ', chosen_booking)
+    
+    if request.method == 'POST':
+        # Print statement for debugging the function
+        print("Received a POST request for a booking cancellation")
+        cancellation_form = CancellationForm(data=request.POST, instance=chosen_booking)
+
+        if cancellation_form.is_valid():
+            try:
+                cancellation = cancellation_form.save(commit=False)
+                cancellation.booking_cancelled = True
+                cancellation.save()
+                messages.success(request, f'Your cancellation for **{chosen_booking.chosen_class.title}** was successful')
+                return redirect('/schedule/')
+            except Exception as e:
+                print('ERROR', e)
+                print('REQUEST: ', request.POST)
+        else:
+            print('The cancellation form is not valid')
+    else:
+        cancellation_form = CancellationForm(instance=chosen_booking)
+
+    return render(request, 'schedule/cancel_booking.html', {'chosen_booking': chosen_booking, 'cancellation_form': cancellation_form})
 
 

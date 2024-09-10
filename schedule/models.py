@@ -245,5 +245,5 @@ class Booking(models.Model):
         ordering = ['-booking_time']
 
     def __str__(self):
-        return f"{self.booking_time} | Booking {self.id} | Client: {self.client} | {self.chosen_class.title} | On {self.class_datetime}"
+        return f"{self.booking_time} | Booking {self.id} | Client: {self.client} | {self.chosen_class.title} | On {self.class_datetime} | Cancelled: {self.booking_cancelled}"
 
