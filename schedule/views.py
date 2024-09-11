@@ -80,7 +80,7 @@ def book_class(request, id):
                     booking.save()
                     chosen_date = request.POST['available-dates']
                     messages.success(request, f'Your booking for **{booking.chosen_class.title} on {chosen_date}** was successful. See you in the studio!')
-                    return redirect('/schedule/')            
+                    return redirect('/schedule/')           
 
             except Exception as e:
                 print('ERROR: ', e)
@@ -244,9 +244,17 @@ def update_booking(request, id, pk):
             try:
                 update = booking_update_form.save(commit=False)
                 update.class_datetime = make_aware(parser.parse(request.POST['available-dates']))
-                update.save()
-                messages.success(request, f'Your update for **{chosen_booking.chosen_class.title}** was successful')
-                return redirect('/schedule/')
+                clients_active_bookings = Booking.objects.filter(client=chosen_booking.client).filter(booking_cancelled=False).filter(class_datetime=chosen_booking.class_datetime)
+                print('CLIENTS ACTIVE BOOKINGS FOR THAT DATETIME: ', clients_active_bookings)
+                try:
+                    duplicate = clients_active_bookings.get(chosen_class=chosen_booking.chosen_class)
+                    print('DUPLICATE: ', duplicate)
+                    messages.info(request, f'You have already booked a place in this class - you can check your classes under **My bookings**')
+                    return redirect('/schedule/')
+                except:
+                    update.save()
+                    messages.success(request, f'Your update for **{chosen_booking.chosen_class.title}** was successful')
+                    return redirect('/schedule/')
             except Exception as e:
                 print('ERROR', e)
                 print('REQUEST: ', request.POST)
