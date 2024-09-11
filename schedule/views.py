@@ -72,17 +72,15 @@ def book_class(request, id):
                 clients_active_bookings_qs = Booking.objects.filter(client=booking.client).filter(booking_cancelled=False).filter(class_datetime=booking.class_datetime)
                 print('CLIENTS ACTIVE BOOKINGS FOR THAT DATETIME: ', clients_active_bookings_qs)
                 try:
-                    duplicate = clients_active_bookings_qs.objects.get(chosen_class=booking.chosen_class)
-                    print('DUPLICATE: ', duplicate)     
-                    messages.info(request, f'You have already booked this class. See you in the studio!')
-                    return redirect('/schedule/')           
+                    duplicate = clients_active_bookings_qs.get(chosen_class=booking.chosen_class)
+                    print('DUPLICATE: ', duplicate) 
+                    messages.info(request, f'You have already booked a place in this class - you can check your classes under **My bookings**')
+                    return redirect('/schedule/')
                 except:
                     booking.save()
                     chosen_date = request.POST['available-dates']
                     messages.success(request, f'Your booking for **{booking.chosen_class.title} on {chosen_date}** was successful. See you in the studio!')
-                    return redirect('/schedule/')
-                # if clients_active_bookings_qs.contains(duplicate):
-                # else:                  
+                    return redirect('/schedule/')            
 
             except Exception as e:
                 print('ERROR: ', e)
