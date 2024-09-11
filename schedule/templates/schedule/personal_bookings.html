@@ -19,7 +19,7 @@
                         <p class="card-text h6 mb-2">{{ future_class.chosen_class.weekday }} | {{ future_class.class_datetime }}</p>
                     </div>
                     <div class="col-md-4 mt-3 mt-md-0 d-flex flex-column">
-                        <a data-mdb-ripple-init class="btn btn-dark mx-2 mb-2" href="{% url 'edit_profile' user.id %}" role="button">Edit booking</a>
+                        <a data-mdb-ripple-init class="btn btn-dark mx-2 mb-2" href="{% url 'update_booking' user.id future_class.pk %}" role="button">Edit booking</a>
                         <a data-mdb-ripple-init class="btn btn-light border mx-2 mb-2" href="{% url 'cancel_booking' user.id future_class.pk %}" role="button">Cancel booking</a>
                     </div>
                 </div>

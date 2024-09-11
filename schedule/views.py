@@ -10,7 +10,7 @@ from django.template import loader
 from django.urls import reverse
 from django.utils.timezone import make_aware
 from django.views import generic
-from .forms import UserForm, BookingForm, CancellationForm
+from .forms import UserForm, BookingForm, CancellationForm, BookingUpdateForm
 from .models import GroupClass, Booking, RepeatedEvent, EventOccurrence
 from pytz import timezone
 
@@ -230,3 +230,28 @@ def cancel_booking(request, id, pk):
     return render(request, 'schedule/cancel_booking.html', {'chosen_booking': chosen_booking, 'cancellation_form': cancellation_form})
 
 
+@login_required
+def update_booking(request, id, pk):
+    chosen_booking = Booking.objects.get(id=pk)
+    print('CHOSEN BOOKING: ', chosen_booking)
+
+    if request.method == 'POST':
+        # Print statement for debugging the function
+        print("Received a POST request for a booking update")
+        booking_update_form = BookingUpdateForm(data=request.POST, instance=chosen_booking)
+
+        if booking_update_form.is_valid():
+            try:
+                update = booking_update_form.save(commit=False)
+                update.class_datetime = make_aware(parser.parse(request.POST['available-dates']))
+                update.save()
+                messages.success(request, f'Your update for **{chosen_booking.chosen_class.title}** was successful')
+                return redirect('/schedule/')
+            except Exception as e:
+                print('ERROR', e)
+                print('REQUEST: ', request.POST)
+        else:
+            print('The booking update form is not valid')
+    else:
+        booking_update_form = BookingUpdateForm(instance=chosen_booking)
+    return render(request, 'schedule/edit_booking.html', {'chosen_booking': chosen_booking, 'booking_update_form': booking_update_form})

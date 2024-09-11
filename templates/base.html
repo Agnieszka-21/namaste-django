@@ -11,6 +11,7 @@
 {% url 'account_logout' as logout_url %}
 {% url 'create_dates' as create_dates_url %}
 {% url 'cancel_booking' as cancellation_url %}
+{% url 'update_booking' as update_booking_url %}
 
 {% load static %}
 {% load cloudinary %}
@@ -96,6 +97,7 @@
                     {% endfor %}
                     {% for booking in booking_list %}
                     <a class="d-none" href="{% url 'cancel_booking' user.id booking.pk %}"></a>
+                    <a class="d-none" href="{% url 'update_booking' user.id booking.pk %}"></a>
                     {% endfor %}
 
 

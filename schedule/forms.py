@@ -46,3 +46,11 @@ class CancellationForm(forms.ModelForm):
             'booking_cancelled',
         ]
 
+
+class BookingUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Booking
+        fields = [
+            'class_datetime',
+        ]
+
