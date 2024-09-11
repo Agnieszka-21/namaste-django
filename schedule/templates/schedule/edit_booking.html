@@ -7,7 +7,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 mt-3 offset-md-2">
-            <h4>Edit booking</h4>
+            <h4>Choose a different date for your {{ chosen_booking.chosen_class.title }} class</h4>
         </div>
     </div>
     <div class="row">
@@ -17,8 +17,8 @@
                 {% csrf_token %}
                 {% render_partial 'schedule.views.create_dates' id=chosen_booking.chosen_class.id %}
 
-                <button class="btn btn-dark mt-3 mx-2" type="submit">Save changes</button>
-                <a href="{% url 'my_bookings' user.id %}" class="btn btn-light mt-3 mx-2">Discard changes</a>
+                <button class="btn btn-dark mt-3 me-5" type="submit">Save changes</button>
+                <a href="{% url 'my_bookings' user.id %}" class="btn btn-light border mt-3">Discard changes</a>
             </form>
         </div>
     </div>

@@ -1,8 +1,9 @@
-<!-- Partial template for book_class page -->
+<!-- Partial template for book_class.html and edit_booking.html -->
 <!-- Dropdown with 3 options - dates of the next 3 occurrences of the chosen class -->
 
 <div class="mb-4">
-    <label class="form-label" for="available-dates">When</label>
+    <label class="form-label" for="available-dates">Available dates</label>
+
     <select class="select form-select" name="available-dates" id="available-dates">
         <option value="{{ next_class_str }}" selected>{{ next_class_str }}</option>
         <option value="{{ second_next_class_str }}">{{ second_next_class_str }}</option>
