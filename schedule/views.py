@@ -22,6 +22,7 @@ def schedule(request):
 
 class GroupClassList(generic.ListView):
     queryset = GroupClass.objects.all()
+
     template_name = 'schedule/schedule_list.html'
 
 
@@ -121,7 +122,7 @@ def personal_bookings(request, id):
     sorted_future_class_datetimes = []
     for future_class in future_classes:
         sorted_future_class_datetimes.append(future_class.class_datetime)
-    sorted_future_class_datetimes.sort(reverse=True)
+    sorted_future_class_datetimes.sort()
 
     # sorted_past_class_datetimes = []
     # for past_class in past_classes:
