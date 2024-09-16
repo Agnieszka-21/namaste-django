@@ -69,7 +69,7 @@ INSTALLED_APPS = [
 ]
 
 # next 3 lines from CI
-SITE_ID = 2 # check if it's working!
+SITE_ID = 2
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
@@ -200,15 +200,20 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = '/static/'
-# STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage' check this!!!
+#STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage' #check this!!!
 # Commenting STATICFILES_STORAGE was necessary to collectstatic 
 # More on Cloudinary storage here:
 # https://pypi.org/project/django-cloudinary-storage/
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-MEDIA_URL = '/media/'
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'  # for storing images
+#MEDIA_URL = '/media/'
+
+# Cloudinary
+# DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'  # for storing images
+cloudinary.config(secure = True)
+CLOUDINARY_URL = os.environ.get('CLOUDINARY_URL')
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

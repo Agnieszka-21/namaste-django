@@ -71,7 +71,8 @@ def editProfile(request, id):
                 profile = profile_form.save(commit=False)
                 profile.user = request.user
                 profile.save()
-                print('Inside the TRY block')
+                # Print statement for debugging the function
+                print('PROFILE: ', profile.user, profile.date_of_birth, profile.injuries, profile.profile_pic)
                 messages.success(request, 'Your profile has been updated')
                 return redirect('profile', request.user.id)
             except:
@@ -82,4 +83,4 @@ def editProfile(request, id):
         profile_form = ClientProfileForm(instance=current_user)
     # Print statement for debugging the function
     print("About to render template")
-    return render(request, 'user_profiles/profile_form.html', {'profile_form': profile_form})
+    return render(request, 'user_profiles/profile_form.html', {'profile_form': profile_form, 'current_user': current_user})

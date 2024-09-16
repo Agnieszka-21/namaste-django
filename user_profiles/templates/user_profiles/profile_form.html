@@ -11,7 +11,7 @@
     <div class="row">
 
         <div class="col-lg-6">
-            <form id="profile-form" method="POST" action="{% url 'edit_profile' user.id %}">
+            <form id="profile-form" method="POST" action="{% url 'edit_profile' user.id %}" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ profile_form | crispy }}
                 <div class="my-5 text-center">
