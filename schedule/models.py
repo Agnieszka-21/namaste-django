@@ -247,3 +247,14 @@ class Booking(models.Model):
     def __str__(self):
         return f"{self.booking_time} | Booking {self.id} | Client: {self.client} | {self.chosen_class.title} | On {self.class_datetime} | Cancelled: {self.booking_cancelled}"
 
+
+class SpecificGroupClass(models.Model):
+    id = models.UUIDField(primary_key=True, unique=True, default=uuid.uuid4, editable=False)
+    specific_title = models.ForeignKey(Booking, on_delete=models.CASCADE, related_name='specific_title')
+    specific_datetime = models.ForeignKey(Booking, on_delete=models.CASCADE, related_name='specific_datetime')
+    num_of_participants = models.IntegerField(default=0, validators=[MaxValueValidator(2)])
+    participants_list = models.ManyToManyField(User, blank=True)
+
+    class Meta:
+        ordering = ['-specific_datetime']
+
