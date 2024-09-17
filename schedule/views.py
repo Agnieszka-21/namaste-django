@@ -11,7 +11,7 @@ from django.urls import reverse
 from django.utils.timezone import make_aware
 from django.views import generic
 from .forms import UserForm, BookingForm, CancellationForm, BookingUpdateForm
-from .models import GroupClass, Booking, RepeatedEvent, EventOccurrence
+from .models import GroupClass, Booking, RepeatedEvent, EventOccurrence, SpecificGroupClass
 from pytz import timezone
 
 
@@ -40,6 +40,7 @@ def schedule_detail(request, id):
         'default_text': default_text,
     }
     return render(request, 'schedule/schedule_detail.html', context)
+
 
 
 @login_required
@@ -79,6 +80,21 @@ def book_class(request, id):
                     return redirect('/schedule/')
                 except:
                     booking.save()
+                    # When saving a booking, take care of SpecificGroupClass
+                    specific_qs = SpecificGroupClass.objects.filter(specific_title=booking.chosen_class.title)
+                    print('QS SPECIFIC: ', specific_qs)
+                    try:
+                        existing_class = specific_qs.get(specific_datetime=booking.class_datetime)
+                        print('EXISTING CLASS: ', existing_class)
+                        existing_class.num_of_participants += 1
+                        existing_class.participants_list += booking.client
+                    except:
+                        new_class = SpecificGroupClass.objects.create(
+                            specific_title=booking.chosen_class,
+                            specific_datetime=booking.class_datetime,
+                            num_of_participants=1,
+                            participants_list=booking.client
+                        )
                     chosen_date = request.POST['available-dates']
                     messages.success(request, f'Your booking for **{booking.chosen_class.title} on {chosen_date}** was successful. See you in the studio!')
                     return redirect('/schedule/')           

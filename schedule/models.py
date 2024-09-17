@@ -250,8 +250,8 @@ class Booking(models.Model):
 
 class SpecificGroupClass(models.Model):
     id = models.UUIDField(primary_key=True, unique=True, default=uuid.uuid4, editable=False)
-    specific_title = models.ForeignKey(Booking, on_delete=models.CASCADE, related_name='specific_title')
-    specific_datetime = models.ForeignKey(Booking, on_delete=models.CASCADE, related_name='specific_datetime')
+    specific_title = models.CharField(max_length=30, null=True, blank=True)
+    specific_datetime = models.DateTimeField(null=True, blank=True)
     num_of_participants = models.IntegerField(default=0, validators=[MaxValueValidator(2)])
     participants_list = models.ManyToManyField(User, blank=True)
 
