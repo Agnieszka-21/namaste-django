@@ -87,14 +87,17 @@ def book_class(request, id):
                         existing_class = specific_qs.get(specific_datetime=booking.class_datetime)
                         print('EXISTING CLASS: ', existing_class)
                         existing_class.num_of_participants += 1
-                        existing_class.participants_list += booking.client
+                        print('NUM: ', existing_class.num_of_participants)
+                        existing_class.participants_names.add(booking.client)
+                        existing_class.save()
                     except:
                         new_class = SpecificGroupClass.objects.create(
-                            specific_title = booking.chosen_class,
+                            specific_title = booking.chosen_class.title,
                             specific_datetime = booking.class_datetime,
                             num_of_participants = 1,
                         )
                         new_class.participants_names.set([booking.client])
+
                     chosen_date = request.POST['available-dates']
                     messages.success(request, f'Your booking for **{booking.chosen_class.title} on {chosen_date}** was successful. See you in the studio!')
                     return redirect('/schedule/')           
