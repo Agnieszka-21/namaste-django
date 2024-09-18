@@ -243,6 +243,18 @@ def cancel_booking(request, id, pk):
                 cancellation = cancellation_form.save(commit=False)
                 cancellation.booking_cancelled = True
                 cancellation.save()
+                # Update num_of_participants and participants_names for that specific class
+                specific_qs = SpecificGroupClass.objects.filter(specific_title=chosen_booking.chosen_class.title)
+                print('Specific_qs: ', specific_qs)
+                # Something needs fixing below - ERROR 'chosen_booking' is not defined
+                existing_class = specific_qs.get(specific_datetime=choosen_booking.class_datetime)
+                print('Existing_class: ', existing_class)
+                existing_class.num_of_participants -= 1
+                print('Num_of_participants: ', existing_class.num_of_participants)
+                existing_class.participants_names.remove(chosen_booking.client)
+                print('Names: ', existing_class.participants_names)
+                existing_class.save()
+
                 messages.success(request, f'Your cancellation for **{chosen_booking.chosen_class.title}** was successful')
                 return redirect('/schedule/')
             except Exception as e:
