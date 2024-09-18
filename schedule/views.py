@@ -90,11 +90,11 @@ def book_class(request, id):
                         existing_class.participants_list += booking.client
                     except:
                         new_class = SpecificGroupClass.objects.create(
-                            specific_title=booking.chosen_class,
-                            specific_datetime=booking.class_datetime,
-                            num_of_participants=1,
-                            participants_list=booking.client
+                            specific_title = booking.chosen_class,
+                            specific_datetime = booking.class_datetime,
+                            num_of_participants = 1,
                         )
+                        new_class.participants_names.set([booking.client])
                     chosen_date = request.POST['available-dates']
                     messages.success(request, f'Your booking for **{booking.chosen_class.title} on {chosen_date}** was successful. See you in the studio!')
                     return redirect('/schedule/')           

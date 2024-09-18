@@ -253,7 +253,7 @@ class SpecificGroupClass(models.Model):
     specific_title = models.CharField(max_length=30, null=True, blank=True)
     specific_datetime = models.DateTimeField(null=True, blank=True)
     num_of_participants = models.IntegerField(default=0, validators=[MaxValueValidator(2)])
-    participants_list = models.ManyToManyField(User, blank=True)
+    participants_names = models.ManyToManyField(User, blank=True)
 
     class Meta:
         ordering = ['-specific_datetime']
