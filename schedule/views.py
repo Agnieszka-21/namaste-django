@@ -86,10 +86,16 @@ def book_class(request, id):
                     try:
                         existing_class = specific_qs.get(specific_datetime=booking.class_datetime)
                         print('EXISTING CLASS: ', existing_class)
-                        existing_class.num_of_participants += 1
-                        print('NUM: ', existing_class.num_of_participants)
-                        existing_class.participants_names.add(booking.client)
-                        existing_class.save()
+                        if existing_class.num_of_participants < 2:
+                            existing_class.num_of_participants += 1
+                            print('NUM: ', existing_class.num_of_participants)
+                            existing_class.participants_names.add(booking.client)
+                            existing_class.save()
+                        else:
+                            booking.booking_cancelled = True
+                            booking.save()
+                            messages.error(request, f'This class is already full. Please choose a different date or go to Schedule and pick a different class.')
+                            return render(request, 'schedule/book_class.html', {'chosen_class': chosen_class, 'user_form': user_form, 'booking_form': booking_form})
                     except:
                         new_class = SpecificGroupClass.objects.create(
                             specific_title = booking.chosen_class.title,
