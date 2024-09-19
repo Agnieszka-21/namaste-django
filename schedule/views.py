@@ -93,6 +93,7 @@ def book_class(request, id):
                             existing_class.save()
                         else:
                             booking.booking_cancelled = True
+                            booking.cancellation_reason = 'class full'
                             booking.save()
                             messages.error(request, f'This class is already full. Please choose a different date or go to Schedule and pick a different class.')
                             return render(request, 'schedule/book_class.html', {'chosen_class': chosen_class, 'user_form': user_form, 'booking_form': booking_form})
@@ -242,6 +243,7 @@ def cancel_booking(request, id, pk):
             try:
                 cancellation = cancellation_form.save(commit=False)
                 cancellation.booking_cancelled = True
+                cancellation.cancellation_reason = 'client\'s decision'
                 cancellation.save()
                 # Update num_of_participants and the list of participants_names for that specific class
                 specific_qs = SpecificGroupClass.objects.filter(specific_title=chosen_booking.chosen_class.title)

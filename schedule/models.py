@@ -233,6 +233,11 @@ class EventOccurrence(BaseOccurrence):
 
 
 class Booking(models.Model):
+    CANCELLATION_CHOICES = (
+        ('class full', 'class full'),
+        ('client\'s decision', 'client\'s decision')
+    )
+
     id = models.UUIDField(primary_key=True, unique=True, default=uuid.uuid4, editable=False)
     chosen_class = models.ForeignKey(GroupClass, on_delete=models.CASCADE, null=True, blank=True)
     client = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
@@ -240,6 +245,7 @@ class Booking(models.Model):
     booking_time = models.DateTimeField(default=timezone.now)
     waiver_signed = models.BooleanField(null=True, blank=True)
     booking_cancelled = models.BooleanField(default=False)
+    cancellation_reason = models.CharField(choices=CANCELLATION_CHOICES, null=True, blank=True)
 
     class Meta:
         ordering = ['-booking_time']
