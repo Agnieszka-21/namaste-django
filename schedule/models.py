@@ -217,7 +217,7 @@ class GroupClass(models.Model):
     first_class = models.DateTimeField(null=True, blank=True)
 
     class Meta:
-        verbose_name_plural = 'GroupClasses'
+        verbose_name_plural = 'Group classes'
         ordering = ['first_class__week_day', 'start_time']
 
     def __str__(self):
@@ -256,5 +256,9 @@ class SpecificGroupClass(models.Model):
     participants_names = models.ManyToManyField(User, blank=True)
 
     class Meta:
+        verbose_name_plural = 'Specific group classes'
         ordering = ['-specific_datetime']
+
+    def __str__(self):
+        return f"{self.specific_title} | {self.specific_datetime} | {self.id}"
 
