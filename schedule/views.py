@@ -268,6 +268,9 @@ def cancel_booking(request, id, pk):
 def update_booking(request, id, pk):
     chosen_booking = Booking.objects.get(id=pk)
     print('CHOSEN BOOKING: ', chosen_booking)
+    specific_qs = SpecificGroupClass.objects.filter(specific_title=chosen_booking.chosen_class.title)
+    original_specific_class = specific_qs.get(specific_datetime=chosen_booking.class_datetime)
+    print('original_specific_class: ', original_specific_class)
 
     if request.method == 'POST':
         # Print statement for debugging the function
@@ -283,10 +286,49 @@ def update_booking(request, id, pk):
                 try:
                     duplicate = clients_active_bookings.get(chosen_class=chosen_booking.chosen_class)
                     print('DUPLICATE: ', duplicate)
-                    messages.info(request, f'You have already booked a place in this class - you can check your classes under **My bookings**')
+                    messages.warning(request, f'You have already booked a place in this class - you can check your classes under **My bookings**')
                     return redirect('/schedule/')
                 except:
                     update.save()
+                    # Handle data for specific class (num_of_participants etc.)
+
+                    # Step 1: Check if the new_specific_class already exists
+                    specific_qs = SpecificGroupClass.objects.filter(specific_title=update.chosen_class.title)
+                    print('QS SPECIFIC update: ', specific_qs)
+                    try:
+                        existing_class = specific_qs.get(specific_datetime=update.class_datetime)
+                        print('EXISTING CLASS update: ', existing_class)
+                        if existing_class.num_of_participants < 2:
+                            existing_class.num_of_participants += 1
+                            print('NUM update: ', existing_class.num_of_participants)
+                            existing_class.participants_names.add(chosen_booking.client)
+                            existing_class.save()
+                            print('DEETS - updated class num: ', existing_class.num_of_participants)
+                            # Remove the client from original_specific_class
+                            original_specific_class.num_of_participants -= 1
+                            original_specific_class.participants_names.remove(chosen_booking.client)
+                            original_specific_class.save()
+                            print('DEETS - original class num: ', original_specific_class.num_of_participants)
+                        else:
+                            # Revert the update
+                            update.class_datetime = original_specific_class.specific_datetime
+                            update.save()
+                            messages.error(request, f'The class on the new date you chose is already full. Please choose a different date or go to Schedule and pick a different class.')
+                            return render(request, 'schedule/edit_booking.html', {'chosen_booking': chosen_booking, 'booking_update_form': booking_update_form})
+
+                    except:
+                        new_class = SpecificGroupClass.objects.create(
+                            specific_title = update.chosen_class.title,
+                            specific_datetime = update.class_datetime,
+                            num_of_participants = 1,
+                        )
+                        new_class.participants_names.set([update.client])
+                        # Remove the client from original_specific_class
+                        original_specific_class.num_of_participants -= 1
+                        original_specific_class.participants_names.remove(chosen_booking.client)
+                        original_specific_class.save()
+                        print('DEETS - original class: ', original_specific_class)                  
+
                     messages.success(request, f'Your update for **{chosen_booking.chosen_class.title}** was successful')
                     return redirect('/schedule/')
             except Exception as e:
