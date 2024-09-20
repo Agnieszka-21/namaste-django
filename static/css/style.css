@@ -12,6 +12,14 @@ body {
     font-weight: 400;
 }
 
+a {
+    color: green;
+}
+
+a:hover {
+    color: #5d513d;
+}
+
 .brand {
     font-family: 'Nova Mono', monospace;
     font-size: 2rem;
@@ -31,6 +39,7 @@ footer p {
     font-family: 'Lato', sans-serif;
     font-weight: 400;
 }
+
 
 .no-gutters {
     margin-left: 0;
@@ -72,7 +81,11 @@ iframe {
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
     display: flex;
     justify-content: center;
-    align-items: center; 
+    align-items: center;
+}
+
+.groupclass-img > img {
+    width: 100%;
 }
 
 .error404-img {
@@ -182,7 +195,8 @@ body {
 #waiver, 
 #bio-modal-trigger {
     text-decoration: underline;
-    color: blue;
+    font-weight: bold;
+    color: green;
 }
 
 #waiver:hover,
@@ -191,8 +205,10 @@ body {
 #bio-modal-trigger:hover,
 #bio-modal-trigger:focus,
 #bio-modal-trigger:focus-visible {
-    text-decoration: none;
+    /*text-decoration: none; */
     cursor: pointer;
+    font-weight: bold;
+    color: #5d513d;
 }
 
 /* Hiding class */
@@ -285,8 +301,16 @@ body {
 }
 
 /* Media queries */
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 500px) {
     .banner-img {
+        background-image: url('../images/warrior_one_cropped3.jpg');
+        background-size: cover;
         height: 45vh;
     }
 }
+
+/* @media only screen and (min-width: 1024px) {
+    .groupclass-img > img {
+        width: 40%;
+    }
+} */
