@@ -59,13 +59,13 @@ iframe {
 }
 
 .main-bg {
-    background-color: #F9FAFC;
+    background-color: beige;
 }
 
 .hero-img {
-    background-image: url('../images/seated.jpg');
+    background-image: url('../images/seated_phone.jpg');
     background-size: cover;
-    min-height: 80vh;
+    min-height: 70vh;
     color: #fafafa;
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
     display: flex;
@@ -110,6 +110,10 @@ iframe {
 .color-overlay {
     background-color: rgba(0, 0, 0, 0.6);
     margin: 20px;
+}
+
+.btn-dark:hover, .btn-dark:focus {
+    background-color: #5d513d;
 }
 
 
@@ -181,7 +185,7 @@ body {
 
 .scroll {
     width: 100%;
-    height: 25px;
+    height: 65px;
     overflow: auto;
 }
 
@@ -306,6 +310,17 @@ body {
         background-image: url('../images/warrior_one_cropped3.jpg');
         background-size: cover;
         height: 45vh;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .hero-img {
+        background-image: url('../images/seated_cropped.jpg');
+        min-height: 60vh;
+
+    }
+    .scroll {
+        height: 85px;
     }
 }
 

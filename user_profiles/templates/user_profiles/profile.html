@@ -6,9 +6,9 @@
 {% block content %}
 
 <!-- User profile template: https://bbbootstrap.com/snippets/bootstrap-5-myprofile-90806631# -->
-<div class="container rounded bg-white mt-5 mb-5">
+<div class="container rounded bg-white my-5">
     <div class="row">
-        <div class="col-lg-3 border-right">
+        <div class="col-md-6 col-lg-4 border-right">
             <div class="d-flex flex-column align-items-center text-center p-3 pb-5">
                 <div class="mb-5">
                     {% if 'placeholder' in current_user.profile_pic.url %}
@@ -21,41 +21,33 @@
                 <span class="text-black-50">{{ email }}</span>
             </div>
         </div>
-        <div class="col-md-6 col-lg-5 border-right">
-            <div class="p-3 py-5">
 
-                    <div class="row mt-3">
-                        <div class="col-md-12">
-                            <h6 class="profile-heading">Date of birth</h6>
-                            {% if current_user.date_of_birth %}
-                            <p>{{ current_user.date_of_birth }}</p>
-                            {% else %}
-                            <p>{{ default_text }}</p>
-                            {% endif %}
-                        </div>
-                        <div class="col-md-12">
-                            <h6 class="profile-heading">Recent or chronic injuries</h6>
-                            {% if current_user.injuries %}
-                            <p class="scroll">{{ current_user.injuries }}</p>
-                            {% else %}
-                            <p>{{ default_text }}</p>
-                            {% endif %}
-                        </div>
-                        <!-- <div class="col-md-12">
-                            <h6 class="profile-heading">Waiver signed</h6>
-                            {% if current_user.signed_waiver %}
-                            <p>Yes</p>
-                            {% else %}
-                            <p>No</p>
-                            {% endif %}
-                        </div> -->
-                    </div>
-
-                    <div class="mt-5 text-center">
-                        <a data-mdb-ripple-init class="btn btn-dark" href="{% url 'edit_profile' user.id %}" role="button">Edit profile</a>
-                    </div>
+        <!-- <div class="col-md-6 col-lg-5 border-right"> -->
+            <!-- <div class="p-3 py-5 mt-3"> -->
+        <div class="col-md-6 col-lg-8 px-4 pt-md-5 mt-md-5 ps-lg-5">
+            <div>
+                <h6 class="profile-heading">Date of birth</h6>
+                {% if current_user.date_of_birth %}
+                <p>{{ current_user.date_of_birth }}</p>
+                {% else %}
+                <p>{{ default_text }}</p>
+                {% endif %}
+            </div>
+            <div>
+                <h6 class="profile-heading">Recent or chronic injuries</h6>
+                {% if current_user.injuries %}
+                <p class="scroll mt-3 pe-lg-5">{{ current_user.injuries }}</p>
+                {% else %}
+                <p>{{ default_text }}</p>
+                {% endif %}
+            </div>
+            <div class="mt-5 mt-md-0 text-center text-md-start">
+                <a data-mdb-ripple-init class="btn btn-dark mb-5" href="{% url 'edit_profile' user.id %}" role="button">Edit profile</a>
             </div>
         </div>
+
+
+
         <!-- <div class=" col-md-6 col-lg-4">
             <div class="p-3 py-5">
                 <div class="d-flex justify-content-between align-items-center">
@@ -72,5 +64,6 @@
             </div>
         </div> -->
     </div>
+</div>
 
     {% endblock %}

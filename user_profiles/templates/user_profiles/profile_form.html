@@ -8,16 +8,21 @@
 <div class="container rounded bg-white mt-5 mb-5">
 
     {% if user.is_authenticated %}
-    <div class="mx-2 pt-3 mx-md-4 py-md-4 col-lg-6">
-        <form id="profile-form" method="POST" action="{% url 'edit_profile' user.id %}" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ profile_form | crispy }}
-            <div class="my-5 text-center">
-                <button class="btn btn-dark mx-2" type="submit">Save profile</button>
-                <a href="{% url 'profile' user.id %}" class="btn btn-light mx-2">Discard changes</a>
-            </div>
-        </form>
+    <div class="row">
+        <div class="col-lg-3"></div>
+        <div class="mx-2 pt-3 mx-md-4 py-md-4 col-lg-6">
+            <form id="profile-form" method="POST" action="{% url 'edit_profile' user.id %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ profile_form | crispy }}
+                <div class="my-5 text-center">
+                    <button class="btn btn-dark mx-2" type="submit">Save profile</button>
+                    <a href="{% url 'profile' user.id %}" class="btn btn-light mx-2">Discard changes</a>
+                </div>
+            </form>
+        </div>
+        <div class="col-lg-3"></div>
     </div>
+
         
     <!-- <div class="col-lg-6">
         <div class="p-3 pb-5">

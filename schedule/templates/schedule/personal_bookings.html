@@ -4,28 +4,36 @@
 
 {% block content %}
 
-<!-- User profile template: https://bbbootstrap.com/snippets/bootstrap-5-myprofile-90806631# -->
+<!-- User profile template loosely based on this one: https://bbbootstrap.com/snippets/bootstrap-5-myprofile-90806631# -->
 <div class="container rounded bg-white my-5 py-3">
 
     <div class="container-fluid col-12 mt-3">
-        <h2 class="pb-4">Your Future Classes</h2>
-        {% for future_class in sorted_future_classes %}
-        <div class="card mb-4">
-            <div class="card-body row">
-                <h4 class="col-md-9 card-title">{{ future_class.chosen_class.title }}</h4>
-                <hr>
-                <div class="row">
-                    <div class="col-md-8">
-                        <p class="card-text h6 mb-2">{{ future_class.chosen_class.weekday }} | {{ future_class.class_datetime }}</p>
-                    </div>
-                    <div class="col-md-4 mt-3 mt-md-0 d-flex flex-column">
-                        <a data-mdb-ripple-init class="btn btn-dark mx-2 mb-2" href="{% url 'update_booking' user.id future_class.pk %}" role="button">Edit booking</a>
-                        <a data-mdb-ripple-init class="btn btn-light border mx-2 mb-2" href="{% url 'cancel_booking' user.id future_class.pk %}" role="button">Cancel booking</a>
+        <h4 class="pb-4">Your Future Classes</h4>
+
+        {% if sorted_future_classes %}
+            {% for future_class in sorted_future_classes %}
+            <div class="card mb-4">
+                <div class="card-body row">
+                    <h4 class="col-md-9 card-title">{{ future_class.chosen_class.title }}</h4>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <p class="card-text h6 mb-2">{{ future_class.chosen_class.weekday }} | {{ future_class.class_datetime }}</p>
+                        </div>
+                        <div class="col-md-4 mt-3 mt-md-0 d-flex flex-column">
+                            <a data-mdb-ripple-init class="btn btn-dark mx-2 mb-2" href="{% url 'update_booking' user.id future_class.pk %}" role="button">Edit booking</a>
+                            <a data-mdb-ripple-init class="btn btn-light border mx-2 mb-2" href="{% url 'cancel_booking' user.id future_class.pk %}" role="button">Cancel booking</a>
+                        </div>
                     </div>
                 </div>
             </div>
+            {% endfor %}
+        {% else %}
+        <div>
+            <p>You have no upcoming bookings at the moment</p>
+            <a href="{% url 'class_schedule' %}" class="btn btn-dark my-3">Book your next class</a>
         </div>
-        {% endfor %}
+        {% endif %}
     </div>
 
     <!-- <div class="container-fluid col-12 mt-3">
@@ -54,7 +62,7 @@
         {% endfor %}
     </div> -->
 
-    <ul class="pagination justify-content-center">
+    <!-- <ul class="pagination justify-content-center">
         {% if page_obj.has_previous %}
         <li>
             <a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo;PREV</a>
@@ -65,7 +73,7 @@
             <a href="?page={{ page_obj.next_page_number }}" class="page-link">NEXT &raquo</a>
         </li>
         {% endif %}
-    </ul>
+    </ul> -->
 
 </div>
 {% endblock %}
