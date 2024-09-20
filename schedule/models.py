@@ -135,7 +135,7 @@ class StyleDescription(models.Model):
         return str(self.group_class_description)
 
 
-default_class_img = '../static/images/down_dog.jpg'
+# default_class_img = '../static/images/down_dog.jpg'
 
 
 class GroupClass(models.Model):
@@ -190,7 +190,7 @@ class GroupClass(models.Model):
     BIO_JOANNE = (
         "Joanne's approach to teaching yoga is very much like her approach to life - full of "
         "curiosity, gentleness, and playfulness. 2014 was the beginning of her journey into a "
-        "deeper understanding of herself, and this brought her to Goa, India where she completed "
+        "deeper understanding of herself, and this brought her to Goa, India, where she completed "
         "her 200hr Yoga teacher training in 2017, and returning again in 2018 to Rishikesh to "
         "complete 100 hours of Yin, breathwork and Meditation training. Joanne's teaching style "
         "is non-judgemental and focused on helping to foster the student's unique "
@@ -209,11 +209,10 @@ class GroupClass(models.Model):
     start_time = models.CharField(max_length=10, choices=TIMES, null=True, blank=True)
     duration_mins = models.IntegerField(choices=DURATION_OPTIONS, default=60)
     location = models.CharField(choices=LOCATION_OPTIONS, default='Studio 1')
-    image = CloudinaryField('image', default=default_class_img)
+    image = CloudinaryField('image', default='placeholder', blank=True)
     participants = models.ManyToManyField(User, blank=True)
     teacher = models.CharField(choices=TEACHER_OPTIONS, max_length=100, null=True, blank=True)
     teacher_bio = models.CharField(choices=BIO_OPTIONS, max_length=3000, null=True, blank=True)
-    capacity = models.IntegerField(validators=[MaxValueValidator(16)], null=True, blank=True)
     first_class = models.DateTimeField(null=True, blank=True)
 
     class Meta:
