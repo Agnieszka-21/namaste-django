@@ -46,16 +46,9 @@
     <!-- Custom styles -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
-    <!-- Htmx link 
-    <script src="{% static 'js/htmx.min.js' %}" defer></script>
-
-     django-htmx debug code 
-    {% load django_htmx %}
-    {% django_htmx_script %} -->
-
 </head>
 
-<body class="d-flex flex-column justify-content-between h-100 main-bg">
+<body class="d-flex flex-column h-100 main-bg">
 
     <!-- Navigation 
      Helpful documentation: CI Walkthrough projects, https://www.w3schools.com/bootstrap4/bootstrap_navbar.asp -->
@@ -152,7 +145,7 @@
     </main>
 
     <!-- Footer adapted from https://mdbootstrap.com/docs/standard/extended/social-media-icons-footer/ -->
-    <footer class="text-center text-white">
+    <footer  id="footer" class="text-center text-white">
         <!-- Grid container -->
         <div class="container pt-4">
           <!-- Section: Social media -->
@@ -210,6 +203,8 @@
     <script src="https://kit.fontawesome.com/0f4911cc18.js" crossorigin="anonymous"></script>
     <!-- Ajax for the profile template -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" crossorigin="anonymous"></script>
+    <!-- JavaScript to keep the footer at the bottom -->
+     <script src="{% static 'js/footer.js' %}"></script>
 
 </body>
 
