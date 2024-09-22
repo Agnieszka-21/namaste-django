@@ -5,12 +5,12 @@
 {% block content %}
 
 <!-- User profile template: https://bbbootstrap.com/snippets/bootstrap-5-myprofile-90806631# -->
-<div class="container rounded bg-white mt-5 mb-5">
+<div class="container my-5">
 
     {% if user.is_authenticated %}
     <div class="row">
         <div class="col-lg-3"></div>
-        <div class="mx-2 pt-3 mx-md-4 py-md-4 col-lg-6">
+        <div class="px-3 pt-3 px-md-4 py-md-4 col-lg-6">
             <form id="profile-form" method="POST" action="{% url 'edit_profile' user.id %}" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ profile_form | crispy }}

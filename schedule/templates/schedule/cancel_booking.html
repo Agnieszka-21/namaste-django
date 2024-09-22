@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block content %}
-<div class="container">
+<div class="container py-5">
     <div class="row">
         <div class="col-md-8 mt-3 offset-md-2">
             <h4>{{ chosen_booking.chosen_class.title }} | {{ chosen_booking.class_datetime }}</h4>
@@ -12,8 +12,7 @@
     </div>
     <div class="row">
         <div class="col-md-8 mt-3 offset-md-2">
-
-            <form method="post" action="" name="cancellation_form">
+            <form method="post" name="cancellation_form">
                 {% csrf_token %}
                 <button class="btn btn-dark mt-3 me-5" type="submit">Yes, cancel my booking</button>
                 <a href="{% url 'my_bookings' user.id %}" class="btn btn-light mt-3">No, I changed my mind</a>
