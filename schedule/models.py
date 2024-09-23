@@ -208,7 +208,7 @@ class GroupClass(models.Model):
     weekday = models.CharField(max_length=10, choices=DAYS, null=True, blank=True)
     start_time = models.CharField(max_length=10, choices=TIMES, null=True, blank=True)
     duration_mins = models.IntegerField(choices=DURATION_OPTIONS, default=60)
-    location = models.CharField(choices=LOCATION_OPTIONS, default='Studio 1')
+    location = models.CharField(choices=LOCATION_OPTIONS, default='Studio 1', max_length=20)
     image = CloudinaryField('image', default='placeholder', blank=True)
     participants = models.ManyToManyField(User, blank=True)
     teacher = models.CharField(choices=TEACHER_OPTIONS, max_length=100, null=True, blank=True)
@@ -244,7 +244,7 @@ class Booking(models.Model):
     booking_time = models.DateTimeField(default=timezone.now)
     waiver_signed = models.BooleanField(null=True, blank=True)
     booking_cancelled = models.BooleanField(default=False)
-    cancellation_reason = models.CharField(choices=CANCELLATION_CHOICES, null=True, blank=True)
+    cancellation_reason = models.CharField(choices=CANCELLATION_CHOICES, max_length=20, null=True, blank=True)
 
     class Meta:
         ordering = ['-booking_time']
