@@ -25,11 +25,11 @@ def error500(request):
 
 class ProfileList(generic.ListView):
     """
-    Returns all profiles in :model:`user_profile.Profile`
+    Returns all profiles in :model:`user_profiles.Profile`
     **Context**
 
     ``queryset``
-        All  instances of :model:`user_profile.Post`
+        All  instances of :model:`user_profiles.Profile`
 
     **Template:**
 
@@ -41,8 +41,6 @@ class ProfileList(generic.ListView):
 
 @login_required
 def profile(request, id):
-    #queryset = Profile.objects.all()
-    #current_user = get_object_or_404(queryset, user=id)
     current_user = Profile.objects.get(user=request.user.id)
     default_text = "No information"
     context = {
@@ -57,30 +55,18 @@ def profile(request, id):
 # Built based on this: https://docs.djangoproject.com/en/5.0/topics/forms/
 @login_required
 def editProfile(request, id):
-    #queryset = Profile.objects.all()
-    #current_user = get_object_or_404(queryset, user=id)
     current_user = Profile.objects.get(user=request.user.id)
-    # Print statement for debugging the function
-    print(current_user)
     if request.method == 'POST':
-        # Print statement for debugging the function
-        print("Received a POST request")
         profile_form = ClientProfileForm(request.POST, request.FILES, instance=current_user)
         if profile_form.is_valid():
             try:
                 profile = profile_form.save(commit=False)
                 profile.user = request.user
                 profile.save()
-                # Print statement for debugging the function
-                print('PROFILE: ', profile.user, profile.date_of_birth, profile.injuries, profile.profile_pic)
                 messages.success(request, 'Your profile has been updated')
                 return redirect('profile', request.user.id)
             except:
                 messages.error(request, 'ERROR: Oops, something went wrong...')
     else:
-        # Print statement for debugging the function
-        print("This is coming from the ELSE in editProfile")
         profile_form = ClientProfileForm(instance=current_user)
-    # Print statement for debugging the function
-    print("About to render template")
     return render(request, 'user_profiles/profile_form.html', {'profile_form': profile_form, 'current_user': current_user})
