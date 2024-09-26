@@ -11,18 +11,26 @@ from django.urls import reverse
 from django.utils.timezone import make_aware
 from django.views import generic
 from .forms import UserForm, BookingForm, CancellationForm, BookingUpdateForm
-from .models import GroupClass, Booking, RepeatedEvent, EventOccurrence, SpecificGroupClass
+from .models import GroupClass, Booking, SpecificGroupClass
+from .models import EventOccurrence, RepeatedEvent
 from pytz import timezone
 
 
-
 def schedule(request):
+    """
+    Renders the template for Schedule page
+
+    **Template:**
+
+    :template:`schedule/schedule.html`
+    """
     return render(request, 'schedule/schedule.html')
 
 
 class GroupClassList(generic.ListView):
     """
     Returns all group classes in :model:`schedule.GroupClass`
+
     **Context**
 
     ``queryset``
@@ -39,6 +47,7 @@ class GroupClassList(generic.ListView):
 class BookingList(generic.ListView):
     """
     Returns all group classes in :model:`schedule.Booking`
+
     **Context**
 
     ``queryset``
@@ -53,6 +62,22 @@ class BookingList(generic.ListView):
 
 
 def schedule_detail(request, id):
+    """
+    Renders the schedule_detail.html template for
+    a chosen group class
+
+    **Context**
+
+    ``queryset``
+    All  instances of :model:`schedule.GroupClass`
+
+    ``chosen_class``
+    A specific instance of :model:`schedule.GroupClass`
+
+    **Template:**
+
+    :template:`schedule/schedule_detail.html`
+    """
     queryset = GroupClass.objects.all()
     chosen_class = get_object_or_404(queryset, id=id)
     default_text = "No information"
@@ -71,16 +96,16 @@ def create_new_specific_class(booking):
     in the system
     """
     new_class = SpecificGroupClass.objects.create(
-        specific_title = booking.chosen_class.title,
-        specific_datetime = booking.class_datetime,
-        num_of_participants = 1,
+        specific_title=booking.chosen_class.title,
+        specific_datetime=booking.class_datetime,
+        num_of_participants=1,
     )
     new_class.participants_names.set([booking.client])
 
 
 def add_participant(existing_class, booking):
     """
-    Adds user as a participants in the specific instance of 
+    Adds user as a participants in the specific instance of
     specfic_group_class
     The function is run when user books a class or updates their booking
     (chooses a different date for their class)
@@ -90,7 +115,6 @@ def add_participant(existing_class, booking):
     existing_class.num_of_participants += 1
     existing_class.participants_names.add(booking.client)
     existing_class.save()
-
 
 
 @login_required
@@ -160,29 +184,21 @@ def book_class(request, id):
     return render(request, 'schedule/book_class.html', context)
 
 
-@login_required
-def personal_bookings(request, id):
-    booked_classes = Booking.objects.filter(client=request.user.id)
-    # Get current date and time for the specified time zone
-    current_datetime = datetime.datetime.now()
-    current_datetime = current_datetime.astimezone(timezone('Europe/Dublin'))
-    # Create a list for future classes booked, and a list of past classes booked
-    future_classes = []
-    past_classes = []
-    for booked_class in booked_classes:
-        if (booked_class.class_datetime > current_datetime) and (booked_class.booking_cancelled == False):
-            future_classes.append(booked_class)
-        else:
-            past_classes.append(booked_class)
-    
-    # Based on this article:
-    # https://towardsdatascience.com/simple-sorting-of-a-list-of-objects-by-a-specific-property-using-python-dac907150394
-    # Sort the class_datetime attribute
+# The following function is based on this article:
+# https://towardsdatascience.com/simple-sorting-of-a-list-of-objects-by-a-specific-property-using-python-dac907150394
+def sort_future_bookings(future_classes):
+    """
+    Sorts datetimes of the future_classes, and then 
+    sorts client's bookings based on these datetimes
+
+    Used in :view:`personal_bookings`
+    """
     sorted_future_class_datetimes = []
     for future_class in future_classes:
         sorted_future_class_datetimes.append(future_class.class_datetime)
     sorted_future_class_datetimes.sort()
-
+    # Sort bookings by the class_datetime attribute
+    global sorted_future_classes
     sorted_future_classes = []
     for sorted_datetime in sorted_future_class_datetimes:
         for future_class in future_classes:
@@ -190,18 +206,50 @@ def personal_bookings(request, id):
                 sorted_future_classes.append(future_class)
                 break
 
-    default_text = "No information"
+
+@login_required
+def personal_bookings(request, id):
+    """
+    Returns a list of a particular client's active bookings for
+    upcoming classes, sorted by datetime of these classes
+
+    **Context**
+
+    ``booked_classes``
+    Instances of :model:`schedule.Booking` filtered by client
+
+    ``sorted_future_classes``
+    A list of a specific client's active bookings for
+    upcoming classes, sorted by their datetime
+
+    **Template:**
+
+    :template:`schedule/personal_bookings.html`
+    """
+    booked_classes = Booking.objects.filter(client=request.user.id)
+    # Get current date and time for the specified time zone
+    current_datetime = datetime.datetime.now()
+    current_datetime = current_datetime.astimezone(timezone('Europe/Dublin'))
+    # Create a list for future classes booked
+    future_classes = []
+    for booked_class in booked_classes:
+        if (booked_class.class_datetime > current_datetime) and (
+            booked_class.booking_cancelled is False):
+            future_classes.append(booked_class)
+        else:
+            past_classes.append(booked_class)
+    sort_future_bookings(future_classes)
     context = {
         'name': request.user.get_full_name(),
         'email': request.user.email,
-        'default_text': default_text,
         'booked_classes': booked_classes,
         'sorted_future_classes': sorted_future_classes
     }
     return render(request, 'schedule/personal_bookings.html', context)
 
 
-# Function view based on django-render-partial documentation: https://pypi.org/project/django-render-partial/
+# Function view based on django-render-partial documentation:
+# https://pypi.org/project/django-render-partial/
 def create_dates(request, *args, **kwargs):
     chosen_class = GroupClass.objects.get(id=kwargs['id'])
     event = RepeatedEvent.objects.create(title=chosen_class)
@@ -209,17 +257,19 @@ def create_dates(request, *args, **kwargs):
     weekly = EventOccurrence.objects.create(
         event=event,
         start=first_class,
-        end=first_class + (datetime.timedelta(minutes=chosen_class.duration_mins)),
+        end=first_class + (
+            datetime.timedelta(minutes=chosen_class.duration_mins)),
         repeat='RRULE:FREQ=WEEKLY')
+    # Calculate time
     current_datetime = datetime.datetime.now()
-    print('CURENT DATETIME: ', current_datetime)
-    # Create dates/times for the next 3 occurrences of a given group class
     add_week = datetime.timedelta(days=7)
     one_week_later = current_datetime + add_week
     two_weeks_later = current_datetime + add_week + add_week
+    # Create dates/times for the next 3 occurrences of a given group class
     next_class = event.next_occurrence(from_date=current_datetime)
     second_next_class = event.next_occurrence(from_date=one_week_later)
     third_next_class = event.next_occurrence(from_date=two_weeks_later)
+    # Create a readable version
     next_class_str = next_class[0]
     second_next_class_str = second_next_class[0]
     third_next_class_str = third_next_class[0]
@@ -229,100 +279,142 @@ def create_dates(request, *args, **kwargs):
     return render(request, 'schedule/snippets/dates.html', kwargs)
 
 
-def remove_participant(original_specific_class, chosen_booking):
+def remove_participant(orig_spec_class, chosen_booking):
     """
     Remove client from the list of participants for their original booked class
     The function is run when client cancels or updates their booking
-    It decreases num_of_partcipants by 1 and removes the client from the list of
-    participants
+    It decreases num_of_partcipants by 1 and removes the client from
+    the list of participants
     """
-    original_specific_class.num_of_participants -= 1
-    original_specific_class.participants_names.remove(chosen_booking.client)
-    original_specific_class.save()
+    orig_spec_class.num_of_participants -= 1
+    orig_spec_class.participants_names.remove(chosen_booking.client)
+    orig_spec_class.save()
+
+
+def handle_cancellation(cancellation_form, chosen_booking, request):
+    """
+    Mark a booking as cancelled with a specified reason, save changes
+    to the booking
+
+    Used in :view:`cancel_booking`
+    """
+    cancellation = cancellation_form.save(commit=False)
+    cancellation.booking_cancelled = True
+    cancellation.cancellation_reason = 'client\'s decision'
+    cancellation.save()
+    # Update details for that specific class
+    specific_qs = SpecificGroupClass.objects.filter(
+        specific_title=chosen_booking.chosen_class.title)
+    orig_spec_class = specific_qs.get(
+        specific_datetime=chosen_booking.class_datetime)
+    remove_participant(orig_spec_class, chosen_booking)
+    messages.success(
+        request, f'Your cancellation for **'
+        '{chosen_booking.chosen_class.title}** was successful')
 
 
 @login_required
 def cancel_booking(request, id, pk):
     chosen_booking = Booking.objects.get(id=pk)
-    print('CHOSEN BOOKING: ', chosen_booking)
     if request.method == 'POST':
-        cancellation_form = CancellationForm(data=request.POST, instance=chosen_booking)
+        cancellation_form = CancellationForm(
+            data=request.POST, instance=chosen_booking)
         if cancellation_form.is_valid():
             try:
-                cancellation = cancellation_form.save(commit=False)
-                cancellation.booking_cancelled = True
-                cancellation.cancellation_reason = 'client\'s decision'
-                cancellation.save()
-                # Update num_of_participants and the list of participants_names for that specific class
-                specific_qs = SpecificGroupClass.objects.filter(specific_title=chosen_booking.chosen_class.title)
-                original_specific_class = specific_qs.get(specific_datetime=chosen_booking.class_datetime)
-                remove_participant(original_specific_class, chosen_booking)
-                messages.success(request, f'Your cancellation for **{chosen_booking.chosen_class.title}** was successful')
-                return redirect('/schedule/')
-            except Exception as e:
-                print('ERROR', e)
-                print('REQUEST: ', request.POST)
+                handle_cancellation(cancellation_form, chosen_booking, request)
+                return redirect('my_bookings', request.user.id)
+            except Exception:
+                messages.error(
+                    request, f'Oh no, an error occurred... Please check '
+                    '**My bookings** to see if your class was '
+                    'successfully cancelled')
         else:
             print('The cancellation form is not valid')
     else:
         cancellation_form = CancellationForm(instance=chosen_booking)
-    return render(request, 'schedule/cancel_booking.html', {'chosen_booking': chosen_booking, 'cancellation_form': cancellation_form})
+    return render(request, 'schedule/cancel_booking.html', {
+        'chosen_booking': chosen_booking,
+        'cancellation_form': cancellation_form
+        })
+
+
+def class_full(booking, orig_spec_class, request):
+    """
+    When a user (client) tries to change their existing
+    booking to a class that is already full, revert the change
+    to booking.class_datetime, save it, and show a notification
+    informing that the class cannot be booked as it's full
+
+    Used in :view:`update_booking`
+    """
+    booking.class_datetime = orig_spec_class.specific_datetime
+    booking.save()
+    messages.error(
+        request, f'The class on the new date you chose is already full. '
+        'Please choose a different date or go to Schedule and pick '
+        'a different class.')
 
 
 @login_required
 def update_booking(request, id, pk):
     chosen_booking = Booking.objects.get(id=pk)
-    print('CHOSEN BOOKING: ', chosen_booking)
-    specific_qs = SpecificGroupClass.objects.filter(specific_title=chosen_booking.chosen_class.title)
-    original_specific_class = specific_qs.get(specific_datetime=chosen_booking.class_datetime)
-    print('original_specific_class: ', original_specific_class)
-
+    specific_qs = SpecificGroupClass.objects.filter(
+        specific_title=chosen_booking.chosen_class.title)
+    orig_spec_class = specific_qs.get(
+        specific_datetime=chosen_booking.class_datetime)
     if request.method == 'POST':
-        # Print statement for debugging the function
-        print("Received a POST request for a booking update")
-        booking_update_form = BookingUpdateForm(data=request.POST, instance=chosen_booking)
-
+        booking_update_form = BookingUpdateForm(
+            data=request.POST, instance=chosen_booking)
+        context = {
+            'chosen_booking': chosen_booking,
+            'booking_update_form': booking_update_form
+        }
         if booking_update_form.is_valid():
             try:
                 booking = booking_update_form.save(commit=False)
-                booking.class_datetime = make_aware(parser.parse(request.POST['available-dates']))
-                clients_active_bookings = Booking.objects.filter(client=chosen_booking.client).filter(booking_cancelled=False).filter(class_datetime=chosen_booking.class_datetime)
-                print('CLIENTS ACTIVE BOOKINGS FOR THAT DATETIME: ', clients_active_bookings)
+                booking.class_datetime = make_aware(
+                    parser.parse(request.POST['available-dates']))
+                clients_active_bookings = Booking.objects.filter(
+                    client=chosen_booking.client).filter(
+                        booking_cancelled=False).filter(
+                            class_datetime=chosen_booking.class_datetime)
                 try:
-                    #Check whether client already has an active booking for this specific class
-                    duplicate = clients_active_bookings.get(chosen_class=chosen_booking.chosen_class)
-                    print('DUPLICATE: ', duplicate)
-                    messages.info(request, f'You have already booked a place in this class - you can check your classes under **My bookings**')
-                    return redirect('/schedule/')
-                except:
+                    # Client already has an active booking for this class
+                    duplicate = clients_active_bookings.get(
+                        chosen_class=chosen_booking.chosen_class)
+                    messages.info(
+                        request, f'You have already booked a place '
+                        'in this class - please see your classes below')
+                    return redirect('my_bookings', request.user.id)
+                except Exception:
                     booking.save()
                     # Handle data for specific class (num_of_participants etc.)
-                    # Step 1: Check if the new_specific_class already exists in the system
-                    specific_qs = SpecificGroupClass.objects.filter(specific_title=booking.chosen_class.title)
-                    print('QS SPECIFIC update: ', specific_qs)
+                    # Step 1: The new_specific_class already in the system?
+                    specific_qs = SpecificGroupClass.objects.filter(
+                        specific_title=booking.chosen_class.title)
                     try:
-                        # Check if the specific class (chosen class on the specific date) already exists in the system. If it does:
-                        existing_class = specific_qs.get(specific_datetime=booking.class_datetime)
-                        print('EXISTING CLASS update: ', existing_class)
+                        # The specific class already exists in the system
+                        existing_class = specific_qs.get(
+                            specific_datetime=booking.class_datetime)
                         if existing_class.num_of_participants < 2:
-                            # Add client to the existing class
                             add_participant(existing_class, booking)
-                            # Remove the client from original_specific_class
-                            remove_participant(original_specific_class, chosen_booking)
+                            remove_participant(orig_spec_class, chosen_booking)
                         else:
-                            # If the specific class is already full, revert the update
-                            booking.class_datetime = original_specific_class.specific_datetime
-                            booking.save()
-                            messages.error(request, f'The class on the new date you chose is already full. Please choose a different date or go to Schedule and pick a different class.')
-                            return render(request, 'schedule/edit_booking.html', {'chosen_booking': chosen_booking, 'booking_update_form': booking_update_form})
-
-                    except:
-                        # Create a new specific class and add client as participant
+                            class_full(booking, orig_spec_class, request)
+                            return render(
+                                request, 'schedule/edit_booking.html', {
+                                    'chosen_booking': chosen_booking,
+                                    'booking_update_form': booking_update_form
+                                })
+                    except Exception:
                         create_new_specific_class(booking)
-                        # Remove the client from original_specific_class                
-                        remove_participant(original_specific_class, chosen_booking)
-                    messages.success(request, f'Your update for **{chosen_booking.chosen_class.title}** was successful')
-                    return redirect('/schedule/')
+                        remove_participant(
+                            orig_spec_class, chosen_booking)
+                    messages.success(
+                        request, f'Your update for '
+                        f'**{chosen_booking.chosen_class.title}** '
+                        'was successful')
+                    return redirect('my_bookings', request.user.id)
             except Exception as e:
                 print('ERROR', e)
                 print('REQUEST: ', request.POST)
@@ -330,4 +422,7 @@ def update_booking(request, id, pk):
             print('The booking update form is not valid')
     else:
         booking_update_form = BookingUpdateForm(instance=chosen_booking)
-    return render(request, 'schedule/edit_booking.html', {'chosen_booking': chosen_booking, 'booking_update_form': booking_update_form})
+    return render(request, 'schedule/edit_booking.html', {
+        'chosen_booking': chosen_booking,
+        'booking_update_form': booking_update_form
+        })
