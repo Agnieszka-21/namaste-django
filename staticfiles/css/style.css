@@ -45,7 +45,7 @@ footer p {
 }
 
 .hero-img {
-    background-image: url('../images/seated_phone.jpg');
+    background-image: url('../images/seated_phone.webp');
     background-size: cover;
     min-height: 70vh;
     color: #f7f7f7;
@@ -56,7 +56,7 @@ footer p {
 }
 
 .banner-img {
-    background-image: url('../images/warrior_one.jpg');
+    background-image: url('../images/warrior_one.webp');
     background-size: cover;
     height: 30vh;  /* Might need resizing in a media query for larger screens */
     color: #f7f7f7;
@@ -103,7 +103,7 @@ footer p {
     /* #dee2e6; */
 }
 
-h4 {
+h2, h3, h4 {
     font-weight: 600;
     padding: 10px 0;
 }
@@ -295,7 +295,7 @@ option:hover {
 /* Media queries */
 @media only screen and (min-width: 500px) {
     .banner-img {
-        background-image: url('../images/warrior_one_cropped3.jpg');
+        background-image: url('../images/warrior_one_cropped.webp');
         background-size: cover;
         height: 45vh;
     }
@@ -303,7 +303,7 @@ option:hover {
 
 @media only screen and (min-width: 768px) {
     .hero-img {
-        background-image: url('../images/seated_cropped.jpg');
+        background-image: url('../images/seated_cropped.webp');
         min-height: 60vh;
 
     }

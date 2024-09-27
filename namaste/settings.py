@@ -35,7 +35,7 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['8000-agnieszka21-namastedjan-6kyn9auc2gl.ws.codeinstitute-ide.net', '.herokuapp.com']
 
@@ -122,8 +122,13 @@ DATABASES = {
     'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
 }
 
-if 'test' in sys.argv:
-    DATABASES['default']['ENGINE'] = 'django.db.backends.sqlite3'
+# if 'test' in sys.argv:
+    # DATABASES = {
+    #     'default': {
+    #         'ENGINE': 'django.db.backends.sqlite3',
+    #         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    #         }
+    # }
 
 
 AUTH_PROFILE_MODULE = 'user_profiles.Client_User_Profile'
