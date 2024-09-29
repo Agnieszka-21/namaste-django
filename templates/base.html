@@ -118,12 +118,6 @@
                             href="{% url 'account_login' %}">Log in</a>
                     </li>
                     {% endif %}
-
-                </ul>
-                <!-- 
-                <span class="navbar-text text-muted">
-                    welcome to the home of well-being (base.html template)
-                </span> -->
             </div>
         </div>
     </nav>
@@ -137,7 +131,7 @@
     </ul>
     {% endif %}
 
-    <main class="flex-shrink-0 main-bg">
+    <main class="flex-grow-1 flex-shrink-0 main-bg">
 
         {% block content %}
         <!-- Content Goes here -->
@@ -204,8 +198,6 @@
     <script src="https://kit.fontawesome.com/0f4911cc18.js" crossorigin="anonymous"></script>
     <!-- Ajax for the profile template -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" crossorigin="anonymous"></script>
-    <!-- JavaScript to keep the footer at the bottom -->
-    <script src="{% static 'js/footer.js' %}"></script>
 
 </body>
 
