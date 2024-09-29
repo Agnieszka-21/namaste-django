@@ -31,10 +31,96 @@ General description...
 - To give users the possibility of cancelling their booking or changing the date of their booked class easily and quickly
 - To provide users with the opportunity to create a personal profile and share information on their chronic or recent injuries (if applicable), so that yoga teachers at the studio can deliver classes that satisfy clients
 
+#### Iterations (GitHub Milestones)
+Since the project was created using the Agile approach, both planning and prioritizing accordingly was essential.
+
+The work on this project has been divided into 3 iterations, each lasting 3 weeks. This made the entire process easier to manage and helped track progress as well as decide on the priorities at each stage.
+
+- Iteration 1 - ended on Aug 25, 2024
+- Iteration 2 - ended on Sept 15, 2024
+- Iteration 3 - ended on Oct 6, 2024
+
+You can see the iterations with their details, including User Stories that were finished in each iteration, [here](https://github.com/Agnieszka-21/namaste-django/milestones).
+
 #### Epics
-...
+
+This project is based on the following 9 epics:
+- [#34 Set up Django and Deploy Early](https://github.com/Agnieszka-21/namaste-django/issues/34)
+- [#1 View the Class Schedule and Relevant Details on the Website](https://github.com/Agnieszka-21/namaste-django/issues/1)
+- [#31 Create and Maintain a User Account](https://github.com/Agnieszka-21/namaste-django/issues/31)
+- [#38 Create and Manage a Class Schedule](https://github.com/Agnieszka-21/namaste-django/issues/38)
+- [#32 Book Classes, View and Manage Bookings](https://github.com/Agnieszka-21/namaste-django/issues/32)
+- [#39 Inform, Ask, and Listen to the Clients](https://github.com/Agnieszka-21/namaste-django/issues/39)
+- [#20 Create, Manage, and Delete Staff Accounts](https://github.com/Agnieszka-21/namaste-django/issues/20)
+- [#15 Use a Staff Account to Teach with Ease and Clarity](https://github.com/Agnieszka-21/namaste-django/issues/15)
+- [#47 Ensure the Code is Ready for Production](https://github.com/Agnieszka-21/namaste-django/issues/47)
+
+These epics were split into User Stories to help manage the work on this project. All these and more details can be found in the project's [kanban board](https://github.com/users/Agnieszka-21/projects/2/views/1?sortedBy%5Bdirection%5D=asc&sortedBy%5BcolumnId%5D=Labels).
 
 #### User Stories
+
+Here are the User Stories resulting from the 9 epics
+
+1. Set up Django and Deploy Early
+- [#35 Install Django and supporting libraries](https://github.com/Agnieszka-21/namaste-django/issues/35)
+- [#36 Secure sensitive data - API keys and secret keys](https://github.com/Agnieszka-21/namaste-django/issues/36)
+- [#37 Deploy the project to Heroku](https://github.com/Agnieszka-21/namaste-django/issues/37)
+
+2. View the Class Schedule and Relevant Details on the Website
+- [#2 View class schedule](https://github.com/Agnieszka-21/namaste-django/issues/2)
+- [#3 View a specific class in detail](https://github.com/Agnieszka-21/namaste-django/issues/3)
+- [#4 View teacher's bio](https://github.com/Agnieszka-21/namaste-django/issues/4)
+- [#30 View the studio's location(s)](https://github.com/Agnieszka-21/namaste-django/issues/30)
+- [#42 View the studio's opening hours](https://github.com/Agnieszka-21/namaste-django/issues/42)
+- [#43 View the studio's social media accounts](https://github.com/Agnieszka-21/namaste-django/issues/43)
+
+3. Create and Maintain a User Account
+- [#5 Create a User (Client) account](https://github.com/Agnieszka-21/namaste-django/issues/5)
+- [#6 Log in to the User account](https://github.com/Agnieszka-21/namaste-django/issues/6)
+- [#7 Log out of the User account](https://github.com/Agnieszka-21/namaste-django/issues/7)
+- [#8 Manage the User (Client) account](https://github.com/Agnieszka-21/namaste-django/issues/8)
+- [#9 Delete a User (Client) account](https://github.com/Agnieszka-21/namaste-django/issues/9) - see Future Enhancements
+- [#41 Sign in to the User account with a social media login](https://github.com/Agnieszka-21/namaste-django/issues/41) - see Future Enhancements
+
+4. Create and Manage a Class Schedule
+- [#23 Create a class schedule](https://github.com/Agnieszka-21/namaste-django/issues/23)
+- [#25 Manage a class schedule](https://github.com/Agnieszka-21/namaste-django/issues/38) 
+- [#24 View all data related to classes and bookings](https://github.com/Agnieszka-21/namaste-django/issues/24)
+
+5. Book Classes, View and Manage Bookings
+- [#10 Book a class](https://github.com/Agnieszka-21/namaste-django/issues/10)
+- [#11 Cancel a booked class](https://github.com/Agnieszka-21/namaste-django/issues/11)
+- [#12 Join a waitlist](https://github.com/Agnieszka-21/namaste-django/issues/12) - see Future Enhancements
+- [#13 Add a profile photo in My Account](https://github.com/Agnieszka-21/namaste-django/issues/13)
+- [#28 Class cannot be booked because it is already full](https://github.com/Agnieszka-21/namaste-django/issues/28)
+- [#33 View personal bookings](https://github.com/Agnieszka-21/namaste-django/issues/33)
+- [#45 Edit a future booking (change date)](https://github.com/Agnieszka-21/namaste-django/issues/45)
+
+6. Inform, Ask, and Listen to the Clients
+- [#22 Ensure each client signs a waiver](https://github.com/Agnieszka-21/namaste-django/issues/22)
+- [#40 Ask client for a review of a class they attended](https://github.com/Agnieszka-21/namaste-django/issues/40) - see Future Enhancements
+
+7. Create, Manage, and Delete Staff Accounts - see Future Enhancements
+
+8. Use a Staff Account to Teach with Ease and Clarity - see Future Enhancements
+
+9. Ensure the Code is Ready for Production
+- [#46 Create automated tests to ensure the code is working as expected](https://github.com/Agnieszka-21/namaste-django/issues/46)
+- [#48 Create a comprehensive README.md file](https://github.com/Agnieszka-21/namaste-django/issues/48)
+- [#49 Deploy the final version of the application to Heroku](https://github.com/Agnieszka-21/namaste-django/issues/49)
+- [#50 Run manual tests on the deployed app](https://github.com/Agnieszka-21/namaste-django/issues/50)
+
+#### Story Points
+Each User Story was given a label that specifies the number of story points in order to measure/estimate in a predictive way how much time is needed for completing the User Stories as compared to one another. The simplest User Stories were given just 1 story point, the ones that needed a little more attention 2 story points, then 4 for the ones that required even more attention, and 8 for the most complex features and functionalities.
+
+#### MoSCoW Prioritization
+
+Each User Story has been marked with one of these labels:
+- must-have,
+- should-have,
+- could-have,
+- won't have.
+Using these labels allowed for a clear understanding of what needs to be prioritized in terms of necessary features, and what is simply optional or can be added later as a nice-to-have functionality.
 
 
 ### The Scope Plane
@@ -93,9 +179,26 @@ General description...
 
 ## Future Enhancements
 
-...
-- More stories could be added as further instances of the class Story to provide a wider range of topics and to keep users entertained for longer, also encouraging them to return to the application multiple times.
+While the following User Stories have not been applied as they have been deemed unnecessary for an MVP, they present a wide range of potential enhancements that could be added to the project in the future.
 
+- [#9 Delete a User (Client) account](https://github.com/Agnieszka-21/namaste-django/issues/9) - so that User (Client) can remove their account once they are sure they are not going to need it anymore (e.g. because of moving to a different area)
+- [#44 Contact the studio (send a message) through a contact form](https://github.com/Agnieszka-21/namaste-django/issues/44) - so that User (Client) can easily contact the studio, get their questions answered etc.
+- [#14 Buy a membership/class Bundle inside My Account](https://github.com/Agnieszka-21/namaste-django/issues/14) - so that User (Client) can purchase a suitable offer from the comfort of their home anytime they want
+- [#12 Join a Waitlist](https://github.com/Agnieszka-21/namaste-django/issues/12) - so that User (Client) who could not book a class that was already full gets notified when a place opens up, giving them a chance to attend
+- [#41 Sign into the User account with a social media login](https://github.com/Agnieszka-21/namaste-django/issues/41) - so that User (Client) can use existing login details from their social media account for the ease of access
+- [#40 Ask clients for a review of a class they attended](https://github.com/Agnieszka-21/namaste-django/issues/40) - so that the studio/admin can get feedback and act on it for better results as a business
+
+Applying the epic [#20 Create, Manage, and Delete Staff Accounts](https://github.com/Agnieszka-21/namaste-django/issues/20) would be a further enhancement. This epic consists of the following User Stories:
+- [#21 Create a staff account for each teacher](https://github.com/Agnieszka-21/namaste-django/issues/21) - so that each teacher has a personal staff account with suitable permissions.
+- [#26 Delete a staff account](https://github.com/Agnieszka-21/namaste-django/issues/26) - so that an admin can remove a staff account when a teacher decides to leave the studio as their workplace
+- [#27 Edit a staff account (as an admin)](https://github.com/Agnieszka-21/namaste-django/issues/27) - so that a professional-looking profile image and bio can be uploaded, checked and made accessible on the website by an admin who takes care of the website
+
+Building on that epic, applying the epic [#15 Use a Staff Account to Teach with Ease and Clarity](https://github.com/Agnieszka-21/namaste-django/issues/15) would improve the user experience for any teachers/instructors working for the studio and give them more control over their work hours. The epic contains the following User Stories:
+- [#16 Log into a Staff (Teacher) Account](https://github.com/Agnieszka-21/namaste-django/issues/16)
+- [#29 View Your Teaching Schedule](https://github.com/Agnieszka-21/namaste-django/issues/29)
+- [#19 Check Clients In When Teaching a Class](https://github.com/Agnieszka-21/namaste-django/issues/19) - which could be helpful to let teachers see the clients' name, their profile picture and information regarding chronic/recent injuries and therefore deliver more personalised classes
+- [#18 Request a Substitute](https://github.com/Agnieszka-21/namaste-django/issues/18) - so that teachers can alert one another and the admin to any changes needed in their teaching schedule
+- [#17 Log out of the Teacher Account](https://github.com/Agnieszka-21/namaste-django/issues/17)
 
 
 ## Testing
@@ -119,8 +222,7 @@ While testing every single functionality as I was creating and refining it was e
 
 ...
 I utilized the Code Institute's [Python Linter](https://pep8ci.herokuapp.com/) in order to check my Python files. No errors were reported - screenshots are linked here:
-- [run.py](https://github.com/Agnieszka-21/madlibs/blob/main/assets/screenshots/mad_runpy_validator.png)
-- [adj_list_ly_ending.py](https://github.com/Agnieszka-21/madlibs/blob/main/assets/screenshots/mad_adj_with_ly_validator.png)
+- [name of the file](link to the screenshot)
 
 ### Notable Bugs
 
