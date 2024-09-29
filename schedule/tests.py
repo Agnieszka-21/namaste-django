@@ -1,9 +1,9 @@
-# from django.test import TestCase
+from django.test import TestCase
 # from django.contrib.auth.models import User
 # from .models import GroupClass, Booking, SpecificGroupClass
 
 
-# class ExampleTest(TestCase):
+class ExampleTest(TestCase):
     # @classmethod
     # def setUpTestData(cls):
     #     print("setUpTestData: Run once to set up non-modified data for all class methods.")
@@ -13,9 +13,9 @@
     #     print("setUp: Run once for every test method to set up clean data.")
     #     pass
 
-    # def test_false_is_false(self):
-    #     print("Method: test_false_is_false.")
-    #     self.assertFalse(False)
+    def test_false_is_false(self):
+        print("Method: test_false_is_false.")
+        self.assertFalse(False)
 
     # def test_false_is_true(self):
     #     print("Method: test_false_is_true.")
