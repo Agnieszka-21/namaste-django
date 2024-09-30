@@ -1,22 +1,13 @@
-/* .nova-mono-regular {
-  font-family: "Nova Mono", monospace;
-  font-weight: 400;
-  font-style: normal;
-}
-*/
-
+/* General styles */
 body {
     background-color: #f7f7f7;
     font-family: 'Lato', sans-serif;
     font-weight: 400;
 }
 
-a {
-    color: #008000;
-}
-
-a:hover {
-    color: #5d513d;
+footer p {
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
 }
 
 .brand {
@@ -24,11 +15,6 @@ a:hover {
     font-size: 2rem;
     color: #f7f7f7;
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
-}
-
-footer p {
-    font-family: 'Lato', sans-serif;
-    font-weight: 400;
 }
 
 .no-gutters {
@@ -44,6 +30,7 @@ footer p {
     background-color: #f7f7f7;
 }
 
+/* Images and background images */
 .hero-img {
     background-image: url('../images/seated_phone.webp');
     background-size: cover;
@@ -66,12 +53,8 @@ footer p {
     align-items: center;
 }
 
-.groupclass-img > img {
-    width: 100%;
-}
-
-.error404-img {
-    background-image: url('../images/meditation.jpg');
+.error-img {
+    background-image: url('../images/meditation_phone.jpg');
     background-size: cover;
     min-height: 100vh;
     color: #f7f7f7;
@@ -81,6 +64,12 @@ footer p {
     align-items: center;
 }
 
+.groupclass-img > img {
+    width: 100%;
+}
+
+
+/* Hero section */
 .hero-text {
     font-weight: 500;
 }
@@ -94,15 +83,32 @@ footer p {
     margin: 20px;
 }
 
-.btn-dark:hover, .btn-dark:focus {
+
+/* Anchor elements */
+a {
+    color: #008000;
+}
+
+a:hover, a:focus, a:focus-visible {
+    color: #5d513d;
+}
+
+
+/* Buttons and button-like elements */
+.btn-dark:hover, .btn-dark:focus, .btn-dark:focus-visible {
     background-color: #5d513d;
 }
 
 .btn-light {
     border: 1px solid rgba(0, 0, 0, 0.6);
-    /* #dee2e6; */
 }
 
+.btn-light:hover, .btn-light:focus, .btn-light:focus-visible {
+    border: 2px solid rgba(0, 0, 0, 0.6);
+}
+
+
+/* Headings */
 h2, h3, h4 {
     font-weight: 600;
     padding: 10px 0;
@@ -119,10 +125,10 @@ h2, h3, h4 {
 }
 
 
-/* from https://freefrontend.com/css-profile-cards/
-Specific example: https://bbbootstrap.com/snippets/bootstrap-5-myprofile-90806631
+/* Forms
+Adapted from: https://bbbootstrap.com/snippets/bootstrap-5-myprofile-90806631
+mentioned in this article: https://freefrontend.com/css-profile-cards/
 */
-
 .form-control:focus {
     box-shadow: none;
     border-color: #5d513d;
@@ -132,7 +138,7 @@ Specific example: https://bbbootstrap.com/snippets/bootstrap-5-myprofile-9080663
     font-size: 11px
 }
 
-/* Override default styling */
+/* Override default styling in forms */
 .form-check-input:checked {
     background-color: #000;
     border-color: #000;
@@ -197,25 +203,22 @@ option:hover {
 #bio-modal-trigger:hover,
 #bio-modal-trigger:focus,
 #bio-modal-trigger:focus-visible {
-    /*text-decoration: none; */
     cursor: pointer;
     font-weight: bold;
     color: #5d513d;
 }
 
-/* Hiding class */
+/* Hiding class used for modals */
 .hide {
     display: none !important;
 }
 
-/* Show element(s) */
+/* Show element(s) - used for modals */
 .show {
     display: block;
 }
 
 .modal {
-    /* Hidden by default */
-    /*display: none; */
     position: fixed;
     z-index: 2;
     left: 0;
@@ -263,7 +266,7 @@ option:hover {
     cursor: pointer;
 }
 
-/* Django messages - from https://www.brntn.me/blog/how-i-use-djangos-messages-framework/ */
+/* Django messages - copied from https://www.brntn.me/blog/how-i-use-djangos-messages-framework/ */
 .messages {
     list-style: none;
     margin: 0;
@@ -292,6 +295,7 @@ option:hover {
     background-color: #ffe3e3;
 }
 
+
 /* Media queries */
 @media only screen and (min-width: 500px) {
     .banner-img {
@@ -309,5 +313,9 @@ option:hover {
     }
     .scroll {
         height: 85px;
+    }
+
+    .error-img {
+        background-image: url('../images/meditation.jpg');
     }
 }

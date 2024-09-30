@@ -52,7 +52,7 @@
 <body class="d-flex flex-column h-100 main-bg">
 
     <!-- Navigation 
-     Helpful documentation: CI Walkthrough projects, https://www.w3schools.com/bootstrap4/bootstrap_navbar.asp -->
+    Helpful documentation: CI Walkthrough projects, https://www.w3schools.com/bootstrap4/bootstrap_navbar.asp -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-brown">
         <div class="container-fluid">
             
@@ -81,7 +81,6 @@
                     {% for profile in profile_list %}
                     <a class="d-none" href="{% url 'profile' user.id %}"></a>
                     <a class="d-none" href="{% url 'my_bookings' user.id %}"></a>
-                    <!-- <a class="d-none" href="{% url 'cancel_booking' user.id %}"></a> -->
                     {% endfor %}
                     <!-- Invisible. For-loop to create url patterns for each specific yoga class -->
                     {% for groupclass in groupclass_list %}
@@ -89,6 +88,7 @@
                     <a class="d-none" href="{% url 'book_class' groupclass.id %}"></a>
                     <a class="d-none" href="{% url 'create_dates' groupclass.id %}"></a>
                     {% endfor %}
+                    <!-- Invisible. For-loop to create url patterns for each specific user and booking -->
                     {% for booking in booking_list %}
                     <a class="d-none" href="{% url 'cancel_booking' user.id booking.pk %}"></a>
                     <a class="d-none" href="{% url 'update_booking' user.id booking.pk %}"></a>
@@ -185,7 +185,7 @@
       
         <!-- Copyright -->
         <div class="text-center text-light p-3 bg-brown">
-          © 2024 Copyright: Namaste Yoga Studio
+            © 2024 Copyright: Namaste Yoga Studio
         </div>
 
     </footer>
