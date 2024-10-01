@@ -4,71 +4,71 @@
 
 
 {% block content %}
-
-<div class="row mx-lg-5 g-0">
-    <!-- Yoga class image -->
-    <div class="col-lg-5 mb-3 mt-lg-5 groupclass-img g-0">
-        {% if 'placeholder' in chosen_class.image.url %}
-        <img src="{% static 'images/tree.jpg' %}" alt="Yoga flow class">
-        {% else %}
-        <img src="{{ chosen_class.image.url }}" alt="Yoga class image">
-        {% endif %}
-    </div>
-
-    <div class="container col-lg-7 px-3 px-md-5">
-        <!-- Title (yoga style) of the class -->
-        <h3 class="mt-lg-5">{{ chosen_class.title }}</h3>
-        
-        <div class="mt-3 left top">
-            <div>
-                <p><span class="fw-bold">Instructor: </span>
-                    {{ chosen_class.teacher }} | <span id="bio-modal-trigger" tabindex="0" aria-label="Show the teacher's bio">Show bio</span>
-                </p>
-                <p class="card-text"><span class="fw-bold">Class description: </span>
-                    {{ chosen_class.description }}
-                </p>
-                <p class="card-text"><span class="fw-bold">Where: </span>
-                    {{ chosen_class.location }}
-                </p>
-                <hr>
-                <p class="fw-bold">
-                    {{ chosen_class.weekday }} | {{ chosen_class.start_time }} | {{ chosen_class.duration_mins }} minutes
-                </p>
-            </div>
+<div class="wrapper">
+    <div class="row mx-lg-5 g-0">
+        <!-- Yoga class image -->
+        <div class="col-lg-5 mb-3 mt-lg-5 groupclass-img g-0">
+            {% if 'placeholder' in chosen_class.image.url %}
+            <img src="{% static 'images/tree.jpg' %}" alt="Yoga flow class">
+            {% else %}
+            <img src="{{ chosen_class.image.url }}" alt="Yoga class image">
+            {% endif %}
         </div>
-       
-        <!-- Book class button -->
-        <div class="mb-4 mt-3">
-            <div>
-                {% if user.is_authenticated %}
-                <div class="mt-5 text-center text-md-start">
-                    <a data-mdb-ripple-init class="btn btn-dark" href="{% url 'book_class' chosen_class.id %}" role="button">Book now</a>
-                </div>
-                {% else %}
-                <p class="fw-bold">
-                    <a class="link" href="{{ login_url }}">Log in</a> to book the class
-                </p>
-                {% endif %}
-            </div>
-        </div>
-    
-        <!-- The teacher bio modal -->
-        <div id="modal-bio" class="modal hide" tabindex="0">
-    
-            <!-- Modal content -->
-            <div class="modal-content">
+
+        <div class="container col-lg-7 px-3 px-md-5">
+            <!-- Title (yoga style) of the class -->
+            <h3 class="mt-lg-5">{{ chosen_class.title }}</h3>
+            
+            <div class="mt-3 left top">
                 <div>
-                    <p>{{ chosen_class.teacher_bio }}</p>
+                    <p><span class="fw-bold">Instructor: </span>
+                        {{ chosen_class.teacher }} | <span id="bio-modal-trigger" tabindex="0" aria-label="Show the teacher's bio">Show bio</span>
+                    </p>
+                    <p class="card-text"><span class="fw-bold">Class description: </span>
+                        {{ chosen_class.description }}
+                    </p>
+                    <p class="card-text"><span class="fw-bold">Where: </span>
+                        {{ chosen_class.location }}
+                    </p>
+                    <hr>
+                    <p class="fw-bold">
+                        {{ chosen_class.weekday }} | {{ chosen_class.start_time }} | {{ chosen_class.duration_mins }} minutes
+                    </p>
                 </div>
-                <span id="close-bio" tabindex="0">
-                    <img src="{% static 'images/close-circle-svgrepo.svg' %}" alt="Click here to close the bio">
-                </span>
             </div>
+        
+            <!-- Book class button -->
+            <div class="mb-4 mt-3">
+                <div>
+                    {% if user.is_authenticated %}
+                    <div class="mt-5 text-center text-md-start">
+                        <a data-mdb-ripple-init class="btn btn-dark" href="{% url 'book_class' chosen_class.id %}" role="button">Book now</a>
+                    </div>
+                    {% else %}
+                    <p class="fw-bold">
+                        <a class="link" href="{{ login_url }}">Log in</a> to book the class
+                    </p>
+                    {% endif %}
+                </div>
+            </div>
+        
+            <!-- The teacher bio modal -->
+            <div id="modal-bio" class="modal hide" tabindex="0">
+        
+                <!-- Modal content -->
+                <div class="modal-content">
+                    <div>
+                        <p>{{ chosen_class.teacher_bio }}</p>
+                    </div>
+                    <span id="close-bio" tabindex="0">
+                        <img src="{% static 'images/close-circle-svgrepo.svg' %}" alt="Click here to close the bio">
+                    </span>
+                </div>
+            </div>
+        
         </div>
-    
     </div>
 </div>
-
 <!-- JavaScript -->
 <script src="{% static 'js/bio.js' %}" defer></script>
 

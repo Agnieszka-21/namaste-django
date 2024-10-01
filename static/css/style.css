@@ -300,7 +300,6 @@ option:hover {
 @media only screen and (min-width: 500px) {
     .banner-img {
         background-image: url('../images/warrior_one_cropped.webp');
-        background-size: cover;
         height: 45vh;
     }
 }
@@ -309,8 +308,8 @@ option:hover {
     .hero-img {
         background-image: url('../images/seated_cropped.webp');
         min-height: 60vh;
-
     }
+
     .scroll {
         height: 85px;
     }
@@ -329,5 +328,25 @@ option:hover {
 @media only screen and (min-width: 1440px) {
     .card-title {
         font-size: 1.5em;
+    }
+}
+
+@media only screen and (min-width: 1920px) {
+    .wrapper {
+        padding-left: 15vw;
+        padding-right: 15vw;
+    }
+
+    .hero-img {
+        background-image: url('../images/seated_4k_cropped.jpg');
+        min-height: 75vh;
+    }
+
+    .banner-img {
+        background-image: url('../images/reach_4k_cropped.jpg');
+    }
+
+    .error-img {
+        background-image: url('../images/meditation_4k.jpg');        
     }
 }
