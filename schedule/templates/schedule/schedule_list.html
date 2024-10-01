@@ -4,14 +4,18 @@
 
 {{ block.super }}
 
-<div class="container-fluid col-12">
+<div class="container-fluid col-12 px-lg-5">
+    {% regroup groupclass_list by weekday as grouped_groupclasses %}
+
+    {% for weekday, groupclass_list in grouped_groupclasses %}
+    <h3 class="pt-3 px-md-2 px-lg-4"><i class="fa-solid fa-calendar-days px-2"></i>{{ weekday }}</h3>
     <div class="row px-md-2 px-lg-4">
         {% for groupclass in groupclass_list %}
         <div class="col-md-6 col-lg-4">
             <div class="card mb-4">
                 <div class="card-body">
                     <a href="{% url 'schedule_detail' groupclass.id %}">
-                        <h3 class="card-title">{{ groupclass.title }}</h3>
+                        <h4 class="card-title">{{ groupclass.title }}</h4>
                     </a>
                     <hr>
                     <p class="text-muted">Teacher: {{ groupclass.teacher }}</p>
@@ -21,6 +25,7 @@
         </div>
         {% endfor %}
     </div>
+    {% endfor %}
 </div>
 
 {% endblock %}

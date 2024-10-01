@@ -319,3 +319,15 @@ option:hover {
         background-image: url('../images/meditation.jpg');
     }
 }
+
+@media only screen and (min-width: 1024px) {
+    .card-title {
+        font-size: 1.3em;
+    }
+}
+
+@media only screen and (min-width: 1440px) {
+    .card-title {
+        font-size: 1.5em;
+    }
+}
