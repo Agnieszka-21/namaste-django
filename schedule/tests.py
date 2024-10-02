@@ -1,7 +1,8 @@
 from datetime import datetime
 from django.test import TestCase
 from django.contrib.auth.models import User
-from django.utils import timezone
+from pytz import timezone
+from django.utils.timezone import make_aware
 from .models import YogaStyle, StyleDescription, GroupClass, Booking, SpecificGroupClass
 
 
@@ -145,21 +146,29 @@ class BookingModelTest(TestCase):
     @classmethod
     def setUpTestData(cls):
         # Set up non-modified objects used by all test methods
-        cls.chosen_class_ = 'Express Lunchtime Yoga'
-        cls.title = YogaStyle.objects.create(group_class_style=cls.chosen_class_)
-        cls.chosen_class = GroupClass.objects.create(title=cls.title)
+        cls.chosen_class_title_ = 'Express Lunchtime Yoga'
+        cls.title = YogaStyle.objects.create(group_class_style=cls.chosen_class_title_)
+        cls.chosen_class_weekday = 'Mon'
+        cls.chosen_class_start_time = '1.05 pm'
+        cls.chosen_class = cls.chosen_class_title_ + '  | ' + cls.chosen_class_weekday + ' ' + cls.chosen_class_start_time
+        cls.chosen_class = GroupClass.objects.create(
+            title=cls.title,
+            weekday=cls.chosen_class_weekday,
+            start_time=cls.chosen_class_start_time)
         cls.client_ = 'Jane Doe'
         cls.client = User.objects.create(username=cls.client_)
+        cls.current_datetime_ = datetime.now()
+        cls.current_datetime = make_aware(cls.current_datetime_)
         cls.booking = Booking.objects.create(
             id=1,
             chosen_class=cls.chosen_class,
             client=cls.client,
-            # booking_time=timezone.now(),
+            booking_time=cls.current_datetime,
             waiver_signed=True
         )
 
     def test_if_booking_has_a_chosen_class(self):
-        self.assertEqual(str(self.booking.chosen_class.title), self.chosen_class_)
+        self.assertEqual(str(self.booking.chosen_class.title), self.chosen_class_title_)
 
     def test_if_booking_has_a_client(self):
         self.assertEqual(str(self.booking.client), self.client_)
@@ -172,6 +181,37 @@ class BookingModelTest(TestCase):
 
     def test_if_booking_time_is_now(self):
         # https://blog.finxter.com/5-best-ways-to-remove-milliseconds-from-python-datetime/
-        datetime_now = timezone.now()
+        datetime_now = datetime.now()
         formatted_datetime_now = datetime_now.strftime('%Y-%m-%d %H:%M:%S')
         self.assertEqual(self.booking.booking_time.strftime('%Y-%m-%d %H:%M:%S'), formatted_datetime_now)
+
+    def test_str_representation_of_booking(self):
+        booking = Booking.objects.get(id=1)
+        expected_str = f"{booking.booking_time} | Booking {booking.id} | Client: {booking.client} | {booking.chosen_class.title} | On {booking.class_datetime} | Cancelled: {booking.booking_cancelled}"
+        self.assertEqual(str(booking), expected_str)
+
+
+class SpecificGroupClassModelTest(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        # Set up non-modified objects used by all test methods
+        # cls.participants_names_ = []
+        # cls.participants_names = cls.participants_names_.set(['Jane Doe', 'John Doe'])
+        cls.specific_groupclass = SpecificGroupClass.objects.create(
+            id=1,
+            specific_title='Express Lunchtime Yoga',
+            specific_datetime=make_aware(datetime.now()),
+            num_of_participants=2,
+            # participants_names.set(['Jane Doe', 'John Doe'])
+        )
+        # cls.specific_groupclass.participants_names.set(['Jane Doe', 'John Doe'])
+
+    def test_specific_groupclass_verbose_name_plural(self):
+        specific_groupclass = SpecificGroupClass.objects.get(id=1)        
+        verbose_name_plural = specific_groupclass._meta.verbose_name_plural
+        self.assertEqual(verbose_name_plural, 'specific group classes')
+
+    def test_str_representation_of_specific_groupclass(self):
+        specific_gc = SpecificGroupClass.objects.get(id=1)
+        expected_str = f"{specific_gc.specific_title} | {specific_gc.specific_datetime} | {specific_gc.id}"
+        self.assertEqual(str(specific_gc), expected_str)

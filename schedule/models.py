@@ -257,7 +257,7 @@ class SpecificGroupClass(models.Model):
     participants_names = models.ManyToManyField(User, blank=True)
 
     class Meta:
-        verbose_name_plural = 'Specific group classes'
+        verbose_name_plural = 'specific group classes'
         ordering = ['-specific_datetime']
 
     def __str__(self):
