@@ -135,9 +135,6 @@ class StyleDescription(models.Model):
         return str(self.group_class_description)
 
 
-# default_class_img = '../static/images/down_dog.jpg'
-
-
 class GroupClass(models.Model):
 
     DAYS = (
@@ -210,13 +207,12 @@ class GroupClass(models.Model):
     duration_mins = models.IntegerField(choices=DURATION_OPTIONS, default=60)
     location = models.CharField(choices=LOCATION_OPTIONS, default='Studio 1', max_length=20)
     image = CloudinaryField('image', default='placeholder', blank=True)
-    participants = models.ManyToManyField(User, blank=True)
     teacher = models.CharField(choices=TEACHER_OPTIONS, max_length=100, null=True, blank=True)
     teacher_bio = models.CharField(choices=BIO_OPTIONS, max_length=3000, null=True, blank=True)
     first_class = models.DateTimeField(null=True, blank=True)
 
     class Meta:
-        verbose_name_plural = 'Group classes'
+        verbose_name_plural = 'group classes'
         ordering = ['first_class__week_day', 'start_time']
 
     def __str__(self):
