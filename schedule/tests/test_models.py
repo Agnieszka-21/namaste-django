@@ -3,7 +3,7 @@ from django.test import TestCase
 from django.contrib.auth.models import User
 from pytz import timezone
 from django.utils.timezone import make_aware
-from .models import YogaStyle, StyleDescription, GroupClass, Booking, SpecificGroupClass
+from ..models import YogaStyle, StyleDescription, GroupClass, Booking, SpecificGroupClass
 
 
 class YogaStyleModelTest(TestCase):
