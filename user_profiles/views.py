@@ -9,9 +9,7 @@ from .models import  Profile
 from .forms import ClientProfileForm
 
 
-# Create your views here.
 def home(request):
-    # return HttpResponse('This is the homepage - http response')
     return render(request, 'user_profiles/index.html')
 
 
@@ -64,9 +62,10 @@ def editProfile(request, id):
                 profile.user = request.user
                 profile.save()
                 messages.success(request, 'Your profile has been updated')
-                return redirect('profile', request.user.id)
+                # return redirect('profile', request.user.id)
             except:
-                messages.error(request, 'ERROR: Oops, something went wrong...')
+                messages.error(request, 'Oops, something went wrong...')
+            return redirect('profile', request.user.id)
     else:
         profile_form = ClientProfileForm(instance=current_user)
     return render(request, 'user_profiles/profile_form.html', {'profile_form': profile_form, 'current_user': current_user})
