@@ -320,5 +320,5 @@ class SpecificGroupClassModelTest(TestCase):
         """
         specific_gc = SpecificGroupClass.objects.get(id=1)
         expected_str = (f"{specific_gc.specific_title} | "
-                        "{specific_gc.specific_datetime} | {specific_gc.id}")
+                        f"{specific_gc.specific_datetime} | {specific_gc.id}")
         self.assertEqual(str(specific_gc), expected_str)
