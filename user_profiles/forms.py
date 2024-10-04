@@ -1,11 +1,11 @@
 from allauth.account.forms import SignupForm
-from cloudinary.forms import CloudinaryFileField
+# from cloudinary.forms import CloudinaryFileField
 from django import forms
 from .models import Profile
 
 
 # https://www.naukri.com/code360/library/extending-and-customizing-django-allauth
-# https://stackoverflow.com/questions/70809519/how-do-i-customize-django-allauth-sign-up-forms-to-look-the-way-i-want  
+# https://stackoverflow.com/questions/70809519/how-d-o-i-customize-django-allauth-sign-up-forms-to-look-the-way-i-want  
 class CustomSignupForm(SignupForm):
     first_name = forms.CharField(max_length=25, label='First Name')
     last_name = forms.CharField(max_length=25, label='Last Name')
@@ -31,10 +31,3 @@ class ClientProfileForm(forms.ModelForm):
             'injuries': 'Recent or chronic injuries',
             'profile_pic': 'Profile image'
         }
-        #profile_pic = CloudinaryFileField()
-
-        # def __init__(self, *args, **kwargs):
-        #     super(ClientProfileForm, self).__init__(*args, **kwargs)
-        #     self.fields['profile_pic'].required=False
-            
-
