@@ -340,7 +340,7 @@ def create_dates(request, *args, **kwargs):
 
 def remove_participant(orig_spec_class, chosen_booking):
     """
-    Remove client from the list of participants for their original booked class
+    Removes client from the list of participants for their original booked class
     The function is run when client cancels or updates their booking
     It decreases num_of_partcipants by 1 and removes the client from
     the list of participants
@@ -354,8 +354,8 @@ def remove_participant(orig_spec_class, chosen_booking):
 
 def handle_cancellation(cancellation_form, chosen_booking, request):
     """
-    Mark a booking as cancelled with a specified reason (client's
-    decision), save changes to the booking
+    Marks a booking as cancelled with a specified reason (client's
+    decision), saves changes to the booking
 
     Used in :view:`cancel_booking`
     """
@@ -370,8 +370,8 @@ def handle_cancellation(cancellation_form, chosen_booking, request):
         specific_datetime=chosen_booking.class_datetime)
     remove_participant(orig_spec_class, chosen_booking)
     messages.success(
-        request, f'Your cancellation for **'
-        '{chosen_booking.chosen_class.title}** was successful')
+        request, 'Your cancellation for **'
+        f'{chosen_booking.chosen_class.title}** was successful')
 
 
 @login_required
@@ -399,12 +399,12 @@ def cancel_booking(request, id, pk):
         if cancellation_form.is_valid():
             try:
                 handle_cancellation(cancellation_form, chosen_booking, request)
-                return redirect('my_bookings', request.user.id)
             except Exception:
                 messages.error(
                     request, f'Oh no, an error occurred... Please check '
-                    '**My bookings** to see if your class was '
+                    'your listed bookings to see if your class was '
                     'successfully cancelled')
+            return redirect('my_bookings', request.user.id)
         else:
             print('The cancellation form is not valid')
     else:
