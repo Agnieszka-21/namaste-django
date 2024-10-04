@@ -1,11 +1,13 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.test import TestCase
+from django.test.client import Client
 from django.urls import reverse
 from ..models import YogaStyle, GroupClass, Booking
 import uuid
 from django.contrib.auth.models import User
 from datetime import datetime
 from datetime import timedelta
+from django.utils.timezone import make_aware
 
 
 class GroupClassListViewTest(TestCase):
@@ -37,6 +39,8 @@ class GroupClassListViewTest(TestCase):
         # Confirm the list has (exactly) 12 items, all on one page
         response = self.client.get(reverse('class_schedule')+'?page=1')
         self.assertEqual(response.status_code, 200)
+        self.assertTrue('is_paginated' in response.context)
+        self.assertFalse(response.context['is_paginated'] == True)
         self.assertEqual(len(response.context['groupclass_list']), 12)
 
 
@@ -69,61 +73,31 @@ class ScheduleDetailViewTest(TestCase):
 
 
 class CancelBookingViewTest(TestCase):
-    def setUp(self):
-        # Create a user
-        test_user1 = User.objects.create_user(username='testuser1', password='1X<ISRUkw+tuK', id=1)
-        test_user2 = User.objects.create_user(username='testuser2', password='2HJ1vRV0Z&3iD', id=2)
-        test_user1.save()
-        test_user2.save()
-
-        # Create a groupclass
-        # test_groupclass = GroupClass.objects.create(weekday='Mon', start_time='1.05 pm')
-        # test_genre = Genre.objects.create(name='Fantasy')
-        # test_language = Language.objects.create(name='English')
-        test_title = YogaStyle.objects.create(group_class_style='Express Lunchtime Yoga')
-        test_groupclass = GroupClass.objects.create(
-            title=test_title,
-            weekday='Mon',
-            start_time='1.05 pm',
-        )
-
-        # Create genre as a post-step
-        # genre_objects_for_book = Genre.objects.all()
-        # test_book.genre.set(genre_objects_for_book) # Direct assignment of many-to-many types not allowed.
-        # test_book.save()
-
-        # Create a BookingInstance object for test_user1
-        # return_date = datetime.date.today() + datetime.timedelta(days=5)
-        self.test_booking1 = Booking.objects.create(
-            id=12345,
-            chosen_class=test_groupclass,
-            client=test_user2,
-            class_datetime=datetime.now() + timedelta(days=10),
-            booking_time=datetime.now() - timedelta(days=3),
+    @classmethod
+    def setUpTestData(cls):
+        cls.test_user = User.objects.create_user(username='testuser1', password='1X<ISRUkw+tuK', id=1)
+        cls.test_yogastyle = YogaStyle.objects.create(group_class_style='Express Lunchtime Yoga')
+        cls.test_groupclass = GroupClass.objects.create(title=cls.test_yogastyle)
+        cls.test_booking = Booking.objects.create(
+            id=uuid.uuid4(),
+            chosen_class=cls.test_groupclass,
+            client=cls.test_user,
+            class_datetime=make_aware(datetime.now() + timedelta(days=10)),
+            booking_time=make_aware(datetime.now() - timedelta(days=3)),
             waiver_signed=True,
             booking_cancelled=False,
             cancellation_reason=None
         )
 
-        # Create a BookInstance object for test_user2
-        # return_date = datetime.date.today() + datetime.timedelta(days=5)
-        # self.test_bookinstance2 = BookInstance.objects.create(
-        #     book=test_book,
-        #     imprint='Unlikely Imprint, 2016',
-        #     due_back=return_date,
-        #     borrower=test_user2,
-        #     status='o',
-        # )
-
-    def test_redirect_if_not_logged_in(self):
-        response = self.client.get(reverse('cancel_booking'), kwargs={'id': self.test_user2.id, 'pk': self.test_booking1.id})
-        # Manually check redirect (Can't use assertRedirect, because the redirect URL is unpredictable)
+    def test_redirects_if_not_logged_in(self):
+        response = self.client.get(reverse('cancel_booking', kwargs={'id': self.test_user.id, 'pk': self.test_booking.id}))
+        # Manually check redirect (Can't use assertRedirect, because the redirect URL is unpredictable) ??? check if this is true
         self.assertEqual(response.status_code, 302)
         self.assertTrue(response.url.startswith('/accounts/login/'))
 
-    # def test_uses_correct_template(self):
-    #     login = self.client.login(username='testuser2', password='2HJ1vRV0Z&3iD')
-    #     response = self.client.get(reverse('cancel_booking', kwargs={'[pk]': self.test_booking1.pk}))
-    #     self.assertEqual(response.status_code, 200)
-    #     # Check we used correct template
-    #     self.assertTemplateUsed(response, 'schedule/cancel_booking.html')
+    def test_uses_correct_template(self):
+        logged_in = self.client.login(username='testuser1', password='1X<ISRUkw+tuK', id=1)
+        response = self.client.get(reverse('cancel_booking', kwargs={'id': self.test_user.id, 'pk': self.test_booking.id}))
+        self.assertEqual(response.status_code, 200)
+        # Check we used correct template
+        self.assertTemplateUsed(response, 'schedule/cancel_booking.html')

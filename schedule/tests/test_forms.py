@@ -42,3 +42,9 @@ class BookingFormTest(SimpleTestCase):
         form = BookingForm()
         self.assertEqual(form.fields['waiver_signed'].widget.__class__.__name__, 'CheckboxInput')
 
+    def test_booking_form_is_valid(self):
+        form = BookingForm()
+        checked = form.fields['waiver_signed'] is True
+        updated_form = BookingForm(data={'waiver_signed': checked})
+        self.assertTrue(updated_form.is_valid())
+
