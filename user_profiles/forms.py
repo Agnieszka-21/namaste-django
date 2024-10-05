@@ -1,12 +1,15 @@
 from allauth.account.forms import SignupForm
-# from cloudinary.forms import CloudinaryFileField
 from django import forms
 from .models import Profile
 
 
+# Code for the following CustomSignupForm has been copied from this article:
 # https://www.naukri.com/code360/library/extending-and-customizing-django-allauth
-# https://stackoverflow.com/questions/70809519/how-d-o-i-customize-django-allauth-sign-up-forms-to-look-the-way-i-want  
 class CustomSignupForm(SignupForm):
+    """
+    Extends the Allauth signup form
+    Adds first and last name (required to sign up)
+    """
     first_name = forms.CharField(max_length=25, label='First Name')
     last_name = forms.CharField(max_length=25, label='Last Name')
 
@@ -19,6 +22,11 @@ class CustomSignupForm(SignupForm):
 
 
 class ClientProfileForm(forms.ModelForm):
+    """
+    A ModelForm for the Profile model, used to maintain
+    additional information a user might want to store
+    in their account
+    """
     class Meta:
         model = Profile
         fields = [
