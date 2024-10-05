@@ -8,6 +8,10 @@ import uuid
 
 
 class YogaStyle(models.Model):
+    """
+    Django database model for maintaining data regarding
+    available yoga styles of offered group classes
+    """
     RESTORATIVE = "Restorative Yoga"
     YIN = "Yin Yoga"
     GENTLE = "Gentle Yoga"
@@ -28,14 +32,18 @@ class YogaStyle(models.Model):
         (EXPRESS_LUNCHTIME, "EXPRESS"),
         (PRENATAL, "PRENATAL")
     ]
-    group_class_style = models.CharField(max_length=30, choices=STYLE_CHOICES, null=True, blank=True)
+    group_class_style = models.CharField(
+        max_length=30, choices=STYLE_CHOICES, null=True, blank=True)
 
     def __str__(self):
         return str(self.group_class_style)
 
 
-
 class StyleDescription(models.Model):
+    """
+    Django database model for maintaining data regarding
+    desciptions of yoga styles
+    """
     RESTORATIVE_D = (
         "Restorative yoga is a slow, gentle practice using props "
         "(bolsters, blankets and blocks) to prop the body up in poses "
@@ -52,16 +60,16 @@ class StyleDescription(models.Model):
         "lengthening and contracting of our muscles. Yin Yoga generally "
         "targets the connective tissues of the hips, pelvis, and lower spine. "
         "While initially, this style of yoga can seem quite passive, or soft, "
-        "yin practice can be quite challenging due to the longer duration of the "
-        "poses. Yin and yang tissues respond quite differently to being exercised. "
-        "You need to experience this to really know what Yin Yoga is all about. "
-        "Not suitable for prenatal students."
+        "yin practice can be quite challenging due to the longer duration of "
+        "the poses. Yin and yang tissues respond quite differently to being "
+        "exercised. You need to experience this to really know what "
+        "Yin Yoga is all about. Not suitable for prenatal students."
     )
     GENTLE_D = (
         "Gentle Yoga Flow is a unique sequence of movements and postures "
-        "which flow together creating heat in the body as well as peace of mind. "
-        "It is particularly suitable to those seeking to improve their strength, "
-        "flexibility, health and general well-being. "
+        "which flow together creating heat in the body as well as peace of "
+        "mind. It is particularly suitable to those seeking to improve "
+        "their strength, flexibility, health and general well-being. "
         "Not suitable for prenatal students."
     )
     BEGINNERS_D = (
@@ -76,26 +84,27 @@ class StyleDescription(models.Model):
     )
     FLOW1_D = (
         "This class is suitable for complete beginners and students who want "
-        "to learn more about proper alignment in the poses. We spend more time "
-        "instructing the poses and breathing techniques. The pace is gentle enough, but "
-        "the class can still be challenging, helping you to build up strength. "
-        "This is also a great option if you are low on energy, or if you are "
-        "recovering from an injury and need to take it easy. "
-        "Not suitable for prenatal students."
+        "to learn more about proper alignment in the poses. We spend more "
+        "time instructing the poses and breathing techniques. The pace is "
+        "gentle enough, but the class can still be challenging, helping you "
+        "to build up strength. This is also a great option if you are low on "
+        "energy, or if you are recovering from an injury and need to "
+        "take it easy. Not suitable for prenatal students."
     )
     FLOW2_D = (
         "You will need a yoga foundation, this class is for those "
         "improving their practice, but not for those who are new to yoga. "
         "Ideal for anyone who wishes to prevent common misalignment in poses, "
-        "refine transitions and establish a solid foundation for a steady development "
-        "of practice. A Level 2 class gives you the option for a more challenging poses "
-        "with space for deep relaxation, flexibility work and strength work. "
-        "Not suitable for complete beginners or prenatal students."
+        "refine transitions and establish a solid foundation for a steady "
+        "development of practice. A Level 2 class gives you the option for a "
+        "more challenging poses with space for deep relaxation, flexibility "
+        "work and strength work. Not suitable for complete "
+        "beginners or prenatal students."
     )
     FLOW_MIXED_LEVEL_D = (
         "The mixed-level class is designed to take you deeper into "
-        "your practice by introducing asanas which will challenge you equally on "
-        "strength and flexibility. Each class combines a dynamic "
+        "your practice by introducing asanas which will challenge you "
+        "equally on strength and flexibility. Each class combines a dynamic "
         "Vinyasa practice with meditation, hands-on alignment and "
         "deep relaxation. "
         "Not suitable for complete beginners or prenatal students."
@@ -111,12 +120,13 @@ class StyleDescription(models.Model):
     )
     PRENATAL_D = (
         "During pregnancy your body goes through many changes, which "
-        "creates stress on you mentally and physically. A way to maintain a healthy "
-        "mind and body is prenatal yoga. "
-        "Prenatal yoga focuses on poses for pregnant women, in order to increase "
-        "strength and flexibility. It also helps pregnant women to develop proper "
-        "breathing and relaxation techniques for easier and more comfortable labor. "
-        "This class is for prenatal women after 12 weeks/1st trimester without contra-indications."
+        "creates stress on you mentally and physically. A way to maintain "
+        "a healthy mind and body is prenatal yoga. "
+        "Prenatal yoga focuses on poses for pregnant women, in order to "
+        "increase strength and flexibility. It also helps pregnant women "
+        "to develop proper breathing and relaxation techniques for easier "
+        "and more comfortable labor. This class is for prenatal women "
+        "after 12 weeks/1st trimester without contra-indications."
     )
     DESCRIPTION_CHOICES = [
         (RESTORATIVE_D, "Restorative description"),
@@ -129,14 +139,18 @@ class StyleDescription(models.Model):
         (EXPRESS_LUNCHTIME_D, "Express description"),
         (PRENATAL_D, "Prenatal description")
     ]
-    group_class_description = models.CharField(max_length=5000, choices=DESCRIPTION_CHOICES, null=True, blank=True)
+    group_class_description = models.CharField(
+        max_length=5000, choices=DESCRIPTION_CHOICES, null=True, blank=True)
 
     def __str__(self):
         return str(self.group_class_description)
 
 
 class GroupClass(models.Model):
-
+    """
+    Django database model for maintaining data regarding
+    weekly group classes
+    """
     DAYS = (
         ('Mon', 'Monday'),
         ('Tue', 'Tuesday'),
@@ -177,22 +191,26 @@ class GroupClass(models.Model):
     BIO_MARY = (
         "Mary is +500-hour qualified yoga teacher. She teaches yoga with an "
         "emphasis on safety and alignment. This offers students a supportive "
-        "environment to explore their personal yoga practice. Mary began practising "
-        "yoga in 2012. Her interest derived from the desire to balance out a busy lifestyle. "
-        "Finding a new level of stillness, she is now on a mission to share the benefits "
-        "of yoga with everyone! She will continue her mission by going to training and events "
-        "to improve her teaching skills."
+        "environment to explore their personal yoga practice. Mary began "
+        "practising yoga in 2012. Her interest derived from the desire to "
+        "balance out a busy lifestyle. Finding a new level of stillness, "
+        "she is now on a mission to share the benefits of yoga "
+        "with everyone! She will continue her mission by going to "
+        "training and events to improve her teaching skills."
     )
 
     BIO_JOANNE = (
-        "Joanne's approach to teaching yoga is very much like her approach to life - full of "
-        "curiosity, gentleness, and playfulness. 2014 was the beginning of her journey into a "
-        "deeper understanding of herself, and this brought her to Goa, India, where she completed "
-        "her 200hr Yoga teacher training in 2017, and returning again in 2018 to Rishikesh to "
-        "complete 100 hours of Yin, breathwork and Meditation training. Joanne's teaching style "
-        "is non-judgemental and focused on helping to foster the student's unique "
-        "relationship with yoga and their own bodies. She uses the fluidity of vinyasa to help "
-        "awaken and inspire this connection to ourselves and to the world around us."
+        "Joanne's approach to teaching yoga is very much like her "
+        "approach to life - full of curiosity, gentleness, and playfulness. "
+        "2014 was the beginning of her journey into a deeper understanding "
+        "of herself, and this brought her to Goa, India, where she completed "
+        "her 200hr Yoga teacher training in 2017, and returning again in "
+        "2018 to Rishikesh to complete 100 hours of Yin, breathwork "
+        "and Meditation training. Joanne's teaching style is "
+        "non-judgemental and focused on helping to foster the student's "
+        "unique relationship with yoga and their own bodies. "
+        "She uses the fluidity of vinyasa to help awaken and inspire "
+        "this connection to ourselves and to the world around us."
     )
 
     BIO_OPTIONS = [
@@ -200,15 +218,23 @@ class GroupClass(models.Model):
         (BIO_JOANNE, 'Joanne\'s bio')
     ]
 
-    title = models.ForeignKey(YogaStyle, on_delete=models.CASCADE, related_name='title', null=True, blank=True)
-    description = models.ForeignKey(StyleDescription, on_delete=models.CASCADE, null=True, blank=True)
-    weekday = models.CharField(max_length=10, choices=DAYS, null=True, blank=True)
-    start_time = models.CharField(max_length=10, choices=TIMES, null=True, blank=True)
+    title = models.ForeignKey(
+        YogaStyle, on_delete=models.CASCADE, related_name='title',
+        null=True, blank=True)
+    description = models.ForeignKey(
+        StyleDescription, on_delete=models.CASCADE, null=True, blank=True)
+    weekday = models.CharField(
+        max_length=10, choices=DAYS, null=True, blank=True)
+    start_time = models.CharField(
+        max_length=10, choices=TIMES, null=True, blank=True)
     duration_mins = models.IntegerField(choices=DURATION_OPTIONS, default=60)
-    location = models.CharField(choices=LOCATION_OPTIONS, default='Studio 1', max_length=20)
+    location = models.CharField(
+        choices=LOCATION_OPTIONS, default='Studio 1', max_length=20)
     image = CloudinaryField('image', default='placeholder', blank=True)
-    teacher = models.CharField(choices=TEACHER_OPTIONS, max_length=100, null=True, blank=True)
-    teacher_bio = models.CharField(choices=BIO_OPTIONS, max_length=3000, null=True, blank=True)
+    teacher = models.CharField(
+        choices=TEACHER_OPTIONS, max_length=100, null=True, blank=True)
+    teacher_bio = models.CharField(
+        choices=BIO_OPTIONS, max_length=3000, null=True, blank=True)
     first_class = models.DateTimeField(null=True, blank=True)
 
     class Meta:
@@ -219,41 +245,66 @@ class GroupClass(models.Model):
         return f"{self.title} | {self.weekday} {self.start_time}"
 
 
+# The following two models were created based on this documentation:
+# https://pypi.org/project/django-eventtools/
 class RepeatedEvent(BaseEvent):
+    """
+    django-eventtools model
+    Handles repeating event occurrences for display on the website
+    """
     title = models.ForeignKey(GroupClass, on_delete=models.CASCADE)
 
 
 class EventOccurrence(BaseOccurrence):
+    """
+    django-eventtools model
+    Handles repeating event occurrences for display on the website
+    """
     event = models.ForeignKey(RepeatedEvent, on_delete=models.CASCADE)
 
 
 class Booking(models.Model):
+    """
+    Django database model for creating bookings
+    """
     CANCELLATION_CHOICES = (
         ('class full', 'class full'),
         ('client\'s decision', 'client\'s decision')
     )
 
-    id = models.UUIDField(primary_key=True, unique=True, default=uuid.uuid4, editable=False)
-    chosen_class = models.ForeignKey(GroupClass, on_delete=models.CASCADE, null=True, blank=True)
-    client = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    id = models.UUIDField(
+        primary_key=True, unique=True, default=uuid.uuid4, editable=False)
+    chosen_class = models.ForeignKey(
+        GroupClass, on_delete=models.CASCADE, null=True, blank=True)
+    client = models.ForeignKey(
+        User, on_delete=models.CASCADE, null=True, blank=True)
     class_datetime = models.DateTimeField(null=True, blank=True)
     booking_time = models.DateTimeField(default=timezone.now)
     waiver_signed = models.BooleanField(null=True, blank=True)
     booking_cancelled = models.BooleanField(default=False)
-    cancellation_reason = models.CharField(choices=CANCELLATION_CHOICES, max_length=20, null=True, blank=True)
+    cancellation_reason = models.CharField(
+        choices=CANCELLATION_CHOICES, max_length=20, null=True, blank=True)
 
     class Meta:
         ordering = ['-booking_time']
 
     def __str__(self):
-        return f"{self.booking_time} | Booking {self.id} | Client: {self.client} | {self.chosen_class.title} | On {self.class_datetime} | Cancelled: {self.booking_cancelled}"
+        return f"{self.booking_time} | Booking {self.id} | Client: "
+        f"{self.client} | {self.chosen_class.title} | On "
+        f"{self.class_datetime} | Cancelled: {self.booking_cancelled}"
 
 
 class SpecificGroupClass(models.Model):
-    id = models.UUIDField(primary_key=True, unique=True, default=uuid.uuid4, editable=False)
+    """
+    Django database model for creating specific group classes
+    (a weekly group class with a specific datetime on which it starts)
+    """
+    id = models.UUIDField(
+        primary_key=True, unique=True, default=uuid.uuid4, editable=False)
     specific_title = models.CharField(max_length=30, null=True, blank=True)
     specific_datetime = models.DateTimeField(null=True, blank=True)
-    num_of_participants = models.IntegerField(default=0, validators=[MaxValueValidator(2)])
+    num_of_participants = models.IntegerField(
+        default=0, validators=[MaxValueValidator(2)])
     participants_names = models.ManyToManyField(User, blank=True)
 
     class Meta:
@@ -262,4 +313,3 @@ class SpecificGroupClass(models.Model):
 
     def __str__(self):
         return f"{self.specific_title} | {self.specific_datetime} | {self.id}"
-
