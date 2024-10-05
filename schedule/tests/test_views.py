@@ -1,11 +1,11 @@
 from datetime import datetime, timedelta
-from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.models import User
 from django.test import TestCase
 from django.urls import reverse
 from django.utils.timezone import make_aware
-from ..models import YogaStyle, GroupClass, Booking
 import uuid
+from ..models import YogaStyle, GroupClass, Booking
 
 
 class GroupClassListViewTest(TestCase):

@@ -2,9 +2,9 @@ from datetime import datetime
 from django.contrib.auth.models import User
 from django.test import TestCase
 from django.utils.timezone import make_aware
+from pytz import timezone
 from ..models import YogaStyle, StyleDescription, GroupClass
 from ..models import Booking, SpecificGroupClass
-from pytz import timezone
 
 
 class YogaStyleModelTest(TestCase):

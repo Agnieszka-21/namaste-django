@@ -34,7 +34,7 @@ class CustomSignupFormTest(SimpleTestCase):
 
 
 class ClientProfileFormTest(SimpleTestCase):
-    
+
     def test_injuries_field_label(self):
         """
         Tests the label of the field 'injuries'
