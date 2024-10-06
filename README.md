@@ -1,27 +1,34 @@
 # Namaste Yoga Studio
 
+
 ## Introduction
 
-Namaste Yoga Studio is a web application for a fictional yoga studio in Dublin offering group classes in various styles of yoga. Any user can access the most important information about the studio - its location, opening hours, weekly class schedule, as well as a detailed description of each class which includes a teacher's bio, characteristics of the yoga style taught in the class, and who it is suitable for. Users interested in reserving their spot in a class can sign up in order to create an account, and after logging in they are able to book any classes. They can also see their upcoming booked classes, update or cancel their bookings, as well as update their personal profile by adding/changing/removing a profile picture, their date of birth, and information on recent or chronic injuries.
+Namaste Yoga Studio is a web application for a fictional yoga studio in Dublin. Anyone can access information regarding opening hours, the studio's location, class schedule, a detailed description of each class as well as each teacher's bio. Moreover, users interested in taking classes at the studio can sign up for an accout that allows them to book classes, manage their bookings (update and cancel), and also manage their user profile.
 
 This is the fourth Portfolio Project for the Code Institute's Diploma Course in Full Stack Software Development (E-commerce Applications). The application is built in Django using Python, HTML, CSS, and JavaScript. It provides role-based permissions for users to interact with data in a PostgreSQL database. It includes user authentication, email validation, and CRUD functionality for User Profiles and Bookings.
 
+[View the live website here](https://namaste-yoga-studio-d494d1aeeada.herokuapp.com/)
+
 ![Screenshot of the application on multiple devices](add link)
+
+Please note: To open any links in this document in a new browser tab, please press CTRL + Click.
+
 
 ## Table of Contents
 
 ...
 Add table of contents
 
+
 ## UX
 
 ### The Strategy Plane
 
-General description...
+Namaste Yoga Studio is a web application for a fictional yoga studio in Dublin offering group classes in various styles of yoga. Any user can access the most important information about the studio - its location, opening hours, weekly class schedule, as well as a detailed description of each class which includes a teacher's bio, characteristics of the yoga style taught in the class, and who it is suitable for. Users interested in reserving their spot in a class can sign up in order to create an account, and after logging in they are able to book any classes. They can also see their upcoming booked classes, update or cancel their bookings, as well as update their personal profile by adding/changing/removing a profile picture, their date of birth, and information on recent or chronic injuries.
 
 #### The Site's Ideal User
-- Adults who want to attend in-studio yoga classes, whether they are new to yoga or a seasoned practicioner
-- Adults who are interested in trying yoga for the first time, whether it's to de-stress, improve their mobility and flexibility, or as a workout routine
+- People who want to attend in-studio yoga classes, whether they are new to yoga or a seasoned practicioner
+- People who are interested in trying yoga for the first time, whether it's to de-stress, improve their mobility and flexibility, or as a workout routine
 - Elderly people who are looking for gentle full-body workouts
 - Expectant mothers and new mothers who want to be healthier
 
@@ -113,6 +120,8 @@ Here are the User Stories resulting from the 9 epics
 #### Story Points
 Each User Story was given a label that specifies the number of story points in order to measure/estimate in a predictive way how much time is needed for completing the User Stories as compared to one another. The simplest User Stories were given just 1 story point, the ones that needed a little more attention 2 story points, then 4 for the ones that required even more attention, and 8 for the most complex features and functionalities.
 
+MORE ON THE POINTS - show that must-haves were below 60%!!!!!!!!!!!!!!!!!!
+
 #### MoSCoW Prioritization
 
 Each User Story has been marked with one of these labels:
@@ -126,9 +135,13 @@ Using these labels allowed for a clear understanding of what needs to be priorit
 ### The Scope Plane
 
 **Features planned include:**
-- ...
+- User Profile - Create, Read, Update and Delete
+- Bookings - Users can create, read, update and delete their upcoming booked classes
+- Users can login to their account
+- Users can logout of their account
+- Users can reset their password if they forget it
+- Users need to be registered and logged in to book scheduled classes, access their user account, see their bookings (upcoming classes only), update and cancel their bookings, as well as as view and/or update their user profile (additional information like the date of birth, chronic/recent injuries, a profile image)
   
-
 ### The Structure Plane
 
 #### User Story ...
@@ -155,11 +168,55 @@ Using these labels allowed for a clear understanding of what needs to be priorit
 ### The Skeleton Plane
 
 #### Wireframe mock-ups
-...
+
+__Home page__
+The home page provides the user with a clear understanding as to the purpose of the site. There is a clear call to action for the user to check out the studio's class schedule, with a button in the center of the hero section that links directly to the Schedule page. The hero section also includes a photograph of a yoga studio space and a welcome message, creating a friendly, inviting mood for the website. Underneath the hero section, there is a Google map, the studio's address, and its opening hours. The welcome message is clearly visible to the user when they first arrive at the site regardless of the device they are using. There is also a navigation bar at the top of the page with the menu, and a footer including social media link - these 2 elements are visible on all pages.
+
+![wireframe of the current page - large screen](link)
+
+__Schedule page__
+The schedule page contains a banner image, a call to action heading, and a list of all weekly group classes offered by the studio. Each listed class is shown as a card, presenting the most important information. The title of each class is a clickable link that leads to a detail page for that specific class, should the user be interested in booking the class or simply finding out more.
+
+![wireframe of the current page - large screen](link)
+
+__Schedule detail pages__
+Each class listed on the schedule page leads to its own page where user can find a detailed description of the yoga style taught in the class, recommendations regarding who this class is suitable or not suitable for, as well as information regarding the location (which room in the studio), start time, weekday, and duration. Next to the teacher's name, there is also a "Show bio" link which opens a model with the teacher's bio. 
+
+![wireframe of the current page - large screen](link)
+
+__My profile__
+This page can be accessed only if user is logged in. Each user can see here the information they provided when signing up (first name, last name, email address), a profile image (default or their own), and their profile information. There is also an "Edit profile" button which leads to another page which contains a form, allowing the user to update their profile data.
+
+__My bookings__
+This page can be accessed only if user is logged in. It lists the user's booked classes, but only the ones that have not started yet. The reason for this is that each booking can be updated or cancelled up to the moment of the start of each specific class booked by the user. Each booking is shown as a card that lists the most important details that help clearly identify the booked class, with 2 buttons: "Edit booking" and "Cancel booking". These buttons lead to a new page each where the user can take action as they wish.
+
+If the user has no upcoming classes booked, the page shows a button with a call to action - "Book your next class", redirecting the user to the Schedule page.
+
+__Wireframes for mobile devices__
+Wireframes were also produced for each major page for mobile devices since the intention was to make the site fully responsive so that regardless of the user's device size, it will display accordingly. These wireframes were created before the ones for large screens (because of the mobile-first approach to design) and therefore depict an earlier version of the project, which evolved with time as the development process was progressing.
+
+You can find the mobile wireframes here:
+- [Homepage mobile wireframe](link)
+- [Schedule page mobile wireframe]()
+- [Schedule page continuation - class list mobile wireframe](link)
+- [Schedule detail mobile wireframe](link)
+- [User profile mobile wireframe](link)
 
 #### Database schema
-...
 
+A few custom models were predicted to be required when building the site. Built-in Django AllAuth with its User model was applied for the user authentication system, removing the need to build a custom User model. However, a custom Profile model was required in order to gather and maintain additional information like a profile image uploaded by the user, as well as information on their date of birth and recent or chronic injuries - if they wished to add these. These 2 models were used throughout the User Profiles app.
+
+In the Schedule app, there are more custom models, some of them linked to the User model. The Yoga Styles and Style Description are simple models which simply define options to choose from for the Group Class model that stores information on the weekly group classes. The "title" column uses the Yoga Style model as its Foreign Key, while the "description" column has the same relationship to the Style Description model. Further details are declared as choices for a CharField or an IntField, or directly (e.g. for the datetime field - "first class" column, or the "image" column - CloudinaryField upload).
+
+The next two models, Repeated Event and Event Occurrence, are a result of using the Django-Eventtools library, which was applied to create specific datetimes for each weekly class, needed for the Booking model and the Specific Group Class model.
+
+The Booking model has Group Class and User models as its Foreign Keys (for the "chosen class" column, and the "client" column). It gathers and maintains information regarding each specific booking, including whether or not it was cancelled, and storing a cancellation reason based on how the booking was cancelled.
+
+The Specific Group Class model is directly connected only to the User model (many-to-many relationship to stor a list of participants' names for each specific class). However, through the use of suitable logic in views, it "inherits" indeirectly information regarding the "specific title" column from the Group Class, and for the "specific datetime" column from the Django-Eventtools models (datetime chosen by user on the book class page).
+
+You can see the models and the relationships between them in the following database schema, created using the [drawSQL app](https://drawsql.app/).
+
+![Database schema](link)
 
 
 ### The Surface Plane
@@ -175,6 +232,15 @@ Using these labels allowed for a clear understanding of what needs to be priorit
 
 ## Features
 ...
+
+__Sign up page__
+The Sign Up option in the navigation menu is shown when user is not logged in. This page presents a sign up form, allowing the user to create an account and therefore access further features.
+
+__Log in page__
+The Log In option in the navigation menu is shown when user is not logged in. This page presents a log in  form, allowing the user to log into their account and access further features.
+
+__Log out page__
+The Log Out option in the navigation menu is shown when user is logged in. This page asks for a log out confirmation, allowing the user to log out of their account and keep their personal data safe.
 
 
 ## Future Enhancements
@@ -220,7 +286,7 @@ While testing every single functionality as I was creating and refining it was e
 
 ### Validator Testing
 
-...
+In order to check any html files
 I utilized the Code Institute's [Python Linter](https://pep8ci.herokuapp.com/) in order to check my Python files. No errors were reported - screenshots are linked here:
 - [name of the file](link to the screenshot)
 
@@ -278,8 +344,9 @@ This module (specifically the requests.get functionality) makes it possible to w
 
 The application has been deployed via Heroku.
 
-This program was developed using a [template from the Code Institute](https://github.com/Code-Institute-Org/p3-template)...
+This program was developed using a [template from the Code Institute](https://github.com/Code-Institute-Org/ci-full-template).
 
+UPDATE CONFIG VARS!!!
 In order to deploy the application to Heroku I followed the following steps:
 - Sign up or log in to Heroku.
 - On the main Heroku dashboard page select "Create new app".
@@ -316,14 +383,18 @@ The following tutorials, articles, documentation and media were used to create t
 ### Code
 
 ...
-- The function clear_terminal is based on the code from an article on the forum [geeksforgeeks.org](https://www.geeksforgeeks.org/clear-screen-python/). Link included also in the run.py file.
+- The function ... is based on the code from an article on the forum [geeksforgeeks.org](https://www.geeksforgeeks.org/clear-screen-python/).
 
 
 ### Content
 
-...
-- [Yoga Dublin's website](https://www.yogadublin.com/) was an inspiration to build a functional, aesthetically pleasing webpage that could be used by a real-world yoga studio. Descriptions of yoga styles as well as teachers' bios were copied from the Yoga Dublin's website and adapted for the needs of this projects (e.g. shortened, paraphrased, and any names have been changed)
-- Images...
+- [Yoga Dublin's website](https://www.yogadublin.com/) was an inspiration to build a functional, aesthetically pleasing webpage that could be used by a real-world yoga studio. Descriptions of yoga styles as well as teachers' bios were copied from the Yoga Dublin's website and adapted for the needs of this projects (e.g. shortened, paraphrased, and any names have been changed).
+- Several free-licence images from [Pexels](https://www.pexels.com/) were used in the project. Yan Krukau's photos of yoga classes were particularly helpful, allowing me to use a suite of matching images that contributed to the website's consistent design and branding.
+- [Font Awesome](https://docs.fontawesome.com/) was used for several icons used in the navigation menu, in the footer (social media icons), on the Schedule page (calendar icons), and in the modals (close icon).
+- This [favicon converter](https://favicon.io/favicon-converter/) was used to create favicons based on the brand element "Namaste" in the navigation bar.
+- [Google Fonts](https://fonts.google.com/) page was used to access the fonts used throughout the website.
+- [Google Maps](https://www.google.ie/maps/) page was used to embed the small map with the studio's location as an iframe on the homepage.
+- [Cloudinary](https://cloudinary.com/) was used to store profile images uploaded by users, as well as photos for the schedule detail pages uploaded in the admin panel by an admin.
 
 
 ## Acknowledgements
