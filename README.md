@@ -9,7 +9,7 @@ This is the fourth Portfolio Project for the Code Institute's Diploma Course in 
 
 [View the live website here](https://namaste-yoga-studio-d494d1aeeada.herokuapp.com/)
 
-![Screenshot of the application on multiple devices](add link)
+![Screenshot of the application on multiple devices - AMEND!!!!!!!!!!](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/screenshots/amiresponsive.png)
 
 Please note: To open any links in this document in a new browser tab, please press CTRL + Click.
 
@@ -196,11 +196,11 @@ __Wireframes for mobile devices__
 Wireframes were also produced for each major page for mobile devices since the intention was to make the site fully responsive so that regardless of the user's device size, it will display accordingly. These wireframes were created before the ones for large screens (because of the mobile-first approach to design) and therefore depict an earlier version of the project, which evolved with time as the development process was progressing.
 
 You can find the mobile wireframes here:
-- [Homepage mobile wireframe](link)
-- [Schedule page mobile wireframe]()
-- [Schedule page continuation - class list mobile wireframe](link)
-- [Schedule detail mobile wireframe](link)
-- [User profile mobile wireframe](link)
+- [Homepage mobile wireframe](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/wireframes/wireframe_homepage.png)
+- [Schedule page mobile wireframe](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/wireframes/wireframe_schedule_page.png)
+- [Schedule page continuation - class list mobile wireframe](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/wireframes/wireframe_schedule_list.png)
+- [Class detail mobile wireframe](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/wireframes/wireframe_class_detail.png)
+- [User profile mobile wireframe](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/wireframes/wireframe_user_account.png)
 
 #### Database schema
 
@@ -216,7 +216,7 @@ The Specific Group Class model is directly connected only to the User model (man
 
 You can see the models and the relationships between them in the following database schema, created using the [drawSQL app](https://drawsql.app/).
 
-![Database schema](link)
+![Database schema](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/screenshots/drawSQL-image-export-2024-10-06.png)
 
 
 ### The Surface Plane
@@ -231,15 +231,64 @@ You can see the models and the relationships between them in the following datab
 ...
 
 ## Features
-...
 
-__Sign up page__
+### Homepage
+
+__Navigation bar__
+
+__Hero section__
+
+__Embedded Google maps__
+
+__Address and opening hours__
+
+__Footer with social icons__
+
+### Schedule page
+
+__Banner image and call-to-action heading__
+An image depicting a group of people practising yoga in a class, and below the heading "Find the perfect class for you!".
+
+__List of all weekly classes (cards)__
+The classes are listed grouped by weekday, starting with Monday, and ordered according to their start time. Each class is shown as a card which presents the most important details, and the class title is a link that leads directly to the detail page for the class
+
+### Schedule detail pages
+
+__Image__
+
+__Class details__
+Title, instructor, description, weekday, start time, duration
+
+__Show bio link and modal__
+
+__Book now button__
+
+### Book class page
+
+__User form__
+Pre-filled and uneditable. Contains the following details: user's first name, last name, and email address.
+
+__Booking form__
+Available dates dropdown - the next 3 available dates to choose from.
+Checkbox to "sign" the studio's liability waiver - has to be checked so that the class can be booked.
+
+__"Read the waiver here" link and modal__
+
+### My profile page
+
+### My bookings page
+
+### Edit booking page
+
+### Cancel booking page
+
+### Sign up page
 The Sign Up option in the navigation menu is shown when user is not logged in. This page presents a sign up form, allowing the user to create an account and therefore access further features.
 
-__Log in page__
+### Log in page
 The Log In option in the navigation menu is shown when user is not logged in. This page presents a log in  form, allowing the user to log into their account and access further features.
 
-__Log out page__
+### Log out page
 The Log Out option in the navigation menu is shown when user is logged in. This page asks for a log out confirmation, allowing the user to log out of their account and keep their personal data safe.
 
 
@@ -276,7 +325,7 @@ Continuous testing was an integral part of the development process. I used numer
 
 ### Manual Testing
 
-While testing every single functionality as I was creating and refining it was essential to progressing with this project, I also applied a more structured approach to testing once everything seemed to work correctly in order to double-check the code's behavior and ensure that I handled any possible scenarios to avoid any issues. The table below documents this more structured approach, where I tested any and all possible functionalities as well as likely user inputs in [the live version of the app](link...).
+While testing every single functionality as I was creating and refining it was essential to progressing with this project, I also applied a more structured approach to testing once everything seemed to work correctly in order to double-check the code's behavior and ensure that I handled any possible scenarios to avoid any issues. The table below documents this more structured approach, where I tested any and all possible functionalities as well as likely user inputs in [the live version of the app](https://namaste-yoga-studio-d494d1aeeada.herokuapp.com/).
 
 
 | Functionality being tested | Expected Outcome | Actual Outcome | Result (pass/fail) |
@@ -346,7 +395,8 @@ The application has been deployed via Heroku.
 
 This program was developed using a [template from the Code Institute](https://github.com/Code-Institute-Org/ci-full-template).
 
-UPDATE CONFIG VARS!!!
+UPDATE CONFIG VARS ETC.!!!
+
 In order to deploy the application to Heroku I followed the following steps:
 - Sign up or log in to Heroku.
 - On the main Heroku dashboard page select "Create new app".
