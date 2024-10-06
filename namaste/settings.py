@@ -10,26 +10,27 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
-import os
-from pathlib import Path
-import sys
-import dj_database_url
-if os.path.isfile('env.py'):
-    import env
-
-# Cloudinary imports - tutorial here:
+# 4 Cloudinary imports - based on the following article:
 # https://dev.to/spymonk/integrating-cloudinary-storage-with-django-4ipb
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
 import cloudinary_storage
 
+# Other imports
+import dj_database_url
+import os
+
+if os.path.isfile('env.py'):
+    import env
+
+from pathlib import Path
+import sys
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY')
@@ -69,7 +70,6 @@ INSTALLED_APPS = [
     'django_render_partial',
 ]
 
-# next 3 lines from CI
 SITE_ID = 2
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
@@ -130,7 +130,6 @@ if 'test' in sys.argv:
             }
     }
 
-
 AUTH_PROFILE_MODULE = 'user_profiles.Client_User_Profile'
 
 
@@ -152,8 +151,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+
 # From the AllAuth Quickstart documentation:
 # https://docs.allauth.org/en/latest/installation/quickstart.html
+
 AUTHENTICATION_BACKENDS = [
     # Needed to login by username in Django admin, regardless of `allauth`
     'django.contrib.auth.backends.ModelBackend',
@@ -162,16 +163,19 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
+
 # Custom AllAuth configuration - based on the AllAuth documentation:
 # https://docs.allauth.org/en/latest/account/configuration.html
+
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_USERNAME_REQUIRED = False
-# ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 2
 
-# Email configuration settings - based on this tutorial
+
+# Email configuration settings - based on this tutorial:
 # https://reintech.io/blog/setting-up-email-in-django-tutorial
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
@@ -179,7 +183,10 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 
-# Eventtools library
+
+# Django-Eventtools library settingsa based on this documentation:
+# https://pypi.org/project/django-eventtools/
+
 EVENTTOOLS_REPEAT_CHOICES = (
     ("RRULE:FREQ=DAILY", 'Daily'),
     ("RRULE:FREQ=WEEKLY", 'Weekly'),
@@ -191,11 +198,8 @@ EVENTTOOLS_REPEAT_CHOICES = (
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'Europe/Dublin'
-
 USE_I18N = True
-
 USE_TZ = True
 
 
@@ -203,18 +207,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = '/static/'
-#STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage' #check this!!!
-# Commenting STATICFILES_STORAGE was necessary to collectstatic 
-# More on Cloudinary storage here:
-# https://pypi.org/project/django-cloudinary-storage/
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-#MEDIA_URL = '/media/'
 
-# Cloudinary
-# DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'  # for storing images
-cloudinary.config(secure = True)
+# Cloudinary settings
+
+cloudinary.config(secure=True)
 CLOUDINARY_URL = os.environ.get('CLOUDINARY_URL')
 
 
