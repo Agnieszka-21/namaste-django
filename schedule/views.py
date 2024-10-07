@@ -252,13 +252,14 @@ def sort_future_bookings(future_classes):
         sorted_future_class_datetimes.append(future_class.class_datetime)
     sorted_future_class_datetimes.sort()
     # Sort bookings by the class_datetime attribute
-    global sorted_future_classes
+    # global sorted_future_classes
     sorted_future_classes = []
     for sorted_datetime in sorted_future_class_datetimes:
         for future_class in future_classes:
             if future_class.class_datetime == sorted_datetime:
                 sorted_future_classes.append(future_class)
                 break
+    return sorted_future_classes
 
 
 @login_required
@@ -290,7 +291,7 @@ def personal_bookings(request, id):
         if (booked_class.class_datetime > current_datetime) and (
             booked_class.booking_cancelled is False):
             future_classes.append(booked_class)
-    sort_future_bookings(future_classes)
+    sorted_future_classes = sort_future_bookings(future_classes)
     context = {
         'name': request.user.get_full_name(),
         'email': request.user.email,
@@ -486,7 +487,8 @@ def update_booking(request, id, pk):
                     specific_qs = SpecificGroupClass.objects.filter(
                         specific_title=booking.chosen_class.title)
                     try:
-                        # The specific class already exists in the system
+                        # The specific class (a recurrent groupclass with a specific
+                        # datetime) already exists in the system
                         existing_class = specific_qs.get(
                             specific_datetime=booking.class_datetime)
                         if existing_class.num_of_participants < 2:

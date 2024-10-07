@@ -1,14 +1,16 @@
 from datetime import datetime, timedelta
+from dateutil import parser
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.test import SimpleTestCase, TestCase
 from django.urls import reverse
 from django.utils.timezone import make_aware
 import uuid
-from ..models import YogaStyle, GroupClass, Booking
+from ..models import YogaStyle, GroupClass, Booking, SpecificGroupClass
 
 
 class ScheduleViewTest(SimpleTestCase):
+
     def test_view_uses_correct_template(self):
         """
         Tests whether the correct template is used
@@ -121,6 +123,93 @@ class ScheduleDetailViewTest(TestCase):
         self.assertTemplateUsed(response, 'schedule/schedule_detail.html')
 
 
+class PersonalBookingsViewTest(TestCase):
+
+    def setUp(self):
+        """
+        Sets up data that can be modified in the methods below
+        """
+        test_user = User.objects.create_user(
+            username='testuser1', password='1X<ISRUkw+tuK', id=1)
+        test_user.save()
+
+        test_user2 = User.objects.create_user(
+            username='testuser2', password='2X<ISRUkw+tuK', id=2)
+        test_user2.save()
+
+        test_booking1 = Booking.objects.create(
+            client=test_user,
+            class_datetime=make_aware(parser.parse('2025-12-27 08:30:00'))
+            )
+        test_booking2 = Booking.objects.create(
+            client=test_user,
+            class_datetime=make_aware(parser.parse('2025-12-20 08:30:00'))
+            )
+        test_booking3 = Booking.objects.create(
+            client=test_user2,
+            class_datetime=make_aware(parser.parse('2025-11-20 08:30:00'))
+            )
+
+    def test_redirects_if_not_logged_in(self):
+        """
+        Tests whether user is redirected if not logged in
+        """
+        test_user = User.objects.get(username='testuser1')
+        response = self.client.get(reverse(
+            'my_bookings', kwargs={'id': test_user.id}))
+        self.assertEqual(response.status_code, 302)
+        self.assertTrue(response.url.startswith('/accounts/login/'))
+
+    def test_view_url_accessible_by_name(self):
+        """
+        Tests whether the url related to this view
+        can be accessed by its name
+        """
+        test_user = User.objects.get(username='testuser1')
+        logged_in = self.client.login(
+            username='testuser1', password='1X<ISRUkw+tuK', id=1)
+        response = self.client.get(
+            reverse('my_bookings', kwargs={'id': test_user.id}))
+        self.assertEqual(response.status_code, 200)
+
+    def test_view_uses_correct_template(self):
+        """
+        Tests whether the correct template is used
+        """
+        test_user = User.objects.get(username='testuser1')
+        logged_in = self.client.login(
+            username='testuser1', password='1X<ISRUkw+tuK', id=1)
+        response = self.client.get(
+            reverse('my_bookings', kwargs={'id': test_user.id}))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'schedule/personal_bookings.html')
+
+    def test_view_filters_bookings_by_client(self):
+        """
+        Tests whether the view shows only the bookings made
+        by the specific logged-in user
+        """
+        test_user = User.objects.get(username='testuser1')
+        test_booking1 = Booking.objects.get(
+            class_datetime=make_aware(parser.parse('2025-12-27 08:30:00'))
+            )
+        test_booking2 = Booking.objects.get(
+            class_datetime=make_aware(parser.parse('2025-12-20 08:30:00'))
+            )
+        test_booking3 = Booking.objects.get(
+            class_datetime=make_aware(parser.parse('2025-11-20 08:30:00'))
+            )
+        personal_bookings = Booking.objects.filter(client=test_user)
+        logged_in = self.client.login(
+            username='testuser1', password='1X<ISRUkw+tuK', id=1)
+        response = self.client.get(reverse(
+            'my_bookings', kwargs={'id': test_user.id}))
+        self.assertEqual(len(personal_bookings), 2)
+        # Check the ordering of bookings by class_datetime
+        self.assertEqual(personal_bookings[0], test_booking2)
+        self.assertEqual(personal_bookings[1], test_booking1)
+
+
 class CancelBookingViewTest(TestCase):
     def setUp(self):
         """
@@ -187,56 +276,40 @@ class CancelBookingViewTest(TestCase):
             'my_bookings', kwargs={'id': test_user.id}))
 
 
-class PersonalBookingsViewTest(TestCase):
-    # @classmethod
-    # def setUpTestData(cls):
-    #     """
-    #     Creates 5 unmodified Booking objects
-    #     to set up data for the entire TestCase
-    #     """
-    #     cls.test_user = User.objects.create_user(
-    #         username='testuser1', password='1X<ISRUkw+tuK', id=1)
-    #     number_of_bookings = 5
-    #     for id in range(number_of_bookings):
-    #         cls.booking = Booking.objects.create(
-    #             client=cls.test_user
-    #         )
-
+class RemoveParticipantViewTest(TestCase):
     def setUp(self):
         """
         Sets up data that can be modified in the methods below
         """
-        test_user = User.objects.create_user(
+        test_user1 = User.objects.create_user(
             username='testuser1', password='1X<ISRUkw+tuK', id=1)
-        test_user.save()
+        test_user1.save()
+        test_user2 = User.objects.create_user(
+            username='testuser2', password='2X<ISRUkw+tuK', id=2)
+        test_user2.save()
+        orig_spec_class = SpecificGroupClass.objects.create(
+            id='97668496-7f8c-44b3-887d-e856c6029bf9',
+            num_of_participants=2)
+        orig_spec_class.participants_names.set([test_user1, test_user2])
+        chosen_booking = Booking.objects.create(
+            id='c0f55889-daa4-473f-b402-8495000757ff',
+            client=test_user1)
 
-    def test_redirects_if_not_logged_in(self):
+    def test_view_removes_participant(self):
         """
-        Tests whether user is redirected if not logged in
+        Tests whether the number of participants is decreased
+        and the name of the client who cancelled their booking
+        has been removed from the list of participants
         """
-        test_user = User.objects.get(username='testuser1')
-        response = self.client.get(reverse(
-            'my_bookings', kwargs={'id': test_user.id}))
-        self.assertEqual(response.status_code, 302)
-        self.assertTrue(response.url.startswith('/accounts/login/'))
-
-    # def test_view_url_accessible_by_name(self):
-    #     """
-    #     Tests whether the url related to this view
-    #     can be accessed by its name
-    #     """
-    #     logged_in = self.client.login(
-    #         username='testuser1', password='1X<ISRUkw+tuK', id=1)
-    #     response = self.client.get(reverse('my_bookings', kwargs={'id': self.test_user.id}))
-    #     self.assertEqual(response.status_code, 200) # AssertionError: 302 != 200
-
-    # def test_view_uses_correct_template(self):
-    #     """
-    #     Tests whether the correct template is used
-    #     """
-    #     logged_in = self.client.login(
-    #         username='testuser1', password='1X<ISRUkw+tuK', id=1)
-    #     response = self.client.get(reverse('my_bookings', kwargs={'id': self.test_user.id}))
-    #     self.assertEqual(response.status_code, 200)  # AssertionError: 302 != 200
-    #     self.assertTemplateUsed(response, 'schedule/personal_bookings.html')
-
+        orig_spec_class = SpecificGroupClass.objects.get(
+            id='97668496-7f8c-44b3-887d-e856c6029bf9')
+        chosen_booking = Booking.objects.get(
+            id='c0f55889-daa4-473f-b402-8495000757ff')
+        test_user1 = User.objects.get(username='testuser1')
+        test_user2 = User.objects.get(username='testuser2')
+        orig_spec_class.num_of_participants -= 1
+        orig_spec_class.participants_names.remove(chosen_booking.client)
+        self.assertEqual(orig_spec_class.num_of_participants, 1)
+        self.assertTrue(test_user2 in orig_spec_class.participants_names.all())
+        self.assertFalse(
+            test_user1 in orig_spec_class.participants_names.all())
