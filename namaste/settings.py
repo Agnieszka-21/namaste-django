@@ -213,7 +213,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Cloudinary settings
 
-cloudinary.config(secure=True)
+CLOUD_NAME = os.environ.get('CLOUD_NAME')
+cloudinary.config(secure=True, cloud_name=CLOUD_NAME)
 CLOUDINARY_URL = os.environ.get('CLOUDINARY_URL')
 
 

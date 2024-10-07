@@ -1,11 +1,19 @@
 from datetime import datetime, timedelta
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
-from django.test import TestCase
+from django.test import SimpleTestCase, TestCase
 from django.urls import reverse
 from django.utils.timezone import make_aware
 import uuid
 from ..models import YogaStyle, GroupClass, Booking
+
+
+class ScheduleViewTest(SimpleTestCase):
+    def test_view_uses_correct_template(self):
+        """
+        Tests whether the correct template is used
+        """
+        self.assertTemplateUsed('schedule/schedule.html')
 
 
 class GroupClassListViewTest(TestCase):
@@ -59,6 +67,15 @@ class GroupClassListViewTest(TestCase):
         self.assertEqual(len(response.context['groupclass_list']), 12)
 
 
+class BookingListViewTest(TestCase):
+
+    def test_view_uses_correct_template(self):
+        """
+        Tests whether the correct template is used
+        """
+        self.assertTemplateUsed('schedule/personal_bookings.html')
+
+
 class ScheduleDetailViewTest(TestCase):
     @classmethod
     def setUpTestData(cls):
@@ -71,7 +88,8 @@ class ScheduleDetailViewTest(TestCase):
         for id in range(number_of_groupclasses):
             cls.groupclass = GroupClass.objects.create(
                 weekday=f'Mon {id}',
-                start_time=f'1.05 pm {id}'
+                start_time=f'1.05 pm {id}',
+                image='placeholder'
             )
 
     def test_view_url_exists_at_desired_location(self):
@@ -169,26 +187,46 @@ class CancelBookingViewTest(TestCase):
             'my_bookings', kwargs={'id': test_user.id}))
 
 
-# class PersonalBookingsViewTest(TestCase):
-#     @classmethod
-#     def setUpTestData(cls):
-#         """
-#         Creates 5 unmodified Booking objects
-#         to set up data for the entire TestCase
-#         """
-#         cls.test_user = User.objects.create_user(
-#             username='testuser1', password='1X<ISRUkw+tuK', id=1)
-#         number_of_bookings = 5
-#         for id in range(number_of_bookings):
-#             cls.booking = Booking.objects.create(
-#                 client=cls.test_user
-#             )
+class PersonalBookingsViewTest(TestCase):
+    # @classmethod
+    # def setUpTestData(cls):
+    #     """
+    #     Creates 5 unmodified Booking objects
+    #     to set up data for the entire TestCase
+    #     """
+    #     cls.test_user = User.objects.create_user(
+    #         username='testuser1', password='1X<ISRUkw+tuK', id=1)
+    #     number_of_bookings = 5
+    #     for id in range(number_of_bookings):
+    #         cls.booking = Booking.objects.create(
+    #             client=cls.test_user
+    #         )
+
+    def setUp(self):
+        """
+        Sets up data that can be modified in the methods below
+        """
+        test_user = User.objects.create_user(
+            username='testuser1', password='1X<ISRUkw+tuK', id=1)
+        test_user.save()
+
+    def test_redirects_if_not_logged_in(self):
+        """
+        Tests whether user is redirected if not logged in
+        """
+        test_user = User.objects.get(username='testuser1')
+        response = self.client.get(reverse(
+            'my_bookings', kwargs={'id': test_user.id}))
+        self.assertEqual(response.status_code, 302)
+        self.assertTrue(response.url.startswith('/accounts/login/'))
 
     # def test_view_url_accessible_by_name(self):
     #     """
     #     Tests whether the url related to this view
     #     can be accessed by its name
     #     """
+    #     logged_in = self.client.login(
+    #         username='testuser1', password='1X<ISRUkw+tuK', id=1)
     #     response = self.client.get(reverse('my_bookings', kwargs={'id': self.test_user.id}))
     #     self.assertEqual(response.status_code, 200) # AssertionError: 302 != 200
 
@@ -196,6 +234,8 @@ class CancelBookingViewTest(TestCase):
     #     """
     #     Tests whether the correct template is used
     #     """
+    #     logged_in = self.client.login(
+    #         username='testuser1', password='1X<ISRUkw+tuK', id=1)
     #     response = self.client.get(reverse('my_bookings', kwargs={'id': self.test_user.id}))
     #     self.assertEqual(response.status_code, 200)  # AssertionError: 302 != 200
     #     self.assertTemplateUsed(response, 'schedule/personal_bookings.html')
