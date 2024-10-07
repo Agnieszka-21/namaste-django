@@ -126,8 +126,9 @@ class GroupClassModelTest(TestCase):
                 "a mission to share the benefits  of yoga with everyone! "
                 "She will continue her mission by going to training and "
                 "events to improve her teaching skills."
-                )
-        )
+                ),
+            first_class=make_aware(datetime.now() + timedelta(hours=3))
+            )
 
     def test_if_groupclass_has_a_title(self):
         """
@@ -194,6 +195,15 @@ class GroupClassModelTest(TestCase):
         groupclass = GroupClass.objects.get(id=1)
         verbose_name_plural = groupclass._meta.verbose_name_plural
         self.assertEqual(verbose_name_plural, 'group classes')
+
+    def test_groupclass_ordering(self):
+        """
+        Tests the ordering of GroupClass objects
+        """
+        groupclass = GroupClass.objects.get(id=1)
+        ordering = groupclass._meta.ordering
+        self.assertEqual(
+            ordering, ['first_class__week_day', 'first_class__time'])
 
     def test_str_representation_of_groupclass(self):
         """
@@ -279,6 +289,14 @@ class BookingModelTest(TestCase):
             self.booking.booking_time.strftime(
                 '%Y-%m-%d %H:%M:%S'), formatted_datetime_now)
 
+    def test_booking_ordering(self):
+        """
+        Tests the ordering of Booking objects
+        """
+        booking = Booking.objects.get(id=1)
+        ordering = booking._meta.ordering
+        self.assertEqual(ordering, ['-booking_time'])
+
     def test_str_representation_of_booking(self):
         """
         Tests the string representation of the Booking object
@@ -287,7 +305,8 @@ class BookingModelTest(TestCase):
         expected_str = (
             f"{booking.booking_time} | Booking {booking.id} | Client: "
             f"{booking.client} | {booking.chosen_class.title} | On "
-            f"{booking.class_datetime} | Cancelled: {booking.booking_cancelled}")
+            f"{booking.class_datetime} | Cancelled: "
+            f"{booking.booking_cancelled}")
         self.assertEqual(str(booking), expected_str)
 
 
@@ -308,7 +327,7 @@ class SpecificGroupClassModelTest(TestCase):
             num_of_participants=2,
         )
         cls.specific_groupclass.participants_names.set(
-        [cls.participant1, cls.participant2])
+            [cls.participant1, cls.participant2])
 
     def test_specific_groupclass_verbose_name_plural(self):
         """
@@ -319,6 +338,14 @@ class SpecificGroupClassModelTest(TestCase):
         specific_groupclass = SpecificGroupClass.objects.get(id=1)
         verbose_name_plural = specific_groupclass._meta.verbose_name_plural
         self.assertEqual(verbose_name_plural, 'specific group classes')
+
+    def test_specific_groupclass_ordering(self):
+        """
+        Tests the ordering of SpecificGroupClass objects
+        """
+        specific_gc = SpecificGroupClass.objects.get(id=1)
+        ordering = specific_gc._meta.ordering
+        self.assertEqual(ordering, ['-specific_datetime'])
 
     def test_str_representation_of_specific_groupclass(self):
         """
