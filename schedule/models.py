@@ -289,9 +289,10 @@ class Booking(models.Model):
         ordering = ['-booking_time']
 
     def __str__(self):
-        return f"{self.booking_time} | Booking {self.id} | Client: "
-        f"{self.client} | {self.chosen_class.title} | On "
-        f"{self.class_datetime} | Cancelled: {self.booking_cancelled}"
+        return (
+            f"{self.booking_time} | Booking {self.id} | Client: "
+            f"{self.client} | {self.chosen_class.title} | On "
+            f"{self.class_datetime} | Cancelled: {self.booking_cancelled}")
 
 
 class SpecificGroupClass(models.Model):

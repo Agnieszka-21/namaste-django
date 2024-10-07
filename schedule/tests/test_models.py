@@ -1,8 +1,9 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 from django.contrib.auth.models import User
 from django.test import TestCase
 from django.utils.timezone import make_aware
 from pytz import timezone
+import uuid
 from ..models import YogaStyle, StyleDescription, GroupClass
 from ..models import Booking, SpecificGroupClass
 
@@ -228,10 +229,12 @@ class BookingModelTest(TestCase):
         cls.client = User.objects.create(username=cls.client_)
         cls.current_datetime_ = datetime.now()
         cls.current_datetime = make_aware(cls.current_datetime_)
+        cls.class_datetime = cls.current_datetime + timedelta(days=7)
         cls.booking = Booking.objects.create(
             id=1,
             chosen_class=cls.chosen_class,
             client=cls.client,
+            class_datetime=cls.class_datetime,
             booking_time=cls.current_datetime,
             waiver_signed=True
         )
@@ -284,8 +287,7 @@ class BookingModelTest(TestCase):
         expected_str = (
             f"{booking.booking_time} | Booking {booking.id} | Client: "
             f"{booking.client} | {booking.chosen_class.title} | On "
-            f"{booking.class_datetime} | Cancelled: "
-            f"{booking.booking_cancelled}")
+            f"{booking.class_datetime} | Cancelled: {booking.booking_cancelled}")
         self.assertEqual(str(booking), expected_str)
 
 
@@ -295,14 +297,18 @@ class SpecificGroupClassModelTest(TestCase):
         """
         Sets up non-modified SpecificGroupClass object used by all test methods
         """
+        cls.participant1_ = 'Jane Doe'
+        cls.participant1 = User.objects.create(username=cls.participant1_)
+        cls.participant2_ = 'John Doe'
+        cls.participant2 = User.objects.create(username=cls.participant2_)
         cls.specific_groupclass = SpecificGroupClass.objects.create(
             id=1,
             specific_title='Express Lunchtime Yoga',
             specific_datetime=make_aware(datetime.now()),
             num_of_participants=2,
         )
-        # cls.specific_groupclass.participants_names.set(
-        # ['Jane Doe', 'John Doe'])
+        cls.specific_groupclass.participants_names.set(
+        [cls.participant1, cls.participant2])
 
     def test_specific_groupclass_verbose_name_plural(self):
         """
