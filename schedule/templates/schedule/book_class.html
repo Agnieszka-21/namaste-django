@@ -5,14 +5,11 @@
 
 
 {% block content %}
-
-<!-- User profile template: https://bbbootstrap.com/snippets/bootstrap-5-myprofile-90806631# -->
 <div class="container rounded bg-white mt-5 mb-5">
 
     {% if user.is_authenticated %}
-    <div class="">
-
-        <div class="">
+    <div>
+        <div>
             <h4>{{ chosen_class.title }}</h4>
             <p class="fw-bold mb-5">{{ chosen_class.weekday }} | {{ chosen_class.start_time }} | {{ chosen_class.duration_mins }} minutes</p>
             
@@ -21,12 +18,9 @@
                     {% csrf_token %}
                     {{ user_form | crispy }}
                 </div>
-                <!-- 
-                <div class="my-5 text-center">
-                    <button class="btn btn-dark mx-2" type="submit">Save details</button>
-                </div>
-                -->
+
                 <div class="col-lg-1"></div>
+
                 <div class="col-lg-5">
                     {% csrf_token %}
                     {% render_partial 'schedule.views.create_dates' id=chosen_class.id %}
@@ -35,7 +29,9 @@
                     {{ booking_form | crispy }}
                     <p id="waiver" tabindex="0" aria-label="Show the waiver">Read the waiver here</p>
                 </div>
+
                 <p>* Required field</p>
+
                 <div class="col-lg-1"></div>
 
                 <div class="my-5 text-center">
@@ -78,7 +74,6 @@
     {% endif %}
 </div>
 
-<!-- JavaScript -->
+<!-- JavaScript for the waiver modal -->
 <script src="{% static 'js/waiver.js' %}" defer></script>
-
 {% endblock %}

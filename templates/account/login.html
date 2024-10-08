@@ -1,4 +1,3 @@
-<!-- Copied from the CI Walktrough for now -->
 {% extends "base.html" %}
 
 {% load i18n %}
@@ -16,7 +15,7 @@
 
             <p>{% blocktrans %}Welcome back to Namaste Yoga Studio. To book a class or manage your current bookings,
                 please log in. If you
-                have not created an account yet, then <a class="link" href="{{ signup_url }}">sign up</a>
+                have not created an account yet, then <a class="link fw-bold" href="{{ signup_url }}">sign up</a>
                 first.{% endblocktrans %}</p>
         </div>
     </div>
@@ -29,7 +28,7 @@
                 <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
                 {% endif %}
                 <button class="btn btn-dark mt-3" type="submit">{% trans "Log in" %}</button>
-                <a class="btn mt-3 underline" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+                <a class="btn mt-3 underline link" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
             </form>
         </div>
     </div>
