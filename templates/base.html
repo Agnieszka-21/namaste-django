@@ -30,10 +30,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Nova+Mono&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;700&display=swap" rel="stylesheet">
 
-    <!-- Font Awesome CSS 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    -->
-
     <!-- Favicon from https://favicon.io/favicon-generator/ -->
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicons/apple-touch-icon.png' %}">
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicons/favicon-32x32.png' %}">
@@ -51,8 +47,8 @@
 
 <body class="d-flex flex-column h-100 main-bg">
 
-    <!-- Navigation 
-    Helpful documentation: CI Walkthrough projects, https://www.w3schools.com/bootstrap4/bootstrap_navbar.asp -->
+    <!-- Navigation loosely based on the CI walkthrough blog project 
+    and this documentation: https://www.w3schools.com/bootstrap4/bootstrap_navbar.asp -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-brown">
         <div class="container-fluid">
             
@@ -61,7 +57,7 @@
 
             <!-- Toggler/collapsibe Button -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar"
-                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
@@ -78,21 +74,23 @@
                     </li>
 
                     <!-- Invisible. For-loop to create url patterns for each specific user -->
-                    {% for profile in profile_list %}
-                    <a class="d-none" href="{% url 'profile' user.id %}"></a>
-                    <a class="d-none" href="{% url 'my_bookings' user.id %}"></a>
-                    {% endfor %}
-                    <!-- Invisible. For-loop to create url patterns for each specific yoga class -->
-                    {% for groupclass in groupclass_list %}
-                    <a class="d-none" href="{% url 'schedule_detail' groupclass.id %}"></a>
-                    <a class="d-none" href="{% url 'book_class' groupclass.id %}"></a>
-                    <a class="d-none" href="{% url 'create_dates' groupclass.id %}"></a>
-                    {% endfor %}
-                    <!-- Invisible. For-loop to create url patterns for each specific user and booking -->
-                    {% for booking in booking_list %}
-                    <a class="d-none" href="{% url 'cancel_booking' user.id booking.pk %}"></a>
-                    <a class="d-none" href="{% url 'update_booking' user.id booking.pk %}"></a>
-                    {% endfor %}
+                    <li>
+                        {% for profile in profile_list %}
+                        <a class="d-none" href="{% url 'profile' user.id %}"></a>
+                        <a class="d-none" href="{% url 'my_bookings' user.id %}"></a>
+                        {% endfor %}
+                        <!-- Invisible. For-loop to create url patterns for each specific yoga class -->
+                        {% for groupclass in groupclass_list %}
+                        <a class="d-none" href="{% url 'schedule_detail' groupclass.id %}"></a>
+                        <a class="d-none" href="{% url 'book_class' groupclass.id %}"></a>
+                        <a class="d-none" href="{% url 'create_dates' groupclass.id %}"></a>
+                        {% endfor %}
+                        <!-- Invisible. For-loop to create url patterns for each specific user and booking -->
+                        {% for booking in booking_list %}
+                        <a class="d-none" href="{% url 'cancel_booking' user.id booking.pk %}"></a>
+                        <a class="d-none" href="{% url 'update_booking' user.id booking.pk %}"></a>
+                        {% endfor %}
+                    </li>
 
 
                     {% if user.is_authenticated %}
@@ -118,6 +116,7 @@
                             href="{% url 'account_login' %}">Log in</a>
                     </li>
                     {% endif %}
+                </ul>
             </div>
         </div>
     </nav>
@@ -134,7 +133,7 @@
     <main class="flex-grow-1 flex-shrink-0 main-bg">
 
         {% block content %}
-        <!-- Content Goes here -->
+        <!-- Content goes here -->
         {% endblock content %}
 
     </main>
@@ -144,7 +143,7 @@
         <!-- Grid container -->
         <div class="container pt-4">
           <!-- Section: Social media -->
-          <section class="mb-2">
+          <div class="mb-2">
             <!-- Facebook -->
             <a
               data-mdb-ripple-init class="btn btn-link btn-floating btn-lg text-dark m-1"
@@ -180,7 +179,7 @@
               data-mdb-ripple-color="dark"
               ><i class="fa-brands fa-youtube"></i
             ></a>
-          </section>
+              </div>
         </div>
       
         <!-- Copyright -->

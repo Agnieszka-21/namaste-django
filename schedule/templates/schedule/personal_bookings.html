@@ -2,8 +2,8 @@
 {% load crispy_forms_tags %}
 {% load static %}
 
-{% block content %}
 
+{% block content %}
 <!-- User profile template loosely based on this one: https://bbbootstrap.com/snippets/bootstrap-5-myprofile-90806631# -->
 <div class="container col-12 my-5 py-3">
     <h4 class="pb-4">Your Future Classes</h4>
@@ -35,43 +35,3 @@
 </div>
 
 {% endblock %}
-
-    <!-- <div class="container-fluid col-12 mt-3">
-        <h2 class="pb-4">Your Past Classes</h2>
-        {% for past_class in sorted_past_classes %}
-        <div class="card mb-4">
-            <div class="card-body row">
-                <h4 class="col-md-9 card-title">{{ past_class.chosen_class.title }}</h4>
-                <hr>
-                <div class="row">
-                    <div class="col-md-8">
-                        <p class="card-text h6 mb-2">{{ past_class.chosen_class.weekday }} | {{ past_class.class_datetime }}</p>
-                    </div>
-                    {% if past_class.booking_cancelled %}
-                    <div>
-                        <p>You cancelled this booking</p>
-                    </div>
-                    {% endif %}
-                    <div class="col-md-4 mt-3 mt-md-0 d-flex flex-column">
-                        <a data-mdb-ripple-init class="btn btn-dark mx-2 mb-2" href="{% url 'edit_profile' user.id %}" role="button">Edit booking</a>
-                        <a data-mdb-ripple-init class="btn btn-light border mx-2 mb-2" href="{% url 'edit_profile' user.id %}" role="button">Cancel booking</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        {% endfor %}
-    </div> -->
-
-    <!-- <ul class="pagination justify-content-center">
-        {% if page_obj.has_previous %}
-        <li>
-            <a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo;PREV</a>
-        </li>
-        {% endif %}
-        {% if page_obj.has_next %}
-        <li>
-            <a href="?page={{ page_obj.next_page_number }}" class="page-link">NEXT &raquo</a>
-        </li>
-        {% endif %}
-    </ul> -->
-

@@ -22,7 +22,7 @@
             <div class="mt-3 left top">
                 <div>
                     <p><span class="fw-bold">Instructor: </span>
-                        {{ chosen_class.teacher }} | <span id="bio-modal-trigger" tabindex="0" aria-label="Show the teacher's bio">Show bio</span>
+                        {{ chosen_class.teacher }} | <span id="bio-modal-trigger" tabindex="0">Show bio</span>
                     </p>
                     <p class="card-text"><span class="fw-bold">Class description: </span>
                         {{ chosen_class.description }}
@@ -69,7 +69,7 @@
         </div>
     </div>
 </div>
-<!-- JavaScript -->
+<!-- JavaScript for the teacher bio modal -->
 <script src="{% static 'js/bio.js' %}" defer></script>
 
 {% endblock %}

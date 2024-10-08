@@ -12,9 +12,9 @@
             <div class="d-flex flex-column align-items-center text-center p-3 pb-5">
                 <div class="mb-5">
                     {% if 'placeholder' in current_user.profile_pic.url %}
-                    <img src="{% static 'images/default_profile_pic.webp' %}" class="rounded-circle mt-5" width="150px" alt="placeholder">
+                    <img src="{% static 'images/default_profile_pic.webp' %}" class="rounded-circle mt-5" width="150" alt="placeholder">
                     {% else %}
-                    <img src="{{ current_user.profile_pic.url }}" class="rounded-circle mt-5" width="150px" alt="{{ current_user.user }}'s profile picture">
+                    <img src="{{ current_user.profile_pic.url }}" class="rounded-circle mt-5" width="150" alt="{{ current_user.user }}'s profile picture">
                     {% endif %}
                 </div>
                 <span class="fw-bold">{{ name }}</span>
@@ -22,8 +22,6 @@
             </div>
         </div>
 
-        <!-- <div class="col-md-6 col-lg-5 border-right"> -->
-            <!-- <div class="p-3 py-5 mt-3"> -->
         <div class="col-md-6 col-lg-8 px-4 pt-md-5 mt-md-5 ps-lg-5">
             <div>
                 <h6 class="profile-heading">Date of birth</h6>
@@ -45,25 +43,7 @@
                 <a data-mdb-ripple-init class="btn btn-dark mb-5" href="{% url 'edit_profile' user.id %}" role="button">Edit profile</a>
             </div>
         </div>
-
-
-
-        <!-- <div class=" col-md-6 col-lg-4">
-            <div class="p-3 py-5">
-                <div class="d-flex justify-content-between align-items-center">
-                    <span class="profile-heading">My bookings</span>
-                    <span class="border px-1 ph4 -1 book-class profile-heading">
-                        <a class="btn" href="{% url 'class_schedule' %}">
-                            <i class="fa fa-plus"></i>&nbsp;Book a class
-                        </a>
-                    </span>
-                </div>
-                <br>
-                <div id="list_bookings" class="col-md-12">
-                </div>
-            </div>
-        </div> -->
     </div>
 </div>
 
-    {% endblock %}
+{% endblock %}
