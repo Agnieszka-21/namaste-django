@@ -73,8 +73,8 @@
                             href="{% url 'class_schedule' %}">Schedule</a>
                     </li>
 
-                    <!-- Invisible. For-loop to create url patterns for each specific user -->
-                    <li>
+                    <li class="d-none">
+                        <!-- Invisible. For-loop to create url patterns for each specific user -->
                         {% for profile in profile_list %}
                         <a class="d-none" href="{% url 'profile' user.id %}"></a>
                         <a class="d-none" href="{% url 'my_bookings' user.id %}"></a>

@@ -335,95 +335,141 @@ While testing every single functionality as I was creating and refining it was e
 
 ### Validator Testing
 
-In order to check any html files
-I utilized the Code Institute's [Python Linter](https://pep8ci.herokuapp.com/) in order to check my Python files. No errors were reported - screenshots are linked here:
-- [name of the file](link to the screenshot)
+__HTML__
+The [W3C Markup Validation Service](https://validator.w3.org/) was used to check any html files containing custom code. All files are passed the validation test without errors - you can see relevant screenshots below:
+- [home page]()
+- [schedule page]()
+- [schedule detail page]()
+- [signup page]()
+- [login page]()
+- [logout page]()
+- [profile page]()
+- [edit profile page]()
+- [my bookings page]()
+- [edit booking page]()
+- [cancel booking page]()
+
+__CSS__
+The style.css file containing custom styling for the application has been checked in the [W3C CSS Validation Service Jigsaw](https://jigsaw.w3.org/css-validator/) and has no errors - see the screenshot below:
+
+![CSS validator test](LINK!!!!!!!!!)
+
+__JavaScript__
+[JSHint](https://jshint.com/) has been used to validate the two JavaScript files in the application. Both files returned no errors.
+- [waiver.js - validattion result](LINK!!!!!)
+- [bio.js - validation result](LINK!!!!!!)
+
+__Python__
+All Python files containing custom code have been run through the [Code Institute's Python linter](https://pep8ci.herokuapp.com/#) in order to ensure that they meet the PEP8 requirements/recommendations. No errors were found - you can find relevenat screenshots in [this folder](LINK!!!!!!!!).
+
+
+### Lighthouse and Webaim Wave Testing
+
+The deployed website has been tested using both Lighthouse and WebaimWave in order to ensure that it performs well and meets accessibility criteria. A vast majority of Lighthouse scores is in the optimal green range. However, it is worth noting that using Google maps on the homepage, images uploaded to Cloudinary on other pages, as well as applying Bootstrap and Google Fonts has led to Best Practices scores being slightly lower. From the perspective of a business using this web application it made more sense to keep the map and Cloudinary storage rather than trying to get the best score and missing out on those valuable resources, so the decision was simple. 
+
+In order to keep accessibility scores in the optimal range, I ensured to make the website fully-operational for keyboard users, including trapping focus in each modal while it is open (waiver.js and bio.js files) and adding tabindex to card titles on the Schedule page.
+
+You can find screenshots with relevant results [here](LINK!!!).
+
 
 ### Notable Bugs
 
-...
+There are currently no notable bugs within the project. While I did encounter a few stubborn issues - especially around some views containing forms, and around creating specific dates for each weekly class - continuous manual testing during the development process as well as running automated tests to confirm that everything works as expected has led me to believe that all problems that have arised in the current form of this application have been resolved.
 
 
 ## Technologies Used
 
-### Python 
-...
-
-#### os
-...
-
-#### sys
-...
-
-#### ...
-...
-
-#### ...
-...
-
-#### requests
-...
-This module (specifically the requests.get functionality) makes it possible to work with the dictionary API in the word input validation process by allowing to send HTTP requests to a specified URL...
-
 ### Django
+Django was used as the main framework for this project.
+
+### Django AllAuth
+Django Allauth was utilised to handle authentication and authorization and therefore manage user permissions.
+
+### django-eventtools
+A library utilised to create weekly occurrences of each weekly group class. 
+
+### django-render-partial
+A library used to embed a partial template (dates.html in the Schedule app) into another template (book_class.html). The dates.html template is connected to a specific view which ensures that 3 dates are created for the next 3 occurrences of a chosen class and shown in the booking form as a select (dropdown) field, so that the user can choose the best option from the available ones.
+
+### DTL/Jinja
+Jinja/Django templating language was used to insert data from the database into templates and to perform queries on specific datasets.
+
+### Crispy forms
+Django-crispy-forms was utilised to improve styling and ensure consistent design in any forms in the project
 
 ### Heroku
+A cloud-based platform for deploying the site.
 
 ### PostgreSQL
+PostgreSQL was used as the database for this project during both development and in production.
 
 ### JavaScript
+JavaScript has been utilised to handle interactions with the waiver modal on the "Book class" page and the teacher bio modal on each "Schedule detail" page.
 
-### Bootstrap (version...)
+### Bootstrap 5
+Bootsrap was utilised for creating a responsive layout.
 
 ### Font Awesome
+It was used to access the calendar icons on the Schedule page.
 
 ### CSS
-
-### Jinja/Django templating language
+style.css file was created to handle custom styling beyond Bootstrap and introduce media queries for improved responsive design.
 
 ### HTML
+HTML was utilised to create templates for each page
+
 
 
 ### Packages Used
 
+- Gitpod was used to develop the site
+- GitHub was utilised for storing the files for this project
+- Balsamiq was used to develop initial wireframes for the site (mobile version)
+- DrawSQL.app was utilised to develop the database schema during development
+
 ### Resources Used
+
+- [UUID generator](https://www.uuidgenerator.net/version4) utilised for automated tests
+- [Favicon generator](https://favicon.io/favicon-generator/) used to create the website's favicons
 
 
 ## Deployment
 
-The application has been deployed via Heroku.
+The application has been deployed via Heroku and the live page can be found [here](https://namaste-yoga-studio-d494d1aeeada.herokuapp.com/).
 
-This program was developed using a [template from the Code Institute](https://github.com/Code-Institute-Org/ci-full-template).
-
-UPDATE CONFIG VARS ETC.!!!
+This program was developed using [this particular template from the Code Institute](https://github.com/Code-Institute-Org/ci-full-template).
 
 In order to deploy the application to Heroku I followed the following steps:
 - Sign up or log in to Heroku.
 - On the main Heroku dashboard page select "Create new app".
-- Give the project a unique name (mad-libs-grammar), select a suitable region, and click "Create app". This will create the app in Heroku and bring you to the Deploy tab.
+- Give the project a unique name, select a suitable region, and click "Create app". This will create the app in Heroku and bring you to the Deploy tab.
 - Switch to the Settings tab. 
 - In the "Config Vars" section click the "reveal config vars" button.
-- In the KEY input field enter "PORT" (all capitals), in the VALUE field next to it enter "8000", and then click the "Add" button to the right. This config var is required because we are using the Code Institute's template.
-- Add one more config var, with the KEY "API_KEY_SERVICE" and the VALUE that is the API key used to access the dictionary. Click "Add".
-- In the section "Buildpacks" click the "Add buildpack" button and select "python". Confirm by clicking the button "Add buildpack". Then click the button "Add buildpack" once again and select "nodejs". Confirm ("Add buildpack").
--  The order of these buildpacks is important. If you added nodejs before python, you can easily rearrange this with a drag-and-drop.
+- Add the following key: DISABLE_COLLECTSTATIC, with the value 1 to prevent Heroku from uploading static files during the build.This key-value pair must be removed before final deployment.
+- In the next KEY input field enter "SECRET_KEY" (all capitals), in the VALUE field next to it enter your secret key - you can create yours using [this Django secret key generator](https://djecrety.ir/). Then click the "Add" button to the right.
+- Add another config var, with the KEY "DATABASE_URL" and the VALUE that is your PostgreSQL database's URL. Click "Add".
+- The next config var, with the KEY "CLOUDINARY_URL" and the VALUE of your Cloudinary account's URL, allows you to use Cloudinary to upload and store images. Click "Add".
+- Add also your "CLOUDINARY_NAME" as the next config var to ensure there are no issues with communication between the program and Cloudinary.
+- To handle email authentication, add also these config vars:
+1. EMAIL_HOST_PASSWORD, where the value is a 16-digit app password from a Gmail account to which you would like to connect the program - see more detailed information on that [here](https://support.google.com/mail/answer/185833?hl=en).
+2. EMAIL_HOST_USER, where the value is the email address of the Gmail account with the app passcode.
+- In the section "Buildpacks" click the "Add buildpack" button and select "python". Confirm by clicking the button "Add buildpack".
 -  Scroll up to the top of the page and switch to the Deploy tab. 
 -  In the "Deployment Method" section choose the "GitHub" button. Follow the next steps (if any) as prompted to connect your GitHub account. In the "Connect to GitHub" section that appears, choose your account, enter the name of your repository, and select "Search".
--  Once your GitHub repo is connected to the Heroku app, scroll down to the section "Automatic deploys".
--  Confirm that the correct branch of the repo is selected in the drop-down box, and select "Enable Automatic Deploys". Whenever you change something in the repo and push the changes to GitHub, Heroku will rebuild the app.
--  Alternatively, you can use the option "Manual deploys" (for this projects, I used the "automatic deploys" option that allowed me to see changes I made to the app as I developed it).
+-  Once your GitHub repo is connected to the Heroku app, scroll down to the section "Manual deploys".
+-  Confirm that the correct branch of the repo is selected in the drop-down box, and select "Deploy Branch".
 -  Heroku will now build the app for you. Once the process is completed, you will see the message "Your app was successfully deployed", and a link to the app where you can visit the live site.
   
 
 ## Cloning and forking the repository
 
-...
 In order to clone the GitHub repository use the following link:
-- [link](link)
+- [https://github.com/Agnieszka-21/namaste-django.git](https://github.com/Agnieszka-21/namaste-django.git)
 
 In order to fork the GitHub repository:
-- Go to [link](link)
-- In the top menu choose the option "Fork"
+- Go to this [namaste-django repository](https://github.com/Agnieszka-21/namaste-django)
+- In the menu at the top choose the option "Fork"
+- You should now have your own repository inside your GitHub account.
 
 
 ## Credits
@@ -432,8 +478,17 @@ The following tutorials, articles, documentation and media were used to create t
 
 ### Code
 
-...
-- The function ... is based on the code from an article on the forum [geeksforgeeks.org](https://www.geeksforgeeks.org/clear-screen-python/).
+- [Django documentation](https://docs.djangoproject.com/en/4.2/) has been used extensively for this project
+- Further helpful documentation was related to the libraries installed:
+1. [django-render-partial](https://pypi.org/project/django-render-partial/) utilised for embedding a partial html template with dates for weekly classes into the book_class.html template
+2. [django-eventtools](https://pypi.org/project/django-eventtools/) utilised for creating dates and times for 3 upcoming instances of each chosen group class
+- [Cloudinary documentation](https://cloudinary.com/documentation) was used to set up the configuration between Django and the Cloudinary account
+- The hero section of the homepage is loosely based on [this article](https://mdbootstrap.com/docs/standard/extended/hero/)
+- Templates profile.html and profile_form.html are loosely based on this [User profile template](https://bbbootstrap.com/snippets/bootstrap-5-myprofile-90806631#) in regards to layout and styling.
+- Both HTML and CSS code used to handle messages has been copied from [this article](https://www.brntn.me/blog/how-i-use-djangos-messages-framework/) by Brenton Cleeland.
+- The footer has been adapted from [this tutorial](https://mdbootstrap.com/docs/standard/extended/social-media-icons-footer/).
+- Navigation bar is loosely based on the CI walkthrough blog project and [this w3schools article](https://www.w3schools.com/bootstrap4/bootstrap_navbar.asp).
+- The JavaScript code for trapping focus in a modal has been adapted from the [following article](https://hidde.blog/using-javascript-to-trap-focus-in-an-element/).
 
 
 ### Content
