@@ -130,7 +130,54 @@ def class_full_cancellation(booking, request, chosen_date):
     booking.save()
     messages.error(
         request, f'This class on **{chosen_date}** is already full. Please '
-        'choose a different date or go to Schedule and pick a different class.')
+        'choose a different date or go to Schedule and pick a different '
+        'class.')
+
+
+def try_saving_user_form(user_form, request):
+    """
+    Saves the valid user form if possible
+
+    Used in :view:`book_class`
+    """
+    try:
+        user = user_form.save(commit=False)
+        user.save()
+        successful = True
+    except Exception:
+        successful = False
+        messages.error(
+            request, 'Oops, something went wrong with your details...')
+    return successful
+
+
+def check_if_spec_gc_exists(booking, chosen_date, request):
+    """
+    Checks whether a SpecificGroupClass object exists in
+    the database and handles data related to SpecificGroupClass
+    accordingly
+
+    Used in :view:`book_class`
+    """
+    specific_qs = SpecificGroupClass.objects.filter(
+        specific_title=booking.chosen_class.title)
+    try:
+        # Class already in the database
+        existing_class = specific_qs.get(
+            specific_datetime=booking.class_datetime)
+        sgc_exists_and_full = False
+        if existing_class.num_of_participants < 2:
+            sgc_exists_and_full = False
+            add_participant(existing_class, booking)
+        else:
+            sgc_exists_and_full = True
+            class_full_cancellation(
+                booking, request, chosen_date)
+    except Exception:
+        # Class does not exist in the database yet
+        sgc_exists_and_full = False
+        create_new_specific_class(booking)
+    return sgc_exists_and_full
 
 
 @login_required
@@ -168,13 +215,7 @@ def book_class(request, id):
             'booking_form': booking_form
             }
         if user_form.is_valid():
-            try:
-                user = user_form.save(commit=False)
-                user.save()
-                successful = True
-            except Exception:
-                messages.error(
-                    request, 'Oops, something went wrong with your details...')
+            successful = try_saving_user_form(user_form, request)
         if (user_form.is_valid() and successful) and booking_form.is_valid():
             try:
                 booking = booking_form.save(commit=False)
@@ -199,23 +240,11 @@ def book_class(request, id):
                     return render(request, 'schedule/book_class.html', context)
                 except Exception:
                     booking.save()
-                    # When saving a booking, take care of SpecificGroupClass
-                    specific_qs = SpecificGroupClass.objects.filter(
-                        specific_title=booking.chosen_class.title)
-                    try:
-                        # Class already in the system
-                        existing_class = specific_qs.get(
-                            specific_datetime=booking.class_datetime)
-                        if existing_class.num_of_participants < 2:
-                            add_participant(existing_class, booking)
-                        else:
-                            class_full_cancellation(
-                                booking, request, chosen_date)
-                            return render(
-                                request, 'schedule/book_class.html', context)
-                    except Exception:
-                        # Class does not exist in the system yet
-                        create_new_specific_class(booking)
+                    sgc_exists_and_full = check_if_spec_gc_exists(
+                        booking, chosen_date, request)
+                    if sgc_exists_and_full:
+                        return render(
+                            request, 'schedule/book_class.html', context)
 
                     messages.success(
                         request, f'Your booking for '
@@ -242,7 +271,7 @@ def book_class(request, id):
 # https://towardsdatascience.com/simple-sorting-of-a-list-of-objects-by-a-specific-property-using-python-dac907150394
 def sort_future_bookings(future_classes):
     """
-    Sorts datetimes of the future_classes, and then 
+    Sorts datetimes of the future_classes, and then
     sorts client's bookings based on these datetimes
 
     Used in :view:`personal_bookings`
@@ -252,7 +281,6 @@ def sort_future_bookings(future_classes):
         sorted_future_class_datetimes.append(future_class.class_datetime)
     sorted_future_class_datetimes.sort()
     # Sort bookings by the class_datetime attribute
-    # global sorted_future_classes
     sorted_future_classes = []
     for sorted_datetime in sorted_future_class_datetimes:
         for future_class in future_classes:
@@ -289,7 +317,7 @@ def personal_bookings(request, id):
     future_classes = []
     for booked_class in booked_classes:
         if (booked_class.class_datetime > current_datetime) and (
-            booked_class.booking_cancelled is False):
+                booked_class.booking_cancelled is False):
             future_classes.append(booked_class)
     sorted_future_classes = sort_future_bookings(future_classes)
     context = {
@@ -341,7 +369,8 @@ def create_dates(request, *args, **kwargs):
 
 def remove_participant(orig_spec_class, chosen_booking):
     """
-    Removes client from the list of participants for their original booked class
+    Removes client from the list of participants for their original
+    booked class
     The function is run when client cancels or updates their booking
     It decreases num_of_partcipants by 1 and removes the client from
     the list of participants
@@ -402,12 +431,14 @@ def cancel_booking(request, id, pk):
                 handle_cancellation(cancellation_form, chosen_booking, request)
             except Exception:
                 messages.error(
-                    request, f'Oh no, an error occurred... Please check '
+                    request, 'Oh no, an error occurred... Please check '
                     'your listed bookings to see if your class was '
                     'successfully cancelled')
             return redirect('my_bookings', request.user.id)
         else:
-            print('The cancellation form is not valid')
+            messages.error(
+                request, 'Sorry, the form you submitted is not valid. '
+                'Please try again or contact us to cancel you booking.')
     else:
         cancellation_form = CancellationForm(instance=chosen_booking)
     return render(request, 'schedule/cancel_booking.html', {
@@ -428,9 +459,67 @@ def class_full(booking, orig_spec_class, request):
     booking.class_datetime = orig_spec_class.specific_datetime
     booking.save()
     messages.error(
-        request, f'The class on the new date you chose is already full. '
+        request, 'The class on the new date you chose is already full. '
         'Please choose a different date or go to Schedule and pick '
         'a different class.')
+
+
+def check_numbers(
+        existing_class, booking, orig_spec_class, chosen_booking, request):
+    """
+    Checks whether a specific group class is already full
+    or not to help proceed with a booking update accordingly
+
+    Used in :view:`handle_data_spec_gc`
+    """
+    if existing_class.num_of_participants < 2:
+        add_participant(existing_class, booking)
+        remove_participant(orig_spec_class, chosen_booking)
+        fully_booked = False
+    else:
+        class_full(booking, orig_spec_class, request)
+        fully_booked = True
+    return fully_booked
+
+
+def handle_data_spec_gc(
+        booking, request, context, orig_spec_class, chosen_booking):
+    """
+    Checks if there is an existing SpecificGroupClass instance
+    in the database in order to handle data accordingly
+
+    Used in :view:`update_booking`
+    """
+    # Handle data for specific class (num_of_participants etc.)
+    specific_qs = SpecificGroupClass.objects.filter(
+        specific_title=booking.chosen_class.title)
+    try:
+        # The specific class (a recurrent groupclass with a specific
+        # datetime) already exists in the system
+        existing_class = specific_qs.get(
+            specific_datetime=booking.class_datetime)
+        class_exists_and_full = False
+        fully_booked = check_numbers(
+            existing_class, booking, orig_spec_class, chosen_booking, request)
+        if fully_booked:
+            class_exists_and_full = True
+    except Exception:
+        # The specific class does not exist in the system
+        class_exists_and_full = False
+        create_new_specific_class(booking)
+        remove_participant(
+            orig_spec_class, chosen_booking)
+    return class_exists_and_full
+
+
+def show_error_msg_update(request):
+    """
+    Notifies the user that their booking update has
+    failed
+    """
+    messages.error(
+        request, 'Oh no, something went wrong... '
+        'Please try again or contact us to update your booking.')
 
 
 @login_required
@@ -478,41 +567,27 @@ def update_booking(request, id, pk):
                     duplicate = clients_active_bookings.get(
                         chosen_class=chosen_booking.chosen_class)
                     messages.info(
-                        request, f'You have already booked a place '
+                        request, 'You have already booked a place '
                         'in this class - please see your classes below')
                     return redirect('my_bookings', request.user.id)
                 except Exception:
                     booking.save()
-                    # Handle data for specific class (num_of_participants etc.)
-                    specific_qs = SpecificGroupClass.objects.filter(
-                        specific_title=booking.chosen_class.title)
-                    try:
-                        # The specific class (a recurrent groupclass with a specific
-                        # datetime) already exists in the system
-                        existing_class = specific_qs.get(
-                            specific_datetime=booking.class_datetime)
-                        if existing_class.num_of_participants < 2:
-                            add_participant(existing_class, booking)
-                            remove_participant(orig_spec_class, chosen_booking)
-                        else:
-                            class_full(booking, orig_spec_class, request)
-                            return render(
-                                request, 'schedule/edit_booking.html', context)
-                    except Exception:
-                        # The specific class does not exist in the system
-                        create_new_specific_class(booking)
-                        remove_participant(
-                            orig_spec_class, chosen_booking)
+                    class_exists_and_full = handle_data_spec_gc(
+                        booking, request, context, orig_spec_class,
+                        chosen_booking)
+                    if class_exists_and_full:
+                        return render(
+                            request, 'schedule/edit_booking.html', context)
 
                     messages.success(
-                        request, f'Your update for '
+                        request, 'Your update for '
                         f'**{chosen_booking.chosen_class.title}** '
                         'was successful')
                     return redirect('my_bookings', request.user.id)
-            except Exception as e:
-                print('ERROR', e)
+            except Exception:
+                show_error_msg_update(request)
         else:
-            print('The booking update form is not valid')
+            show_error_msg_update(request)
     else:
         booking_update_form = BookingUpdateForm(instance=chosen_booking)
     return render(request, 'schedule/edit_booking.html', {
