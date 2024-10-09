@@ -39,6 +39,7 @@ footer p {
     background-color: #f7f7f7;
 }
 
+
 /* Images and background images */
 .hero-img {
     background-image: url('../images/seated_phone.webp');
@@ -54,7 +55,7 @@ footer p {
 .banner-img {
     background-image: url('../images/warrior_one.webp');
     background-size: cover;
-    height: 30vh;  /* Might need resizing in a media query for larger screens */
+    height: 30vh;
     color: #f7f7f7;
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
     display: flex;
@@ -234,7 +235,6 @@ option:hover {
     top: 0;
     width: 100%;
     height: 100%;
-    /* Enable scroll if needed */
     overflow: auto;
     /* Fallback color */
     background-color: rgb(0, 0, 0);
@@ -258,7 +258,7 @@ option:hover {
     height: 2.5rem;
 }
 
-/* The Close button for the modals */
+/* Close button for modals */
 #close-waiver, #close-bio  {
     display: flex;
     justify-content: center;

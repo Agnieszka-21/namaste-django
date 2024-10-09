@@ -1,5 +1,3 @@
-console.log("Checking JavaScript - bio modal")
-
 // Control the teacher bio modal
 const modalBio = document.getElementById('modal-bio');
 const bioTrigger = document.getElementById('bio-modal-trigger');
@@ -43,7 +41,6 @@ window.addEventListener('click', function (e) {
 
 // Trap focus in the bio modal - adapted from the following article: 
 // https://hidde.blog/using-javascript-to-trap-focus-in-an-element/
-
 function trapFocus() {
     const focusableElBio = modalBio.querySelector('#close-bio');
     const KEYCODE_TAB = 9;

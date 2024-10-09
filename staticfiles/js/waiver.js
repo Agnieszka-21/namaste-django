@@ -1,8 +1,5 @@
-console.log("Checking JavaScript for the waiver modal");
+// Control the waiver modal - loosely based on the article from w3schools: https://www.w3schools.com/howto/howto_css_modals.asp
 
-/**
- * Control the waiver modal - loosely based on the article from w3schools: https://www.w3schools.com/howto/howto_css_modals.asp
- */
 const modalWaiver = document.getElementById('modal-waiver');
 const waiverTrigger = document.getElementById('waiver');
 const spanCloseModalWaiver = document.getElementById('close-waiver');
@@ -45,7 +42,6 @@ window.addEventListener('click', function (e) {
 
 // Trap focus in the bio modal - adapted from the following article: 
 // https://hidde.blog/using-javascript-to-trap-focus-in-an-element/
-
 function trapFocus() {
     const focusableElWaiver = modalWaiver.querySelector('#close-waiver');
     const KEYCODE_TAB = 9;
