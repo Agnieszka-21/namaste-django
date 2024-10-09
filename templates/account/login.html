@@ -10,7 +10,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-8 mt-3 offset-md-2">
+        <div class="col-md-8 offset-md-2 mt-3">
             <h4>{% trans "Log in" %}</h4>
 
             <p>{% blocktrans %}Welcome back to Namaste Yoga Studio. To book a class or manage your current bookings,
@@ -21,7 +21,7 @@
     </div>
     
     <div class="row">
-        <div class="col-md-8 mt-3 offset-md-2">
+        <div class="col-md-8 offset-md-2 mt-3">
             <form class="login" method="POST" action="{% url 'account_login' %}">
                 {% csrf_token %}
                 {{ form | crispy }}

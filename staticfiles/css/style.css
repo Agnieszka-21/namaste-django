@@ -44,7 +44,7 @@ footer p {
 .hero-img {
     background-image: url('../images/seated_phone.webp');
     background-size: cover;
-    min-height: 70vh;
+    height: 70vh;
     color: #f7f7f7;
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
     display: flex;
@@ -74,8 +74,13 @@ footer p {
     align-items: center;
 }
 
+.groupclass-img {
+    text-align: center;
+}
+
 .groupclass-img > img {
     width: 100%;
+    max-width: 450px;
 }
 
 
@@ -198,6 +203,10 @@ option:hover {
     overflow: auto;
 }
 
+.form-text {
+    color: #212529;
+}
+
 
 /* Triggers for opening modals */
 #waiver, 
@@ -316,7 +325,7 @@ option:hover {
 @media only screen and (min-width: 768px) {
     .hero-img {
         background-image: url('../images/seated_cropped.webp');
-        min-height: 60vh;
+        height: 60vh;
     }
 
     .scroll {
@@ -325,6 +334,10 @@ option:hover {
 
     .error-img {
         background-image: url('../images/meditation.jpg');
+    }
+
+    .groupclass-img > img {
+        max-width: 700px;
     }
 }
 
@@ -348,7 +361,7 @@ option:hover {
 
     .hero-img {
         background-image: url('../images/seated_4k_cropped.jpg');
-        min-height: 75vh;
+        height: 75vh;
     }
 
     .banner-img {

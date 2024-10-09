@@ -7,9 +7,9 @@
 <div class="wrapper">
     <div class="row mx-lg-5 g-0">
         <!-- Yoga class image -->
-        <div class="col-lg-5 mb-3 mt-lg-5 groupclass-img g-0">
+        <div class="col-lg-5 mb-3 my-md-5 groupclass-img g-0">
             {% if 'placeholder' in chosen_class.image.url %}
-            <img src="{% static 'images/tree.jpg' %}" alt="Yoga flow class">
+            <img src="{% static 'images/tree.webp' %}" alt="Yoga flow class">
             {% else %}
             <img src="{{ chosen_class.image.url }}" alt="Yoga class image">
             {% endif %}
