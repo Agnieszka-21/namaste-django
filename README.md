@@ -45,7 +45,7 @@ The work on this project has been divided into 3 iterations, each lasting 3 week
 
 - Iteration 1 - ended on Aug 25, 2024
 - Iteration 2 - ended on Sept 15, 2024
-- Iteration 3 - ended on Oct 6, 2024
+- Iteration 3 - ended on Oct 11, 2024
 
 You can see the iterations with their details, including User Stories that were finished in each iteration, [here](https://github.com/Agnieszka-21/namaste-django/milestones).
 
@@ -120,7 +120,7 @@ Here are the User Stories resulting from the 9 epics
 #### Story Points
 Each User Story was given a label that specifies the number of story points in order to measure/estimate in a predictive way how much time is needed for completing the User Stories as compared to one another. The simplest User Stories were given just 1 story point, the ones that needed a little more attention 2 story points, then 4 for the ones that required even more attention, and 8 for the most complex features and functionalities.
 
-MORE ON THE POINTS - show that must-haves were below 60%!!!!!!!!!!!!!!!!!!
+Altogether, user stories completed in this project take up 74 story points. The user stories that have not been handled here (potential future features) have a total of 48 points, leading to 122 points being 100% of all points and 74 points (completed user stories) being 60% as recommended.
 
 #### MoSCoW Prioritization
 
@@ -187,20 +187,36 @@ Each class listed on the schedule page leads to its own page where user can find
 __My profile__
 This page can be accessed only if user is logged in. Each user can see here the information they provided when signing up (first name, last name, email address), a profile image (default or their own), and their profile information. There is also an "Edit profile" button which leads to another page which contains a form, allowing the user to update their profile data.
 
+![wireframe of the current page - large screen](link)
+
 __My bookings__
 This page can be accessed only if user is logged in. It lists the user's booked classes, but only the ones that have not started yet. The reason for this is that each booking can be updated or cancelled up to the moment of the start of each specific class booked by the user. Each booking is shown as a card that lists the most important details that help clearly identify the booked class, with 2 buttons: "Edit booking" and "Cancel booking". These buttons lead to a new page each where the user can take action as they wish.
+
+![wireframe of the current page - large screen](link)
 
 If the user has no upcoming classes booked, the page shows a button with a call to action - "Book your next class", redirecting the user to the Schedule page.
 
 __Wireframes for mobile devices__
 Wireframes were also produced for each major page for mobile devices since the intention was to make the site fully responsive so that regardless of the user's device size, it will display accordingly. These wireframes were created before the ones for large screens (because of the mobile-first approach to design) and therefore depict an earlier version of the project, which evolved with time as the development process was progressing.
 
-You can find the mobile wireframes here:
+See the mobile wireframes bellow:
+
+| Homepage | Schedule page | Schedule - class list |
+| :------------------- | :--------------- | :------------- |
+| ![Homepage mobile wireframe](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/wireframes/wireframe_homepage.png) | ![Schedule page mobile wireframe](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/wireframes/wireframe_schedule_page.png) | ![Schedule page continuation - class list mobile wireframe](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/wireframes/wireframe_schedule_list.png) |
+
+| Schedule detail | User profile page |
+| :------------------- | :--------------- |
+| ![Class detail mobile wireframe](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/wireframes/wireframe_class_detail.png) | ![User profile mobile wireframe](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/wireframes/wireframe_user_account.png) |
+
+
+REMOVE OR KEEP INSTEAD OF THE TABLES???
 - [Homepage mobile wireframe](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/wireframes/wireframe_homepage.png)
 - [Schedule page mobile wireframe](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/wireframes/wireframe_schedule_page.png)
 - [Schedule page continuation - class list mobile wireframe](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/wireframes/wireframe_schedule_list.png)
 - [Class detail mobile wireframe](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/wireframes/wireframe_class_detail.png)
 - [User profile mobile wireframe](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/wireframes/wireframe_user_account.png)
+
 
 #### Database schema
 
@@ -230,66 +246,166 @@ You can see the models and the relationships between them in the following datab
 #### Images
 ...
 
+
 ## Features
 
 ### Homepage
 
 __Navigation bar__
+The navigation bar is shown in 2 versions, depending on whether the user is logged in or not. For a user who is not logged in, it lists Home, Schedule, Sign up, and Log in.
+
+![Navbar - user not logged in]()
+
+For a logged in user, it shows the following options: Home, Schedule, My profile, My bookings, and Log out.
+
+![Navbar - user logged in]()
 
 __Hero section__
+The hero section consists of a responsive full-width background image, a black semi-transparent overlay for optimal contrast, and white text "Welcome to the friendliest yoga studio in Dublin" followed by a button with the call to action "See our class schedule", which redirects the user to the Schedule page. This way the purpose of the page is clear right away - to invite user to check out the offer of yoga classes so they can book/attend the ones that they find interesting.
+
+![Hero section]()
 
 __Embedded Google maps__
+Underneath the hero section, the user can find general information about the studio, including an embedded Google map with a pin showing the exact location of the studio.
+
+![Google maps, address, and opening hours]()
 
 __Address and opening hours__
+Next to the map (or below on tablet and phone screens), there is information on the studio's address and its opening hours - easily accessible to anyone visiting the page.
 
 __Footer with social icons__
+The footer includes links to social media pages of the studio, which open in a new tab each. It also has a copyright section at the very bottom.
+
+![Footer]()
 
 ### Schedule page
 
 __Banner image and call-to-action heading__
 An image depicting a group of people practising yoga in a class, and below the heading "Find the perfect class for you!".
 
+![Schedule page banner and heading]()
+
 __List of all weekly classes (cards)__
-The classes are listed grouped by weekday, starting with Monday, and ordered according to their start time. Each class is shown as a card which presents the most important details, and the class title is a link that leads directly to the detail page for the class
+The classes are listed grouped by weekday, starting with Monday, and ordered according to their start time. A calendar icon from Font Awesome and a short name of each weekday clearly divide the list visually for enhanced user experience and clarity. Each class is shown as a card which presents the most important details, and the class title is a link that leads directly to the detail page for the class. Class titles are also tabbable, ensuring that the entire website is accessible for keyboard users.
+
+![Schedule list]()
 
 ### Schedule detail pages
 
 __Image__
+For added visual interest, there is an image of a yoga class. The images differ depending on the style of yoga taught in the class to give the user an idea of what is done in the class or who it is for. The images can be uploaded to Cloudinary through the admin panel when creating/updating a group class.
+
+![Schedule detail page - user not logged in]()
 
 __Class details__
-Title, instructor, description, weekday, start time, duration
+Title, instructor, description, weekday, start time, and duration are all shown next to the class image. They are visually coherent yet separate from one another to ensure that the user finds the information they need the most with ease and don't feel overwhelmed by details (see the previous screenshot).
 
 __Show bio link and modal__
+Next to the instructor's name, there is a "Show bio" span that can be selected (by a mouseclick or keyboard) to open a modal that houses a short bio of the instructor. In the modal, there is also a "close" button - if you click the button (or anywhere outside of the modal), the modal will be closed. To ensure that the page is fully accessible, JavaScript was used to handle the modal functionality, including trapping focus in the modal when it is open.
+
+![Teacher bio modal]()
 
 __Book now button__
+Shown only for logged in users, when selected, it takes the user to the "Book class" page. For users who are not logged in or do not have an account yet, there is a link to the log in page instead.
+
+![Schedule detail page - user logged in]()
 
 ### Book class page
 
 __User form__
 Pre-filled and uneditable. Contains the following details: user's first name, last name, and email address.
 
+![Book class page]()
+
 __Booking form__
-Available dates dropdown - the next 3 available dates to choose from.
-Checkbox to "sign" the studio's liability waiver - has to be checked so that the class can be booked.
+Contains a dropdown with available dates - the next 3 available occurrences of the weekly group class to choose from.
+It also has a checkbox to "sign" the studio's liability waiver, which has to be checked so that the class can be booked.
+
+![Waiver not signed]()
+
+If the booking is successful, the user is redirected to the Schedule page (to encourage the user to check out other classes) and shown a success message.
+
+![Booking successful]()
+
+Should the chosen class be already fully booked, the following message is shown:
+
+![Booking failed - class already full]()
+
+In the event when the user tries to book the exact same class that they have already booked (same group class on the same date and time), they are informed that they have already booked a place in this class and prevented from making a duplicate booking (each user is allowed to book a class only for themselves, so they receive only one spot in a specific class).
+
+![Booking failed - duplicate exists]()
 
 __"Read the waiver here" link and modal__
+Under the checkbox, there is a span "Read the waiver here" that opens a modal with the studio's liability waiver. In the modal, there is also a "close" button - if you click the button (or anywhere outside of the modal), the modal will be closed. To ensure that the page is fully accessible, JavaScript was used to handle the modal functionality, including trapping focus in the modal when it is open.
+
+![Waiver modal]()
 
 ### My profile page
 
+This page shows the following information: a profile image (either one uploaded by the user, or the default image), the user's full name and email address, and then their additional information like date of birth and chronic/recent injuries. There is also a button "Edit profile" that brings the user to the Edit profile page.
+
+![My profile page]()
+
+### Edit profile page
+
+![Edit profile page]()
+
+This page contains a profile form where the user can update the following details: their date of birth, their information about injuries, and their profile image. All these elements are optional and can be left blank (a default picture is used as a profile image in this case). At the bottom of the form, there are 2 buttons: "Save profile" and "Discard changes". The latter simply redirects the user back to their profile page. The "Save profile" button saves the changes, redirects the user to the profile page, and shows the following message:
+
+![Edit profile - success]()
+
 ### My bookings page
+
+The user can see here a list of their booked classes, but only the ones that are upcoming in the future to ensure that no changes are made to the classes that are in the past or taking place in that exact moment. Each class is shown as a card with 2 buttons - Edit booking, and Cancel booking.
+
+![My bookings page]()
+
+If the user has no upcoming bookings, the page informs them about that and a button with the call to action "Book your next class" is shown that redirects the user to the Schedule page so that they can choose and book their next class easily.
+
+![My bookings page with no upcoming classes]()
 
 ### Edit booking page
 
+The user can change here the date of their class. A dropdown like the one on the "Book class" page is shown, with the next 3 dates of the weekly class. There are also 2 buttons: "Save changes" which leads to the outcomes described below, and "Discard changes" which simply redirects the user to their "My bookings" page.
+
+![Edit booking page]()
+
+If the user could be added to the specific class on the new date they chose, a success message is shown and they are redirected to the "My bookings" page.
+
+![Edit booking - success]()
+
+If the specific class on the new date chosen by the user is already fully booked, they are informed that their booking could not be updated for that reason.
+
+![Edit booking - class already full]()
+
+If the specific class on the new date chosen by the user is already one of that user's booked classes, they are informed about that and prevented from creating a duplicate booking.
+
+![Edit booking - class already booked]()
+
 ### Cancel booking page
+
+The user can cancel here their upcoming class. The page re-confirms that the user wants to cancel their booking. There are 2 buttons, similarly to the "Edit booking" page: "Yes, cancel my booking" and "No, I changed my mind". 
+
+![Cancel booking page]()
+
+If the latter is seleted, the user is simply redirected back to their "My bookings" page. If the user does go ahead with the cancellation, they are shown a success message and are redirected to the "My bookings" page.
+
+![Cancel booking - success]()
 
 ### Sign up page
 The Sign Up option in the navigation menu is shown when user is not logged in. This page presents a sign up form, allowing the user to create an account and therefore access further features.
 
+![Sign up page]()
+
 ### Log in page
 The Log In option in the navigation menu is shown when user is not logged in. This page presents a log in  form, allowing the user to log into their account and access further features.
 
+![Log in page]()
+
 ### Log out page
 The Log Out option in the navigation menu is shown when user is logged in. This page asks for a log out confirmation, allowing the user to log out of their account and keep their personal data safe.
+
+![Log out page]()
 
 
 ## Future Enhancements
@@ -315,13 +431,20 @@ Building on that epic, applying the epic [#15 Use a Staff Account to Teach with 
 - [#18 Request a Substitute](https://github.com/Agnieszka-21/namaste-django/issues/18) - so that teachers can alert one another and the admin to any changes needed in their teaching schedule
 - [#17 Log out of the Teacher Account](https://github.com/Agnieszka-21/namaste-django/issues/17)
 
+Another possible enhancement could be a time limit on editing/cancelling upcoming bookings as well as booking classes - for example ending the period where any changes are allowed 15 minutes before a class. This is a common practice in many studios and fitness centers that allows for better user experience by avoiding any last-minute changes to the classes offered in the studio.
+
 
 ## Testing
 
 ### Testing Overview
 
-...
-Continuous testing was an integral part of the development process. I used numerous print statements, which were removed as specific features reached their desired shape and functionality. The statements helped me understand which exact details were accessed via API in the online dictionary, how my functions influenced one another, and what information I had to gather in order to print clear messages for the user. Testing multiple word inputs, as well as the behavior of the application in response to them was an important step in the development of a refined and reliable input validation process. While there is still potential for further enhancements, I ensured to handle any and all errors that I encountered, and took great care to handle various word inputs in a way that prevents mistakes as much as possible, at the same time allowing for a lot of variety without restricting the user in their choice of word inputs. Tests were conducted mainly in my development environment, and once results were positive, they were re-checked within the live application after it was deployed to Heroku.
+Continuous testing was an integral part of the development process. I used numerous print statements, which were removed as specific features reached their desired shape and functionality. The statements helped me follow what is happening, especially in the more complex scenarios where multiple things were affected by just one change (e.g. when booking a class, cancelling, or updating a booking) and where multiple functions worked together, calling one another and handling a wide range of scenarios. 
+
+While there is still a significant potential for further enhancements in a project as complex as this one, I ensured to handle any and all errors that I encountered, and took great care to minimise the risk of any errors occurring on submission of forms. Validation was often handled at the earliest stages while developing the forms, limiting the end-users' access to information that can be handled in the backend, in a more secure way (e.g. date input in the booking and update booking forms, name and email not editable by the end-user after the user signs up for an account, or the "waiver signed" field in the booking form being required and a simple checkbox).
+
+Manual tests were conducted mainly in my development environment, and once results were positive, they were re-checked within the live application after it was deployed to Heroku. 
+
+Automated tests were also written to confirm that each view renders the correct template, to ensure that views restricted to logged-in users only redirect the user to the log in page, and many more.
 
 ### Manual Testing
 
@@ -416,9 +539,7 @@ It was used to access the calendar icons on the Schedule page.
 style.css file was created to handle custom styling beyond Bootstrap and introduce media queries for improved responsive design.
 
 ### HTML
-HTML was utilised to create templates for each page
-
-
+HTML was utilised to create templates for each page.
 
 ### Packages Used
 
