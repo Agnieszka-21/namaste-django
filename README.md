@@ -91,7 +91,7 @@ Here are the User Stories resulting from the 9 epics
 
 4. Create and Manage a Class Schedule
 - [#23 Create a class schedule](https://github.com/Agnieszka-21/namaste-django/issues/23)
-- [#25 Manage a class schedule](https://github.com/Agnieszka-21/namaste-django/issues/38) 
+- [#25 Manage a class schedule](https://github.com/Agnieszka-21/namaste-django/issues/25) 
 - [#24 View all data related to classes and bookings](https://github.com/Agnieszka-21/namaste-django/issues/24)
 
 5. Book Classes, View and Manage Bookings
@@ -134,36 +134,233 @@ Using these labels allowed for a clear understanding of what needs to be priorit
 
 ### The Scope Plane
 
-**Features planned include:**
+__Features planned include:__
 - User Profile - Create, Read, Update and Delete
 - Bookings - Users can create, read, update and delete their upcoming booked classes
-- Users can login to their account
-- Users can logout of their account
+- Users can log in to their account
+- Users can log out of their account
 - Users can reset their password if they forget it
-- Users need to be registered and logged in to book scheduled classes, access their user account, see their bookings (upcoming classes only), update and cancel their bookings, as well as as view and/or update their user profile (additional information like the date of birth, chronic/recent injuries, a profile image)
+- Users need to be logged in to book scheduled classes, access their user account, see their bookings (upcoming classes only), update and cancel their bookings, as well as view and/or update their user profile (additional information like the date of birth, chronic/recent injuries, a profile image).
   
 ### The Structure Plane
 
-#### User Story ...
-...
+#### User Story [#2: View class schedule](https://github.com/Agnieszka-21/namaste-django/issues/2)
+As a User (Client), I would like to view the studio's class schedule, so that I can check if I am interested in and able to attend any classes offered.
 
-#### Acceptance Criteria
-...
+__Acceptance Criteria__
+- Given that I am a User (Client), when I navigate to the studio's schedule page, then I can see the current schedule without having to register or log in.
 
-#### Implementation
-...
+__Implementation__
+- Create models YogaStyle, StyleDescription, and GroupClass
+- In the admin panel, set up data related to these models as needed to create GroupClass objects
+- Create a view which lists all group classes, and a template for Schedule page which extends base.html
 
-#### User Story...
-...
-#### Acceptance Criteria
-...
+#### User Story [#3: View a specific class in detail](https://github.com/Agnieszka-21/namaste-django/issues/3)
+As a User (Client), I would like to view each class in the schedule in more detail, so that I can make an informed decision regarding which class to choose
 
+__Acceptance Criteria__
+- Given that I am a User (Client), when I navigate to the schedule page and click on a specific class that caught my attention, then I can see all relevant details (class type, duration, time, location, instructor, who it is for, who it is not for) without having to register or log in.
+
+__Implementation__
+- Create a view that can access a specific group class from the database
+- Create a template for "Schedule detail" page that shows relevant information related to the chosen group class
+
+#### User Story [#4: View teacher's bio](https://github.com/Agnieszka-21/namaste-django/issues/4)
+As a User (Client), I would like to read each teacher's short bio, so that I can choose a class and an instructor that is the best fit for me.
+
+__Acceptance Criteria__
+- Given that I am a User (Client), when I navigate to the "Schedule detail" page, then I can read a short bio for the particular teacher without having to register or log in.
+
+__Implementation__
+- Add a teacher_bio field with relevant choices in the GroupClass model
+- Add a modal to the template
+- Use CSS and JavaScript to hide the modal by default, and to handle opening/closing it, as well as trapping focus in the modal for keyboard accessibility
+
+#### User Story [#30: View the studio's location(s)](https://github.com/Agnieszka-21/namaste-django/issues/30)
+As a User (Client), I would like to be able to see where the studio is located, so that I can decide whether I am interested in the services it offers.
+
+__Acceptance Criteria__
+- Given that I am a User (Client or Potential Client), when I navigate to the homepage, then I can view the location of the studio (address, map).
+
+__Implementation__
+- Add an iframe for Google maps with a pin for the studio's address in the index.html template
+- Add an address section in the same template
+
+#### User Story [#42: View the studio's opening hours](https://github.com/Agnieszka-21/namaste-django/issues/42)
+As a User (Client), I would like to check the yoga studio's opening hours, so that I have the basic information I need to decide whether I am interested in their offer.
+
+__Acceptance Criteria__
+- Given that I am a client or potential client, when I navigate to the homepage, then I can view the studio's opening hours.
+
+__Implementation__
+- In the index.html template create a section with the studio's opening hours
+
+#### User Story [#43: View the studio's social media accounts](https://github.com/Agnieszka-21/namaste-django/issues/43)
+As a User (Client), I would like to check out the studio's social media accounts, so that I can find more information regarding their culture, community, events etc.
+
+__Acceptance Criteria__
+- Given that I am a client or potential client, when I navigate to the studio's website, then I can easily find there links to their social media accounts.
+- Given that I am a client or potential client, when I navigate to the website and click any of the social icons in the footer, then I am automatically taken to the particular account in a new tab.
+
+__Implementation__
+- Add anchor elements in the footer that open in a new tab each (base.html template)
+
+#### User Story [#5: Create a User (Client) account](https://github.com/Agnieszka-21/namaste-django/issues/5)
+As a User (Client), I would like to create an account, so that I can book classes online.
+
+__Acceptance Criteria__
+- Given that I am an unregistered User (Client), when I choose the "Sign Up" option, then I can create my account with an email address and a password.
+- Given that I am an unregistered User (Client), when I choose the "Sign Up" option, then I am sent an email that allows me to verify my email and confirm that I want to sign up for an account.
+
+__Implementation__
+- Use Django AllAuth to set up authentication
+- Adjust the AllAuth templates so that they extend the base.html template
+- Set up email verification
+
+#### User Story [#6: Log in to the User account](https://github.com/Agnieszka-21/namaste-django/issues/6)
+As a User (Client), I would like to be able to log in to my account, so that I can access the advantages of having an account.
+
+__Acceptance Criteria__
+- Given that I am a registered user, when I navigate to the login page, then I can enter my details to login to my account
+- Given that I am a registered user, when I navigate to the login page and enter my details and I click login, then I am logged into my account and I am able to see a visual confirmation that I am now logged in.
+- Given that I am a registered user and I try to log in to my account, when I enter the wrong information, then the site informs me that the information was incorrect and prevents my logging in.
+- Given that I am a registered user and I try to log in to my account, when I forget my password, then I can click a "Forgot password" link that takes me to a page that helps me reset my password.
+
+__Implementation__
+- Ensure the login page is easily accessible in the navbar
+- Show a confirmation message when a User logs into their account successfully
+- Make sure the User is notified if they try to log in with a wrong email or password
+- Ensure that "Forget password" is shown on the log in page so that the User can reset their password if they forgot it
+
+#### User Story [#7: Log out of the User account](https://github.com/Agnieszka-21/namaste-django/issues/7)
+As a User (Client), I would like to be able to log out of my account, so that I can make sure my account details are safe.
+
+__Acceptance Criteria__
+- Given that I am a logged in user, when I click the "log out" button, then I am redirected to the homepage and a confirmation message is shown
+
+__Implementation__
+- In settings.py, set LOGOUT_REDIRECT_URL to the homepage
+- Ensure a confirmation message is shown after the User logged out of their account
+
+#### User Story [#8: Manage the User (Client) account](https://github.com/Agnieszka-21/namaste-django/issues/8)
+As a User (Client), I would like to be able to add a profile image and edit my account details, so that they stay up to date and I am in charge of my profile.
+
+__Acceptance Criteria__
+- Given that I am a logged in user, when I navigate to my Account page, then I can add/edit/delete suitable profile data.
+- Given that I am a logged in user, when I add/edit/delete my profile data, then get a notification that confirms my changes.
+- Given that I am a logged in user, when there is an issue with adding/editing/deleting my profile data, then the site informs me what went wrong.
+
+__Implementation__
+- Create the Profile view and a matching template with the option "Edit profile"
+- Create an "Edit profile" view for updating the profile (profile form), and a matching template
+- Create messages to be shown upon form submission that let the user know whether their data was updated successfully (or not)
+- Redirect user to the Profile page, so that they can see their updated profile right away
+
+#### User Story [#10: Book a class](https://github.com/Agnieszka-21/namaste-django/issues/10)
+As a User (Client), I would like to book a class, so that I can attend it.
+
+__Acceptance Criteria__
+- Given that I am an unregistered user, when I navigate to the Schedule, choose a class and click the "Book now" button, then I am prompted to create a user account.
+- Given that I am a registered user, when I navigate to the Schedule page, choose a class and click he "Book now" button, then I am asked to sign in.
+- Given that I am a logged in user, when I navigate to the Schedule, choose a class and click the "Book now" button, then the site prompts me to fill a suitable form.
+- Given that I am a logged in user, when submit a valid booking form for a specific class, then a suitable notification is shown on the page to confirm a successful booking.
+
+__Implementation__
+- Create a "Book class" page (a suitable view, form, and template)
+- On the "Schedule detail" page, show a "Book class" button (for a logged in user only - if the user is not logged in, add a link to the Log In page and the information that they have to log in to book a class)
+- Create a Booking model to store informtion like who made the booking, which group class they chose etc.
+- Create dates and times for the next 3 occurrences of each group class so that the user can choose one of them from a list of available dates
+
+#### User Story [#33: View personal bookings](https://github.com/Agnieszka-21/namaste-django/issues/33)
+As a User (Client), I would like to view an up-to-date list of all classes I have booked, so that I can see my upcoming classes, making it easy for me to be in charge of my schedule.
+
+__Acceptance Criteria__
+- Given that I am a logged in User (Client), when I navigate to my account, then I can view a list of all upcoming classes I have booked.
+
+__Implementation__
+- Create "My bookings" page (suitable view that lists a specific user's bookings and a template that goes with it)
+
+#### User Story [#11: Cancel a booked class](https://github.com/Agnieszka-21/namaste-django/issues/11)
+As a User (Client), I would like to be able to cancel a class I booked, so that I can avoid blocking a place that someone else could use.
+
+__Acceptance Criteria__
+- Given that I am a logged in user, when I navigate to the Account page, then I see my bookings and have the cancellation option next to the ones that can be cancelled (future classes)
+- Given that I am a logged in user, when I navigate to the Account page and click "Cancel" next to one of my booked classes, then I am asked whether I would like to cancel that particular class.
+- Given that I am a logged in user, when I click "Cancel" next to a class in my Account and confirm it, then the site informs me that the class has been successfully cancelled.
+
+__Implementation__
+- Ensure only future classes are shown so that the user does not cancel a class that has already happened
+- Add to that page a "Cancel booking" button next to each class, to take the user to the "Cancel booking" page
+- Create "Cancel booking" page (view, form, template)
+- In the Booking model, add fields "cancelled" (boolean), and "cancellation reason" with 2 choices: "client's decision" or "class full"
+- Upon cancellation, update these 2 fields accordingly in the backend for the specific Booking object
+- Ensure that a confirmation (success) message is shown upon a cancellation
+
+#### User Story [#13: Add a profile photo in My Account](https://github.com/Agnieszka-21/namaste-django/issues/13)
+As a User (Client), I would like to be able to add my profile picture, so that my user account feels personalized and truly mine.
+
+__Acceptance Criteria__
+- Given that I am a logged in user (client), when I am on My Account page, then I can upload a profile picture and save it in my profile.
+
+__Implementation__
+- Ensure the form for editing the profile has a field for an image upload to Cloudinary
+- Set up Cloudinary
+
+#### User Story [#28: Class cannot be booked because it is already full](https://github.com/Agnieszka-21/namaste-django/issues/28)
+As a User (Client), I would like to be able to know when a class is booked out, so that I am not booking a spot in a class that is already full.
+
+__Acceptance Criteria__
+- Given that I am a logged in User (Client), when I try to book a specific class on a specific date that is already full, then I am informed that there are no more spots left and encouraged to choose a different date.
+- Given that I am a logged in User (Client), when I try to book a class that turns out to be full, then I am given a chance to book this class on a different date instead (different week).
+
+__Implementation__
+- Upon the submission of the booking form, show the message information that the class is already fully booked and encourage the user to choose a different date, or a different group class
+- In the backend, cancel the booking immediately, adding the following cancellation reason: "class full". This allows an admin to see how many people were actually interested in booking a specific class, which can be helpful when making business decisions regarding the schedule and class offer
+
+#### User Story [#45: Edit a future booking (change date)](https://github.com/Agnieszka-21/namaste-django/issues/45)
+As a User (Client), I would like to be able to choose a different date for my upcoming booking, so that I can feel in charge of my schedule and have the flexibility I need to change my bookings according to my personal needs.
+
+__Acceptance Criteria__
+- Given that I am a logged in user, when I navigate to the My Bookings page, then I can see the Edit option next to my upcoming bookings.
+- Given that I am a logged in user, when I click "Edit booking", then I can choose one of available dates for this class.
+- Given that I am a logged in user changing my booking, when I choose a different date and confirm it, then it is updated in my account and I can see a notification on the website that confirms the change.
+
+__Implementation__
+- Add an "Edit booking" button for each class listed on the "My bookings" page
+- Take the user to the "Edit booking" page where they can choose one of 3 available dates for this group class (same as on the "Book class" page)
+- Create a suitable view and template for that page
+- Take care of all possible scenarios, including when the class on the new date is already full or the user already has a booking for that class
+- Depending on the outcome of the update, show a suitable message to inform the user what has been done
+- Upon a successful update, redirect the user back to the "My bookings" page
+
+#### User Story [#22: Ensure each client signs a waiver](https://github.com/Agnieszka-21/namaste-django/issues/22)
+As an Admin, I would like *to ensure that each client signs a waiver when booking a class, so that I can protect the business and my employees from unforeseen issues.
+
+__Acceptance Criteria__
+- Given that I am an Admin, when I check clients' booking data, then I can see that the waiver has been signed for each and every booking.
+
+__Implementation__
+- Add a "waiver signed" checkbox in the booking form and make it required
+- Add a suitable label that explains what the checkbox is for rather than just using the default field name
+- Add a span "Read the waiver here" that opens a modal (hidden by default) with the content of the liabiliy waiver. 
+- Add JavaScript to handle interactions between the user and the modal, trap focus in the modal when open, and make it accesible to keyboard users as well.
 
 #### Opportunities arising from User Stories
 
-#### Implementation
-...
-
+| Opportunity | Importance | Viability/Feasibility |
+| :---------- | :--------- | :------------- |
+| Provide users the ability to access the website on any device | 5 | 5 |
+| Provide users the ability to access the general, informative part of the application without having to log in or register | 5 | 5 |
+| Provide users the ability to create an account | 5 | 5 |
+| Provide users the ability to view their profile when logged in | 5 | 5 |
+| Provide users the ability to update their profile when logged in | 5  | 5 |
+| Provide users the ability to delete data from their profile when logged in | 5 | 5 |
+| Provide users the ability to book a class when logged in | 5 | 5 |
+| Provide users the ability to view their upcoming booked classes when logged in | 5 | 5 |
+| Provide users the ability to update their bookings | 5 | 5 |
+| Provide users the ability to cancel their bookings | 5 | 5 |
+| Provide users the ability to view the studio's liability waiver when booking a class | 4 | 4 |
+| Provide users the ability to view a teacher's bio for each group class | 3 | 4 |
 
 ### The Skeleton Plane
 
@@ -199,15 +396,15 @@ If the user has no upcoming classes booked, the page shows a button with a call 
 __Wireframes for mobile devices__
 Wireframes were also produced for each major page for mobile devices since the intention was to make the site fully responsive so that regardless of the user's device size, it will display accordingly. These wireframes were created before the ones for large screens (because of the mobile-first approach to design) and therefore depict an earlier version of the project, which evolved with time as the development process was progressing.
 
-See the mobile wireframes bellow:
+See the mobile wireframes below:
 
 | Homepage | Schedule page | Schedule - class list |
 | :------------------- | :--------------- | :------------- |
 | ![Homepage mobile wireframe](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/wireframes/wireframe_homepage.png) | ![Schedule page mobile wireframe](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/wireframes/wireframe_schedule_page.png) | ![Schedule page continuation - class list mobile wireframe](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/wireframes/wireframe_schedule_list.png) |
 
-| Schedule detail | User profile page |
-| :------------------- | :--------------- |
-| ![Class detail mobile wireframe](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/wireframes/wireframe_class_detail.png) | ![User profile mobile wireframe](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/wireframes/wireframe_user_account.png) |
+| Schedule detail | User profile page | |
+| :------------------- | :--------------- | :---|
+| ![Class detail mobile wireframe](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/wireframes/wireframe_class_detail.png) | ![User profile mobile wireframe](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/wireframes/wireframe_user_account.png) |   |
 
 
 REMOVE OR KEEP INSTEAD OF THE TABLES???
@@ -252,12 +449,12 @@ Elements that are links or made to look like links use the eye-catching "office-
 
 The following table created with [Contrast Grid](https://contrast-grid.eightshapes.com/) shows the color palette utilised in this project.
 
-![Contrast Grid color palette]()
+![Contrast Grid color palette](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/screenshots/contrast_grid.png)
 
 #### Typography
 Two types of Google fonts have been used in this project.
 For the brand name shown in the top left corner of each page (navbar), "Namaste", the Nova Mono font, was used to provide an eye-catching design. Since this is a monospace font, monospace was also declared as a fallback font-family in style.css.
-For everything else the Lato font-family was used, in various weights ranging from 400 to 800. This is a sans-serif font, eaily readable, light and simple, which matches the page's overall feel of being easy to navigate, minimalistic, and accessible for anyone. 
+For everything else the Lato font-family was used, in various weights ranging from 400 to 800. This is a sans-serif font, easily readable, light and simple, which matches the website's overall feel of being easy to navigate, minimalistic, and accessible for anyone. 
 
 #### Images
 Images of yoga classes used on this website are free-licence images from Pexels. Most of them come from the same suite of images by Yan Krukau, providing a coherent feel and look, and conveying to the end-user the real character of the yoga studio, giving them insights into the environment and the community of yoga practicioners. The hero image was also the starting point for creating the color palette for the website, with the walnut brown found directly in the image by a color picker tool.
@@ -331,7 +528,7 @@ Shown only for logged in users, when selected, it takes the user to the "Book cl
 __User form__
 Pre-filled and uneditable. Contains the following details: user's first name, last name, and email address.
 
-![Book class page]()
+![Book class page](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/screenshots/book_class_page.png)
 
 __Booking form__
 Contains a dropdown with available dates - the next 3 available occurrences of the weekly group class to choose from.
@@ -349,7 +546,7 @@ Should the chosen class be already fully booked, the following message is shown:
 
 In the event when the user tries to book the exact same class that they have already booked (same group class on the same date and time), they are informed that they have already booked a place in this class and prevented from making a duplicate booking (each user is allowed to book a class only for themselves, so they receive only one spot in a specific class).
 
-![Booking failed - duplicate exists]()
+![Booking failed - duplicate exists](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/screenshots/book_class_already_booked.png)
 
 __"Read the waiver here" link and modal__
 Under the checkbox, there is a span "Read the waiver here" that opens a modal with the studio's liability waiver. In the modal, there is also a "close" button - if you click the button (or anywhere outside of the modal), the modal will be closed. To ensure that the page is fully accessible, JavaScript was used to handle the modal functionality, including trapping focus in the modal when it is open.
@@ -360,69 +557,70 @@ Under the checkbox, there is a span "Read the waiver here" that opens a modal wi
 
 This page shows the following information: a profile image (either one uploaded by the user, or the default image), the user's full name and email address, and then their additional information like date of birth and chronic/recent injuries. There is also a button "Edit profile" that brings the user to the Edit profile page.
 
-![My profile page]()
+![My profile page](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/screenshots/my_profile_page.png)
 
 ### Edit profile page
 
-![Edit profile page]()
+![Edit profile page](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/screenshots/edit_profile_page.png)
 
 This page contains a profile form where the user can update the following details: their date of birth, their information about injuries, and their profile image. All these elements are optional and can be left blank (a default picture is used as a profile image in this case). At the bottom of the form, there are 2 buttons: "Save profile" and "Discard changes". The latter simply redirects the user back to their profile page. The "Save profile" button saves the changes, redirects the user to the profile page, and shows the following message:
 
-![Edit profile - success]()
+![Edit profile - success](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/screenshots/edit_profile_success.png)
 
 ### My bookings page
 
 The user can see here a list of their booked classes, but only the ones that are upcoming in the future to ensure that no changes are made to the classes that are in the past or taking place in that exact moment. Each class is shown as a card with 2 buttons - Edit booking, and Cancel booking.
 
-![My bookings page]()
+![My bookings page](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/screenshots/my_bookings.png)
 
 If the user has no upcoming bookings, the page informs them about that and a button with the call to action "Book your next class" is shown that redirects the user to the Schedule page so that they can choose and book their next class easily.
 
-![My bookings page with no upcoming classes]()
+![My bookings page with no upcoming classes](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/screenshots/my_bookings_page_empty.png)
 
 ### Edit booking page
 
 The user can change here the date of their class. A dropdown like the one on the "Book class" page is shown, with the next 3 dates of the weekly class. There are also 2 buttons: "Save changes" which leads to the outcomes described below, and "Discard changes" which simply redirects the user to their "My bookings" page.
 
-![Edit booking page]()
+![Edit booking page](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/screenshots/edit_booking_page.png)
 
 If the user could be added to the specific class on the new date they chose, a success message is shown and they are redirected to the "My bookings" page.
 
-![Edit booking - success]()
+![Edit booking - success](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/screenshots/edit_booking_success.png)
 
 If the specific class on the new date chosen by the user is already fully booked, they are informed that their booking could not be updated for that reason.
 
-![Edit booking - class already full]()
+![Edit booking - class already full](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/screenshots/edit_booking_fail_full.png)
 
 If the specific class on the new date chosen by the user is already one of that user's booked classes, they are informed about that and prevented from creating a duplicate booking.
 
-![Edit booking - class already booked]()
+![Edit booking - class already booked](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/screenshots/edit_booking_duplicate_found.png)
 
 ### Cancel booking page
 
 The user can cancel here their upcoming class. The page re-confirms that the user wants to cancel their booking. There are 2 buttons, similarly to the "Edit booking" page: "Yes, cancel my booking" and "No, I changed my mind". 
 
-![Cancel booking page]()
+![Cancel booking page](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/screenshots/cancel_booking_page.png)
 
 If the latter is seleted, the user is simply redirected back to their "My bookings" page. If the user does go ahead with the cancellation, they are shown a success message and are redirected to the "My bookings" page.
 
-![Cancel booking - success]()
+![Cancel booking - success](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/screenshots/cancel_booking_success.png)
 
 ### Sign up page
 The Sign Up option in the navigation menu is shown when user is not logged in. This page presents a sign up form, allowing the user to create an account and therefore access further features.
 
-![Sign up page]()
+![Sign up page](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/screenshots/sign_up_page.png)
 
 ### Log in page
 The Log In option in the navigation menu is shown when user is not logged in. This page presents a log in  form, allowing the user to log into their account and access further features.
 
-![Log in page]()
+![Log in page](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/screenshots/log_in_page.png)
+![Log in success](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/screenshots/log_in_success.png)
 
 ### Log out page
 The Log Out option in the navigation menu is shown when user is logged in. This page asks for a log out confirmation, allowing the user to log out of their account and keep their personal data safe.
 
-![Log out page]()
-
+![Log out page](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/screenshots/log_out_page.png)
+![Log out success](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/screenshots/log_out_success.png)
 
 ## Future Enhancements
 
