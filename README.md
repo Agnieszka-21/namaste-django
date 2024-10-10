@@ -238,13 +238,29 @@ You can see the models and the relationships between them in the following datab
 ### The Surface Plane
 
 #### Design
-...
+The design of the website is simple, minimalistic, and coherent. It is supposed to convey ease, simplicity, and make the end-user feel both grounded and welcome.
+
+The color palatte is based on earthy tones and neutral tones.
+
+The main color - walnut brown - has been used throughout the page in the navbar and footer, and also on hover/select for elements like buttons and links to emphasise their active state. It is a neutral shade often associated with earth, nature, and grounding, which can convey the message of the studio: we are here to help you feel calm, relaxed, and grounded.
+
+The main background color of the page is an off-white color #f7f7f7. Since most of the text is pure black (#000), it provides a good contrast while being gentler on the eyes and matching the natural theme of the color palette.
+
+There is also pure white color (#fff) used as background for cards on the Schedule page and My bookings page, so that the cards are clearly discernible from the off-white background but without creating too much contrast, which could result in distraction and overwhelm.
+
+Elements that are links or made to look like links use the eye-catching "office-green" color (#008000), and the font-weight is bold to ensure plenty of contrast with the background since these are elements that the end-user will interacti with.
+
+The following table created with [Contrast Grid](https://contrast-grid.eightshapes.com/) shows the color palette utilised in this project.
+
+![Contrast Grid color palette]()
 
 #### Typography
-...
+Two types of Google fonts have been used in this project.
+For the brand name shown in the top left corner of each page (navbar), "Namaste", the Nova Mono font, was used to provide an eye-catching design. Since this is a monospace font, monospace was also declared as a fallback font-family in style.css.
+For everything else the Lato font-family was used, in various weights ranging from 400 to 800. This is a sans-serif font, eaily readable, light and simple, which matches the page's overall feel of being easy to navigate, minimalistic, and accessible for anyone. 
 
 #### Images
-...
+Images of yoga classes used on this website are free-licence images from Pexels. Most of them come from the same suite of images by Yan Krukau, providing a coherent feel and look, and conveying to the end-user the real character of the yoga studio, giving them insights into the environment and the community of yoga practicioners. The hero image was also the starting point for creating the color palette for the website, with the walnut brown found directly in the image by a color picker tool.
 
 
 ## Features
@@ -254,48 +270,48 @@ You can see the models and the relationships between them in the following datab
 __Navigation bar__
 The navigation bar is shown in 2 versions, depending on whether the user is logged in or not. For a user who is not logged in, it lists Home, Schedule, Sign up, and Log in.
 
-![Navbar - user not logged in]()
+![Navbar - user not logged in](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/screenshots/navbar_not_logged_in.png)
 
 For a logged in user, it shows the following options: Home, Schedule, My profile, My bookings, and Log out.
 
-![Navbar - user logged in]()
+![Navbar - user logged in](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/screenshots/navbar_logged_in.png)
 
 __Hero section__
 The hero section consists of a responsive full-width background image, a black semi-transparent overlay for optimal contrast, and white text "Welcome to the friendliest yoga studio in Dublin" followed by a button with the call to action "See our class schedule", which redirects the user to the Schedule page. This way the purpose of the page is clear right away - to invite user to check out the offer of yoga classes so they can book/attend the ones that they find interesting.
 
-![Hero section]()
+![Hero section](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/screenshots/home_hero.png)
 
 __Embedded Google maps__
 Underneath the hero section, the user can find general information about the studio, including an embedded Google map with a pin showing the exact location of the studio.
 
-![Google maps, address, and opening hours]()
+![Google maps, address, and opening hours](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/screenshots/home_map_info.png)
 
 __Address and opening hours__
-Next to the map (or below on tablet and phone screens), there is information on the studio's address and its opening hours - easily accessible to anyone visiting the page.
+Next to the map (or below on tablet and phone screens), there is information on the studio's address and its opening hours - easily accessible to anyone visiting the page. See the previous screenshot.
 
 __Footer with social icons__
 The footer includes links to social media pages of the studio, which open in a new tab each. It also has a copyright section at the very bottom.
 
-![Footer]()
+![Footer](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/screenshots/footer.png)
 
 ### Schedule page
 
 __Banner image and call-to-action heading__
 An image depicting a group of people practising yoga in a class, and below the heading "Find the perfect class for you!".
 
-![Schedule page banner and heading]()
+![Schedule page banner and heading](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/screenshots/schedule_banner_heading.png)
 
 __List of all weekly classes (cards)__
 The classes are listed grouped by weekday, starting with Monday, and ordered according to their start time. A calendar icon from Font Awesome and a short name of each weekday clearly divide the list visually for enhanced user experience and clarity. Each class is shown as a card which presents the most important details, and the class title is a link that leads directly to the detail page for the class. Class titles are also tabbable, ensuring that the entire website is accessible for keyboard users.
 
-![Schedule list]()
+![Schedule list](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/screenshots/schedule_list.png)
 
 ### Schedule detail pages
 
 __Image__
 For added visual interest, there is an image of a yoga class. The images differ depending on the style of yoga taught in the class to give the user an idea of what is done in the class or who it is for. The images can be uploaded to Cloudinary through the admin panel when creating/updating a group class.
 
-![Schedule detail page - user not logged in]()
+![Schedule detail page - user not logged in](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/screenshots/schedule_det_not_logged_in.png)
 
 __Class details__
 Title, instructor, description, weekday, start time, and duration are all shown next to the class image. They are visually coherent yet separate from one another to ensure that the user finds the information they need the most with ease and don't feel overwhelmed by details (see the previous screenshot).
@@ -303,12 +319,12 @@ Title, instructor, description, weekday, start time, and duration are all shown 
 __Show bio link and modal__
 Next to the instructor's name, there is a "Show bio" span that can be selected (by a mouseclick or keyboard) to open a modal that houses a short bio of the instructor. In the modal, there is also a "close" button - if you click the button (or anywhere outside of the modal), the modal will be closed. To ensure that the page is fully accessible, JavaScript was used to handle the modal functionality, including trapping focus in the modal when it is open.
 
-![Teacher bio modal]()
+![Teacher bio modal](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/screenshots/teacher_bio_modal.png)
 
 __Book now button__
 Shown only for logged in users, when selected, it takes the user to the "Book class" page. For users who are not logged in or do not have an account yet, there is a link to the log in page instead.
 
-![Schedule detail page - user logged in]()
+![Schedule detail page - user logged in](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/screenshots/schedule_det_logged_in.png)
 
 ### Book class page
 
@@ -321,15 +337,15 @@ __Booking form__
 Contains a dropdown with available dates - the next 3 available occurrences of the weekly group class to choose from.
 It also has a checkbox to "sign" the studio's liability waiver, which has to be checked so that the class can be booked.
 
-![Waiver not signed]()
+![Waiver not signed](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/screenshots/waiver_signed_required.png)
 
 If the booking is successful, the user is redirected to the Schedule page (to encourage the user to check out other classes) and shown a success message.
 
-![Booking successful]()
+![Booking successful](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/screenshots/booking_success.png)
 
 Should the chosen class be already fully booked, the following message is shown:
 
-![Booking failed - class already full]()
+![Booking failed - class already full](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/screenshots/book_class_fail_full.png)
 
 In the event when the user tries to book the exact same class that they have already booked (same group class on the same date and time), they are informed that they have already booked a place in this class and prevented from making a duplicate booking (each user is allowed to book a class only for themselves, so they receive only one spot in a specific class).
 
@@ -338,7 +354,7 @@ In the event when the user tries to book the exact same class that they have alr
 __"Read the waiver here" link and modal__
 Under the checkbox, there is a span "Read the waiver here" that opens a modal with the studio's liability waiver. In the modal, there is also a "close" button - if you click the button (or anywhere outside of the modal), the modal will be closed. To ensure that the page is fully accessible, JavaScript was used to handle the modal functionality, including trapping focus in the modal when it is open.
 
-![Waiver modal]()
+![Waiver modal](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/screenshots/waiver_modal.png)
 
 ### My profile page
 
@@ -460,27 +476,27 @@ While testing every single functionality as I was creating and refining it was e
 
 __HTML__
 The [W3C Markup Validation Service](https://validator.w3.org/) was used to check any html files containing custom code. All files are passed the validation test without errors - you can see relevant screenshots below:
-- [home page]()
-- [schedule page]()
-- [schedule detail page]()
-- [signup page]()
-- [login page]()
-- [logout page]()
-- [profile page]()
-- [edit profile page]()
-- [my bookings page]()
-- [edit booking page]()
-- [cancel booking page]()
+- [home page](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/validators/html_home.png)
+- [schedule page](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/validators/html_schedule.png)
+- [schedule detail page](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/validators/html_schedule_detail.png)
+- [signup page](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/validators/html_signup.png)
+- [login page](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/validators/html_login.png)
+- [logout page](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/validators/html_logout.png)
+- [profile page](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/validators/html_profile.png)
+- [edit profile page](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/validators/html_edit_profile.png)
+- [my bookings page](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/validators/html_my_bookings.png)
+- [edit booking page](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/validators/html_edit_booking.png)
+- [cancel booking page](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/validators/html_cancel_booking.png)
 
 __CSS__
 The style.css file containing custom styling for the application has been checked in the [W3C CSS Validation Service Jigsaw](https://jigsaw.w3.org/css-validator/) and has no errors - see the screenshot below:
 
-![CSS validator test](LINK!!!!!!!!!)
+![CSS validator test](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/validators/css_no_errors.png)
 
 __JavaScript__
 [JSHint](https://jshint.com/) has been used to validate the two JavaScript files in the application. Both files returned no errors.
-- [waiver.js - validattion result](LINK!!!!!)
-- [bio.js - validation result](LINK!!!!!!)
+- [waiver.js - validattion result](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/validators/js_waiver_validator.png)
+- [bio.js - validation result](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/validators/js_bio_validator.png)
 
 __Python__
 All Python files containing custom code have been run through the [Code Institute's Python linter](https://pep8ci.herokuapp.com/#) in order to ensure that they meet the PEP8 requirements/recommendations. No errors were found - you can find relevenat screenshots in [this folder](LINK!!!!!!!!).
@@ -492,7 +508,7 @@ The deployed website has been tested using both Lighthouse and WebaimWave in ord
 
 In order to keep accessibility scores in the optimal range, I ensured to make the website fully-operational for keyboard users, including trapping focus in each modal while it is open (waiver.js and bio.js files) and adding tabindex to card titles on the Schedule page.
 
-You can find screenshots with relevant results [here](LINK!!!).
+You can find screenshots with relevant results [here](https://github.com/Agnieszka-21/namaste-django/tree/main/assets/lighthouse_wave).
 
 
 ### Notable Bugs
