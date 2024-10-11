@@ -39,6 +39,8 @@ class ClientProfileForm(forms.ModelForm):
             'injuries': 'Recent or chronic injuries',
             'profile_pic': 'Profile image'
         }
+
     def __init__(self, *args, **kwargs):
         super(ClientProfileForm, self).__init__(*args, **kwargs)
-        self.fields['date_of_birth'].widget = forms.DateInput(attrs={'placeholder': 'YYYY-MM-DD'})
+        self.fields['date_of_birth'].widget = forms.DateInput(
+            attrs={'placeholder': 'YYYY-MM-DD'})
