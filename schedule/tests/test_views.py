@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta
+from datetime import date, datetime, timedelta
 from dateutil import parser
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
@@ -7,14 +7,16 @@ from django.urls import reverse
 from django.utils.timezone import make_aware
 import uuid
 from ..models import YogaStyle, GroupClass, Booking, SpecificGroupClass
+from django.contrib.messages import get_messages
 
 
-class ScheduleViewTest(SimpleTestCase):
+class ScheduleViewTest(TestCase):
 
     def test_view_uses_correct_template(self):
         """
         Tests whether the correct template is used
         """
+        response = self.client.get('/schedule/')
         self.assertTemplateUsed('schedule/schedule.html')
 
 
@@ -70,11 +72,19 @@ class GroupClassListViewTest(TestCase):
 
 
 class BookingListViewTest(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        """
+        Creates a user to test the url
+        """
+        cls.user = User.objects.create(username='testuser1')
 
     def test_view_uses_correct_template(self):
         """
         Tests whether the correct template is used
         """
+        response = self.client.get(
+            reverse('my_bookings', kwargs={'id': self.user.id}))
         self.assertTemplateUsed('schedule/personal_bookings.html')
 
 
@@ -313,3 +323,48 @@ class RemoveParticipantViewTest(TestCase):
         self.assertTrue(test_user2 in orig_spec_class.participants_names.all())
         self.assertFalse(
             test_user1 in orig_spec_class.participants_names.all())
+
+
+class BookClassViewTest(TestCase):
+    def setUp(self):
+        """
+        Sets up data that can be modified
+        """
+        test_user = User.objects.create_user(
+            username='testuser1', password='1X<ISRUkw+tuK', id=1)
+        test_user.save()
+
+    def test_redirects_if_not_logged_in(self):
+        """
+        Tests whether user is redirected if not logged in
+        """
+        test_user = User.objects.get(username='testuser1')
+        response = self.client.get(reverse(
+            'book_class', kwargs={'id': test_user.id}))
+        self.assertEqual(response.status_code, 302)
+        self.assertTrue(response.url.startswith('/accounts/login/'))
+
+
+class UpdateBookingViewTest(TestCase):
+    def setUp(self):
+        """
+        Sets up data that can be modified
+        """
+        test_user = User.objects.create_user(
+            username='testuser1', password='1X<ISRUkw+tuK', id=1)
+        test_user.save()
+        test_booking = Booking.objects.create(
+            id='97668496-7f8c-44b3-887d-e856c6029bf9')
+
+    def test_redirects_if_not_logged_in(self):
+        """
+        Tests whether user is redirected if not logged in
+        """
+        test_user = User.objects.get(username='testuser1')
+        test_booking = Booking.objects.get(
+            id='97668496-7f8c-44b3-887d-e856c6029bf9')
+        response = self.client.get(reverse(
+            'update_booking', kwargs={
+                'id': test_user.id, 'pk': test_booking.id}))
+        self.assertEqual(response.status_code, 302)
+        self.assertTrue(response.url.startswith('/accounts/login/'))
