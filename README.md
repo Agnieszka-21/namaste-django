@@ -16,8 +16,92 @@ Please note: To open any links in this document in a new browser tab, please pre
 
 ## Table of Contents
 
-...
-Add table of contents
+## Table of Contents
+
+- [Namaste Yoga Studio](#namaste-yoga-studio)
+  - [Introduction](#introduction)
+  - [Table of Contents](#table-of-contents)
+  - [UX](#ux)
+    - [The Strategy Plane](#the-strategy-plane)
+      - [The Site's Ideal User](#the-site's-ideal-user)
+      - [Site Goals](#site-goals)
+      - [Iterations (GitHub Milestones)](#iterations-(github-milestones))
+      - [Epics](#epics)
+      - [User Stories](#user-stories)
+      - [Story Points](#story-points)
+      - [MoSCoW Prioritization](#moscow-prioritization)
+    - [The Scope Plane](#the-scope-plane)
+    - [The Structure Plane](#the-structure-plane)
+      - [User Story [#2: View class schedule](https://github.com/Agnieszka-21/namaste-django/issues/2)](#user-story-[#2:-view-class-schedule](https://github.com/agnieszka-21/namaste-django/issues/2))
+      - [User Story [#3: View a specific class in detail](https://github.com/Agnieszka-21/namaste-django/issues/3)](#user-story-[#3:-view-a-specific-class-in-detail](https://github.com/agnieszka-21/namaste-django/issues/3))
+      - [User Story [#4: View teacher's bio](https://github.com/Agnieszka-21/namaste-django/issues/4)](#user-story-[#4:-view-teacher's-bio](https://github.com/agnieszka-21/namaste-django/issues/4))
+      - [User Story [#30: View the studio's location(s)](https://github.com/Agnieszka-21/namaste-django/issues/30)](#user-story-[#30:-view-the-studio's-location(s)](https://github.com/agnieszka-21/namaste-django/issues/30))
+      - [User Story [#42: View the studio's opening hours](https://github.com/Agnieszka-21/namaste-django/issues/42)](#user-story-[#42:-view-the-studio's-opening-hours](https://github.com/agnieszka-21/namaste-django/issues/42))
+      - [User Story [#43: View the studio's social media accounts](https://github.com/Agnieszka-21/namaste-django/issues/43)](#user-story-[#43:-view-the-studio's-social-media-accounts](https://github.com/agnieszka-21/namaste-django/issues/43))
+      - [User Story [#5: Create a User (Client) account](https://github.com/Agnieszka-21/namaste-django/issues/5)](#user-story-[#5:-create-a-user-(client)-account](https://github.com/agnieszka-21/namaste-django/issues/5))
+      - [User Story [#6: Log in to the User account](https://github.com/Agnieszka-21/namaste-django/issues/6)](#user-story-[#6:-log-in-to-the-user-account](https://github.com/agnieszka-21/namaste-django/issues/6))
+      - [User Story [#7: Log out of the User account](https://github.com/Agnieszka-21/namaste-django/issues/7)](#user-story-[#7:-log-out-of-the-user-account](https://github.com/agnieszka-21/namaste-django/issues/7))
+      - [User Story [#8: Manage the User (Client) account](https://github.com/Agnieszka-21/namaste-django/issues/8)](#user-story-[#8:-manage-the-user-(client)-account](https://github.com/agnieszka-21/namaste-django/issues/8))
+      - [User Story [#10: Book a class](https://github.com/Agnieszka-21/namaste-django/issues/10)](#user-story-[#10:-book-a-class](https://github.com/agnieszka-21/namaste-django/issues/10))
+      - [User Story [#33: View personal bookings](https://github.com/Agnieszka-21/namaste-django/issues/33)](#user-story-[#33:-view-personal-bookings](https://github.com/agnieszka-21/namaste-django/issues/33))
+      - [User Story [#11: Cancel a booked class](https://github.com/Agnieszka-21/namaste-django/issues/11)](#user-story-[#11:-cancel-a-booked-class](https://github.com/agnieszka-21/namaste-django/issues/11))
+      - [User Story [#13: Add a profile photo in My Account](https://github.com/Agnieszka-21/namaste-django/issues/13)](#user-story-[#13:-add-a-profile-photo-in-my-account](https://github.com/agnieszka-21/namaste-django/issues/13))
+      - [User Story [#28: Class cannot be booked because it is already full](https://github.com/Agnieszka-21/namaste-django/issues/28)](#user-story-[#28:-class-cannot-be-booked-because-it-is-already-full](https://github.com/agnieszka-21/namaste-django/issues/28))
+      - [User Story [#45: Edit a future booking (change date)](https://github.com/Agnieszka-21/namaste-django/issues/45)](#user-story-[#45:-edit-a-future-booking-(change-date)](https://github.com/agnieszka-21/namaste-django/issues/45))
+      - [User Story [#22: Ensure each client signs a waiver](https://github.com/Agnieszka-21/namaste-django/issues/22)](#user-story-[#22:-ensure-each-client-signs-a-waiver](https://github.com/agnieszka-21/namaste-django/issues/22))
+      - [Opportunities arising from User Stories](#opportunities-arising-from-user-stories)
+    - [The Skeleton Plane](#the-skeleton-plane)
+      - [Wireframe mock-ups](#wireframe-mock-ups)
+      - [Database schema](#database-schema)
+    - [The Surface Plane](#the-surface-plane)
+      - [Design](#design)
+      - [Typography](#typography)
+      - [Images](#images)
+  - [Features](#features)
+    - [Homepage](#homepage)
+    - [Schedule page](#schedule-page)
+    - [Schedule detail pages](#schedule-detail-pages)
+    - [Book class page](#book-class-page)
+    - [My profile page](#my-profile-page)
+    - [Edit profile page](#edit-profile-page)
+    - [My bookings page](#my-bookings-page)
+    - [Edit booking page](#edit-booking-page)
+    - [Cancel booking page](#cancel-booking-page)
+    - [Sign up page](#sign-up-page)
+    - [Log in page](#log-in-page)
+    - [Log out page](#log-out-page)
+  - [Future Enhancements](#future-enhancements)
+  - [Testing](#testing)
+    - [Testing Overview](#testing-overview)
+    - [Manual Testing](#manual-testing)
+    - [Validator Testing](#validator-testing)
+    - [Lighthouse and Webaim Wave Testing](#lighthouse-and-webaim-wave-testing)
+    - [Responsiveness (tested with Chrome Dev Tools)](#responsiveness-(tested-with-chrome-dev-tools))
+    - [Browser compatibility testing](#browser-compatibility-testing)
+    - [Automated tests](#automated-tests)
+    - [Notable Bugs](#notable-bugs)
+  - [Technologies Used](#technologies-used)
+    - [Django](#django)
+    - [Django AllAuth](#django-allauth)
+    - [django-eventtools](#django-eventtools)
+    - [django-render-partial](#django-render-partial)
+    - [DTL/Jinja](#dtl/jinja)
+    - [Crispy forms](#crispy-forms)
+    - [Heroku](#heroku)
+    - [PostgreSQL](#postgresql)
+    - [JavaScript](#javascript)
+    - [Bootstrap 5](#bootstrap-5)
+    - [Font Awesome](#font-awesome)
+    - [CSS](#css)
+    - [HTML](#html)
+    - [Packages Used](#packages-used)
+    - [Resources Used](#resources-used)
+  - [Deployment](#deployment)
+  - [Cloning and forking the repository](#cloning-and-forking-the-repository)
+  - [Credits](#credits)
+    - [Code](#code)
+    - [Content](#content)
+  - [Acknowledgements](#acknowledgements)
 
 
 ## UX
@@ -86,8 +170,8 @@ Here are the User Stories resulting from the 9 epics
 - [#6 Log in to the User account](https://github.com/Agnieszka-21/namaste-django/issues/6)
 - [#7 Log out of the User account](https://github.com/Agnieszka-21/namaste-django/issues/7)
 - [#8 Manage the User (Client) account](https://github.com/Agnieszka-21/namaste-django/issues/8)
-- [#9 Delete a User (Client) account](https://github.com/Agnieszka-21/namaste-django/issues/9) - see Future Enhancements
-- [#41 Sign in to the User account with a social media login](https://github.com/Agnieszka-21/namaste-django/issues/41) - see Future Enhancements
+- [#9 Delete a User (Client) account](https://github.com/Agnieszka-21/namaste-django/issues/9) - see [Future Enhancements](#future-enhancements)
+- [#41 Sign in to the User account with a social media login](https://github.com/Agnieszka-21/namaste-django/issues/41) - see [Future Enhancements](#future-enhancements)
 
 4. Create and Manage a Class Schedule
 - [#23 Create a class schedule](https://github.com/Agnieszka-21/namaste-django/issues/23)
@@ -97,7 +181,7 @@ Here are the User Stories resulting from the 9 epics
 5. Book Classes, View and Manage Bookings
 - [#10 Book a class](https://github.com/Agnieszka-21/namaste-django/issues/10)
 - [#11 Cancel a booked class](https://github.com/Agnieszka-21/namaste-django/issues/11)
-- [#12 Join a waitlist](https://github.com/Agnieszka-21/namaste-django/issues/12) - see Future Enhancements
+- [#12 Join a waitlist](https://github.com/Agnieszka-21/namaste-django/issues/12) - see [Future Enhancements](#future-enhancements)
 - [#13 Add a profile photo in My Account](https://github.com/Agnieszka-21/namaste-django/issues/13)
 - [#28 Class cannot be booked because it is already full](https://github.com/Agnieszka-21/namaste-django/issues/28)
 - [#33 View personal bookings](https://github.com/Agnieszka-21/namaste-django/issues/33)
@@ -105,11 +189,11 @@ Here are the User Stories resulting from the 9 epics
 
 6. Inform, Ask, and Listen to the Clients
 - [#22 Ensure each client signs a waiver](https://github.com/Agnieszka-21/namaste-django/issues/22)
-- [#40 Ask client for a review of a class they attended](https://github.com/Agnieszka-21/namaste-django/issues/40) - see Future Enhancements
+- [#40 Ask client for a review of a class they attended](https://github.com/Agnieszka-21/namaste-django/issues/40) - [Future Enhancements](#future-enhancements)
 
-7. Create, Manage, and Delete Staff Accounts - see Future Enhancements
+7. Create, Manage, and Delete Staff Accounts - [Future Enhancements](#future-enhancements)
 
-8. Use a Staff Account to Teach with Ease and Clarity - see Future Enhancements
+8. Use a Staff Account to Teach with Ease and Clarity - [Future Enhancements](#future-enhancements)
 
 9. Ensure the Code is Ready for Production
 - [#46 Create automated tests to ensure the code is working as expected](https://github.com/Agnieszka-21/namaste-django/issues/46)
@@ -120,7 +204,7 @@ Here are the User Stories resulting from the 9 epics
 #### Story Points
 Each User Story was given a label that specifies the number of story points in order to measure/estimate in a predictive way how much time is needed for completing the User Stories as compared to one another. The simplest User Stories were given just 1 story point, the ones that needed a little more attention 2 story points, then 4 for the ones that required even more attention, and 8 for the most complex features and functionalities.
 
-Altogether, user stories completed in this project take up 74 story points. The user stories that have not been handled here (potential future features) have a total of 48 points, leading to 122 points being 100% of all points and 74 points (completed user stories) being 60% as recommended.
+Altogether, user stories completed in this project take up 74 story points. The user stories that have not been handled here (potential future features) have a total of 50 points, leading to 124 points being 100% of all points and 74 points (completed user stories) being 59%, so below 60% as recommended.
 
 #### MoSCoW Prioritization
 
@@ -659,7 +743,7 @@ While testing every single functionality as I was creating and refining it was e
 
 
 | Functionality being tested | Expected Outcome | Actual Outcome | Result (pass/fail) |
-| :------------------- | :--------------- | :------------- | :-------------------- |
+| :------------------------- | :--------------- | :------------- | :-------------------- |
 | Logo "Namaste" | takes the user to the homepage when selected on any page | as expected | pass |
 | Navbar link "Sign up" | takes the user to the Sign up page | as expected | pass |
 | Navbar link "Log in" | takes the user to the Log in page | as expected | pass |
