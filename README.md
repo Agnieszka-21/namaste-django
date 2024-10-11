@@ -235,7 +235,7 @@ __Features planned include:__
 
 #### View class schedule
 
-[User story #2: ](https://github.com/Agnieszka-21/namaste-django/issues/2)
+[User story #2:  ](https://github.com/Agnieszka-21/namaste-django/issues/2)
 As a User (Client), I would like to view the studio's class schedule, so that I can check if I am interested in and able to attend any classes offered.
 
 __Acceptance Criteria__
@@ -250,7 +250,7 @@ __Implementation__
 
 #### View a specific class in detail
 
-[User story #3: ](https://github.com/Agnieszka-21/namaste-django/issues/3)
+[User story #3:  ](https://github.com/Agnieszka-21/namaste-django/issues/3)
 As a User (Client), I would like to view each class in the schedule in more detail, so that I can make an informed decision regarding which class to choose
 
 __Acceptance Criteria__
@@ -264,7 +264,7 @@ __Implementation__
 
 #### View teacher's bio
 
-[User story #4: ](https://github.com/Agnieszka-21/namaste-django/issues/4)
+[User story #4:  ](https://github.com/Agnieszka-21/namaste-django/issues/4)
 As a User (Client), I would like to read each teacher's short bio, so that I can choose a class and an instructor that is the best fit for me.
 
 __Acceptance Criteria__
@@ -279,7 +279,7 @@ __Implementation__
 
 #### View the studio's location
 
-[User story #30: ](https://github.com/Agnieszka-21/namaste-django/issues/30)
+[User story #30:  ](https://github.com/Agnieszka-21/namaste-django/issues/30)
 As a User (Client), I would like to be able to see where the studio is located, so that I can decide whether I am interested in the services it offers.
 
 __Acceptance Criteria__
@@ -293,7 +293,7 @@ __Implementation__
 
 #### View the studio's opening hours 
 
-[User story #42: ](https://github.com/Agnieszka-21/namaste-django/issues/42)
+[User story #42:  ](https://github.com/Agnieszka-21/namaste-django/issues/42)
 As a User (Client), I would like to check the yoga studio's opening hours, so that I have the basic information I need to decide whether I am interested in their offer.
 
 __Acceptance Criteria__
@@ -306,7 +306,7 @@ __Implementation__
 
 #### View the studio's social media accounts
 
-[User story #43: ](https://github.com/Agnieszka-21/namaste-django/issues/43)
+[User story #43:  ](https://github.com/Agnieszka-21/namaste-django/issues/43)
 As a User (Client), I would like to check out the studio's social media accounts, so that I can find more information regarding their culture, community, events etc.
 
 __Acceptance Criteria__
@@ -320,7 +320,7 @@ __Implementation__
 
 #### Create a User (Client) account
 
-[User story #5: ](https://github.com/Agnieszka-21/namaste-django/issues/5)
+[User story #5:  ](https://github.com/Agnieszka-21/namaste-django/issues/5)
 As a User (Client), I would like to create an account, so that I can book classes online.
 
 __Acceptance Criteria__
@@ -336,7 +336,7 @@ __Implementation__
 
 #### Log in to the User account
 
-[User story #6: ](https://github.com/Agnieszka-21/namaste-django/issues/6)
+[User story #6:  ](https://github.com/Agnieszka-21/namaste-django/issues/6)
 As a User (Client), I would like to be able to log in to my account, so that I can access the advantages of having an account.
 
 __Acceptance Criteria__
@@ -355,7 +355,7 @@ __Implementation__
 
 #### Log out of the User account
 
-[User story #7: ](https://github.com/Agnieszka-21/namaste-django/issues/7)
+[User story #7:  ](https://github.com/Agnieszka-21/namaste-django/issues/7)
 As a User (Client), I would like to be able to log out of my account, so that I can make sure my account details are safe.
 
 __Acceptance Criteria__
@@ -369,7 +369,7 @@ __Implementation__
 
 #### Manage the User (Client) account
 
-[User story #8: ](https://github.com/Agnieszka-21/namaste-django/issues/8)
+[User story #8:  ](https://github.com/Agnieszka-21/namaste-django/issues/8)
 As a User (Client), I would like to be able to add a profile image and edit my account details, so that they stay up to date and I am in charge of my profile.
 
 __Acceptance Criteria__
@@ -387,7 +387,7 @@ __Implementation__
 
 #### Book a class
 
-[User story #10: ](https://github.com/Agnieszka-21/namaste-django/issues/10)
+[User story #10:  ](https://github.com/Agnieszka-21/namaste-django/issues/10)
 As a User (Client), I would like to book a class, so that I can attend it.
 
 __Acceptance Criteria__
@@ -406,7 +406,7 @@ __Implementation__
 
 #### View personal bookings
 
-[User story #33: ](https://github.com/Agnieszka-21/namaste-django/issues/33)
+[User story #33:  ](https://github.com/Agnieszka-21/namaste-django/issues/33)
 As a User (Client), I would like to view an up-to-date list of all classes I have booked, so that I can see my upcoming classes, making it easy for me to be in charge of my schedule.
 
 __Acceptance Criteria__
@@ -419,7 +419,7 @@ __Implementation__
 
 #### Cancel a booked class
 
-[User story #11: ](https://github.com/Agnieszka-21/namaste-django/issues/11)
+[User story #11:  ](https://github.com/Agnieszka-21/namaste-django/issues/11)
 As a User (Client), I would like to be able to cancel a class I booked, so that I can avoid blocking a place that someone else could use.
 
 __Acceptance Criteria__
@@ -439,7 +439,7 @@ __Implementation__
 
 #### Add a profile photo in My Account
 
-[User story #13: ](https://github.com/Agnieszka-21/namaste-django/issues/13)
+[User story #13:  ](https://github.com/Agnieszka-21/namaste-django/issues/13)
 As a User (Client), I would like to be able to add my profile picture, so that my user account feels personalized and truly mine.
 
 __Acceptance Criteria__
@@ -453,7 +453,7 @@ __Implementation__
 
 #### Class cannot be booked because it is already full
 
-[User story #28: ](https://github.com/Agnieszka-21/namaste-django/issues/28)
+[User story #28:  ](https://github.com/Agnieszka-21/namaste-django/issues/28)
 As a User (Client), I would like to be able to know when a class is booked out, so that I am not booking a spot in a class that is already full.
 
 __Acceptance Criteria__
@@ -468,7 +468,7 @@ __Implementation__
 
 #### Edit a future booking (change date)
 
-[User story #45: ](https://github.com/Agnieszka-21/namaste-django/issues/45)
+[User story #45:  ](https://github.com/Agnieszka-21/namaste-django/issues/45)
 As a User (Client), I would like to be able to choose a different date for my upcoming booking, so that I can feel in charge of my schedule and have the flexibility I need to change my bookings according to my personal needs.
 
 __Acceptance Criteria__
@@ -488,7 +488,7 @@ __Implementation__
 
 #### Ensure each client signs a waiver
 
-[User story #22: ](https://github.com/Agnieszka-21/namaste-django/issues/22)
+[User story #22:  ](https://github.com/Agnieszka-21/namaste-django/issues/22)
 As an Admin, I would like *to ensure that each client signs a waiver when booking a class, so that I can protect the business and my employees from unforeseen issues.
 
 __Acceptance Criteria__
@@ -1013,10 +1013,80 @@ You can find screenshots with relevant results [here](https://github.com/Agniesz
 
 ### Automated tests
 
-ADD CONTENT HERE!!!!!!!!!!!!!!!!!!!!
+Automated testing was done for both apps - Schedule, and User Profiles. In total, 81 tests were made - 55 tests for the Schedule app, and 26 for the User Profile app. 
 
+__Schedule app testing__
 
-!!!!
+1. test_models.py
+
+26 tests ran successfully, checking the following:
+- field labels, 
+- max_length of CharFields, 
+- default value of a field, 
+- ForeignKey relationship between models, 
+- string representation, 
+- verbose name plural (for the models where it was set explicitly), 
+- and ordering (if set in class Meta).
+
+![Test results](https://github.com/Agnieszka-21/namaste-django/tree/main/assets/automated_tests/test_s_models.png)
+
+2. test_forms.py
+
+10 tests ran successfully, checking:
+- whether specific fields are required, or uneditable, 
+- whether form field labels are shown correctly, 
+- whether a field widget is a checkbox as expected, 
+- and finally also whether a form is valid when specific criteria are met.
+
+![Test results](https://github.com/Agnieszka-21/namaste-django/tree/main/assets/automated_tests/test_s_forms.png)
+
+3. test_views.py
+
+19 tests ran successfully, checking the following:
+- whether views render correct templates,
+- whether views restricted to logged-in users only redirect anyone who is not logged in,
+- whether views can be accessed by their name,
+- whether generic.ListView views actually show all items they should list,
+- whether the url of a view exists at the expected location,
+- whether listed objects are filtered as expected,
+- whether listed objects are shown in the correct order,
+- whether views redirect the user upon a successful interaction (e.g. upon cancellation of a booking),
+- whether views handling the number and list of participants update data as expected.
+
+![Test results](https://github.com/Agnieszka-21/namaste-django/tree/main/assets/automated_tests/test_s_views.png)
+
+__User Profiles__
+
+1. test_models.py
+
+2 tests ran successfully, checking:
+- the maximum length of a CharField, 
+- and the string representation of the Profile model. 
+
+Since the only other model in the User Profiles app is the Django User model, I did not create additional tests here.
+
+![Test results](https://github.com/Agnieszka-21/namaste-django/tree/main/assets/automated_tests/test_up_models.png)
+
+2. test_forms.py
+
+13 tests ran successfully, checking the following criteria:
+- max_length of certain fields,
+- field labels,
+- whether a field is required/not required,
+- the placeholder value in one of the fields (date of birth - shown in the form for optimal user experience).
+
+![Test results](https://github.com/Agnieszka-21/namaste-django/tree/main/assets/automated_tests/test_up_forms.png)
+
+3. test_views.py
+
+11 tests ran successfully, checking the following criteria:
+- whether the url related to a view exists at a desired location,
+- whether the url related to a view can be accessed by its name,
+- whether the correct template is rendered,
+- whether views restricted to logged-in users only redirect anyone who is not logged in,
+- whether a view redirects the user after a successful interaction (e.g. updating a user profile).
+
+![Test results](https://github.com/Agnieszka-21/namaste-django/tree/main/assets/automated_tests/test_up_views.png)
 
 
 ### Notable Bugs
