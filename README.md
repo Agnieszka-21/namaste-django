@@ -3,18 +3,15 @@
 
 ## Introduction
 
-Namaste Yoga Studio is a web application for a fictional yoga studio in Dublin. Anyone can access information regarding opening hours, the studio's location, class schedule, a detailed description of each class as well as each teacher's bio. Moreover, users interested in taking classes at the studio can sign up for an accout that allows them to book classes, manage their bookings (update and cancel), and also manage their user profile.
+Namaste Yoga Studio is a web application for a fictional yoga studio in Dublin. Anyone can access information regarding opening hours, the studio's location, class schedule, a detailed description of each class as well as each teacher's bio. Moreover, users interested in taking classes at the studio can sign up for an accout that allows them to book classes, manage their bookings (update and cancel), and also manage their user profile while logged in.
 
 This is the fourth Portfolio Project for the Code Institute's Diploma Course in Full Stack Software Development (E-commerce Applications). The application is built in Django using Python, HTML, CSS, and JavaScript. It provides role-based permissions for users to interact with data in a PostgreSQL database. It includes user authentication, email validation, and CRUD functionality for User Profiles and Bookings.
 
 [View the live website here](https://namaste-yoga-studio-d494d1aeeada.herokuapp.com/)
+Please note: To open any links in this document in a new browser tab, please press CTRL + Click.
 
 ![Screenshot of the application on multiple devices](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/screenshots/amiresponsive.png)
 
-Please note: To open any links in this document in a new browser tab, please press CTRL + Click.
-
-
-## Table of Contents
 
 ## Table of Contents
 
@@ -32,23 +29,23 @@ Please note: To open any links in this document in a new browser tab, please pre
       - [MoSCoW Prioritization](#moscow-prioritization)
     - [The Scope Plane](#the-scope-plane)
     - [The Structure Plane](#the-structure-plane)
-      - [User Story [#2: View class schedule](https://github.com/Agnieszka-21/namaste-django/issues/2)](#user-story-[#2:-view-class-schedule](https://github.com/agnieszka-21/namaste-django/issues/2))
-      - [User Story [#3: View a specific class in detail](https://github.com/Agnieszka-21/namaste-django/issues/3)](#user-story-[#3:-view-a-specific-class-in-detail](https://github.com/agnieszka-21/namaste-django/issues/3))
-      - [User Story [#4: View teacher's bio](https://github.com/Agnieszka-21/namaste-django/issues/4)](#user-story-[#4:-view-teacher's-bio](https://github.com/agnieszka-21/namaste-django/issues/4))
-      - [User Story [#30: View the studio's location(s)](https://github.com/Agnieszka-21/namaste-django/issues/30)](#user-story-[#30:-view-the-studio's-location(s)](https://github.com/agnieszka-21/namaste-django/issues/30))
-      - [User Story [#42: View the studio's opening hours](https://github.com/Agnieszka-21/namaste-django/issues/42)](#user-story-[#42:-view-the-studio's-opening-hours](https://github.com/agnieszka-21/namaste-django/issues/42))
-      - [User Story [#43: View the studio's social media accounts](https://github.com/Agnieszka-21/namaste-django/issues/43)](#user-story-[#43:-view-the-studio's-social-media-accounts](https://github.com/agnieszka-21/namaste-django/issues/43))
-      - [User Story [#5: Create a User (Client) account](https://github.com/Agnieszka-21/namaste-django/issues/5)](#user-story-[#5:-create-a-user-(client)-account](https://github.com/agnieszka-21/namaste-django/issues/5))
-      - [User Story [#6: Log in to the User account](https://github.com/Agnieszka-21/namaste-django/issues/6)](#user-story-[#6:-log-in-to-the-user-account](https://github.com/agnieszka-21/namaste-django/issues/6))
-      - [User Story [#7: Log out of the User account](https://github.com/Agnieszka-21/namaste-django/issues/7)](#user-story-[#7:-log-out-of-the-user-account](https://github.com/agnieszka-21/namaste-django/issues/7))
-      - [User Story [#8: Manage the User (Client) account](https://github.com/Agnieszka-21/namaste-django/issues/8)](#user-story-[#8:-manage-the-user-(client)-account](https://github.com/agnieszka-21/namaste-django/issues/8))
-      - [User Story [#10: Book a class](https://github.com/Agnieszka-21/namaste-django/issues/10)](#user-story-[#10:-book-a-class](https://github.com/agnieszka-21/namaste-django/issues/10))
-      - [User Story [#33: View personal bookings](https://github.com/Agnieszka-21/namaste-django/issues/33)](#user-story-[#33:-view-personal-bookings](https://github.com/agnieszka-21/namaste-django/issues/33))
-      - [User Story [#11: Cancel a booked class](https://github.com/Agnieszka-21/namaste-django/issues/11)](#user-story-[#11:-cancel-a-booked-class](https://github.com/agnieszka-21/namaste-django/issues/11))
-      - [User Story [#13: Add a profile photo in My Account](https://github.com/Agnieszka-21/namaste-django/issues/13)](#user-story-[#13:-add-a-profile-photo-in-my-account](https://github.com/agnieszka-21/namaste-django/issues/13))
-      - [User Story [#28: Class cannot be booked because it is already full](https://github.com/Agnieszka-21/namaste-django/issues/28)](#user-story-[#28:-class-cannot-be-booked-because-it-is-already-full](https://github.com/agnieszka-21/namaste-django/issues/28))
-      - [User Story [#45: Edit a future booking (change date)](https://github.com/Agnieszka-21/namaste-django/issues/45)](#user-story-[#45:-edit-a-future-booking-(change-date)](https://github.com/agnieszka-21/namaste-django/issues/45))
-      - [User Story [#22: Ensure each client signs a waiver](https://github.com/Agnieszka-21/namaste-django/issues/22)](#user-story-[#22:-ensure-each-client-signs-a-waiver](https://github.com/agnieszka-21/namaste-django/issues/22))
+      - [User Story #2: View class schedule](#user-story-#2:-view-class-schedule)
+      - [User Story #3: View a specific class in detail](#user-story-#3:-view-a-specific-class-in-detail)
+      - [User Story #4: View teacher's bio](#user-story-#4:-view-teacher's-bio)
+      - [User Story #30: View the studio's location(s)](#user-story-#30:-view-the-studio's-location(s))
+      - [User Story #42: View the studio's opening hours](#user-story-#42:-view-the-studio's-opening-hours)
+      - [User Story #43: View the studio's social media accounts](#user-story-#43:-view-the-studio's-social-media-accounts)
+      - [User Story #5: Create a User (Client) account](#user-story-#5:-create-a-user-(client)-account)
+      - [User Story #6: Log in to the User account](#user-story-#6:-log-in-to-the-user-account)
+      - [User Story #7: Log out of the User account](#user-story-#7:-log-out-of-the-user-account)
+      - [User Story #8: Manage the User (Client) account](#user-story-#8:-manage-the-user-(client)-account)
+      - [User Story #10: Book a class](#user-story-#10:-book-a-class)
+      - [User Story #33: View personal bookings](#user-story-#33:-view-personal-bookings)
+      - [User Story #11: Cancel a booked class](#user-story-#11:-cancel-a-booked-class)
+      - [User Story #13: Add a profile photo in My Account](#user-story-#13:-add-a-profile-photo-in-my-account)
+      - [User Story #28: Class cannot be booked because it is already full](#user-story-#28:-class-cannot-be-booked-because-it-is-already-full)
+      - [User Story #45: Edit a future booking (change date)](#user-story-#45:-edit-a-future-booking-(change-date))
+      - [User Story #22: Ensure each client signs a waiver](#user-story-#22:-ensure-each-client-signs-a-waiver)
       - [Opportunities arising from User Stories](#opportunities-arising-from-user-stories)
     - [The Skeleton Plane](#the-skeleton-plane)
       - [Wireframe mock-ups](#wireframe-mock-ups)
@@ -110,22 +107,25 @@ Please note: To open any links in this document in a new browser tab, please pre
 
 Namaste Yoga Studio is a web application for a fictional yoga studio in Dublin offering group classes in various styles of yoga. Any user can access the most important information about the studio - its location, opening hours, weekly class schedule, as well as a detailed description of each class which includes a teacher's bio, characteristics of the yoga style taught in the class, and who it is suitable for. Users interested in reserving their spot in a class can sign up in order to create an account, and after logging in they are able to book any classes. They can also see their upcoming booked classes, update or cancel their bookings, as well as update their personal profile by adding/changing/removing a profile picture, their date of birth, and information on recent or chronic injuries.
 
+
 #### The Site's Ideal User
-- People who want to attend in-studio yoga classes, whether they are new to yoga or a seasoned practicioner
-- People who are interested in trying yoga for the first time, whether it's to de-stress, improve their mobility and flexibility, or as a workout routine
+- People who want to attend in-studio yoga classes, whether they are new to yoga or seasoned practicioners
+- People who are interested in trying yoga for the first time, whether to de-stress, improve their mobility and flexibility, or as a workout routine
 - Elderly people who are looking for gentle full-body workouts
 - Expectant mothers and new mothers who want to be healthier
+
 
 #### Site Goals
 - To inform users about the studio's offerings, class schedule and different styles of yoga
 - To provide an easy way for users to book a class up to 4 weeks in advance so that they can plan ahead and ensure their spot in a class where the number of participants is limited
 - To give users the possibility of cancelling their booking or changing the date of their booked class easily and quickly
-- To provide users with the opportunity to create a personal profile and share information on their chronic or recent injuries (if applicable), so that yoga teachers at the studio can deliver classes that satisfy clients
+- To provide users with the opportunity to create a personal profile and submit information on their chronic or recent injuries (if applicable), so that yoga teachers at the studio can deliver classes that satisfy clients
+
 
 #### Iterations (GitHub Milestones)
 Since the project was created using the Agile approach, both planning and prioritizing accordingly was essential.
 
-The work on this project has been divided into 3 iterations, each lasting 3 weeks. This made the entire process easier to manage and helped track progress as well as decide on the priorities at each stage.
+The work on this project has been divided into 3 iterations, where the 1st and 3rd iteration lasted for close to 4 weeks, and the 2nd iteration exactly 3 weeks. This made the entire process easier to manage and helped track progress as well as decide on the priorities at each stage.
 
 - Iteration 1 - ended on Aug 25, 2024
 - Iteration 2 - ended on Sept 15, 2024
@@ -133,8 +133,8 @@ The work on this project has been divided into 3 iterations, each lasting 3 week
 
 You can see the iterations with their details, including User Stories that were finished in each iteration, [here](https://github.com/Agnieszka-21/namaste-django/milestones).
 
-#### Epics
 
+#### Epics
 This project is based on the following 9 epics:
 - [#34 Set up Django and Deploy Early](https://github.com/Agnieszka-21/namaste-django/issues/34)
 - [#1 View the Class Schedule and Relevant Details on the Website](https://github.com/Agnieszka-21/namaste-django/issues/1)
@@ -148,8 +148,8 @@ This project is based on the following 9 epics:
 
 These epics were split into User Stories to help manage the work on this project. All these and more details can be found in the project's [kanban board](https://github.com/users/Agnieszka-21/projects/2/views/1?sortedBy%5Bdirection%5D=asc&sortedBy%5BcolumnId%5D=Labels).
 
-#### User Stories
 
+#### User Stories
 Here are the User Stories resulting from the 9 epics
 
 1. Set up Django and Deploy Early
@@ -191,9 +191,9 @@ Here are the User Stories resulting from the 9 epics
 - [#22 Ensure each client signs a waiver](https://github.com/Agnieszka-21/namaste-django/issues/22)
 - [#40 Ask client for a review of a class they attended](https://github.com/Agnieszka-21/namaste-django/issues/40) - [Future Enhancements](#future-enhancements)
 
-7. Create, Manage, and Delete Staff Accounts - [Future Enhancements](#future-enhancements)
+7. Create, Manage, and Delete Staff Accounts - see the user stories under [Future Enhancements](#future-enhancements)
 
-8. Use a Staff Account to Teach with Ease and Clarity - [Future Enhancements](#future-enhancements)
+8. Use a Staff Account to Teach with Ease and Clarity - see the user stories under [Future Enhancements](#future-enhancements)
 
 9. Ensure the Code is Ready for Production
 - [#46 Create automated tests to ensure the code is working as expected](https://github.com/Agnieszka-21/namaste-django/issues/46)
@@ -202,7 +202,7 @@ Here are the User Stories resulting from the 9 epics
 - [#50 Run manual tests on the deployed app](https://github.com/Agnieszka-21/namaste-django/issues/50)
 
 #### Story Points
-Each User Story was given a label that specifies the number of story points in order to measure/estimate in a predictive way how much time is needed for completing the User Stories as compared to one another. The simplest User Stories were given just 1 story point, the ones that needed a little more attention 2 story points, then 4 for the ones that required even more attention, and 8 for the most complex features and functionalities.
+Each User Story was given a label that specifies the number of story points in order to measure/estimate in a predictive way how much time is needed for completing the User Stories as compared to one another. The simplest User Stories were given just 1 story point, the ones that needed a little more attention 2 story points, then 4 points for the ones that required more time to be completed, and 8 for the most complex features and functionalities.
 
 Altogether, user stories completed in this project take up 74 story points. The user stories that have not been handled here (potential future features) have a total of 50 points, leading to 124 points being 100% of all points and 74 points (completed user stories) being 59%, so below 60% as recommended.
 
@@ -213,6 +213,7 @@ Each User Story has been marked with one of these labels:
 - should-have,
 - could-have,
 - won't have.
+
 Using these labels allowed for a clear understanding of what needs to be prioritized in terms of necessary features, and what is simply optional or can be added later as a nice-to-have functionality.
 
 
@@ -220,12 +221,13 @@ Using these labels allowed for a clear understanding of what needs to be priorit
 
 __Features planned include:__
 - User Profile - Create, Read, Update and Delete
-- Bookings - Users can create, read, update and delete their upcoming booked classes
+- Bookings - Users can create, read, update and delete bookings
 - Users can log in to their account
 - Users can log out of their account
 - Users can reset their password if they forget it
 - Users need to be logged in to book scheduled classes, access their user account, see their bookings (upcoming classes only), update and cancel their bookings, as well as view and/or update their user profile (additional information like the date of birth, chronic/recent injuries, a profile image).
   
+
 ### The Structure Plane
 
 #### User Story [#2: View class schedule](https://github.com/Agnieszka-21/namaste-django/issues/2)
@@ -249,6 +251,7 @@ __Implementation__
 - Create a view that can access a specific group class from the database
 - Create a template for "Schedule detail" page that shows relevant information related to the chosen group class
 
+
 #### User Story [#4: View teacher's bio](https://github.com/Agnieszka-21/namaste-django/issues/4)
 As a User (Client), I would like to read each teacher's short bio, so that I can choose a class and an instructor that is the best fit for me.
 
@@ -260,7 +263,8 @@ __Implementation__
 - Add a modal to the template
 - Use CSS and JavaScript to hide the modal by default, and to handle opening/closing it, as well as trapping focus in the modal for keyboard accessibility
 
-#### User Story [#30: View the studio's location(s)](https://github.com/Agnieszka-21/namaste-django/issues/30)
+
+#### User Story [#30: View the studio's location](https://github.com/Agnieszka-21/namaste-django/issues/30)
 As a User (Client), I would like to be able to see where the studio is located, so that I can decide whether I am interested in the services it offers.
 
 __Acceptance Criteria__
@@ -269,6 +273,7 @@ __Acceptance Criteria__
 __Implementation__
 - Add an iframe for Google maps with a pin for the studio's address in the index.html template
 - Add an address section in the same template
+
 
 #### User Story [#42: View the studio's opening hours](https://github.com/Agnieszka-21/namaste-django/issues/42)
 As a User (Client), I would like to check the yoga studio's opening hours, so that I have the basic information I need to decide whether I am interested in their offer.
@@ -279,6 +284,7 @@ __Acceptance Criteria__
 __Implementation__
 - In the index.html template create a section with the studio's opening hours
 
+
 #### User Story [#43: View the studio's social media accounts](https://github.com/Agnieszka-21/namaste-django/issues/43)
 As a User (Client), I would like to check out the studio's social media accounts, so that I can find more information regarding their culture, community, events etc.
 
@@ -288,6 +294,7 @@ __Acceptance Criteria__
 
 __Implementation__
 - Add anchor elements in the footer that open in a new tab each (base.html template)
+
 
 #### User Story [#5: Create a User (Client) account](https://github.com/Agnieszka-21/namaste-django/issues/5)
 As a User (Client), I would like to create an account, so that I can book classes online.
@@ -300,6 +307,7 @@ __Implementation__
 - Use Django AllAuth to set up authentication
 - Adjust the AllAuth templates so that they extend the base.html template
 - Set up email verification
+
 
 #### User Story [#6: Log in to the User account](https://github.com/Agnieszka-21/namaste-django/issues/6)
 As a User (Client), I would like to be able to log in to my account, so that I can access the advantages of having an account.
@@ -316,6 +324,7 @@ __Implementation__
 - Make sure the User is notified if they try to log in with a wrong email or password
 - Ensure that "Forget password" is shown on the log in page so that the User can reset their password if they forgot it
 
+
 #### User Story [#7: Log out of the User account](https://github.com/Agnieszka-21/namaste-django/issues/7)
 As a User (Client), I would like to be able to log out of my account, so that I can make sure my account details are safe.
 
@@ -326,19 +335,21 @@ __Implementation__
 - In settings.py, set LOGOUT_REDIRECT_URL to the homepage
 - Ensure a confirmation message is shown after the User logged out of their account
 
+
 #### User Story [#8: Manage the User (Client) account](https://github.com/Agnieszka-21/namaste-django/issues/8)
 As a User (Client), I would like to be able to add a profile image and edit my account details, so that they stay up to date and I am in charge of my profile.
 
 __Acceptance Criteria__
 - Given that I am a logged in user, when I navigate to my Account page, then I can add/edit/delete suitable profile data.
 - Given that I am a logged in user, when I add/edit/delete my profile data, then get a notification that confirms my changes.
-- Given that I am a logged in user, when there is an issue with adding/editing/deleting my profile data, then the site informs me what went wrong.
+- Given that I am a logged in user, when there is an issue with adding/editing/deleting my profile data, then the site informs me that my changes were not saved.
 
 __Implementation__
 - Create the Profile view and a matching template with the option "Edit profile"
 - Create an "Edit profile" view for updating the profile (profile form), and a matching template
 - Create messages to be shown upon form submission that let the user know whether their data was updated successfully (or not)
 - Redirect user to the Profile page, so that they can see their updated profile right away
+
 
 #### User Story [#10: Book a class](https://github.com/Agnieszka-21/namaste-django/issues/10)
 As a User (Client), I would like to book a class, so that I can attend it.
@@ -355,6 +366,7 @@ __Implementation__
 - Create a Booking model to store informtion like who made the booking, which group class they chose etc.
 - Create dates and times for the next 3 occurrences of each group class so that the user can choose one of them from a list of available dates
 
+
 #### User Story [#33: View personal bookings](https://github.com/Agnieszka-21/namaste-django/issues/33)
 As a User (Client), I would like to view an up-to-date list of all classes I have booked, so that I can see my upcoming classes, making it easy for me to be in charge of my schedule.
 
@@ -363,6 +375,7 @@ __Acceptance Criteria__
 
 __Implementation__
 - Create "My bookings" page (suitable view that lists a specific user's bookings and a template that goes with it)
+
 
 #### User Story [#11: Cancel a booked class](https://github.com/Agnieszka-21/namaste-django/issues/11)
 As a User (Client), I would like to be able to cancel a class I booked, so that I can avoid blocking a place that someone else could use.
@@ -378,7 +391,8 @@ __Implementation__
 - Create "Cancel booking" page (view, form, template)
 - In the Booking model, add fields "cancelled" (boolean), and "cancellation reason" with 2 choices: "client's decision" or "class full"
 - Upon cancellation, update these 2 fields accordingly in the backend for the specific Booking object
-- Ensure that a confirmation (success) message is shown upon a cancellation
+- Ensure that a confirmation (success) message is shown upon cancellation
+
 
 #### User Story [#13: Add a profile photo in My Account](https://github.com/Agnieszka-21/namaste-django/issues/13)
 As a User (Client), I would like to be able to add my profile picture, so that my user account feels personalized and truly mine.
@@ -390,6 +404,7 @@ __Implementation__
 - Ensure the form for editing the profile has a field for an image upload to Cloudinary
 - Set up Cloudinary
 
+
 #### User Story [#28: Class cannot be booked because it is already full](https://github.com/Agnieszka-21/namaste-django/issues/28)
 As a User (Client), I would like to be able to know when a class is booked out, so that I am not booking a spot in a class that is already full.
 
@@ -400,6 +415,7 @@ __Acceptance Criteria__
 __Implementation__
 - Upon the submission of the booking form, show the message information that the class is already fully booked and encourage the user to choose a different date, or a different group class
 - In the backend, cancel the booking immediately, adding the following cancellation reason: "class full". This allows an admin to see how many people were actually interested in booking a specific class, which can be helpful when making business decisions regarding the schedule and class offer
+
 
 #### User Story [#45: Edit a future booking (change date)](https://github.com/Agnieszka-21/namaste-django/issues/45)
 As a User (Client), I would like to be able to choose a different date for my upcoming booking, so that I can feel in charge of my schedule and have the flexibility I need to change my bookings according to my personal needs.
@@ -417,6 +433,7 @@ __Implementation__
 - Depending on the outcome of the update, show a suitable message to inform the user what has been done
 - Upon a successful update, redirect the user back to the "My bookings" page
 
+
 #### User Story [#22: Ensure each client signs a waiver](https://github.com/Agnieszka-21/namaste-django/issues/22)
 As an Admin, I would like *to ensure that each client signs a waiver when booking a class, so that I can protect the business and my employees from unforeseen issues.
 
@@ -428,6 +445,7 @@ __Implementation__
 - Add a suitable label that explains what the checkbox is for rather than just using the default field name
 - Add a span "Read the waiver here" that opens a modal (hidden by default) with the content of the liabiliy waiver. 
 - Add JavaScript to handle interactions between the user and the modal, trap focus in the modal when open, and make it accesible to keyboard users as well.
+
 
 #### Opportunities arising from User Stories
 
@@ -452,26 +470,31 @@ __Implementation__
 #### Wireframe mock-ups
 
 __Home page__
-The home page provides the user with a clear understanding as to the purpose of the site. There is a clear call to action for the user to check out the studio's class schedule, with a button in the center of the hero section that links directly to the Schedule page. The hero section also includes a photograph of a yoga studio space and a welcome message, creating a friendly, inviting mood for the website. Underneath the hero section, there is a Google map, the studio's address, and its opening hours. The welcome message is clearly visible to the user when they first arrive at the site regardless of the device they are using. There is also a navigation bar at the top of the page with the menu, and a footer including social media link - these 2 elements are visible on all pages.
+
+The home page provides the user with a clear understanding as to the purpose of the site. There is a clear call to action for the user to check out the studio's class schedule, with a button in the center of the hero section that links directly to the Schedule page. The hero section also includes a photograph of a yoga studio space and a welcome message, creating a friendly, inviting mood for the website. Underneath the hero section, there is a Google map, the studio's address, and its opening hours. The welcome message is clearly visible to the user when they first arrive at the site regardless of the device they are using. There is also a navigation bar at the top of the page with the menu, and a footer including social media links - these 2 elements are visible on all pages.
 
 ![Wireframe of the homepage - large screen](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/wireframes/dsktp_home.png)
 
 __Schedule page__
+
 The schedule page contains a banner image, a call to action heading, and a list of all weekly group classes offered by the studio. Each listed class is shown as a card, presenting the most important information. The title of each class is a clickable link that leads to a detail page for that specific class, should the user be interested in booking the class or simply finding out more.
 
 ![Wireframe of the Schedule page - large screen](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/wireframes/dsktp_schedule.png)
 
 __Schedule detail pages__
-Each class listed on the schedule page leads to its own page where user can find a detailed description of the yoga style taught in the class, recommendations regarding who this class is suitable or not suitable for, as well as information regarding the location (which room in the studio), start time, weekday, and duration. Next to the teacher's name, there is also a "Show bio" link which opens a model with the teacher's bio. 
+
+Each class listed on the schedule page leads to its own page where user can find a detailed description of the yoga style taught in the class, recommendations regarding who this class is suitable or not suitable for, as well as information regarding the location (which room in the studio), start time, weekday, and duration. Next to the teacher's name, there is also a "Show bio" link which opens a modal with the teacher's bio. 
 
 ![Wireframe of the Schedule detail page - large screen](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/wireframes/dsktp_schedule_detail.png)
 
 __My profile__
+
 This page can be accessed only if user is logged in. Each user can see here the information they provided when signing up (first name, last name, email address), a profile image (default or their own), and their profile information. There is also an "Edit profile" button which leads to another page which contains a form, allowing the user to update their profile data.
 
 ![Wireframe of the My profile page - large screen](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/wireframes/dsktp_my_profile.png)
 
 __My bookings__
+
 This page can be accessed only if user is logged in. It lists the user's booked classes, but only the ones that have not started yet. The reason for this is that each booking can be updated or cancelled up to the moment of the start of each specific class booked by the user. Each booking is shown as a card that lists the most important details that help clearly identify the booked class, with 2 buttons: "Edit booking" and "Cancel booking". These buttons lead to a new page each where the user can take action as they wish.
 
 ![Wireframe of the My bookings page - large screen](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/wireframes/dsktp_my_bookings.png)
@@ -479,6 +502,7 @@ This page can be accessed only if user is logged in. It lists the user's booked 
 If the user has no upcoming classes booked, the page shows a button with a call to action - "Book your next class", redirecting the user to the Schedule page.
 
 __Wireframes for mobile devices__
+
 Wireframes were also produced for each major page for mobile devices since the intention was to make the site fully responsive so that regardless of the user's device size, it will display accordingly. These wireframes were created before the ones for large screens (because of the mobile-first approach to design) and therefore depict an earlier version of the project, which evolved with time as the development process was progressing.
 
 See the mobile wireframes below:
@@ -496,13 +520,13 @@ See the mobile wireframes below:
 
 A few custom models were predicted to be required when building the site. Built-in Django AllAuth with its User model was applied for the user authentication system, removing the need to build a custom User model. However, a custom Profile model was required in order to gather and maintain additional information like a profile image uploaded by the user, as well as information on their date of birth and recent or chronic injuries - if they wished to add these. These 2 models were used throughout the User Profiles app.
 
-In the Schedule app, there are more custom models, some of them linked to the User model. The Yoga Styles and Style Description are simple models which simply define options to choose from for the Group Class model that stores information on the weekly group classes. The "title" column uses the Yoga Style model as its Foreign Key, while the "description" column has the same relationship to the Style Description model. Further details are declared as choices for a CharField or an IntField, or directly (e.g. for the datetime field - "first class" column, or the "image" column - CloudinaryField upload).
+In the Schedule app, there are more custom models, some of them linked to the User model. The Yoga Styles and Style Description are simple models which define options to choose from for the Group Class model that stores information on the weekly group classes. The "title" column uses the Yoga Style model as its Foreign Key, while the "description" column has the same relationship to the Style Description model. Further details are declared as choices for a CharField or an IntField, or as a direct input in a form or within the admin panel (e.g. for the datetime field - "first class" column, or the "image" column - CloudinaryField upload).
 
 The next two models, Repeated Event and Event Occurrence, are a result of using the Django-Eventtools library, which was applied to create specific datetimes for each weekly class, needed for the Booking model and the Specific Group Class model.
 
-The Booking model has Group Class and User models as its Foreign Keys (for the "chosen class" column, and the "client" column). It gathers and maintains information regarding each specific booking, including whether or not it was cancelled, and storing a cancellation reason based on how the booking was cancelled.
+The Booking model utilises Group Class and User models as its Foreign Keys (for the "chosen class" column, and the "client" column). It gathers and maintains information regarding each specific booking, including whether or not it was cancelled, and storing a cancellation reason based on how the booking was cancelled.
 
-The Specific Group Class model is directly connected only to the User model (many-to-many relationship to stor a list of participants' names for each specific class). However, through the use of suitable logic in views, it "inherits" indeirectly information regarding the "specific title" column from the Group Class, and for the "specific datetime" column from the Django-Eventtools models (datetime chosen by user on the book class page).
+The Specific Group Class model is directly connected only to the User model (many-to-many relationship to store a list of participants' names for each specific class). However, through the use of suitable logic in views, it "inherits" indirectly information regarding the "specific title" column from the Group Class, and for the "specific datetime" column from the Django-Eventtools models (datetime chosen by user on the book class page).
 
 You can see the models and the relationships between them in the following database schema, created using the [drawSQL app](https://drawsql.app/).
 
@@ -514,27 +538,30 @@ You can see the models and the relationships between them in the following datab
 #### Design
 The design of the website is simple, minimalistic, and coherent. It is supposed to convey ease, simplicity, and make the end-user feel both grounded and welcome.
 
-The color palatte is based on earthy tones and neutral tones.
+The color palatte is based on earthy and neutral tones.
 
-The main color - walnut brown - has been used throughout the page in the navbar and footer, and also on hover/select for elements like buttons and links to emphasise their active state. It is a neutral shade often associated with earth, nature, and grounding, which can convey the message of the studio: we are here to help you feel calm, relaxed, and grounded.
+The main color - walnut brown - has been used throughout the page in the navbar and footer, and also on hover/select for elements like buttons and links to emphasise their active state. It is a neutral shade often associated with earth and nature, which can convey the message of the studio: we are here to help you feel calm, relaxed, and grounded.
 
 The main background color of the page is an off-white color #f7f7f7. Since most of the text is pure black (#000), it provides a good contrast while being gentler on the eyes and matching the natural theme of the color palette.
 
 There is also pure white color (#fff) used as background for cards on the Schedule page and My bookings page, so that the cards are clearly discernible from the off-white background but without creating too much contrast, which could result in distraction and overwhelm.
 
-Elements that are links or made to look like links use the eye-catching "office-green" color (#008000), and the font-weight is bold to ensure plenty of contrast with the background since these are elements that the end-user will interacti with.
+Elements that are links or made to look like links use the eye-catching "office-green" color (#008000), and the font-weight is bold to ensure plenty of contrast with the background since these are elements that the end-user will interact with.
 
 The following table created with [Contrast Grid](https://contrast-grid.eightshapes.com/) shows the color palette utilised in this project.
 
 ![Contrast Grid color palette](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/screenshots/contrast_grid.png)
 
+
 #### Typography
 Two types of Google fonts have been used in this project.
-For the brand name shown in the top left corner of each page (navbar), "Namaste", the Nova Mono font, was used to provide an eye-catching design. Since this is a monospace font, monospace was also declared as a fallback font-family in style.css.
-For everything else the Lato font-family was used, in various weights ranging from 400 to 800. This is a sans-serif font, easily readable, light and simple, which matches the website's overall feel of being easy to navigate, minimalistic, and accessible for anyone. 
+For the brand name shown in the top left corner of each page, "Namaste", the Nova Mono font was used to provide an eye-catching design. Since this is a monospace font, monospace was also declared as a fallback font-family in style.css.
+
+Lato font-family was used for all remaining text, in various weights ranging from 400 to 800. This is a sans-serif font, easily readable, light and simple, which matches the website's overall feel of being easy to navigate, minimalistic, and accessible for anyone. 
+
 
 #### Images
-Images of yoga classes used on this website are free-licence images from Pexels. Most of them come from the same suite of images by Yan Krukau, providing a coherent feel and look, and conveying to the end-user the real character of the yoga studio, giving them insights into the environment and the community of yoga practicioners. The hero image was also the starting point for creating the color palette for the website, with the walnut brown found directly in the image by a color picker tool.
+Images of yoga classes used on this website are free-licence images from Pexels. Most of them come from the same suite of images by Yan Krukau, providing a coherent feel and look, and conveying to the end-user the real character of the yoga studio, giving them insights into the environment and the community of yoga practicioners. The hero image was also the starting point for creating the color palette for the website, with the walnut brown found directly in the image through a color picker tool.
 
 
 ## Features
@@ -542,6 +569,7 @@ Images of yoga classes used on this website are free-licence images from Pexels.
 ### Homepage
 
 __Navigation bar__
+
 The navigation bar is shown in 2 versions, depending on whether the user is logged in or not. For a user who is not logged in, it lists Home, Schedule, Sign up, and Log in.
 
 ![Navbar - user not logged in](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/screenshots/navbar_not_logged_in.png)
@@ -551,65 +579,80 @@ For a logged in user, it shows the following options: Home, Schedule, My profile
 ![Navbar - user logged in](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/screenshots/navbar_logged_in.png)
 
 __Hero section__
-The hero section consists of a responsive full-width background image, a black semi-transparent overlay for optimal contrast, and white text "Welcome to the friendliest yoga studio in Dublin" followed by a button with the call to action "See our class schedule", which redirects the user to the Schedule page. This way the purpose of the page is clear right away - to invite user to check out the offer of yoga classes so they can book/attend the ones that they find interesting.
+
+The hero section consists of a responsive full-width background image, a black semi-transparent overlay for optimal contrast, and white text "Welcome to the friendliest yoga studio in Dublin" followed by a button with the call to action "See our class schedule", which redirects the user to the Schedule page. This way the purpose of the page is clear right away - to invite user to check out the offer of yoga classes so they can book the ones that they find interesting.
 
 ![Hero section](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/screenshots/home_hero.png)
 
 __Embedded Google maps__
+
 Underneath the hero section, the user can find general information about the studio, including an embedded Google map with a pin showing the exact location of the studio.
 
 ![Google maps, address, and opening hours](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/screenshots/home_map_info.png)
 
 __Address and opening hours__
+
 Next to the map (or below on tablet and phone screens), there is information on the studio's address and its opening hours - easily accessible to anyone visiting the page. See the previous screenshot.
 
 __Footer with social icons__
+
 The footer includes links to social media pages of the studio, which open in a new tab each. It also has a copyright section at the very bottom.
 
 ![Footer](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/screenshots/footer.png)
 
+
 ### Schedule page
 
 __Banner image and call-to-action heading__
-An image depicting a group of people practising yoga in a class, and below the heading "Find the perfect class for you!".
+
+An image depicting a group of people practising yoga in a class, and below the heading with a call to action: "Find the perfect class for you!".
 
 ![Schedule page banner and heading](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/screenshots/schedule_banner_heading.png)
 
 __List of all weekly classes (cards)__
-The classes are listed grouped by weekday, starting with Monday, and ordered according to their start time. A calendar icon from Font Awesome and a short name of each weekday clearly divide the list visually for enhanced user experience and clarity. Each class is shown as a card which presents the most important details, and the class title is a link that leads directly to the detail page for the class. Class titles are also tabbable, ensuring that the entire website is accessible for keyboard users.
+
+The classes are listed grouped by weekday, starting with Monday, and ordered according to their start time. A calendar icon from Font Awesome and a short name of each weekday visually divide the list for enhanced user experience and clarity. Each class is shown as a card which presents the most important details, and the class title is a link that leads directly to the detail page for the class. Class titles are also tabbable, ensuring that the entire website is accessible for keyboard users.
 
 ![Schedule list](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/screenshots/schedule_list.png)
+
 
 ### Schedule detail pages
 
 __Image__
+
 For added visual interest, there is an image of a yoga class. The images differ depending on the style of yoga taught in the class to give the user an idea of what is done in the class or who it is for. The images can be uploaded to Cloudinary through the admin panel when creating/updating a group class.
 
 ![Schedule detail page - user not logged in](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/screenshots/schedule_det_not_logged_in.png)
 
 __Class details__
-Title, instructor, description, weekday, start time, and duration are all shown next to the class image. They are visually coherent yet separate from one another to ensure that the user finds the information they need the most with ease and don't feel overwhelmed by details (see the previous screenshot).
+
+Title, instructor, description, weekday, start time, and duration are all shown next to the class image. They are visually coherent yet separate from one another to ensure that the user finds the information they need the most without feeling overwhelmed by details (see the previous screenshot).
 
 __Show bio link and modal__
-Next to the instructor's name, there is a "Show bio" span that can be selected (by a mouseclick or keyboard) to open a modal that houses a short bio of the instructor. In the modal, there is also a "close" button - if you click the button (or anywhere outside of the modal), the modal will be closed. To ensure that the page is fully accessible, JavaScript was used to handle the modal functionality, including trapping focus in the modal when it is open.
+
+Next to the instructor's name, there is a "Show bio" span that can be selected (by a mouseclick or with Tab key) to open a modal that houses a short bio of the instructor. In the modal, there is also a "close" button - if you click the button (or anywhere outside of the modal), the modal will be closed. To ensure that the page is fully accessible, JavaScript was used to handle the modal functionality, including trapping focus in the modal when it is open.
 
 ![Teacher bio modal](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/screenshots/teacher_bio_modal.png)
 
 __Book now button__
+
 Shown only for logged in users, when selected, it takes the user to the "Book class" page. For users who are not logged in or do not have an account yet, there is a link to the log in page instead.
 
 ![Schedule detail page - user logged in](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/screenshots/schedule_det_logged_in.png)
 
+
 ### Book class page
 
 __User form__
-Pre-filled and uneditable. Contains the following details: user's first name, last name, and email address.
+
+Pre-filled and uneditable. Contains the following details: the logged-in user's first name, last name, and email address.
 
 ![Book class page](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/screenshots/book_class_page.png)
 
 __Booking form__
+
 Contains a dropdown with available dates - the next 3 available occurrences of the weekly group class to choose from.
-It also has a checkbox to "sign" the studio's liability waiver, which has to be checked so that the class can be booked.
+It also has a checkbox to "sign" the studio's liability waiver, which is required so that the class can be booked.
 
 ![Waiver not signed](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/screenshots/waiver_signed_required.png)
 
@@ -621,14 +664,16 @@ Should the chosen class be already fully booked, the following message is shown:
 
 ![Booking failed - class already full](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/screenshots/book_class_fail_full.png)
 
-In the event when the user tries to book the exact same class that they have already booked (same group class on the same date and time), they are informed that they have already booked a place in this class and prevented from making a duplicate booking (each user is allowed to book a class only for themselves, so they receive only one spot in a specific class).
+In the event when the user tries to book the exact same class that they have already booked (same group class on the same date and time), they are informed that they have already booked a place in this class and prevented from making a duplicate booking (each user is allowed to book a class only for themselves, so they receive exactly one spot in each class they book).
 
 ![Booking failed - duplicate exists](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/screenshots/book_class_already_booked.png)
 
 __"Read the waiver here" link and modal__
+
 Under the checkbox, there is a span "Read the waiver here" that opens a modal with the studio's liability waiver. In the modal, there is also a "close" button - if you click the button (or anywhere outside of the modal), the modal will be closed. To ensure that the page is fully accessible, JavaScript was used to handle the modal functionality, including trapping focus in the modal when it is open.
 
 ![Waiver modal](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/screenshots/waiver_modal.png)
+
 
 ### My profile page
 
@@ -636,13 +681,15 @@ This page shows the following information: a profile image (either one uploaded 
 
 ![My profile page](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/screenshots/my_profile_page.png)
 
+
 ### Edit profile page
 
 ![Edit profile page](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/screenshots/edit_profile_page.png)
 
-This page contains a profile form where the user can update the following details: their date of birth, their information about injuries, and their profile image. All these elements are optional and can be left blank (a default picture is used as a profile image in this case). At the bottom of the form, there are 2 buttons: "Save profile" and "Discard changes". The latter simply redirects the user back to their profile page. The "Save profile" button saves the changes, redirects the user to the profile page, and shows the following message:
+This page contains a profile form where the user can update the following details: their date of birth, their information about injuries, and their profile image. All these elements are optional and can be left blank (a default picture is used as a profile image in this case). At the bottom of the form, there are 2 buttons: "Save profile" and "Discard changes". The latter simply redirects the user back to their profile page. The "Save profile" button saves the changes, redirects the user to the profile page, and shows the following success message:
 
 ![Edit profile - success](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/screenshots/edit_profile_success.png)
+
 
 ### My bookings page
 
@@ -654,6 +701,7 @@ If the user has no upcoming bookings, the page informs them about that and a but
 
 ![My bookings page with no upcoming classes](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/screenshots/my_bookings_page_empty.png)
 
+
 ### Edit booking page
 
 The user can change here the date of their class. A dropdown like the one on the "Book class" page is shown, with the next 3 dates of the weekly class. There are also 2 buttons: "Save changes" which leads to the outcomes described below, and "Discard changes" which simply redirects the user to their "My bookings" page.
@@ -664,13 +712,14 @@ If the user could be added to the specific class on the new date they chose, a s
 
 ![Edit booking - success](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/screenshots/edit_booking_success.png)
 
-If the specific class on the new date chosen by the user is already fully booked, they are informed that their booking could not be updated for that reason.
+If the specific class on the new date chosen by the user is already fully booked, they are informed that their booking could not be updated for that reason. The user can still choose a different date from the dropdown and try again.
 
 ![Edit booking - class already full](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/screenshots/edit_booking_fail_full.png)
 
-If the specific class on the new date chosen by the user is already one of that user's booked classes, they are informed about that and prevented from creating a duplicate booking.
+If the specific class on the new date chosen by the user is already one of that user's booked classes, they are informed about that, redirected to their "My bookings" page, and prevented from creating a duplicate booking.
 
 ![Edit booking - class already booked](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/screenshots/edit_booking_duplicate_found.png)
+
 
 ### Cancel booking page
 
@@ -682,10 +731,12 @@ If the latter is seleted, the user is simply redirected back to their "My bookin
 
 ![Cancel booking - success](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/screenshots/cancel_booking_success.png)
 
+
 ### Sign up page
 The Sign Up option in the navigation menu is shown when user is not logged in. This page presents a sign up form, allowing the user to create an account and therefore access further features.
 
 ![Sign up page](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/screenshots/sign_up_page.png)
+
 
 ### Log in page
 The Log In option in the navigation menu is shown when user is not logged in. This page presents a log in  form, allowing the user to log into their account and access further features.
@@ -693,15 +744,17 @@ The Log In option in the navigation menu is shown when user is not logged in. Th
 ![Log in page](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/screenshots/log_in_page.png)
 ![Log in success](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/screenshots/log_in_success.png)
 
+
 ### Log out page
 The Log Out option in the navigation menu is shown when user is logged in. This page asks for a log out confirmation, allowing the user to log out of their account and keep their personal data safe.
 
 ![Log out page](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/screenshots/log_out_page.png)
 ![Log out success](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/screenshots/log_out_success.png)
 
+
 ## Future Enhancements
 
-While the following User Stories have not been applied as they have been deemed unnecessary for an MVP, they present a wide range of potential enhancements that could be added to the project in the future.
+While the following User Stories have not been completed as they have been deemed unnecessary for an MVP, they present a wide range of potential enhancements that could be added to the project in the future.
 
 - [#9 Delete a User (Client) account](https://github.com/Agnieszka-21/namaste-django/issues/9) - so that User (Client) can remove their account once they are sure they are not going to need it anymore (e.g. because of moving to a different area)
 - [#44 Contact the studio (send a message) through a contact form](https://github.com/Agnieszka-21/namaste-django/issues/44) - so that User (Client) can easily contact the studio, get their questions answered etc.
@@ -737,9 +790,10 @@ Manual tests were conducted mainly in my development environment, and once resul
 
 Automated tests were also written to confirm that each view renders the correct template, to ensure that views restricted to logged-in users only redirect the user to the log in page, and many more.
 
+
 ### Manual Testing
 
-While testing every single functionality as I was creating and refining it was essential to progressing with this project, I also applied a more structured approach to testing once everything seemed to work correctly in order to double-check the code's behavior and ensure that I handled any possible scenarios to avoid any issues. The table below documents this more structured approach, where I tested any and all possible functionalities as well as likely user inputs in [the live version of the app](https://namaste-yoga-studio-d494d1aeeada.herokuapp.com/).
+While testing every single functionality as I was creating and refining it was essential to progressing with this project, I also applied a more structured approach to testing once everything seemed to work correctly in order to double-check the code's behavior and ensure that I handled any possible scenarios to avoid any issues. The table below documents this more structured approach, where I tested all possible functionalities as well as likely user inputs in [the live version of the app](https://namaste-yoga-studio-d494d1aeeada.herokuapp.com/).
 
 
 | Functionality being tested | Expected Outcome | Actual Outcome | Result (pass/fail) |
@@ -755,7 +809,7 @@ While testing every single functionality as I was creating and refining it was e
 | Footer: Instagram icon | opens Instagram in a new tab| as expected | pass |
 | Footer: YouTube icon | opens YouTube in a new tab | as expected | pass |
 | Sign up page: "Sign up" button | creates a user account & profile, sends a verification email, redirects the user to the homepage and shows a suitable message | as expected | pass |
-| Sign up page: "log in" link | rdirects the user to the Log in page | as expected | pass |
+| Sign up page: "log in" link | redirects the user to the Log in page | as expected | pass |
 | Log in page: "sign up" link | redirects the user to the Sign up page | as expected | pass |
 | Log in page: "Log in" button | logs the user into their account, redirects them to the homepage, shows a success message | as expected | pass |
 | Log in page: "Forgot password" link | redirects the user to the Password Reset page | as expected | pass |
@@ -788,6 +842,7 @@ While testing every single functionality as I was creating and refining it was e
 ### Validator Testing
 
 __HTML__
+
 The [W3C Markup Validation Service](https://validator.w3.org/) was used to check any html files containing custom code. All files are passed the validation test without errors - you can see relevant screenshots below:
 - [home page](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/validators/html_home.png)
 - [schedule page](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/validators/html_schedule.png)
@@ -802,16 +857,19 @@ The [W3C Markup Validation Service](https://validator.w3.org/) was used to check
 - [cancel booking page](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/validators/html_cancel_booking.png)
 
 __CSS__
+
 The style.css file containing custom styling for the application has been checked in the [W3C CSS Validation Service Jigsaw](https://jigsaw.w3.org/css-validator/) and has no errors - see the screenshot below:
 
 ![CSS validator test](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/validators/css_no_errors.png)
 
 __JavaScript__
+
 [JSHint](https://jshint.com/) has been used to validate the two JavaScript files in the application. Both files returned no errors.
 - [waiver.js - validattion result](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/validators/js_waiver_validator.png)
 - [bio.js - validation result](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/validators/js_bio_validator.png)
 
 __Python__
+
 All Python files containing custom code have been run through the [Code Institute's Python linter](https://pep8ci.herokuapp.com/#) in order to ensure that they meet the PEP8 requirements/recommendations. No errors were found - you can find relevenat screenshots in [this folder](https://github.com/Agnieszka-21/namaste-django/tree/main/assets/python_linter).
 
 
@@ -964,7 +1022,7 @@ HTML was utilised to create templates for each page.
 
 - [UUID generator](https://www.uuidgenerator.net/version4) utilised for automated tests
 - [Favicon generator](https://favicon.io/favicon-generator/) used to create the website's favicons
-- [Django secret key generator](https://djecrety.ir/)
+- [Django secret key generator](https://djecrety.ir/) was utilised for creating a secret key for deployment on Heroku (SECRET_KEY config var)
 
 
 ## Deployment
@@ -985,8 +1043,8 @@ In order to deploy the application to Heroku I followed the following steps:
 - The next config var, with the KEY "CLOUDINARY_URL" and the VALUE of your Cloudinary account's URL, allows you to use Cloudinary to upload and store images. Click "Add".
 - Add also your "CLOUDINARY_NAME" as the next config var to ensure there are no issues with communication between the program and Cloudinary.
 - To handle email authentication, add also these config vars:
-1. EMAIL_HOST_PASSWORD, where the value is a 16-digit app password from a Gmail account to which you would like to connect the program - see more detailed information on that [here](https://support.google.com/mail/answer/185833?hl=en).
-2. EMAIL_HOST_USER, where the value is the email address of the Gmail account with the app passcode.
+  - EMAIL_HOST_PASSWORD, where the value is a 16-digit app password from a Gmail account to which you would like to connect the program - see more detailed information on that [here](https://support.google.com/mail/answer/185833?hl=en).
+  - EMAIL_HOST_USER, where the value is the email address of the Gmail account with the app passcode.
 - In the section "Buildpacks" click the "Add buildpack" button and select "python". Confirm by clicking the button "Add buildpack".
 - Prepare the code for deployment in your local environment: use  pip install -r requirements.txt to install the libraries and packages needed to run the program (including gunicorn)
 - In the Procfile add the following code:
@@ -1020,15 +1078,18 @@ The following tutorials, articles, documentation and media were used to create t
 
 - [Django documentation](https://docs.djangoproject.com/en/4.2/) has been used extensively for this project
 - Further helpful documentation was related to the libraries installed:
-1. [django-render-partial](https://pypi.org/project/django-render-partial/) utilised for embedding a partial html template with dates for weekly classes into the book_class.html template
-2. [django-eventtools](https://pypi.org/project/django-eventtools/) utilised for creating dates and times for 3 upcoming instances of each chosen group class
+  - [django-render-partial](https://pypi.org/project/django-render-partial/) utilised for embedding a partial html template with dates for weekly classes into the book_class.html template
+  - [django-eventtools](https://pypi.org/project/django-eventtools/) utilised for creating dates and times for 3 upcoming instances of each chosen group class
 - [Cloudinary documentation](https://cloudinary.com/documentation) was used to set up the configuration between Django and the Cloudinary account
 - The hero section of the homepage is loosely based on [this article](https://mdbootstrap.com/docs/standard/extended/hero/)
 - Templates profile.html and profile_form.html are loosely based on this [User profile template](https://bbbootstrap.com/snippets/bootstrap-5-myprofile-90806631#) in regards to layout and styling.
-- Both HTML and CSS code used to handle messages has been copied from [this article](https://www.brntn.me/blog/how-i-use-djangos-messages-framework/) by Brenton Cleeland.
+- HTML and CSS code used to handle messages has been copied from [this article](https://www.brntn.me/blog/how-i-use-djangos-messages-framework/) by Brenton Cleeland.
 - The footer has been adapted from [this tutorial](https://mdbootstrap.com/docs/standard/extended/social-media-icons-footer/).
 - Navigation bar is loosely based on the CI walkthrough blog project and [this w3schools article](https://www.w3schools.com/bootstrap4/bootstrap_navbar.asp).
 - The JavaScript code for trapping focus in a modal has been adapted from the [following article](https://hidde.blog/using-javascript-to-trap-focus-in-an-element/).
+- The automatic creation of a profile when a User object is created was done with Django signals - code was copied (and slightly adapted) from the Code Institute's walkthrough project [Boutique Ado](https://github.com/Code-Institute-Solutions/boutique_ado_v1/blob/master/profiles/models.py).
+
+Please note that any code that has been copied or adapted from an external source has been also marked in the program files (comments were added with links to the sources and more exact information where applicable).
 
 
 ### Content
