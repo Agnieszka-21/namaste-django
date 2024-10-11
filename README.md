@@ -9,7 +9,7 @@ This is the fourth Portfolio Project for the Code Institute's Diploma Course in 
 
 [View the live website here](https://namaste-yoga-studio-d494d1aeeada.herokuapp.com/)
 
-![Screenshot of the application on multiple devices - AMEND!!!!!!!!!!](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/screenshots/amiresponsive.png)
+![Screenshot of the application on multiple devices](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/screenshots/amiresponsive.png)
 
 Please note: To open any links in this document in a new browser tab, please press CTRL + Click.
 
@@ -362,6 +362,7 @@ __Implementation__
 | Provide users the ability to view the studio's liability waiver when booking a class | 4 | 4 |
 | Provide users the ability to view a teacher's bio for each group class | 3 | 4 |
 
+
 ### The Skeleton Plane
 
 #### Wireframe mock-ups
@@ -369,27 +370,27 @@ __Implementation__
 __Home page__
 The home page provides the user with a clear understanding as to the purpose of the site. There is a clear call to action for the user to check out the studio's class schedule, with a button in the center of the hero section that links directly to the Schedule page. The hero section also includes a photograph of a yoga studio space and a welcome message, creating a friendly, inviting mood for the website. Underneath the hero section, there is a Google map, the studio's address, and its opening hours. The welcome message is clearly visible to the user when they first arrive at the site regardless of the device they are using. There is also a navigation bar at the top of the page with the menu, and a footer including social media link - these 2 elements are visible on all pages.
 
-![wireframe of the current page - large screen](link)
+![Wireframe of the homepage - large screen](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/wireframes/dsktp_home.png)
 
 __Schedule page__
 The schedule page contains a banner image, a call to action heading, and a list of all weekly group classes offered by the studio. Each listed class is shown as a card, presenting the most important information. The title of each class is a clickable link that leads to a detail page for that specific class, should the user be interested in booking the class or simply finding out more.
 
-![wireframe of the current page - large screen](link)
+![Wireframe of the Schedule page - large screen](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/wireframes/dsktp_schedule.png)
 
 __Schedule detail pages__
 Each class listed on the schedule page leads to its own page where user can find a detailed description of the yoga style taught in the class, recommendations regarding who this class is suitable or not suitable for, as well as information regarding the location (which room in the studio), start time, weekday, and duration. Next to the teacher's name, there is also a "Show bio" link which opens a model with the teacher's bio. 
 
-![wireframe of the current page - large screen](link)
+![Wireframe of the Schedule detail page - large screen](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/wireframes/dsktp_schedule_detail.png)
 
 __My profile__
 This page can be accessed only if user is logged in. Each user can see here the information they provided when signing up (first name, last name, email address), a profile image (default or their own), and their profile information. There is also an "Edit profile" button which leads to another page which contains a form, allowing the user to update their profile data.
 
-![wireframe of the current page - large screen](link)
+![Wireframe of the My profile page - large screen](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/wireframes/dsktp_my_profile.png)
 
 __My bookings__
 This page can be accessed only if user is logged in. It lists the user's booked classes, but only the ones that have not started yet. The reason for this is that each booking can be updated or cancelled up to the moment of the start of each specific class booked by the user. Each booking is shown as a card that lists the most important details that help clearly identify the booked class, with 2 buttons: "Edit booking" and "Cancel booking". These buttons lead to a new page each where the user can take action as they wish.
 
-![wireframe of the current page - large screen](link)
+![Wireframe of the My bookings page - large screen](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/wireframes/dsktp_my_bookings.png)
 
 If the user has no upcoming classes booked, the page shows a button with a call to action - "Book your next class", redirecting the user to the Schedule page.
 
@@ -404,7 +405,7 @@ See the mobile wireframes below:
 
 | Schedule detail | User profile page | |
 | :------------------- | :--------------- | :---|
-| ![Class detail mobile wireframe](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/wireframes/wireframe_class_detail.png) | ![User profile mobile wireframe](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/wireframes/wireframe_user_account.png) |   |
+| ![Class detail mobile wireframe](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/wireframes/wireframe_class_detail.png) | ![User profile mobile wireframe](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/wireframes/wireframe_user_account.png) | ![My bookings mobile wireframe](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/wireframes/wireframe_my_bookings.png)  |
 
 
 REMOVE OR KEEP INSTEAD OF THE TABLES???
