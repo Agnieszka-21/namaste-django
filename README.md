@@ -30,23 +30,23 @@ Please note: To open any links in this document in a new browser tab, please pre
       - [MoSCoW Prioritization](#moscow-prioritization)
     - [The Scope Plane](#the-scope-plane)
     - [The Structure Plane](#the-structure-plane)
-      - [User Story: View class schedule](#user-story:-view-class-schedule)
-      - [User Story: View a specific class in detail](#user-story:-view-a-specific-class-in-detail)
-      - [User Story: View teacher's bio](#user-story:-view-teacher's-bio)
-      - [User Story: View the studio's location](#user-story:-view-the-studio's-location)
-      - [User Story: View the studio's opening hours](#user-story:-view-the-studio's-opening-hours)
-      - [User Story: View the studio's social media accounts](#user-story:-view-the-studio's-social-media-accounts)
-      - [User Story: Create a User (Client) account](#user-story:-create-a-user-(client)-account)
-      - [User Story: Log in to the User account](#user-story:-log-in-to-the-user-account)
-      - [User Story: Log out of the User account](#user-story:-log-out-of-the-user-account)
-      - [User Story: Manage the User (Client) account](#user-story:-manage-the-user-(client)-account)
-      - [User Story: Book a class](#user-story:-book-a-class)
-      - [User Story: View personal bookings](#user-story:-view-personal-bookings)
-      - [User Story: Cancel a booked class](#user-story:-cancel-a-booked-class)
-      - [User Story: Add a profile photo in My Account](#user-story:-add-a-profile-photo-in-my-account)
-      - [User Story: Class cannot be booked because it is already full](#user-story:-class-cannot-be-booked-because-it-is-already-full)
-      - [User Story: Edit a future booking (change date)](#user-story:-edit-a-future-booking-(change-date))
-      - [User Story: Ensure each client signs a waiver](#user-story:-ensure-each-client-signs-a-waiver)
+      - [View class schedule](#view-class-schedule)
+      - [View a specific class in detail](#view-a-specific-class-in-detail)
+      - [View teacher's bio](#view-teacher's-bio)
+      - [View the studio's location](#view-the-studio's-location)
+      - [View the studio's opening hours](#view-the-studio's-opening-hours)
+      - [View the studio's social media accounts](#view-the-studio's-social-media-accounts)
+      - [Create a User (Client) account](#create-a-user-(client)-account)
+      - [Log in to the User account](#log-in-to-the-user-account)
+      - [Log out of the User account](#log-out-of-the-user-account)
+      - [Manage the User (Client) account](#manage-the-user-(client)-account)
+      - [Book a class](#book-a-class)
+      - [View personal bookings](#view-personal-bookings)
+      - [Cancel a booked class](#cancel-a-booked-class)
+      - [Add a profile photo in My Account](#add-a-profile-photo-in-my-account)
+      - [Class cannot be booked because it is already full](#class-cannot-be-booked-because-it-is-already-full)
+      - [Edit a future booking (change date)](#edit-a-future-booking-(change-date))
+      - [Ensure each client signs a waiver](#ensure-each-client-signs-a-waiver)
       - [Opportunities arising from User Stories](#opportunities-arising-from-user-stories)
     - [The Skeleton Plane](#the-skeleton-plane)
       - [Wireframe mock-ups](#wireframe-mock-ups)
@@ -231,8 +231,11 @@ __Features planned include:__
 
 ### The Structure Plane
 
-#### User Story: View class schedule 
-[#2](https://github.com/Agnieszka-21/namaste-django/issues/2)
+---
+
+#### View class schedule
+
+[User story #2: ](https://github.com/Agnieszka-21/namaste-django/issues/2)
 As a User (Client), I would like to view the studio's class schedule, so that I can check if I am interested in and able to attend any classes offered.
 
 __Acceptance Criteria__
@@ -243,8 +246,11 @@ __Implementation__
 - In the admin panel, set up data related to these models as needed to create GroupClass objects
 - Create a view which lists all group classes, and a template for Schedule page which extends base.html
 
-#### User Story: View a specific class in detail
-[#3](https://github.com/Agnieszka-21/namaste-django/issues/3)
+---
+
+#### View a specific class in detail
+
+[User story #3: ](https://github.com/Agnieszka-21/namaste-django/issues/3)
 As a User (Client), I would like to view each class in the schedule in more detail, so that I can make an informed decision regarding which class to choose
 
 __Acceptance Criteria__
@@ -254,9 +260,11 @@ __Implementation__
 - Create a view that can access a specific group class from the database
 - Create a template for "Schedule detail" page that shows relevant information related to the chosen group class
 
+---
 
-#### User Story: View teacher's bio
-[#4](https://github.com/Agnieszka-21/namaste-django/issues/4)
+#### View teacher's bio
+
+[User story #4: ](https://github.com/Agnieszka-21/namaste-django/issues/4)
 As a User (Client), I would like to read each teacher's short bio, so that I can choose a class and an instructor that is the best fit for me.
 
 __Acceptance Criteria__
@@ -267,9 +275,11 @@ __Implementation__
 - Add a modal to the template
 - Use CSS and JavaScript to hide the modal by default, and to handle opening/closing it, as well as trapping focus in the modal for keyboard accessibility
 
+---
 
-#### User Story: View the studio's location
-[#30](https://github.com/Agnieszka-21/namaste-django/issues/30)
+#### View the studio's location
+
+[User story #30: ](https://github.com/Agnieszka-21/namaste-django/issues/30)
 As a User (Client), I would like to be able to see where the studio is located, so that I can decide whether I am interested in the services it offers.
 
 __Acceptance Criteria__
@@ -279,9 +289,11 @@ __Implementation__
 - Add an iframe for Google maps with a pin for the studio's address in the index.html template
 - Add an address section in the same template
 
+---
 
-#### User Story: View the studio's opening hours 
-[#42](https://github.com/Agnieszka-21/namaste-django/issues/42)
+#### View the studio's opening hours 
+
+[User story #42: ](https://github.com/Agnieszka-21/namaste-django/issues/42)
 As a User (Client), I would like to check the yoga studio's opening hours, so that I have the basic information I need to decide whether I am interested in their offer.
 
 __Acceptance Criteria__
@@ -290,9 +302,11 @@ __Acceptance Criteria__
 __Implementation__
 - In the index.html template create a section with the studio's opening hours
 
+---
 
-#### User Story: View the studio's social media accounts
-[#43](https://github.com/Agnieszka-21/namaste-django/issues/43)
+#### View the studio's social media accounts
+
+[User story #43: ](https://github.com/Agnieszka-21/namaste-django/issues/43)
 As a User (Client), I would like to check out the studio's social media accounts, so that I can find more information regarding their culture, community, events etc.
 
 __Acceptance Criteria__
@@ -302,9 +316,11 @@ __Acceptance Criteria__
 __Implementation__
 - Add anchor elements in the footer that open in a new tab each (base.html template)
 
+---
 
-#### User Story: Create a User (Client) account
-[#5](https://github.com/Agnieszka-21/namaste-django/issues/5)
+#### Create a User (Client) account
+
+[User story #5: ](https://github.com/Agnieszka-21/namaste-django/issues/5)
 As a User (Client), I would like to create an account, so that I can book classes online.
 
 __Acceptance Criteria__
@@ -316,9 +332,11 @@ __Implementation__
 - Adjust the AllAuth templates so that they extend the base.html template
 - Set up email verification
 
+---
 
-#### User Story: Log in to the User account
-[#6](https://github.com/Agnieszka-21/namaste-django/issues/6)
+#### Log in to the User account
+
+[User story #6: ](https://github.com/Agnieszka-21/namaste-django/issues/6)
 As a User (Client), I would like to be able to log in to my account, so that I can access the advantages of having an account.
 
 __Acceptance Criteria__
@@ -333,9 +351,11 @@ __Implementation__
 - Make sure the User is notified if they try to log in with a wrong email or password
 - Ensure that "Forget password" is shown on the log in page so that the User can reset their password if they forgot it
 
+---
 
-#### User Story: Log out of the User account
-[#7](https://github.com/Agnieszka-21/namaste-django/issues/7)
+#### Log out of the User account
+
+[User story #7: ](https://github.com/Agnieszka-21/namaste-django/issues/7)
 As a User (Client), I would like to be able to log out of my account, so that I can make sure my account details are safe.
 
 __Acceptance Criteria__
@@ -345,9 +365,11 @@ __Implementation__
 - In settings.py, set LOGOUT_REDIRECT_URL to the homepage
 - Ensure a confirmation message is shown after the User logged out of their account
 
+---
 
-#### User Story: Manage the User (Client) account
-[#8](https://github.com/Agnieszka-21/namaste-django/issues/8)
+#### Manage the User (Client) account
+
+[User story #8: ](https://github.com/Agnieszka-21/namaste-django/issues/8)
 As a User (Client), I would like to be able to add a profile image and edit my account details, so that they stay up to date and I am in charge of my profile.
 
 __Acceptance Criteria__
@@ -361,9 +383,11 @@ __Implementation__
 - Create messages to be shown upon form submission that let the user know whether their data was updated successfully (or not)
 - Redirect user to the Profile page, so that they can see their updated profile right away
 
+---
 
-#### User Story: Book a class
-[#10](https://github.com/Agnieszka-21/namaste-django/issues/10)
+#### Book a class
+
+[User story #10: ](https://github.com/Agnieszka-21/namaste-django/issues/10)
 As a User (Client), I would like to book a class, so that I can attend it.
 
 __Acceptance Criteria__
@@ -378,9 +402,11 @@ __Implementation__
 - Create a Booking model to store informtion like who made the booking, which group class they chose etc.
 - Create dates and times for the next 3 occurrences of each group class so that the user can choose one of them from a list of available dates
 
+---
 
-#### User Story: View personal bookings
-[#33](https://github.com/Agnieszka-21/namaste-django/issues/33)
+#### View personal bookings
+
+[User story #33: ](https://github.com/Agnieszka-21/namaste-django/issues/33)
 As a User (Client), I would like to view an up-to-date list of all classes I have booked, so that I can see my upcoming classes, making it easy for me to be in charge of my schedule.
 
 __Acceptance Criteria__
@@ -389,9 +415,11 @@ __Acceptance Criteria__
 __Implementation__
 - Create "My bookings" page (suitable view that lists a specific user's bookings and a template that goes with it)
 
+---
 
-#### User Story: Cancel a booked class
-[#11](https://github.com/Agnieszka-21/namaste-django/issues/11)
+#### Cancel a booked class
+
+[User story #11: ](https://github.com/Agnieszka-21/namaste-django/issues/11)
 As a User (Client), I would like to be able to cancel a class I booked, so that I can avoid blocking a place that someone else could use.
 
 __Acceptance Criteria__
@@ -407,9 +435,11 @@ __Implementation__
 - Upon cancellation, update these 2 fields accordingly in the backend for the specific Booking object
 - Ensure that a confirmation (success) message is shown upon cancellation
 
+---
 
-#### User Story: Add a profile photo in My Account
-[#13](https://github.com/Agnieszka-21/namaste-django/issues/13)
+#### Add a profile photo in My Account
+
+[User story #13: ](https://github.com/Agnieszka-21/namaste-django/issues/13)
 As a User (Client), I would like to be able to add my profile picture, so that my user account feels personalized and truly mine.
 
 __Acceptance Criteria__
@@ -419,9 +449,11 @@ __Implementation__
 - Ensure the form for editing the profile has a field for an image upload to Cloudinary
 - Set up Cloudinary
 
+---
 
-#### User Story: Class cannot be booked because it is already full
-[#28](https://github.com/Agnieszka-21/namaste-django/issues/28)
+#### Class cannot be booked because it is already full
+
+[User story #28: ](https://github.com/Agnieszka-21/namaste-django/issues/28)
 As a User (Client), I would like to be able to know when a class is booked out, so that I am not booking a spot in a class that is already full.
 
 __Acceptance Criteria__
@@ -432,9 +464,11 @@ __Implementation__
 - Upon the submission of the booking form, show the message information that the class is already fully booked and encourage the user to choose a different date, or a different group class
 - In the backend, cancel the booking immediately, adding the following cancellation reason: "class full". This allows an admin to see how many people were actually interested in booking a specific class, which can be helpful when making business decisions regarding the schedule and class offer
 
+---
 
-#### User Story: Edit a future booking (change date)
-[#45](https://github.com/Agnieszka-21/namaste-django/issues/45)
+#### Edit a future booking (change date)
+
+[User story #45: ](https://github.com/Agnieszka-21/namaste-django/issues/45)
 As a User (Client), I would like to be able to choose a different date for my upcoming booking, so that I can feel in charge of my schedule and have the flexibility I need to change my bookings according to my personal needs.
 
 __Acceptance Criteria__
@@ -450,9 +484,11 @@ __Implementation__
 - Depending on the outcome of the update, show a suitable message to inform the user what has been done
 - Upon a successful update, redirect the user back to the "My bookings" page
 
+---
 
-#### User Story: Ensure each client signs a waiver
-[#22](https://github.com/Agnieszka-21/namaste-django/issues/22)
+#### Ensure each client signs a waiver
+
+[User story #22: ](https://github.com/Agnieszka-21/namaste-django/issues/22)
 As an Admin, I would like *to ensure that each client signs a waiver when booking a class, so that I can protect the business and my employees from unforeseen issues.
 
 __Acceptance Criteria__
@@ -464,6 +500,7 @@ __Implementation__
 - Add a span "Read the waiver here" that opens a modal (hidden by default) with the content of the liabiliy waiver. 
 - Add JavaScript to handle interactions between the user and the modal, trap focus in the modal when open, and make it accesible to keyboard users as well.
 
+---
 
 #### Opportunities arising from User Stories
 
