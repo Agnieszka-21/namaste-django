@@ -703,7 +703,7 @@ All Python files containing custom code have been run through the [Code Institut
 
 ### Lighthouse and Webaim Wave Testing
 
-The deployed website has been tested using both Lighthouse and WebaimWave in order to ensure that it performs well and meets accessibility criteria. A vast majority of Lighthouse scores is in the optimal green range. However, it is worth noting that using Google maps on the homepage, images uploaded to Cloudinary on other pages, as well as applying Bootstrap and Google Fonts has led to Best Practices scores being slightly lower. From the perspective of a business using this web application it made more sense to keep the map and Cloudinary storage rather than trying to get the best score and missing out on those valuable resources, so the decision was simple. 
+The deployed website has been tested using both Lighthouse and WebaAim WAVE in order to ensure that it performs well and meets accessibility criteria. A vast majority of Lighthouse scores is in the optimal green range. However, it is worth noting that using Google maps on the homepage, images uploaded to Cloudinary on other pages, as well as applying Bootstrap and Google Fonts has led to Best Practices scores being slightly lower. From the perspective of a business using this web application it made more sense to keep the map and Cloudinary storage rather than trying to get the best score and missing out on those valuable resources, so the decision was simple. 
 
 In order to keep accessibility scores in the optimal range, I ensured to make the website fully-operational for keyboard users, including trapping focus in each modal while it is open (waiver.js and bio.js files) and adding tabindex to card titles on the Schedule page.
 
@@ -760,6 +760,7 @@ HTML was utilised to create templates for each page.
 
 - Gitpod was used to develop the site
 - GitHub was utilised for storing the files for this project
+- Heroku was used to deploy the site
 - Balsamiq was used to develop initial wireframes for the site (mobile version)
 - DrawSQL.app was utilised to develop the database schema during development
 
@@ -767,6 +768,7 @@ HTML was utilised to create templates for each page.
 
 - [UUID generator](https://www.uuidgenerator.net/version4) utilised for automated tests
 - [Favicon generator](https://favicon.io/favicon-generator/) used to create the website's favicons
+- [Django secret key generator](https://djecrety.ir/)
 
 
 ## Deployment
@@ -790,8 +792,14 @@ In order to deploy the application to Heroku I followed the following steps:
 1. EMAIL_HOST_PASSWORD, where the value is a 16-digit app password from a Gmail account to which you would like to connect the program - see more detailed information on that [here](https://support.google.com/mail/answer/185833?hl=en).
 2. EMAIL_HOST_USER, where the value is the email address of the Gmail account with the app passcode.
 - In the section "Buildpacks" click the "Add buildpack" button and select "python". Confirm by clicking the button "Add buildpack".
--  Scroll up to the top of the page and switch to the Deploy tab. 
--  In the "Deployment Method" section choose the "GitHub" button. Follow the next steps (if any) as prompted to connect your GitHub account. In the "Connect to GitHub" section that appears, choose your account, enter the name of your repository, and select "Search".
+- Prepare the code for deployment in your local environment: use  pip install -r requirements.txt to install the libraries and packages needed to run the program (including gunicorn)
+- In the Procfile add the following code:
+web: gunicorn codestar.wsgi
+- Make sure DEBUG = False in the settings.py file
+- Also in settings.py, add '.herokuapp.com' to the list of ALLOWED_HOSTS
+- Git commit and push the changes to your GitHub repository.
+- Go back to your Heroku account, choose the Deploy tab at the top. 
+- In the "Deployment Method" section choose the "GitHub" button. Follow the next steps (if any) as prompted to connect your GitHub account. In the "Connect to GitHub" section that appears, choose your account, enter the name of your repository, and select "Search".
 -  Once your GitHub repo is connected to the Heroku app, scroll down to the section "Manual deploys".
 -  Confirm that the correct branch of the repo is selected in the drop-down box, and select "Deploy Branch".
 -  Heroku will now build the app for you. Once the process is completed, you will see the message "Your app was successfully deployed", and a link to the app where you can visit the live site.
