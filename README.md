@@ -1053,7 +1053,7 @@ __Schedule app testing__
 - whether views redirect the user upon a successful interaction (e.g. upon cancellation of a booking),
 - whether views handling the number and list of participants update data as expected.
 
-![Test results - views](https://github.com/Agnieszka-21/namaste-django/tree/main/assets/automated_tests/test_s_views.png)
+![Test results - views](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/automated_tests/test_s_views.png)
 
 __User Profiles__
 
