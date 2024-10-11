@@ -403,17 +403,9 @@ See the mobile wireframes below:
 | :------------------- | :--------------- | :------------- |
 | ![Homepage mobile wireframe](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/wireframes/wireframe_homepage.png) | ![Schedule page mobile wireframe](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/wireframes/wireframe_schedule_page.png) | ![Schedule page continuation - class list mobile wireframe](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/wireframes/wireframe_schedule_list.png) |
 
-| Schedule detail | User profile page | |
-| :------------------- | :--------------- | :---|
-| ![Class detail mobile wireframe](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/wireframes/wireframe_class_detail.png) | ![User profile mobile wireframe](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/wireframes/wireframe_user_account.png) | ![My bookings mobile wireframe](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/wireframes/wireframe_my_bookings.png)  |
-
-
-REMOVE OR KEEP INSTEAD OF THE TABLES???
-- [Homepage mobile wireframe](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/wireframes/wireframe_homepage.png)
-- [Schedule page mobile wireframe](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/wireframes/wireframe_schedule_page.png)
-- [Schedule page continuation - class list mobile wireframe](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/wireframes/wireframe_schedule_list.png)
-- [Class detail mobile wireframe](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/wireframes/wireframe_class_detail.png)
-- [User profile mobile wireframe](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/wireframes/wireframe_user_account.png)
+| Schedule detail | User profile page | My bookings page |
+| :------------------- | :--------------- | :--------------- |
+| ![Class detail mobile wireframe](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/wireframes/wireframe_class_detail.png) | ![User profile mobile wireframe](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/wireframes/wireframe_user_account.png) | ![My bookings mobile wireframe](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/wireframes/wireframe_my_bookings.png) |
 
 
 #### Database schema
@@ -668,7 +660,45 @@ While testing every single functionality as I was creating and refining it was e
 
 | Functionality being tested | Expected Outcome | Actual Outcome | Result (pass/fail) |
 | :------------------- | :--------------- | :------------- | :-------------------- |
-
+| Logo "Namaste" | takes the user to the homepage when selected on any page | as expected | pass |
+| Navbar link "Sign up" | takes the user to the Sign up page | as expected | pass |
+| Navbar link "Log in" | takes the user to the Log in page | as expected | pass |
+| Navbar link "Schedule" | takes the user to the Schedule page | as expected | pass |
+| Navbar link "My profile" | takes a logged-in user to their profile page | as expected | pass |
+| Navbar link "My bookings" | takes a logged-in user to their bookings | as expected | pass |
+| Navbar link "Log out" | takes a logged-in user to the log out page | as expected | pass |
+| Footer: Facebook icon | opens Facebook in a new tab | as expected | pass |
+| Footer: Instagram icon | opens Instagram in a new tab| as expected | pass |
+| Footer: YouTube icon | opens YouTube in a new tab | as expected | pass |
+| Sign up page: "Sign up" button | creates a user account & profile, sends a verification email, redirects the user to the homepage and shows a suitable message | as expected | pass |
+| Sign up page: "log in" link | rdirects the user to the Log in page | as expected | pass |
+| Log in page: "sign up" link | redirects the user to the Sign up page | as expected | pass |
+| Log in page: "Log in" button | logs the user into their account, redirects them to the homepage, shows a success message | as expected | pass |
+| Log in page: "Forgot password" link | redirects the user to the Password Reset page | as expected | pass |
+| Log out page: "Log out" button | logs the user out of their account, redirects them to the homepage, shows a success message | as expected | pass |
+| Home: "See our schedule" button | redirects user to the Schedule page | as expected | pass |
+| Schedule: class title links | redirect the user to a Schedule detail page for the chosen class | as expected | pass |
+| Schedule detail: "Show bio" underlined text | opens the modal containing a particular instructor's bio | as expected | pass |
+| Schedule detail: close icon inside the modal | closes the modal | as expected | pass |
+| Schedule detail: "Log in to book the class" link | redirects user to the log in page | as expected | pass |
+| Schedule detail: "Book class" button | redirects a logged-in user to the Book class page | as expected | pass |
+| Book class page: "Read the waiver here" underlined text | opens the modal containing the studio's liability waiver | as expected | pass |
+| Book class page: close icon inside the modal | closes the modal | as expected | pass |
+| Book class page: "Available dates" dropdown | shows the next 3 dates for the chosen class | as expected | pass |
+| Book class page: "Book class" button | if successful: creates a booking, redirects the user to the Schedule page, shows a success message; if not successful: shows a suitable message | as expected | pass | 
+| My bookings: "Book your next class" button (shown only if there are no upcoming bookings) | redirects the user to the Schedule page | as expected | pass |
+| My bookings: "Edit booking" | redirects the user to the Edit booking page | as expected | pass |
+| My bookings: "Cancel booking" | redirects the user to the Cancel booking page | as expected | pass |
+| Edit booking page: "Available dates" dropdown | shows the next 3 dates for the chosen class | as expected | pass |
+| Edit booking page: "Save changes" button | if successful: updates the chosen booking, redirects the user to My bookings page, shows a success message; if class full: shows an error message; if class already booked on the new date: redirects to My bookings and shows an info message | as expected | pass |
+| Edit booking page: "Discard changes" button | redirects the user to My bookings page | as expected | pass |
+| Cancel booking page: "Yes, cancel my booking" button | cancels the chosen booking, redirects the user to My bookings, shows a success message | as expected | pass |
+| Cancel booking page: "No, I changed my mind" button | redirects the user to My bookings | as expected | pass |
+| My profile: "Edit profile" button | redirects the user to the Edit profile page | as expected | pass |
+| Edit profile page: "Choose file" for the "Profile image" field | opens the File Explorer on the user's device | as expected | pass |
+| Edit profile page: "Clear" checkbox for the "Profile image" field | when checked, on submission it removed the user's current profile image if they uploaded one earlier | as expected | pass | 
+| Edit profile page: "Save profile" button | saves changes, redirects the user to My profile page, shows a success message | as expected | pass |
+| Edit profile page: "Discard changes" button | redirects the user to My profile | as expected | pass |
 
 
 ### Validator Testing
@@ -698,7 +728,7 @@ __JavaScript__
 - [bio.js - validation result](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/validators/js_bio_validator.png)
 
 __Python__
-All Python files containing custom code have been run through the [Code Institute's Python linter](https://pep8ci.herokuapp.com/#) in order to ensure that they meet the PEP8 requirements/recommendations. No errors were found - you can find relevenat screenshots in [this folder](LINK!!!!!!!!).
+All Python files containing custom code have been run through the [Code Institute's Python linter](https://pep8ci.herokuapp.com/#) in order to ensure that they meet the PEP8 requirements/recommendations. No errors were found - you can find relevenat screenshots in [this folder](https://github.com/Agnieszka-21/namaste-django/tree/main/assets/python_linter).
 
 
 ### Lighthouse and Webaim Wave Testing
@@ -708,6 +738,88 @@ The deployed website has been tested using both Lighthouse and WebaAim WAVE in o
 In order to keep accessibility scores in the optimal range, I ensured to make the website fully-operational for keyboard users, including trapping focus in each modal while it is open (waiver.js and bio.js files) and adding tabindex to card titles on the Schedule page.
 
 You can find screenshots with relevant results [here](https://github.com/Agnieszka-21/namaste-django/tree/main/assets/lighthouse_wave).
+
+
+### Responsiveness (tested with Chrome Dev Tools)
+
+| Device tested | Site responsive >=700px |	Site Responsive <699px |Renders as expected |
+| :------------ | :---------------------- | :--------------------- | :----------------- |
+|Galaxy Fold | N/A | yes | yes |
+|iPhone SE | N/A | yes | yes |
+|iPhone 12Pro | N/A | yes | yes |
+|Samsung Galaxy S8+	| N/A | yes	| yes |
+|iPad Air | yes	| N/A | yes |
+|Surface Pro 7 | yes | N/A | yes |
+|Laptop 1440px | yes | N/A | yes |
+|4K - 2560px | yes | N/A | yes |
+
+
+### Browser compatibility testing
+
+| Browser being tested | Section tested | Intended appearance | Intended responsiveness |
+| :------------------- | :------------- | :------------------ | :------------------ |
+| Chrome | Navbar | good | good |
+| Chrome | Footer | good | good |
+| Chrome | Home - hero section | good | good |
+| Chrome | Home - map, address, opening hours | good | good |
+| Chrome | Schedule - banner image and heading  | good | good |
+| Chrome | Schedule - list of classes grouped by weekday | good | good |
+| Chrome | Schedule detail - class image | good | good |
+| Chrome | Schedule detail - text and "Book class" button | good | good |
+| Chrome | Book class page - booking form | good | good |
+| Chrome | My profile page | good | good |
+| Chrome | Edit profile - profile form | good | good |
+| Chrome | My bookings - list of upcoming bookings | good | good |
+| Chrome | My bookings - no upcoming classes | good | good |
+| Chrome | Edit booking page | good | good |
+| Chrome | Cancel booking page | good | good |
+| Chrome | Sign up page | good | good |
+| Chrome | Log in page | good | good |
+| Chrome | Log out page | good | good |
+| Firefox | Navbar | good | good |
+| Firefoc | Footer | good | good |
+| Firefox | Home - hero section | good | good |
+| Firefox | Home - map, address, opening hours | good | good |
+| Firefox | Schedule - banner image and heading  | good | good |
+| Firefox | Schedule - list of classes grouped by weekday | good | good |
+| Firefox | Schedule detail - class image | good | good |
+| Firefox | Schedule detail - text and "Book class" button | good | good |
+| Firefox | Book class page - booking form | good | good |
+| Firefox | My profile page | good | good |
+| Firefox | Edit profile - profile form | good | good |
+| Firefox | My bookings - list of upcoming bookings | good | good |
+| Firefox | My bookings - no upcoming classes | good | good |
+| Firefox | Edit booking page | good | good |
+| Firefox | Cancel booking page | good | good |
+| Firefox | Sign up page | good | good |
+| Firefox | Log in page | good | good |
+| Firefox | Log out page | good | good |
+| Edge | Navbar | good | good |
+| Edge | Footer | good | good |
+| Edge | Home - hero section | good | good |
+| Edge | Home - map, address, opening hours | good | good |
+| Edge | Schedule - banner image and heading  | good | good |
+| Edge | Schedule - list of classes grouped by weekday | good | good |
+| Edge | Schedule detail - class image | good | good |
+| Edge | Schedule detail - text and "Book class" button | good | good |
+| Edge | Book class page - booking form | good | good |
+| Edge | My profile page | good | good |
+| Edge | Edit profile - profile form | good | good |
+| Edge | My bookings - list of upcoming bookings | good | good |
+| Edge | My bookings - no upcoming classes | good | good |
+| Edge | Edit booking page | good | good |
+| Edge | Cancel booking page | good | good |
+| Edge | Sign up page | good | good |
+| Edge | Log in page | good | good |
+| Edge | Log out page | good | good |
+
+
+### Automated tests
+
+ADD CONTENT HERE!!!!!!!!!!!!!!!!!!!!
+
+
+!!!!
 
 
 ### Notable Bugs
