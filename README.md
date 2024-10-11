@@ -1028,7 +1028,7 @@ __Schedule app testing__
 - verbose name plural (for the models where it was set explicitly), 
 - and ordering (if set in class Meta).
 
-![Test results](https://github.com/Agnieszka-21/namaste-django/tree/main/assets/automated_tests/test_s_models.png)
+![Test results - models](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/automated_tests/test_s_models.png)
 
 2. test_forms.py
 
@@ -1038,7 +1038,7 @@ __Schedule app testing__
 - whether a field widget is a checkbox as expected, 
 - and finally also whether a form is valid when specific criteria are met.
 
-![Test results](https://github.com/Agnieszka-21/namaste-django/tree/main/assets/automated_tests/test_s_forms.png)
+![Test results - forms](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/automated_tests/test_s_forms.png)
 
 3. test_views.py
 
@@ -1053,7 +1053,7 @@ __Schedule app testing__
 - whether views redirect the user upon a successful interaction (e.g. upon cancellation of a booking),
 - whether views handling the number and list of participants update data as expected.
 
-![Test results](https://github.com/Agnieszka-21/namaste-django/tree/main/assets/automated_tests/test_s_views.png)
+![Test results - views](https://github.com/Agnieszka-21/namaste-django/tree/main/assets/automated_tests/test_s_views.png)
 
 __User Profiles__
 
@@ -1065,7 +1065,7 @@ __User Profiles__
 
 Since the only other model in the User Profiles app is the Django User model, I did not create additional tests here.
 
-![Test results](https://github.com/Agnieszka-21/namaste-django/tree/main/assets/automated_tests/test_up_models.png)
+![Test results - models](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/automated_tests/test_up_models.png)
 
 2. test_forms.py
 
@@ -1075,7 +1075,7 @@ Since the only other model in the User Profiles app is the Django User model, I 
 - whether a field is required/not required,
 - the placeholder value in one of the fields (date of birth - shown in the form for optimal user experience).
 
-![Test results](https://github.com/Agnieszka-21/namaste-django/tree/main/assets/automated_tests/test_up_forms.png)
+![Test results - forms](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/automated_tests/test_up_forms.png)
 
 3. test_views.py
 
@@ -1086,7 +1086,7 @@ Since the only other model in the User Profiles app is the Django User model, I 
 - whether views restricted to logged-in users only redirect anyone who is not logged in,
 - whether a view redirects the user after a successful interaction (e.g. updating a user profile).
 
-![Test results](https://github.com/Agnieszka-21/namaste-django/tree/main/assets/automated_tests/test_up_views.png)
+![Test results - views](https://github.com/Agnieszka-21/namaste-django/blob/main/assets/automated_tests/test_up_views.png)
 
 
 ### Notable Bugs
