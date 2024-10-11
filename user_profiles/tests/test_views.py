@@ -32,6 +32,36 @@ class HomeViewTest(SimpleTestCase):
         self.assertTemplateUsed(response, 'user_profiles/index.html')
 
 
+class Error404ViewTest(SimpleTestCase):
+
+    def test_view_does_not_url_exist(self):
+        """
+        Tests whether the 404 error is thrown when user
+        tries to access an unknown url
+        """
+        response = self.client.get('p5asf/')
+        self.assertEqual(response.status_code, 404)
+
+    def test_view_uses_correct_template(self):
+        """
+        Tests whether the correct template is used
+        """
+        response = self.client.get('p5asf/')
+        self.assertEqual(response.status_code, 404)
+        self.assertTemplateUsed(response, '404.html')
+
+
+class ProfileListViewTest(SimpleTestCase):
+
+    def test_view_uses_correct_template(self):
+        """
+        Tests whether the correct template is used
+        """
+        response = self.client.get('')
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'base.html')
+
+
 class ProfileViewTest(TestCase):
     @classmethod
     def setUpTestData(cls):
@@ -42,7 +72,7 @@ class ProfileViewTest(TestCase):
             username='testuser1', password='1X<ISRUkw+tuK', id=1)
         cls.profile = Profile.objects.get(
             user=cls.test_user
-        )
+            )
 
     def test_redirects_if_not_logged_in(self):
         """
